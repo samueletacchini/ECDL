@@ -10,6 +10,11 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <h1> Ciao tacchini </h1>
+        <?php
+        // put your code here
+        echo "CIAOO come stai ";
+        echo "CIAOO LOL";
+
+        ?>
     </body>
 </html>
