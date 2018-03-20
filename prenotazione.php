@@ -6,7 +6,7 @@
     <body>
         
         <fieldset>
-        <h1 align="center"> PRENOTAZIONE ESAME </h1>   
+        <h2 align="center"> PRENOTAZIONE ESAME </h2>   
         </fieldset>
         
         <form name=”casellaTesto” method=”post”>
@@ -15,10 +15,10 @@
           <input type=”numebr” name=”card” size=”20″ maxlength=”20″>
             <p> Cognome :
           <input type=”text” name=”cognome” size=”20″ maxlength=”20″>
-            </br><p> Nome : 
+            <p> Nome : 
           <input type=”text” name=”nome” size=”20″ maxlength=”20″>
-            </br><p> Data Di Nascita : 
-            <select name = "Giorno">
+            <p> Data Di Nascita : 
+            <select name = "Giorno">  
 	      <option>Giorno</option>
 	      <?php
 		for($day = 1; $day <= 31;$day++)
@@ -47,6 +47,10 @@
 		echo"<option value = '".$year."'>".$year."</option>";
 	      ?>
             </select>
+            <p> Luogo Di Nascita :
+            <input type=”text” name=”luogoNascita” size=”20″ maxlength=”20″>
+            <p> Indirizzo :
+            <input type=”text” name=”indirizzo” size=”20″ maxlength=”20″>
             <p>Città :
             <input type=”text” name=”cit” size=”20″ maxlength=”20″>
             CAP :
