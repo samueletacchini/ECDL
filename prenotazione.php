@@ -30,8 +30,8 @@
 
                 <label for="data" class="col-md-12">Data Di Nascita</label>
                 <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <select class="form-control">
+                    <div class="form-group col-md-4"> 
+                        <select class="form-control" id="day">
                             <option disabled selected>Giorno</option>
                             <?php
                             for ($day = 1; $day <= 31; $day++)
@@ -40,7 +40,7 @@
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <select name='month' class="form-control">
+                        <select name='month' class="form-control" id="mounth">
                             <option value='' disabled selected>Mese</option>
                             <option value='1'>Gennaio</option>
                             <option value='2'>Febbraio</option>
@@ -57,7 +57,7 @@
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <select class="form-control">
+                        <select class="form-control" id="year">
                             <option disabled selected>Anno</option>
                             <?php
                             for ($year = Date('Y'); $year >= 1900; $year--)
@@ -104,38 +104,107 @@
                     </div>
                 </div>
 
-                                <br><h3 align="center">TIPOLOGIE DI CANDIDATI :</h3>
-                
-                                <br><center><input type="checkbox" name="docente" class="form-check-input" value="html"/> Docente/ATA </center>
-                                <br><center><input type="checkbox" name="personale" class="form-check-input" value="css"/> Personale Corpi Militari ed Enti Ministeriali convenzionati </center>
-                                <br><center><input type="checkbox" name="studente" class="form-check-input" value="javascript"/> Studente sup. : </center>
+                <br><h3 align="center">TIPOLOGIE DI CANDIDATI :</h3>
 
-                <div class="form-row">
-                    <div class="col-md-4">
-                        <label for="scuola">Scuola</label>
-                        <input type="text" class="form-control" id="scuola">
+                <!--                <div class="form-row">
+                                    <div class="col-md-4">
+                                        <label for="scuola">Scuola</label>
+                                        <input type="text" class="form-control" id="scuola">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="classe">Classe</label>
+                                        <input type="text" class="form-control" id="classe">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="specializzazione">Specializzazione</label>
+                                        <input type="text" class="form-control" id="specializzazione">
+                                    </div>
+                                </div>-->
+
+                <br><div class="checkbox-inline">
+                    <div class="form-group">
+                        <label><input onclick="cancella()" type="radio" name="optradio" id="radioDocenti"> Docenti ATA: </label>
                     </div>
-                    <div class="col-md-2">
-                        <label for="classe">Classe</label>
-                        <input type="text" class="form-control" id="classe">
+                    <div class="form-group">
+                        <label><input onclick="cancella()" type="radio" name="optradio" id="radioPersonale"> Personale Corpi Militari ed Enti Ministeriali convenzionati: </label>
                     </div>
-                    <div class="col-md-6">
-                        <label for="specializzazione">Specializzazione</label>
-                        <input type="text" class="form-control" id="specializzazione">
+                    <div class="form-group">
+                        <label><input onclick="myFunction()"  type="radio" name="optradio" id="radioStudente"> Studente sup. :
+                            <p id="clicco"></p>
+                        <script>
+                            var html = "<div class='form-row'>" +
+                                    " <div class='col-md-4'>" +
+                                    " <label for='scuola'>Scuola</label>" +
+                                    " <input type='text' class='form-control' id='scuola'>" +
+                                    "</div>" +
+                                    "<div class='col-md-2'>" +
+                                    " <label for='classe'>Classe</label>" +
+                                    " <input type='text' class='form-control' id='classe'>" +
+                                    "</div>" +
+                                    "<div class='col-md-6'>" +
+                                    "<label for='specializzazione'>Specializzazione</label>" +
+                                    "<input type='text' class='form-control' id='specializzazione'>" +
+                                    "</div>" +
+                                    "</div>";
+                            function myFunction() {
+                                document.getElementById("clicco").innerHTML = html;
+                            }function cancella() {
+                                document.getElementById("clicco").innerHTML = "";
+                            }
+                        </script>
+                    </div>
+                    <div class="form-group">
+                        <label><input onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
                     </div>
                 </div>
 
-                <br><br><center><input type="checkbox" name="esterno" class="form-check-input" value="javascript"/> Esterni </center>
 
                 <br><h3 align="center">Barrare con una SPUNTA uno o più moduli per i quali si vuole sostenere l' esame :</h3>
 
-                <br><center><input type="checkbox" name="modulo1" class="form-check-input" value="modulo1"/> Modulo 1 : Computer Essentials </center>
-                <br><center><input type="checkbox" name="modulo2" class="form-check-input" value="modulo2"/> Modulo 2 : Online Essentials </center>
-                <br><center><input type="checkbox" name="modulo3" class="form-check-input" value="modulo3"/> Modulo 3 : Word Processing </center>
-                <br><center><input type="checkbox" name="modulo4" class="form-check-input" value="modulo4"/> Modulo 4 : Spreadsheets </center>
-                <br><center><input type="checkbox" name="modulo5" class="form-check-input" value="modulo5"/> Modulo 5 : IT Security </center>
-                <br><center><input type="checkbox" name="modulo6" class="form-check-input" value="modulo6"/> Modulo 6 : Presentation </center>
-                <br><center><input type="checkbox" name="modulo7" class="form-check-input" value="modulo7"/> Modulo 7 : Online Collaboration</center>
+                <br><div class="checkbox-inline col-md-offset-5">
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            Modulo 1: Computer Essentials
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                            Modulo 2: Online Essentials
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                        <label class="form-check-label" for="defaultCheck3">
+                            Modulo 3: Word Processing
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+                        <label class="form-check-label" for="defaultCheck4">
+                            Modulo 4: Spreadsheets
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
+                        <label class="form-check-label" for="defaultCheck5">
+                            Modulo 5: IT Security
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck6">
+                        <label class="form-check-label" for="defaultCheck6">
+                            Modulo 6: Presentation
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck7">
+                        <label class="form-check-label" for="defaultCheck7">
+                            Modulo 7: Online Collaboration
+                        </label>
+                    </div>
+                </div>
 
                 <br><h3 align="center">Data Prenotazione Esame :</h3>
 
@@ -148,6 +217,9 @@
                     </thead>
                 </table>
                 </table>
+
+
+                <center><button type="button" class="btn btn-info btn-lg">Prenota</button></center>
 
             </form>
 
