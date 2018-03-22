@@ -8,7 +8,7 @@
         <h2 align="center"> PRENOTAZIONE ESAME </h2>   
 
         <div class="container">
-            <form name=”casellaTesto” method=”post”>
+            <form name=”casellaTesto” method=”post” class="was-validated">
 
                 <div class="form-row">
                     <div class="form-group col-md-12">
@@ -20,7 +20,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">                       
                         <label for="cognome">Cognome</label>
-                        <input type="text" class="form-control" id="cognome" placeholder="">                      
+                        <input type="text" class="form-control" id="cognome" placeholder="" required>                      
                     </div>         
                     <div class="form-group col-md-6">                   
                         <label for="nome">Nome</label>
@@ -79,15 +79,15 @@
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-7">
                         <label for="city">Città</label>
                         <input type="text" class="form-control" id="city">
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <label for="cap">CAP</label>
                         <input type="text" class="form-control" id="cap">
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-2">
                         <label for="provincia">Provincia</label>
                         <input type="text" class="form-control" id="provincia">
                     </div>
@@ -104,22 +104,7 @@
                     </div>
                 </div>
 
-                <br><h3 align="center">TIPOLOGIE DI CANDIDATI :</h3>
-
-                <!--                <div class="form-row">
-                                    <div class="col-md-4">
-                                        <label for="scuola">Scuola</label>
-                                        <input type="text" class="form-control" id="scuola">
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="classe">Classe</label>
-                                        <input type="text" class="form-control" id="classe">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="specializzazione">Specializzazione</label>
-                                        <input type="text" class="form-control" id="specializzazione">
-                                    </div>
-                                </div>-->
+                <h3 align="center">TIPOLOGIE DI CANDIDATI :</h3>
 
                 <br><div class="checkbox-inline">
                     <div class="form-group">
@@ -132,7 +117,7 @@
                         <label><input onclick="myFunction()"  type="radio" name="optradio" id="radioStudente"> Studente sup. :
                             <p id="clicco"></p>
                         <script>
-                            var html = "<div class='form-row'>" +
+                            var html = "<br><div class='form-row'>" +
                                     " <div class='col-md-4'>" +
                                     " <label for='scuola'>Scuola</label>" +
                                     " <input type='text' class='form-control' id='scuola'>" +
@@ -218,9 +203,8 @@
                 </table>
                 </table>
 
-
-                <center><button type="button" class="btn btn-info btn-lg">Prenota</button></center>
-
+                <center><a href="index.php" class="btn btn-info btn-lg" role="button">Prenota</a></center>
+                
             </form>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
