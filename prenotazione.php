@@ -1,6 +1,8 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+        <link rel="stylesheet" href="file.css">
+        <link rel="stylesheet" href="file.js">
     </head>
     <body>
 
@@ -131,7 +133,7 @@
                                     "<input type='text' class='form-control' id='specializzazione'>" +
                                     "</div>" +
                                     "</div>";
-                            function myFunction() {
+                             function myFunction() {
                                 document.getElementById("clicco").innerHTML = html;
                             }function cancella() {
                                 document.getElementById("clicco").innerHTML = "";
