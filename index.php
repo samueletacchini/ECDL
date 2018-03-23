@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
+<!--T
+o change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
@@ -12,9 +12,20 @@ and open the template in the editor.
     <body>
         <?php
         // put your code here
+        echo Date('Y');
+//        echo "CIAOO come stai ";
+//        echo "CIAOO LOL";
 
-        echo "CIAOO come stai ";
-        echo "CIAOO LOL";
+        require_once("ConnessioneDb.php");
+        $db = new ConnessioneDb();
+        
+        if (isset($_REQUEST['codicefiscale'])){
+            echo $_REQUEST['codicefiscale'];
+        }
+        
+        
+        
+        
         ?>
     </body>
 </html>
