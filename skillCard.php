@@ -1,6 +1,8 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+        <link rel="stylesheet" href="file.css">
+        <link rel="stylesheet" href="file.js">
     </head>
     <body>
 
@@ -113,35 +115,8 @@
                     <div class="form-group">
                         <label><input name="personale" onclick="cancella()" type="radio" name="optradio" id="radioPersonale"> Personale Corpi Militari ed Enti Ministeriali convenzionati: </label>
                     </div>
-                    <div class="form-group">
-                        <label><input name="studente" onclick="myFunction()"  type="radio" name="optradio" id="radioStudente"> Studente sup. :
-                            <p id="clicco"></p>
-                            <script>
-                                var html = "<br><div class='form-row'>" +
-                                        " <div class='col-md-4'>" +
-                                        " <label for='scuola'>Scuola</label>" +
-                                        " <input name='scuola' type='text' class='form-control' id='scuola'>" +
-                                        "</div>" +
-                                        "<div class='col-md-2'>" +
-                                        " <label for='classe'>Classe</label>" +
-                                        " <input name='classe' type='text' class='form-control' id='classe'>" +
-                                        "</div>" +
-                                        "<div class='col-md-6'>" +
-                                        "<label for='specializzazione'>Specializzazione</label>" +
-                                        "<input name='specializzazione' type='text' class='form-control' id='specializzazione'>" +
-                                        "</div>" +
-                                        "</div>";
-                                function myFunction() {
-                                    document.getElementById("clicco").innerHTML = html;
-                                }
-                                function cancella() {
-                                    document.getElementById("clicco").innerHTML = "";
-                                }
-                            </script>
-                    </div>
-                    <div class="form-group">
-                        <label><input name="esterni" onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
-                    </div>
+                            
+                    <center><a href="index.php" class="btn btn-info btn-lg" role="button">Registarti</a></center>
                 </div>
 
                 <center><input type="submit" value="registrati" class="btn btn-info btn-lg"></center>
