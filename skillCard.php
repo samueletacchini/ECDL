@@ -122,11 +122,11 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="scuola">Scolarità</label>
+                        <label for="scuola">Scolarità (1)</label>
                         <input type="text" class="form-control" id="scuola" placeholder="">                      
                     </div>         
                     <div class="form-group col-md-6">                   
-                        <label for="occupazione">Occupazione</label>
+                        <label for="occupazione">Occupazione (2)</label>
                         <input type="text" class="form-control" id="occupazione" placeholder="">
                     </div>
                 </div>
@@ -147,14 +147,13 @@
                     <div class="form-group">
                         <label><input onclick="cancella()" type="radio" name="optradio" id="radioSecondo"> Per i candidati esterni</label>
                     </div>
-
+                            
                     <center><a href="index.php" class="btn btn-info btn-lg" role="button">Registarti</a></center>
                 </div>
-
-<!--                Note: Il modulo va compilato in stampatello, i campi con l'asterisco sono obbligatori.
-                1 Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.
-                2 Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione
-                3 Firma obbligatoria (del genitore in caso di studente minorenne) per il rilascio della Skills card-->
+                
+                <br><br><br><h2>Note :</h2>
+                <p>1) Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.</p>
+                <p>2) Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione.</p>
             </form>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
