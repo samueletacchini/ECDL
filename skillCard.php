@@ -116,7 +116,6 @@
                         <label><input name="personale" onclick="cancella()" type="radio" name="optradio" id="radioPersonale"> Personale Corpi Militari ed Enti Ministeriali convenzionati: </label>
                     </div>
                             
-                    <center><a href="index.php" class="btn btn-info btn-lg" role="button">Registarti</a></center>
                 </div>
 
                 <center><input type="submit" value="registrati" class="btn btn-info btn-lg"></center>
