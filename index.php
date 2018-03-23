@@ -19,8 +19,10 @@ and open the template in the editor.
         require_once("ConnessioneDb.php");
         $db = new ConnessioneDb();
         
+        //skillcard
         if (isset($_REQUEST['codicefiscale'])){
             echo $_REQUEST['codicefiscale'];
+            
         }
         
         
