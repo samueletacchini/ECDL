@@ -19,10 +19,10 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="sesso">Sesso</label>
-                        <select class="form-control" required>
+                        <select class="form-control" name="sesso" required>
                             <option value=" " disabled selected>Sesso</option>
-                            <option value="mascio" name="sessoMaschio"> M </option>
-                            <option value="femmina" name="sessoFemmina"> F </option>
+                            <option value="maschio" > M </option>
+                            <option value="femmina"> F </option>
                         </select>
                     </div>
                 </div>
@@ -79,8 +79,15 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-3">
-                        <label for="statoCivile">Stato Civile</label>
-                        <input name="statoCivile" type="text" class="form-control" id="statoCivile" placeholder="Stato Civile" required>
+                        <label> Stato Civile </label>
+                        <select name="statocivile" class="form-control">
+                            <option value="" disabled selected>Stato Civile</option>
+                            <option value="single"> Single</option>
+                            <option value="coniug"> Coniugato/a</option>
+                            <option value="vedov"> Vedovo/a</option>
+                            <option value="separat"> Separato/a</option>
+                            <option value="divorziat"> Divorziato/a</option>
+                        </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="luogo">Luogo Di Nascita</label>
@@ -147,7 +154,7 @@
                         <label><input  onclick="cancella()" type="radio" name="optradio" id="radioPersonale"> Personale Corpi Militari ed Enti Ministeriali convenzionati: </label>
                     </div>
                     <div class="form-group">
-                        <label><input name="studente" onclick="myFunction()"  type="radio" name="optradio" id="radioStudente"> Studente sup. :
+                        <label><input  onclick="myFunction()"  type="radio" name="optradio" id="radioStudente"> Studente sup. :
                             <p id="clicco"></p>
                             <script>
                                 var html = "<br><div class='form-row'>" +
@@ -173,7 +180,7 @@
                             </script>
                     </div>
                     <div class="form-group">
-                        <label><input name="esterni" onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
+                        <label><input  onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
                     </div>
                 </div>
                 
