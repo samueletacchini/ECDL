@@ -15,18 +15,18 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="card">Skill Card N.</label>
-                        <input name="nskill" type="text" class="form-control" id="card" placeholder="">
+                        <input name="nskill" type="text" class="form-control" id="card" placeholder="Numero SkillCard" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-6">                       
                         <label for="cognome">Cognome</label>
-                        <input name="cognome" type="text" class="form-control" id="cognome" placeholder="" required>                      
+                        <input name="cognome" type="text" class="form-control" id="cognome" placeholder="Cognome" required>                      
                     </div>         
                     <div class="form-group col-md-6">                   
                         <label for="nome">Nome</label>
-                        <input name="nome" type="text" class="form-control" id="nome" placeholder="">
+                        <input name="nome" type="text" class="form-control" id="nome" placeholder="Nome" required>
                     </div>
                 </div>
 
@@ -72,37 +72,37 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="luogo">Luogo Di Nascita</label>
-                        <input name="lnascita" type="text" class="form-control" id="luogo" placeholder="">
+                        <input name="lnascita" type="text" class="form-control" id="luogo" placeholder="Luogo" required>
                     </div>
                     <div class="form-group col-md-8">                   
                         <label for="card">Indirizzo</label>
-                        <input name="indirizzo" type="text" class="form-control" id="indirizzo" placeholder="">                 
+                        <input name="indirizzo" type="text" class="form-control" id="indirizzo" placeholder="Indirizzo" required>                 
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-7">
                         <label for="city">Città</label>
-                        <input name="citta" type="text" class="form-control" id="city">
+                        <input name="citta" type="text" class="form-control" id="city" placeholder="Città" required>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="cap">CAP</label>
-                        <input name="cap" type="text" class="form-control" id="cap">
+                        <input name="cap" type="text" class="form-control" id="cap" placeholder="CAP" required>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="provincia">Provincia</label>
-                        <input name="provincia" type="text" class="form-control" id="provincia">
+                        <input name="provincia" type="text" class="form-control" id="provincia" placeholder="Provincia" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="telefono">Telefono</label>
-                        <input name="telefono" type="text" class="form-control" id="telefono" placeholder="">                      
+                        <input name="telefono" type="text" class="form-control" id="telefono" placeholder="Telefono" required>                      
                     </div>         
                     <div class="form-group col-md-8">                   
                         <label for="mail">Indirizzo E-Mail</label>
-                        <input name="mail" type="text" class="form-control" id="mail" placeholder="">
+                        <input name="mail" type="text" class="form-control" id="mail" placeholder="E-Mail" required>
                     </div>
                 </div>
 
@@ -110,38 +110,39 @@
 
                 <br><div class="checkbox-inline">
                     <div class="form-group">
-                        <label><input name="docenti" onclick="cancella()" type="radio" name="optradio" id="radioDocenti"> Docenti ATA: </label>
+                        <label><input onclick="cancella()" type="radio" name="optradio" id="radioDocenti"> Docenti ATA: </label>
                     </div>
                     <div class="form-group">
-                        <label><input name="personale" onclick="cancella()" type="radio" name="optradio" id="radioPersonale"> Personale Corpi Militari ed Enti Ministeriali convenzionati: </label>
+                        <label><input  onclick="cancella()" type="radio" name="optradio" id="radioPersonale"> Personale Corpi Militari ed Enti Ministeriali convenzionati: </label>
                     </div>
                     <div class="form-group">
-                        <label><input name="studente" onclick="myFunction()"  type="radio" name="optradio" id="radioStudente"> Studente sup. :
+                        <label><input  onclick="myFunction()"  type="radio" name="optradio" id="radioStudente"> Studente sup. :
                             <p id="clicco"></p>
-                        <script>
-                            var html = "<br><div class='form-row'>" +
-                                    " <div class='col-md-4'>" +
-                                    " <label for='scuola'>Scuola</label>" +
-                                    " <input name='scuola' type='text' class='form-control' id='scuola'>" +
-                                    "</div>" +
-                                    "<div class='col-md-2'>" +
-                                    " <label for='classe'>Classe</label>" +
-                                    " <input name='classe' type='text' class='form-control' id='classe'>" +
-                                    "</div>" +
-                                    "<div class='col-md-6'>" +
-                                    "<label for='specializzazione'>Specializzazione</label>" +
-                                    "<input name='specializzazione' type='text' class='form-control' id='specializzazione'>" +
-                                    "</div>" +
-                                    "</div>";
-                             function myFunction() {
-                                document.getElementById("clicco").innerHTML = html;
-                            }function cancella() {
-                                document.getElementById("clicco").innerHTML = "";
-                            }
-                        </script>
+                            <script>
+                                var html = "<br><div class='form-row'>" +
+                                        " <div class='col-md-4'>" +
+                                        " <label for='scuola'>Scuola</label>" +
+                                        " <input name='scuola' type='text' class='form-control' id='scuola'>" +
+                                        "</div>" +
+                                        "<div class='col-md-2'>" +
+                                        " <label for='classe'>Classe</label>" +
+                                        " <input name='classe' type='text' class='form-control' id='classe'>" +
+                                        "</div>" +
+                                        "<div class='col-md-6'>" +
+                                        "<label for='specializzazione'>Specializzazione</label>" +
+                                        "<input name='specializzazione' type='text' class='form-control' id='specializzazione'>" +
+                                        "</div>" +
+                                        "</div>";
+                                function myFunction() {
+                                    document.getElementById("clicco").innerHTML = html;
+                                }
+                                function cancella() {
+                                    document.getElementById("clicco").innerHTML = "";
+                                }
+                            </script>
                     </div>
                     <div class="form-group">
-                        <label><input name="esterni" onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
+                        <label><input  onclick="cancella()"  type="radio" name="optradioEsterni" id="radioEsterno"> Esterni</label>
                     </div>
                 </div>
 
@@ -206,7 +207,7 @@
                 </table>
 
                 <center><input type="submit" value="Prenota" class="btn btn-info btn-lg"></center>
-                
+
             </form>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
