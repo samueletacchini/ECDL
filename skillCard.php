@@ -7,26 +7,34 @@
     <body>
 
 
-        <h2 align="center"> SKILL CARD </h2>   
+        <h2 align="center"> PRENOTAZIONE SKILL CARD </h2>   
 
         <div class="container">
             <form name=”casellaTesto” method=”get” class="was-validated" action="/ecdl/index.php">
 
                 <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <label for="card">Skill Card N.</label>
-                        <input name="nskill" type="text" class="form-control" id="card" placeholder="">
+                    <div class="form-group col-md-8">
+                        <label for="codeFiscale">Codice Fiscale</label>
+                        <input name="codiceFiscale" type="text" class="form-control" id="codeFiscale" placeholder="Codice Fiscale" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="sesso">Sesso</label>
+                        <select class="form-control" required>
+                            <option value=" " disabled selected>Sesso</option>
+                            <option value="mascio" name="sessoMaschio"> M </option>
+                            <option value="femmina" name="sessoFemmina"> F </option>
+                        </select>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-6">                       
                         <label for="cognome">Cognome</label>
-                        <input name="cognome" type="text" class="form-control" id="cognome" placeholder="" required>                      
+                        <input name="cognome" type="text" class="form-control" id="cognome" placeholder="Cognome" required>                      
                     </div>         
                     <div class="form-group col-md-6">                   
                         <label for="nome">Nome</label>
-                        <input name="nome" type="text" class="form-control" id="nome" placeholder="">
+                        <input name="nome" type="text" class="form-control" id="nome" placeholder="Nome" required>
                     </div>
                 </div>
 
@@ -34,7 +42,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-4"> 
                         <select name="giorno" class="form-control" id="day">
-                            <option disabled selected>Giorno</option>
+                            <option value=" " disabled selected>Giorno</option>
                             <?php
                             for ($day = 1; $day <= 31; $day++)
                                 echo "<option value = '" . $day . "'>" . $day . "</option>";
@@ -70,61 +78,82 @@
                 </div>
 
                 <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="statoCivile">Stato Civile</label>
+                        <input name="statoCivile" type="text" class="form-control" id="statoCivile" placeholder="Stato Civile" required>
+                    </div>
                     <div class="form-group col-md-4">
                         <label for="luogo">Luogo Di Nascita</label>
-                        <input name="lnascita" type="text" class="form-control" id="luogo" placeholder="">
+                        <input name="lnascita" type="text" class="form-control" id="luogo" placeholder="Luogo" required>
                     </div>
-                    <div class="form-group col-md-8">                   
+                    <div class="form-group col-md-5">                   
                         <label for="card">Indirizzo</label>
-                        <input name="indirizzo" type="text" class="form-control" id="indirizzo" placeholder="">                 
+                        <input name="indirizzo" type="text" class="form-control" id="indirizzo" placeholder="Indirizzo" required>                 
                     </div>
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-md-7">
+                    <div class="form-group col-md-3">
+                        <label for="state">Stato</label>
+                        <input name="stato" type="text" class="form-control" id="city" placeholder="Stato" required>
+                    </div>
+                    <div class="form-group col-md-4">
                         <label for="city">Città</label>
-                        <input name="citta" type="text" class="form-control" id="city">
+                        <input name="citta" type="text" class="form-control" id="city" placeholder="Città" required>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="cap">CAP</label>
-                        <input name="cap" type="text" class="form-control" id="cap">
+                        <input name="cap" type="text" class="form-control" id="cap" placeholder="CAP" required>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="provincia">Provincia</label>
-                        <input name="provincia" type="text" class="form-control" id="provincia">
+                        <input name="provincia" type="text" class="form-control" id="provincia" placeholder="Provincia" required>
                     </div>
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="telefono">Telefono</label>
-                        <input name="telefono" type="text" class="form-control" id="telefono" placeholder="">                      
-                    </div>         
-                    <div class="form-group col-md-8">                   
+                    <div class="form-group col-md-3">
+                        <label for="telefonoCasa">Telefono</label>
+                        <input name="telefonoCasa" type="text" class="form-control" id="telefono" placeholder="Telefono" required>                      
+                    </div>        
+                    <div class="form-group col-md-3">
+                        <label for="cellulare">Cellulare</label>
+                        <input name="cellulare" type="text" class="form-control" id="telefono" placeholder="Cellulare" required>                      
+                    </div> 
+                    <div class="form-group col-md-6">                   
                         <label for="mail">Indirizzo E-Mail</label>
-                        <input name="mail" type="text" class="form-control" id="mail" placeholder="">
+                        <input name="mail" type="text" class="form-control" id="mail" placeholder="E-Mail" required>
                     </div>
                 </div>
 
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="scolarita">Scolarità</label>
+                        <input name="scolarita" type="text" class="form-control" id="scolarita" placeholder="Scolarità" required>                      
+                    </div> 
+                    <div class="form-group col-md-6">
+                        <label for="occupazione">Occupazione</label>
+                        <input name="occupazione" type="text" class="form-control" id="occupazione" placeholder="Occupazione" required>                      
+                    </div> 
+                </div>
+                    
                 <h3 align="center">TIPOLOGIE DI CANDIDATI :</h3>
 
                 <br><div class="checkbox-inline">
                     <div class="form-group">
-                        <label><input name="docenti" onclick="cancella()" type="radio" name="optradio" id="radioDocenti"> Docenti ATA: </label>
+                        <label><input  onclick="cancella()" type="radio" name="optradio" id="radioDocenti"> Docenti ATA: </label>
                     </div>
                     <div class="form-group">
-                        <label><input name="personale" onclick="cancella()" type="radio" name="optradio" id="radioPersonale"> Personale Corpi Militari ed Enti Ministeriali convenzionati: </label>
+                        <label><input  onclick="cancella()" type="radio" name="optradio" id="radioPersonale"> Personale Corpi Militari ed Enti Ministeriali convenzionati: </label>
                     </div>
                 </div>
+                
+                <h3>Note: </h3>
+                <label>1) Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.</label>
+                <label>2) Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione.</label>
 
-                <center><input type="submit" value="registrati" class="btn btn-info btn-lg"></center>
+                <br><br><center><input type="submit" value="registrati" class="btn btn-info btn-lg"></center>
 
-
-
-                <!--                Note: Il modulo va compilato in stampatello, i campi con l'asterisco sono obbligatori.
-                                1 Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.
-                                2 Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione
-                                3 Firma obbligatoria (del genitore in caso di studente minorenne) per il rilascio della Skills card-->
             </form>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
