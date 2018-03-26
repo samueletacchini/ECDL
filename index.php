@@ -43,7 +43,8 @@ and open the template in the editor.
             
             $rilasciatadate = "$anno-$mese-$giorno";
             $query = "INSERT INTO `user`(`skill_card`, `rilasciata`, `codice_fiscale`, `sesso`, `cognome`, `nome`, `data_nascita`, `luogo_nascita`, `stato_civile`, `indirizzo`, `email`, `cellulare`, `telefono`, `occupazione`, `pagato`, `date_insert`) "
-                   . "VALUES ($nskill, $rilasciatadate, $codfiscale, , , , , , , , , , , , , ");
+                   //. "VALUES ($nskill, $rilasciatadate, $codfiscale, , , , , , , , , , , , , ");
+            ;
             
             
             
