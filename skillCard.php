@@ -79,8 +79,15 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-3">
-                        <label for="statoCivile">Stato Civile</label>
-                        <input name="statoCivile" type="text" class="form-control" id="statoCivile" placeholder="Stato Civile" required>
+                        <label> Stato Civile </label>
+                        <select name="statocivile" class="form-control">
+                            <option value="" disabled selected>Stato Civile</option>
+                            <option value="single"> Single</option>
+                            <option value="coniug"> Coniugato/a</option>
+                            <option value="vedov"> Vedovo/a</option>
+                            <option value="separat"> Separato/a</option>
+                            <option value="divorziat"> Divorziato/a</option>
+                        </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="luogo">Luogo Di Nascita</label>
