@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="sesso">Sesso</label>
-                        <select class="form-control" name="sesso" required>
+                        <select name="sesso" class="form-control" required>
                             <option value=" " disabled selected>Sesso</option>
                             <option value="maschio" > M </option>
                             <option value="femmina"> F </option>
@@ -148,13 +148,13 @@
 
                 <br><div class="checkbox-inline">
                     <div class="form-group">
-                        <label><input  onclick="cancella()" type="radio" name="optradio" id="radioDocenti"> Docenti ATA: </label>
+                        <label><input value="docenti" onclick="cancella()" type="radio" name="optradio" id="radioDocenti"> Docenti ATA: </label>
                     </div>
                     <div class="form-group">
-                        <label><input  onclick="cancella()" type="radio" name="optradio" id="radioPersonale"> Personale Corpi Militari ed Enti Ministeriali convenzionati: </label>
+                        <label><input value="personale" onclick="cancella()" type="radio" name="optradio" id="radioPersonale"> Personale Corpi Militari ed Enti Ministeriali convenzionati: </label>
                     </div>
                     <div class="form-group">
-                        <label><input  onclick="myFunction()"  type="radio" name="optradio" id="radioStudente"> Studente sup. :
+                        <label><input value="studenti" onclick="myFunction()"  type="radio" name="optradio" id="radioStudente"> Studente sup. :
                             <p id="clicco"></p>
                             <script>
                                 var html = "<br><div class='form-row'>" +
@@ -180,7 +180,7 @@
                             </script>
                     </div>
                     <div class="form-group">
-                        <label><input  onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
+                        <label><input value="esterni" onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
                     </div>
                 </div>
                 
