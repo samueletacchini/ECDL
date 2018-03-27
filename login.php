@@ -1,17 +1,49 @@
+<?php
+session_start();
+?>
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
         <link rel="stylesheet" href="file.css">
         <link rel="stylesheet" href="file.js">
+        <style>
+            body{
+                background-color:#00C0FF;
+            }
+            .form-container {
+                margin-top: 9%;
+                margin-left: auto;
+                margin-right: auto;
+                width: 30%;
+                border-radius:30px 0px 30px 0px;
+                padding: 10px;
+                background-color:white;
+            }
+            .form-row{
+                width: 10%;
+                margin-left:10.6%;
+                
+            }
+        </style>
     </head>
     <body>
 
-
-        <h2 align="center"> PRENOTAZIONE SKILL CARD </h2>  
+        
         <div class="form-container">
-            
-            <form name=”casellaTesto” method=”get” class="was-validated" action="/ecdl/index.php">
-                   
+             <h2 align="center"> LOGIN ECDL</h2>  
+            <form name=”casellaTesto” method=”get” class="was-validated" action="/ecdl/login.php">
+                <div class="container">
+                    <div class="form-row ">
+                        <label> Nome Utente</label>
+                        <input name="username" type="text" id="username" class="form-control" required>
+                    </div>
+                     <div class="form-row ">
+                        <label> Password </label>
+                        <input name="passwd" type="password" id="username" class="form-control" required>
+                    </div>
+                </div>
+                <center><br><br><button type="submit" class="btn btn-info btn-lg" value="accedi"> Accedi </button></center>
+                <center><br><label> Non Sei Registrato ? Fallo <a href="skillCard.php"> ora</a></center>
             </form>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -21,4 +53,30 @@
         </div>
     </body>
 </html>
+<?php
+if (isset($_REQUEST["username"])) {
+    
+    
+     require_once('ConnessioneDb.php');
+     $db=new ConnessioneDb();
+     //trim toglie gli spazi bianchi doppi o tripli ed evita problemi di SQL INJECTION
+     $usr=$db->real_escape_string($_REQUEST["username"]);
+     $pwd=$db->real_escape_string ($_REQUEST["passwd"]);
+     //controlla correttezza username e pwd
+     $sql="select * from login where username='$usr'and passwd='$pwd'";
+     $result = $db->query($sql);
+     if($result->num_rows == 0){
+          echo("<center><label>Username o password errati</label></center>");
+     }
+     else
+     {
+        $riga = $result->fetch_array();
+        $_SESSION['utente']=$riga[''];
+        $result->close();
+        //richiama la pagina index.php
+       header("location: index.php");
+     
+}
+} 
+?>
 
