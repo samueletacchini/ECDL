@@ -10,11 +10,9 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        // put your code here
-        $datenow = Date('Y-m-d');
-//       "CIAOO come stai ";
-//       "CIAOO LOL";
-
+        
+        echo "<a href='prenotazione.php'> Prenotazione skillcard </a>";
+        echo "<br><a href='prenotazione.php'> Registrazione </a>";
         require_once("ConnessioneDb.php");
         $db = new ConnessioneDb();
 

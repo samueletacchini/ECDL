@@ -14,7 +14,7 @@
 class ConnessioneDb extends MySQLi {
 
     function __construct() {
-        parent::__construct('127.0.0.1', 'root', '', 'ecdl');
+        parent::__construct('127.0.0.1', 'root', '', 'login');
         if ($this->connect_error) {
             die('Connessione fallita: ' . $this->connect_error);
         }
