@@ -10,7 +10,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        //lol
+        //lolll
         
         echo "<a href='prenotazione.php'> Prenotazione skillcard </a>";
         echo "<br><a href='prenotazione.php'> Registrazione </a>";
