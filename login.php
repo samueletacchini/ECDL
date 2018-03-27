@@ -8,21 +8,22 @@ session_start();
         <link rel="stylesheet" href="file.js">
         <style>
             body{
-                background-color:#00C0FF;
+                background-color:DodgerBlue;
             }
             .form-container {
-                margin-top: 9%;
+                min-width: 500px;
+                margin-top: 10%;
                 margin-left: auto;
                 margin-right: auto;
-                width: 30%;
-                border-radius:30px 0px 30px 0px;
+                width: 500px;
+                border-radius:80px 5px 80px 5px;
                 padding: 10px;
                 background-color:white;
             }
             .form-row{
-                width: 10%;
-                margin-left:10.6%;
-                
+                width: 150px;
+                margin-left:147px;
+                min-width: 150px;
             }
         </style>
     </head>
