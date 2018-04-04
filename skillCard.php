@@ -6,7 +6,9 @@
     </head>
     <body>
 
+        <nav class="navbar navbar-dark bg-primary">
 
+        </nav>
         <h2 align="center"> PRENOTAZIONE SKILL CARD </h2>   
 
         <div class="container">
@@ -127,23 +129,27 @@
                         <label for="cellulare">Cellulare</label>
                         <input name="cellulare" type="text" class="form-control" id="telefono" placeholder="Cellulare" required>                      
                     </div> 
-                    <div class="form-group col-md-6">                   
-                        <label for="mail">Indirizzo E-Mail</label>
-                        <input name="mail" type="text" class="form-control" id="mail" placeholder="E-Mail" required>
+                    <div class="form-group col-md-6">
+                        <label for="occupazione">Occupazione</label>
+                        <input name="occupazione" type="text" class="form-control" id="occupazione" placeholder="Occupazione" required>                      
                     </div>
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="scolarita">Scolarità</label>
-                        <input name="scolarita" type="text" class="form-control" id="scolarita" placeholder="Scolarità" required>                      
-                    </div> 
-                    <div class="form-group col-md-6">
-                        <label for="occupazione">Occupazione</label>
-                        <input name="occupazione" type="text" class="form-control" id="occupazione" placeholder="Occupazione" required>                      
-                    </div> 
+                    <div class="form-group col-md-6">                   
+                        <label for="mail">Indirizzo E-Mail</label>
+                        <input name="mail" type="text" class="form-control" id="mail" placeholder="E-Mail" required>
+                    </div>
+                    <div class="form-group col-md-3">                   
+                        <label for="password">Password</label>
+                        <input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group col-md-3">                   
+                        <label for="confPass">Conferma Password</label>
+                        <input name="confPass" type="password" class="form-control" id="confPass" placeholder="Conferma Password" required>
+                    </div>
                 </div>
-                    
+
                 <h3 align="center">TIPOLOGIE DI CANDIDATI :</h3>
 
                 <br><div class="checkbox-inline">
@@ -183,7 +189,7 @@
                         <label><input value="esterni" onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
                     </div>
                 </div>
-                
+
                 <h3>Note: </h3>
                 <label>1) Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.</label>
                 <label>2) Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione.</label>
