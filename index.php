@@ -10,7 +10,7 @@ and open the template in the editor.
 
     </head>
     <body>
-        <a href='skillcard .php'>skillcard </a>
+        <a href='skillcard.php'>skillcard </a>
         <br><a href='prenotazione.php'> prenotazione esame </a>
         <?php
         if (isset($_REQUEST['update'])) {
