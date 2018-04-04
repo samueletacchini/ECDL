@@ -12,7 +12,7 @@
         <h2 align="center"> PRENOTAZIONE SKILL CARD </h2>   
 
         <div class="container">
-            <form name=”casellaTesto” method=”get” class="was-validated" action="/ecdl/index.php">
+            <form name=”casellaTesto” method=”get” class="was-validated" action="/ecdl/pdfSkillCard.php">
 
                 <div class="form-row">
                     <div class="form-group col-md-8">
@@ -202,6 +202,7 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             <script type="text/javascript" src="bootstrap-table.js"></script>
         </div>
+        <p> Cioaaooasjfijdfmpdofjdnvk </p>
     </body>
 </html>
 
