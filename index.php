@@ -7,12 +7,19 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
+
     </head>
     <body>
+        <a href='skillcard .php'>skillcard </a>
+        <br><a href='prenotazione.php'> prenotazione esame </a>
         <?php
+        if (isset($_REQUEST['update'])) {
+            echo "aggiorna";
+            exec("/var/www/html/ecdl/update.sh");
+        }
 
-        echo "<a href='prenotazione.php'> Prenotazione skillcard </a>";
-        echo "<br><a href='prenotazione.php'> Registrazione </a>";
+
+        echo "";
         require_once("ConnessioneDb.php");
         $db = new ConnessioneDb();
 
