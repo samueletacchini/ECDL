@@ -1,7 +1,7 @@
 #!/bin/bash
-TRAGET="/home/webuser/deploy-folder"
-GIT_DIR="/home/webuser/www.git"
-BRANCH="master"
+TRAGET="/var/www/html/ecdl/"
+GIT_DIR="/var/www/html/ecdl/.git"
+BRANCH="grouss"
 
 while read oldrev newrev ref
 do
