@@ -12,7 +12,7 @@ and open the template in the editor.
         <?php
 
         echo "<a href='prenotazione.php'> Prenotazione skillcard </a>";
-        echo "<br><a href='prenotazione.php'> Registrazione </a>";
+        echo "<br><a href='skillcard.php'> Registrazione </a>";
         require_once("ConnessioneDb.php");
         $db = new ConnessioneDb();
 
