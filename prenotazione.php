@@ -7,8 +7,8 @@
     <body>
 
         <nav class="navbar navbar-dark bg-primary">
-  <!-- Navbar content -->
-</nav>
+
+        </nav>
         <h2 align="center"> PRENOTAZIONE ESAME </h2>   
 
         <div class="container">
