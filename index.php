@@ -10,7 +10,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        
+
         echo "<a href='prenotazione.php'> Prenotazione skillcard </a>";
         echo "<br><a href='prenotazione.php'> Registrazione </a>";
         require_once("ConnessioneDb.php");
@@ -64,23 +64,23 @@ and open the template in the editor.
                 echo $specializzazione = $_REQUEST['specializzazione'];
                 echo "<br>";
             }
+            $indirizzo = "";
+            $birthdate = "$anno-$mese-$giorno";
+            $query = "INSERT INTO `user`(`skill_card`, `password`, `rilasciata`, `codice_fiscale`, `sesso`, `cognome`, `nome`, `data_nascita`, `luogo_nascita`, `stato_civile`, `indirizzo`, `stato`, `citta`, `cap`, `provincia`, `email`, `cellulare`, `telefono`, `occupazione`, `pagato`) "
+                    . " VALUES ('default', 'admin', '$datenow', '$codicefiscale', '$sesso', '$cognome', '$nome', '$birthdate', '$lnascita', '$statocivile', '$indirizzo', '$stato', '$citta', '$cap', '$provincia', '$mail', '$cellulare', '$telefono', '$occupazione', 0)";
+            $ris = $db->query($query);
         }
 
-        $indirizzo = "";
-        $birthdate = "$anno-$mese-$giorno";
-        $query = "INSERT INTO `user`(`skill_card`, `password`, `rilasciata`, `codice_fiscale`, `sesso`, `cognome`, `nome`, `data_nascita`, `luogo_nascita`, `stato_civile`, `indirizzo`, `stato`, `citta`, `cap`, `provincia`, `email`, `cellulare`, `telefono`, `occupazione`, `pagato`) "
-                . " VALUES ('default', 'admin', '$datenow', '$codicefiscale', '$sesso', '$cognome', '$nome', '$birthdate', '$lnascita', '$statocivile', '$indirizzo', '$stato', '$citta', '$cap', '$provincia', '$mail', '$cellulare', '$telefono', '$occupazione', 0)";
 
-        $ris = $db->query($query);
-       $ris = $db->query("select * from user");
-        echo "<table border><tr><th>ID</th><th>Descrizione</th><tr>";
-        while ($riga = $ris->fetch_array()) {
-            echo "<tr><td>{$riga["codice_fiscale"]}</td>";
-            echo '<td>' . $riga["sesso"] . '</td>';
-            //echo "<td>{$riga["sconto"]}</td>";
-            echo "</tr>";
-        }
-        echo "</table>";
+//       $ris = $db->query("select * from user");
+//        echo "<table border><tr><th>ID</th><th>Descrizione</th><tr>";
+//        while ($riga = $ris->fetch_array()) {
+//            echo "<tr><td>{$riga["codice_fiscale"]}</td>";
+//            echo '<td>' . $riga["sesso"] . '</td>';
+//            //echo "<td>{$riga["sconto"]}</td>";
+//            echo "</tr>";
+//        }
+//        echo "</table>";
         ?>
 
     </body>
