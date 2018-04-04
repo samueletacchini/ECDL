@@ -18,8 +18,6 @@ and open the template in the editor.
             exec("/var/www/html/ecdl/update.sh");
         }
 
-
-        echo "";
         require_once("ConnessioneDb.php");
         $db = new ConnessioneDb();
 
