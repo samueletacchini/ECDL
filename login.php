@@ -9,7 +9,9 @@ session_start();
         <style>
             body{
                 background-color:DodgerBlue;
-            }
+                max-width: auto;
+                overflow: hidden;
+}
             .form-container {
                 min-width: 500px;
                 margin-top: 10%;
@@ -21,30 +23,55 @@ session_start();
                 background-color:white;
             }
             .form-row{
-                width: 150px;
-                margin-left:147px;
+                width: 200px;
+                margin-left:124px;
                 min-width: 150px;
             }
         </style>
     </head>
     <body>
 
-        
+
         <div class="form-container">
-             <h2 align="center"> LOGIN ECDL</h2>  
+            <h2 align="center"> LOGIN ECDL</h2>  
             <form name=”casellaTesto” method=”get” class="was-validated" action="/ecdl/login.php">
                 <div class="container">
                     <div class="form-row ">
-                        <label> Nome Utente</label>
-                        <input name="username" type="text" id="username" class="form-control" required>
+                        <label> E-Mail</label>
+                        <input name="email" type="text" id="email" class="form-control" required>
                     </div>
-                     <div class="form-row ">
+                    <div class="form-row ">
                         <label> Password </label>
-                        <input name="passwd" type="password" id="username" class="form-control" required>
+                        <input name="password" type="password" id="password" class="form-control" required>
                     </div>
                 </div>
-                <center><br><br><button type="submit" class="btn btn-info btn-lg" value="accedi"> Accedi </button></center>
-                <center><br><label> Non Sei Registrato ? Fallo <a href="skillCard.php"> ora</a></center>
+
+                <?php
+                if (isset($_REQUEST["email"])) {
+
+
+                    require_once('ConnessioneDb.php');
+                    $db = new ConnessioneDb();
+                    //trim toglie gli spazi bianchi doppi o tripli ed evita problemi di SQL INJECTION
+                    $email = $db->real_escape_string($_REQUEST["email"]);
+                    $pwd = $db->real_escape_string($_REQUEST["password"]);
+                    //controlla correttezza username e pwd
+                    $sql = "select * from user where email='$email'and password='$pwd'";
+                    $result = $db->query($sql);
+                    if ($result->num_rows == 0) {
+                        echo("<center><label>E-Mail o Password errati</label></center>");
+                    } else {
+                        $riga = $result->fetch_array();
+                        $_SESSION['utente'] = $riga[''];
+                        $result->close();
+                        //richiama la pagina index.php
+                        header("location: index.php");
+                    }
+                }
+                ?>
+
+                <center><br><button type="submit" class="btn btn-info btn-lg" value="accedi"> Accedi </button></center>
+                <center><label> Non Sei Registrato ? Fallo <a href="skillCard.php"> ora</a></center>
             </form>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -54,30 +81,3 @@ session_start();
         </div>
     </body>
 </html>
-<?php
-if (isset($_REQUEST["username"])) {
-    
-    
-     require_once('ConnessioneDb.php');
-     $db=new ConnessioneDb();
-     //trim toglie gli spazi bianchi doppi o tripli ed evita problemi di SQL INJECTION
-     $usr=$db->real_escape_string($_REQUEST["username"]);
-     $pwd=$db->real_escape_string ($_REQUEST["passwd"]);
-     //controlla correttezza username e pwd
-     $sql="select * from login where username='$usr'and passwd='$pwd'";
-     $result = $db->query($sql);
-     if($result->num_rows == 0){
-          echo("<center><label>Username o password errati</label></center>");
-     }
-     else
-     {
-        $riga = $result->fetch_array();
-        $_SESSION['utente']=$riga[''];
-        $result->close();
-        //richiama la pagina index.php
-       header("location: index.php");
-     
-}
-} 
-?>
-
