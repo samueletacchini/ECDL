@@ -14,8 +14,11 @@ and open the template in the editor.
         <br><a href='prenotazione.php'> prenotazione esame </a>
         <?php
         if (isset($_REQUEST['update'])) {
-            echo "aggiorna";
-            exec("echo ciao > /home/sugo/gigi");
+            echo "LOLOL";
+
+            $message = shell_exec("sh /var/www/html/update.sh");
+            print_r($message);
+            echo $message;
         }
 
         require_once("ConnessioneDb.php");
