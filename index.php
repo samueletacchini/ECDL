@@ -10,12 +10,12 @@ and open the template in the editor.
 
     </head>
     <body>
-        <a href='skillcard.php'>skillcard </a>
+        <a href='skillCard.php'>skillcard </a>
         <br><a href='prenotazione.php'> prenotazione esame </a>
         <?php
         if (isset($_REQUEST['update'])) {
             echo "aggiorna";
-            exec("/var/www/html/ecdl/update.sh");
+            exec("echo ciao > /home/sugo/gigi");
         }
 
         require_once("ConnessioneDb.php");
