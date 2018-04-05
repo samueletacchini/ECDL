@@ -16,7 +16,7 @@ and open the template in the editor.
         if (isset($_REQUEST['update'])) {
             echo "yunus";
 
-            $message = shell_exec("sh /var/www/html/update.sh");
+            $message = shell_exec("sh /var/www/html/ecdl/update.sh");
             print_r($message);
             echo $message;
         }
