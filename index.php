@@ -14,7 +14,7 @@ and open the template in the editor.
         <br><a href='prenotazione.php'> prenotazione esame </a>
         <?php
         if (isset($_REQUEST['update'])) {
-            echo "depa";
+            echo "reggia";
 
             //$message = shell_exec("sh /var/www/html/update.sh");
             $message = shell_exec("sudo su");
