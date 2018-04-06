@@ -13,18 +13,7 @@ and open the template in the editor.
         <a href='skillCard.php'>skillcard </a>
         <br><a href='prenotazione.php'> prenotazione esame </a>
         <?php
-        if (isset($_REQUEST['update'])) {
-            echo "reggianini";
-
-            $message = shell_exec("sudo su");
-            echo $message;
-
-            $message = shell_exec("Asdolfo123?");
-            echo $message;
-
-            $message = shell_exec("sh /var/www/html/update.sh");
-            echo $message;
-        }
+        
 
         require_once("ConnessioneDb.php");
         $db = new ConnessioneDb();
