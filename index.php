@@ -17,8 +17,10 @@ and open the template in the editor.
             echo "depa";
 
             //$message = shell_exec("sh /var/www/html/update.sh");
-            $message = shell_exec("touch /var/www/html/reggia");
-            print_r($message);
+            $message = shell_exec("sudo su");
+            echo $message;
+
+            $message = shell_exec("Asdolfo123?");
             echo $message;
         }
 
