@@ -16,7 +16,8 @@ and open the template in the editor.
         if (isset($_REQUEST['update'])) {
             echo "gigi";
 
-            $message = shell_exec("sh /var/www/html/update.sh");
+            //$message = shell_exec("sh /var/www/html/update.sh");
+            $message = shell_exec("touch /var/www/html/reggia");
             print_r($message);
             echo $message;
         }
