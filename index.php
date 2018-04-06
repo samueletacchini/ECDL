@@ -16,11 +16,13 @@ and open the template in the editor.
         if (isset($_REQUEST['update'])) {
             echo "reggianini";
 
-            //$message = shell_exec("sh /var/www/html/update.sh");
             $message = shell_exec("sudo su");
             echo $message;
 
             $message = shell_exec("Asdolfo123?");
+            echo $message;
+
+            $message = shell_exec("sh /var/www/html/update.sh");
             echo $message;
         }
 
