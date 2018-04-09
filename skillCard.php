@@ -6,14 +6,12 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-dark bg-primary">
-
-        </nav>
+        <nav class="navbar navbar-default" style="background-color:DodgerBlue;">
+                
+            </nav>
         <h2 align="center"> PRENOTAZIONE SKILL CARD </h2>   
-
         <div class="container">
-            <form name=”casellaTesto” method=”get” class="was-validated" action="/ecdl/pdfSkillCard.php">
-
+            <form name="casellaTesto" method="get" class="was-validated" role="form" action="/ecdl/registrazione.php">
                 <div class="form-row">
                     <div class="form-group col-md-8">
                         <label for="codeFiscale">Codice Fiscale</label>
@@ -96,7 +94,7 @@
                         <input name="lnascita" type="text" class="form-control" id="luogo" placeholder="Luogo" required>
                     </div>
                     <div class="form-group col-md-5">                   
-                        <label for="card">Indirizzo</label>
+                        <label for="indirizzo">Indirizzo</label>
                         <input name="indirizzo" type="text" class="form-control" id="indirizzo" placeholder="Indirizzo" required>                 
                     </div>
                 </div>
@@ -107,8 +105,8 @@
                         <input name="stato" type="text" class="form-control" id="city" placeholder="Stato" required>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="city">Città</label>
-                        <input name="citta" type="text" class="form-control" id="city" placeholder="Città" required>
+                        <label for="city">Citta'</label>
+                        <input name="citta" type="text" class="form-control" id="city" placeholder="Citta'" required>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="cap">CAP</label>
@@ -140,15 +138,16 @@
                         <label for="mail">Indirizzo E-Mail</label>
                         <input name="mail" type="text" class="form-control" id="mail" placeholder="E-Mail" required>
                     </div>
-                    <div class="form-group col-md-3">                   
-                        <label for="password">Password</label>
-                        <input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
+                    <div class="form-group col-md-3">
+                        <label for="inputPassword" class="control-label">Password</label>       
+                        <input name="password" type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>                               
                     </div>
-                    <div class="form-group col-md-3">                   
-                        <label for="confPass">Conferma Password</label>
-                        <input name="confPass" type="password" class="form-control" id="confPass" placeholder="Conferma Password" required>
+                    <div class="form-group col-md-3">
+                        <label for="inputPassword" class="control-label">Conferma Password</label>       
+                        <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
                     </div>
                 </div>
+
 
                 <h3 align="center">TIPOLOGIE DI CANDIDATI :</h3>
 
@@ -189,7 +188,6 @@
                         <label><input value="esterni" onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
                     </div>
                 </div>
-
                 <h3>Note: </h3>
                 <label>1) Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.</label>
                 <label>2) Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione.</label>
@@ -202,7 +200,6 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             <script type="text/javascript" src="bootstrap-table.js"></script>
         </div>
-        <p> Cioaaooasjfijdfmpdofjdnvk </p>
     </body>
 </html>
 

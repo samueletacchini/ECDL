@@ -6,7 +6,7 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-dark bg-primary">
+        <nav class="navbar navbar-dark bg-primary" style="background-color:DodgerBlue;">
 
         </nav>
         <h2 align="center"> PRENOTAZIONE ESAME </h2>   
@@ -84,8 +84,8 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-7">
-                        <label for="city">Città</label>
-                        <input name="citta" type="text" class="form-control" id="city" placeholder="Città" required>
+                        <label for="city">Citta'</label>
+                        <input name="citta" type="text" class="form-control" id="city" placeholder="Citta'" required>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="cap">CAP</label>

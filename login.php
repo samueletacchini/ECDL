@@ -14,7 +14,7 @@ session_start();
 }
             .form-container {
                 min-width: 500px;
-                margin-top: 10%;
+                margin-top: 13%;
                 margin-left: auto;
                 margin-right: auto;
                 width: 500px;
