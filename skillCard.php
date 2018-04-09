@@ -1,49 +1,12 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
-        <link rel="stylesheet" href="file.css">
+        <link rel="stylesheet" href="css/PrenotazioneRegistrazione.css">
         <link rel="stylesheet" href="file.js">
     </head>
-    <style>
-        .navbar-default {
-            padding: 100px 25px;
-            border-radius:0px 0px 0px 0px;
-            font-family: Montserrat, sans-serif;
-        }
-        .jumbotron {
-            background-color: DodgerBlue;
-            color: #fff;
-            padding: 100px 25px;
-            font-family: Montserrat, sans-serif;
-        }
-        .jumbotron p {
-            margin-bottom: 15px;
-            font-size: 21px;
-            font-weight: 200;
-        }
-        h1{
-            font-size: 63px;
-        }
-        p {
-            margin: 0 0 10px;
-        }
-        .glyphicon {
-            position: relative;
-            top: 1px;
-            display: inline-block;
-            font-family: 'Glyphicons Halflings';
-            font-style: normal;
-            font-weight: 400;
-            line-height: 1;
-            -webkit-font-smoothing: antialiased;
-        }
-        .bg-grey {
-            background-color: #f6f6f6;
-        }
-    </style>
     <body>
         <div class="jumbotron text-center">
-            <h1 align="center"> Prenotazione Degli Esami </h1>
+            <h1 align="center"> Registrazione </h1>
             <p>
                 <span class="glyphicon glyphicon-phone"></span>
                 0592917000 -
