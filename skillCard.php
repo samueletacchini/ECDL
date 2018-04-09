@@ -4,13 +4,55 @@
         <link rel="stylesheet" href="file.css">
         <link rel="stylesheet" href="file.js">
     </head>
+    <style>
+        .navbar-default {
+            padding: 100px 25px;
+            border-radius:0px 0px 0px 0px;
+            font-family: Montserrat, sans-serif;
+        }
+        .jumbotron {
+            background-color: DodgerBlue;
+            color: #fff;
+            padding: 100px 25px;
+            font-family: Montserrat, sans-serif;
+        }
+        .jumbotron p {
+            margin-bottom: 15px;
+            font-size: 21px;
+            font-weight: 200;
+        }
+        h1{
+            font-size: 63px;
+        }
+        p {
+            margin: 0 0 10px;
+        }
+        .glyphicon {
+            position: relative;
+            top: 1px;
+            display: inline-block;
+            font-family: 'Glyphicons Halflings';
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+        }
+        .bg-grey {
+            background-color: #f6f6f6;
+        }
+    </style>
     <body>
-
-        <nav class="navbar navbar-default" style="background-color:DodgerBlue;">
-                
-            </nav>
-        <h2 align="center"> PRENOTAZIONE SKILL CARD </h2>   
-        <div class="container">
+        <div class="jumbotron text-center">
+            <h1 align="center"> Prenotazione Degli Esami </h1>
+            <p>
+                <span class="glyphicon glyphicon-phone"></span>
+                0592917000 -
+                <span class="glyphicon glyphicon-envelope"></span>
+                ecdl@istitutocorni.it
+            </p>
+        </div>
+        <div class="container-fluid bg-grey">
+            <h2 align="center"> Prenotazione Skill Card </h2>
             <form name="casellaTesto" method="get" class="was-validated" role="form" action="/ecdl/registrazione.php">
                 <div class="form-row">
                     <div class="form-group col-md-8">
@@ -187,7 +229,8 @@
                     <div class="form-group">
                         <label><input value="esterni" onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
                     </div>
-                </div>
+                
+             </div>
                 <h3>Note: </h3>
                 <label>1) Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.</label>
                 <label>2) Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione.</label>
@@ -199,7 +242,7 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             <script type="text/javascript" src="bootstrap-table.js"></script>
-        </div>
+       </div>
     </body>
 </html>
 

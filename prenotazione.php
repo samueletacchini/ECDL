@@ -4,16 +4,57 @@
         <link rel="stylesheet" href="file.css">
         <link rel="stylesheet" href="file.js">
     </head>
+    <style>
+        .navbar-default {
+            padding: 100px 25px;
+            border-radius:0px 0px 0px 0px;
+            font-family: Montserrat, sans-serif;
+        }
+        .jumbotron {
+            background-color: DodgerBlue;
+            color: #fff;
+            padding: 100px 25px;
+            font-family: Montserrat, sans-serif;
+        }
+        .jumbotron p {
+            margin-bottom: 15px;
+            font-size: 21px;
+            font-weight: 200;
+        }
+        h1{
+            font-size: 63px;
+        }
+        p {
+            margin: 0 0 10px;
+        }
+        .glyphicon {
+            position: relative;
+            top: 1px;
+            display: inline-block;
+            font-family: 'Glyphicons Halflings';
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+        }
+        .bg-grey {
+            background-color: #f6f6f6;
+        }
+    </style>
     <body>
+        <div class="jumbotron text-center">
+            <h1 align="center"> Prenotazione Degli Esami </h1>
+            <p>
+                <span class="glyphicon glyphicon-phone"></span>
+                0592917000 -
+                <span class="glyphicon glyphicon-envelope"></span>
+                ecdl@istitutocorni.it
+            </p>
+        </div>
 
-        <nav class="navbar navbar-dark bg-primary" style="background-color:DodgerBlue;">
-
-        </nav>
-        <h2 align="center"> PRENOTAZIONE ESAME </h2>   
-
-        <div class="container">
+        <div class="container-fluid bg-grey">
             <form name="casellaTesto" method="get" class="was-validated">
-
+                <h2 align="center"> Modulo Di Prenotazione</h2>
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="card">Skill Card N.</label>
@@ -207,16 +248,16 @@
                     </thead>
                 </table>
                 </table>
+        
+    <center><input type="submit" value="Prenota" class="btn btn-info btn-lg"></center>
 
-                <center><input type="submit" value="Prenota" class="btn btn-info btn-lg"></center>
+</form>
 
-            </form>
-
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-            <script type="text/javascript" src="bootstrap-table.js"></script>
-        </div>
-    </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bootstrap-table.js"></script>
+</div>
+</body>
 </html>
 
 

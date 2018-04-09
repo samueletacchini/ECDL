@@ -3,36 +3,55 @@
 require_once('ConnessioneDb.php');
 $db = new ConnessioneDb();
 
-$codicefiscale = $db->real_escape_string($_REQUEST["codiceFiscale"]);
-$sesso = $db->real_escape_string($_REQUEST["sesso"]);
-$cognome = $db->real_escape_string($_REQUEST["cognome"]);
-$nome = $db->real_escape_string($_REQUEST["nome"]);
-$dataNascita = $db->real_escape_string($_REQUEST["giorno"]);
-$statocivile = $db->real_escape_string($_REQUEST["statocivile"]);
-$luogoNascita = $db->real_escape_string($_REQUEST["lnascita"]);
-$indirizzo = $db->real_escape_string($_REQUEST["indirizzo"]);
-$stato = $db->real_escape_string($_REQUEST["stato"]);
-$citta = $db->real_escape_string($_REQUEST["citta"]);
-$cap = $db->real_escape_string($_REQUEST["cap"]);
-$provincia = $db->real_escape_string($_REQUEST["provincia"]);
-$telefono = $db->real_escape_string($_REQUEST["telefonoCasa"]);
-$cellulare = $db->real_escape_string($_REQUEST["cellulare"]);
-$occupazione = $db->real_escape_string($_REQUEST["occupazione"]);
-$email = $db->real_escape_string($_REQUEST["mail"]);
-$pass = $db->real_escape_string($_REQUEST["password"]);
-$candidato = $db->real_escape_string($_REQUEST["optradio"]);
-
-
-
-$sql = "INSERT INTO user (skill_card,password,codice_fiscale,sesso,cognome,nome,data_nascita,luogo_nascita,stato_civile,indirizzo,stato,citta,cap,provincia,email,cellulare,telefono,occupazione,candidato)"
-        . " VALUES ('$codicefiscale','$sesso','$cognome','$nome','$dataNascita','$statocivile','$luogoNascita','$indirizzo','$stato','$citta','$cap','$provincia','$telefono','$cellulare','$occupazione','$email','$pass','$candidato')";
-if ($db->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $db->error;
-}
-
-$db->close();
-
-
+if (isset($_REQUEST['codiceFiscale'])) {
+     $codicefiscale = $_REQUEST['codiceFiscale'];
     
+     $sesso = $_REQUEST['sesso'];
+
+     $cognome = $_REQUEST['cognome'];
+
+     $nome = $_REQUEST['nome'];
+
+     $giorno = $_REQUEST['giorno'];
+
+     $mese = $_REQUEST['mese'];
+
+     $anno = $_REQUEST['anno'];
+
+     $statocivile = $_REQUEST['statocivile'];
+
+     $lnascita = $_REQUEST['lnascita'];
+
+     $indirizzo = $_REQUEST['indirizzo'];
+
+     $stato = $_REQUEST['stato'];
+
+     $citta = $_REQUEST['citta'];
+
+     $cap = $_REQUEST['cap'];
+
+     $provincia = $_REQUEST['provincia'];
+
+     $telefono = $_REQUEST['telefonoCasa'];
+
+     $cellulare = $_REQUEST['cellulare'];
+
+     $mail = $_REQUEST['mail'];
+
+     $occupazione = $_REQUEST['occupazione'];
+
+    $optradio = $_REQUEST['optradio'];
+    if ($optradio == "studenti") {
+         $scuola = $_REQUEST['scuola'];
+    
+         $classe = $_REQUEST['classe'];
+    
+         $specializzazione = $_REQUEST['specializzazione'];
+    
+    }
+    $datenow = date("y-m-d");
+    $birthdate = "$anno-$mese-$giorno";
+    $query = "INSERT INTO `user`(`skill_card`, `password`, `rilasciata`, `codice_fiscale`, `sesso`, `cognome`, `nome`, `data_nascita`, `luogo_nascita`, `stato_civile`, `indirizzo`, `stato`, `citta`, `cap`, `provincia`, `email`, `cellulare`, `telefono`, `occupazione`, `pagato`) "
+            . " VALUES ('default', 'admin', '$datenow', '$codicefiscale', '$sesso', '$cognome', '$nome', '$birthdate', '$lnascita', '$statocivile', '$indirizzo', '$stato', '$citta', '$cap', '$provincia', '$mail', '$cellulare', '$telefono', '$occupazione', 0)";
+    $ris = $db->query($query);
+}
