@@ -15,6 +15,8 @@ and open the template in the editor.
             <br><a href='skillCard.php?a=1'>HO GIA skillcard</a>
             <br><a href='prenotazione.php'> prenotazione esame </a>
             <br><a href='login.php'> login </a>
+            <br><a href='pdf.php?id=0&type=skillcard'> PDF SKILLCARD </a>
+            <br><a href='pdf.php?id=0&type=prenotazione'> PDF PRENOTAZIONE </a>
         </form>
 
 
