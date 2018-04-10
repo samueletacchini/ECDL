@@ -29,7 +29,7 @@ $pdf->SetXY(39, 58);
 $pdf->Write(0, "98993");
 
 //rilasciata il
-$pdf->SetXY(98, 58); 
+$pdf->SetXY(98, 57.5); 
 $pdf->Write(0, "rilasciata"); 
 
 //codice fiscale
@@ -45,7 +45,7 @@ $pdf->SetXY(42, 77);
 $pdf->Write(0, "cognome"); 
 
 //data di nascita
-$pdf->SetXY(140, 77); 
+$pdf->SetXY(140, 77.5); 
 $pdf->Write(0, "data di nascita"); 
 
 //nome
@@ -57,7 +57,7 @@ $pdf->SetXY(140, 86);
 $pdf->Write(0, "luogo di nascita"); 
 
 //stato civile
-$pdf->SetXY(128, 95); 
+$pdf->SetXY(128, 94.5); 
 $pdf->Write(0, "stato civile"); 
 
 //indirizzo
@@ -69,51 +69,44 @@ $pdf->SetXY(158, 103);
 $pdf->Write(0, "cap"); 
 
 //provincia
-$pdf->SetXY(42, 111); 
+$pdf->SetXY(42, 111.5); 
 $pdf->Write(0, "provincia"); 
 
 //città
-$pdf->SetXY(39, 58); 
-$pdf->Write(0, "città"); 
+$pdf->SetXY(97, 111.5); 
+$pdf->Write(0, "citta"); 
 
 //stato
-$pdf->SetXY(158, 110); 
+$pdf->SetXY(158, 111.5); 
 $pdf->Write(0, "stato"); 
 
 //tel
-$pdf->SetXY(40, 58); 
+$pdf->SetXY(39, 120); 
 $pdf->Write(0, "tel"); 
 
 //email
-$pdf->SetXY(39, 58); 
+$pdf->SetXY(97, 120); 
 $pdf->Write(0, "email"); 
 
 //cellulare
-$pdf->SetXY(39, 58); 
+$pdf->SetXY(97, 128.5); 
 $pdf->Write(0, "cellulare"); 
 
+//scolarita
+$pdf->SetXY(41.5, 145.7); 
+$pdf->Write(0, "scolarita"); 
 
-$pdf->SetXY(39, 58); 
-$pdf->Write(0, ""); 
+//occupazione
+$pdf->SetXY(140, 145.5); 
+$pdf->Write(0, "occupazione"); 
 
+//scuola e classe
+$pdf->SetXY(97, 154.2); 
+$pdf->Write(0, "scuola e classe"); 
 
-$pdf->SetXY(39, 58); 
-$pdf->Write(0, ""); 
-
-
-$pdf->SetXY(39, 58); 
-$pdf->Write(0, ""); 
-
-
-$pdf->SetXY(39, 58); 
-$pdf->Write(0, ""); 
-
-
-$pdf->SetXY(39, 58); 
-$pdf->Write(0, ""); 
-
-
-
+//modena DATA
+$pdf->SetXY(39, 215); 
+$pdf->Write(0, "DATA"); 
 
 
 $pdf->Output();
