@@ -61,15 +61,15 @@ $pdf->SetXY(128, 95);
 $pdf->Write(0, "stato civile"); 
 
 //indirizzo
-$pdf->SetXY(42, 58); 
+$pdf->SetXY(42, 103); 
 $pdf->Write(0, "indirizzo"); 
 
 //cap
-$pdf->SetXY(39, 58); 
+$pdf->SetXY(158, 103); 
 $pdf->Write(0, "cap"); 
 
 //provincia
-$pdf->SetXY(42, 58); 
+$pdf->SetXY(42, 111); 
 $pdf->Write(0, "provincia"); 
 
 //città
@@ -77,7 +77,7 @@ $pdf->SetXY(39, 58);
 $pdf->Write(0, "città"); 
 
 //stato
-$pdf->SetXY(39, 58); 
+$pdf->SetXY(158, 110); 
 $pdf->Write(0, "stato"); 
 
 //tel
