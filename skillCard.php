@@ -1,3 +1,4 @@
+
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
@@ -7,6 +8,20 @@
     <body>
         <div class="jumbotron text-center">
             <h1 align="center"> Registrazione </h1>
+            <?php
+            if (isset($_REQUEST["a"])) {
+                $a = $_REQUEST["a"];
+                if ($a == "0") {
+                    //NUOVA SKILLCARD
+                    
+                    
+                } else {
+                    //SKILLCARD ESISTENTE
+                    
+                    
+                }
+            }
+            ?>
             <p>
                 <span class="glyphicon glyphicon-phone"></span>
                 0592917000 -

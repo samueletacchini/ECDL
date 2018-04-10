@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of FPDI
  *
@@ -7,7 +8,6 @@
  * @license   http://opensource.org/licenses/mit-license The MIT License
  * @version   2.0.0
  */
-
 namespace setasign\Fpdi;
 
 /**
@@ -17,8 +17,8 @@ namespace setasign\Fpdi;
  *
  * @package setasign\Fpdi
  */
-class FpdfTpl extends \FPDF
-{
+class FpdfTpl extends \FPDF {
+
     /**
      * Data of all created templates.
      *
@@ -46,20 +46,16 @@ class FpdfTpl extends \FPDF
      * @param array $size An array with two values defining the size.
      * @param string $orientation "L" for landscape, "P" for portrait.
      */
-    public function setPageFormat($size, $orientation)
-    {
+    public function setPageFormat($size, $orientation) {
         if (!\in_array($orientation, ['P', 'L'], true)) {
             throw new \InvalidArgumentException(\sprintf(
-                'Invalid page orientation "%s"! Only "P" and "L" are allowed!',
-                $orientation
+                    'Invalid page orientation "%s"! Only "P" and "L" are allowed!', $orientation
             ));
         }
 
         $size = $this->_getpagesize($size);
 
-        if ($orientation != $this->CurOrientation
-            || $size[0] != $this->CurPageSize[0]
-            || $size[1] != $this->CurPageSize[1]
+        if ($orientation != $this->CurOrientation || $size[0] != $this->CurPageSize[0] || $size[1] != $this->CurPageSize[1]
         ) {
             // New size or orientation
             if ($orientation === 'P') {
@@ -95,8 +91,7 @@ class FpdfTpl extends \FPDF
      * @return array The size
      * @see FpdfTpl::getTemplateSize()
      */
-    public function useTemplate($tpl, $x = 0, $y = 0, $width = null, $height = null, $adjustPageSize = false)
-    {
+    public function useTemplate($tpl, $x = 0, $y = 0, $width = null, $height = null, $adjustPageSize = false) {
         if (!isset($this->templates[$tpl])) {
             throw new \InvalidArgumentException('Template does not exist!');
         }
@@ -120,15 +115,10 @@ class FpdfTpl extends \FPDF
         }
 
         $this->_out(
-            // reset standard values, translate and scale
-            \sprintf(
-                'q 0 J 1 w 0 j 0 G 0 g %.4F 0 0 %.4F %.4F %.4F cm /%s Do Q',
-                ($newSize['width'] / $originalSize['width']),
-                ($newSize['height'] / $originalSize['height']),
-                $x * $this->k,
-                ($this->h - $y - $newSize['height']) * $this->k,
-                $template['id']
-            )
+                // reset standard values, translate and scale
+                \sprintf(
+                        'q 0 J 1 w 0 j 0 G 0 g %.4F 0 0 %.4F %.4F %.4F cm /%s Do Q', ($newSize['width'] / $originalSize['width']), ($newSize['height'] / $originalSize['height']), $x * $this->k, ($this->h - $y - $newSize['height']) * $this->k, $template['id']
+                )
         );
 
         return $newSize;
@@ -145,8 +135,7 @@ class FpdfTpl extends \FPDF
      * @param float|int|null $height The height.
      * @return array|bool An array with following keys: width, height, 0 (=width), 1 (=height), orientation (L or P)
      */
-    public function getTemplateSize($tpl, $width = null, $height = null)
-    {
+    public function getTemplateSize($tpl, $width = null, $height = null) {
         if (!isset($this->templates[$tpl])) {
             return false;
         }
@@ -182,8 +171,7 @@ class FpdfTpl extends \FPDF
      * @param float|int|null $height The height of the template. If null, the current page height is used.
      * @return int A template identifier.
      */
-    public function beginTemplate($width = null, $height = null)
-    {
+    public function beginTemplate($width = null, $height = null) {
         if ($width === null) {
             $width = $this->w;
         }
@@ -196,7 +184,7 @@ class FpdfTpl extends \FPDF
 
         // initiate buffer with current state of FPDF
         $buffer = "2 J\n"
-            . \sprintf('%.2F w', $this->LineWidth * $this->k) . "\n";
+                . \sprintf('%.2F w', $this->LineWidth * $this->k) . "\n";
 
         if ($this->FontFamily) {
             $buffer .= \sprintf("BT /F%d %.2F Tf ET\n", $this->CurrentFont['i'], $this->FontSizePt);
@@ -249,8 +237,7 @@ class FpdfTpl extends \FPDF
      *
      * @return bool|int|null A template identifier.
      */
-    public function endTemplate()
-    {
+    public function endTemplate() {
         if (null === $this->currentTemplateId) {
             return false;
         }
@@ -274,7 +261,7 @@ class FpdfTpl extends \FPDF
 
         $fontKey = $this->FontFamily . $this->FontStyle;
         if ($fontKey) {
-            $this->CurrentFont =& $this->fonts[$fontKey];
+            $this->CurrentFont = & $this->fonts[$fontKey];
         } else {
             unset($this->CurrentFont);
         }
@@ -289,8 +276,7 @@ class FpdfTpl extends \FPDF
      *
      * @return int
      */
-    protected function getNextTemplateId()
-    {
+    protected function getNextTemplateId() {
         return $this->templateId++;
     }
 
@@ -299,8 +285,7 @@ class FpdfTpl extends \FPDF
     /**
      * @inheritdoc
      */
-    public function Link($x, $y, $w, $h, $link)
-    {
+    public function Link($x, $y, $w, $h, $link) {
         if ($this->currentTemplateId !== null) {
             throw new \BadMethodCallException('Links cannot be set when writing to a template.');
         }
@@ -310,8 +295,7 @@ class FpdfTpl extends \FPDF
     /**
      * @inheritdoc
      */
-    public function SetLink($link, $y = 0, $page = -1)
-    {
+    public function SetLink($link, $y = 0, $page = -1) {
         if ($this->currentTemplateId !== null) {
             throw new \BadMethodCallException('Links cannot be set when writing to a template.');
         }
@@ -321,8 +305,7 @@ class FpdfTpl extends \FPDF
     /**
      * @inheritdoc
      */
-    public function SetDrawColor($r, $g = null, $b = null)
-    {
+    public function SetDrawColor($r, $g = null, $b = null) {
         parent::SetDrawColor($r, $g, $b);
         if ($this->page === 0 && $this->currentTemplateId !== null) {
             $this->_out($this->DrawColor);
@@ -332,8 +315,7 @@ class FpdfTpl extends \FPDF
     /**
      * @inheritdoc
      */
-    public function SetFillColor($r, $g = null, $b = null)
-    {
+    public function SetFillColor($r, $g = null, $b = null) {
         parent::SetFillColor($r, $g, $b);
         if ($this->page === 0 && $this->currentTemplateId !== null) {
             $this->_out($this->FillColor);
@@ -343,8 +325,7 @@ class FpdfTpl extends \FPDF
     /**
      * @inheritdoc
      */
-    public function SetLineWidth($width)
-    {
+    public function SetLineWidth($width) {
         parent::SetLineWidth($width);
         if ($this->page === 0 && $this->currentTemplateId !== null) {
             $this->_out(\sprintf('%.2F w', $width * $this->k));
@@ -354,8 +335,7 @@ class FpdfTpl extends \FPDF
     /**
      * @inheritdoc
      */
-    public function SetFont($family, $style = '', $size = 0)
-    {
+    public function SetFont($family, $style = '', $size = 0) {
         parent::SetFont($family, $style, $size);
         if ($this->page === 0 && $this->currentTemplateId !== null) {
             $this->_out(\sprintf('BT /F%d %.2F Tf ET', $this->CurrentFont['i'], $this->FontSizePt));
@@ -365,8 +345,7 @@ class FpdfTpl extends \FPDF
     /**
      * @inheritdoc
      */
-    public function SetFontSize($size)
-    {
+    public function SetFontSize($size) {
         parent::SetFontSize($size);
         if ($this->page === 0 && $this->currentTemplateId !== null) {
             $this->_out(sprintf('BT /F%d %.2F Tf ET', $this->CurrentFont['i'], $this->FontSizePt));
@@ -376,8 +355,7 @@ class FpdfTpl extends \FPDF
     /**
      * @inheritdoc
      */
-    protected function _putimages()
-    {
+    public function _putimages() {
         parent::_putimages();
 
         foreach ($this->templates as $key => $template) {
@@ -405,8 +383,7 @@ class FpdfTpl extends \FPDF
     /**
      * @inheritdoc
      */
-    protected function _putxobjectdict()
-    {
+    public function _putxobjectdict() {
         foreach ($this->templates as $key => $template) {
             $this->_put('/' . $template['id'] . ' ' . $template['objectNumber'] . ' 0 R');
         }
@@ -417,12 +394,12 @@ class FpdfTpl extends \FPDF
     /**
      * @inheritdoc
      */
-    public function _out($s)
-    {
+    public function _out($s) {
         if ($this->currentTemplateId !== null) {
             $this->templates[$this->currentTemplateId]['buffer'] .= $s . "\n";
         } else {
             parent::_out($s);
         }
     }
+
 }

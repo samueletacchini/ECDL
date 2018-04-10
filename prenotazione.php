@@ -93,7 +93,7 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label for="cap">CAP</label>
-                        <input name="cap" type="text" class="form-control" id="cap" placeholder="CAP" required>
+                        <input name="cap" type="number" class="form-control" id="cap" placeholder="CAP" required>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="provincia">Provincia</label>

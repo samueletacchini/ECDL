@@ -10,12 +10,18 @@ and open the template in the editor.
 
     </head>
     <body>
-        <a href='skillCard.php'>skillcard </a>
-        <br><a href='prenotazione.php'> prenotazione esame </a>
-        <br><a href='login.php'> login </a>
+        <form>
+            <a href='skillCard.php?a=0'>skillcard NUOVO </a>
+            <br><a href='skillCard.php?a=1'>HO GIA skillcard</a>
+            <br><a href='prenotazione.php'> prenotazione esame </a>
+            <br><a href='login.php'> login </a>
+        </form>
+
+
+
+
         <p>
-        <?php
-   
+            <?php
 //
 //        require_once("ConnessioneDb.php");
 //        $db = new ConnessioneDb();
@@ -85,7 +91,8 @@ and open the template in the editor.
 ////            echo "</tr>";
 ////        }
 ////        echo "</table>";
-//        ?>
-    </p>
+//        
+            ?>
+        </p>
     </body>
 </html>
