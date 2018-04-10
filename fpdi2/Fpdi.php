@@ -86,7 +86,7 @@ class Fpdi extends FpdfTpl
     /**
      * @inheritdoc
      */
-    protected function _putimages()
+    public function _putimages()
     {
         $this->currentReaderId = null;
         parent::_putimages();

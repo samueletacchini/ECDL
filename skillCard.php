@@ -1,3 +1,4 @@
+
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
@@ -7,6 +8,20 @@
     <body>
         <div class="jumbotron text-center">
             <h1 align="center"> Registrazione </h1>
+            <?php
+            if (isset($_REQUEST["a"])) {
+                $a = $_REQUEST["a"];
+                if ($a == "0") {
+                    //NUOVA SKILLCARD
+                    
+                    
+                } else {
+                    //SKILLCARD ESISTENTE
+                    
+                    
+                }
+            }
+            ?>
             <p>
                 <span class="glyphicon glyphicon-phone"></span>
                 0592917000 -
@@ -192,8 +207,8 @@
                     <div class="form-group">
                         <label><input value="esterni" onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
                     </div>
-                
-             </div>
+
+                </div>
                 <h3>Note: </h3>
                 <label>1) Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.</label>
                 <label>2) Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione.</label>
@@ -205,7 +220,7 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             <script type="text/javascript" src="bootstrap-table.js"></script>
-       </div>
+        </div>
     </body>
 </html>
 
