@@ -15,10 +15,14 @@
             </p>
         </div>
         <div class="container-fluid bg-grey">
-            <h2 align="center"> Prenotazione Skill Card </h2>
+            <h2 align="center"> Modulo Di Acquisto Skill Card </h2>
             <form name="casellaTesto" method="get" class="was-validated" role="form" action="/ecdl/registrazione.php">
                 <div class="form-row">
-                    <div class="form-group col-md-8">
+                    <div class="form-group col-md-4">
+                        <label for="card">Skill Card N.</label>
+                        <input name="nskill" type="number" class="form-control" id="codeFiscale" placeholder="Numero SkillCard" required>
+                    </div>
+                    <div class="form-group col-md-4">
                         <label for="codeFiscale">Codice Fiscale</label>
                         <input name="codiceFiscale" type="text" class="form-control" id="codeFiscale" placeholder="Codice Fiscale" required>
                     </div>
@@ -115,7 +119,7 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label for="cap">CAP</label>
-                        <input name="cap" type="text" class="form-control" id="cap" placeholder="CAP" required>
+                        <input name="cap" type="number" class="form-control" id="cap" placeholder="CAP" required>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="provincia">Provincia</label>
@@ -126,11 +130,11 @@
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label for="telefonoCasa">Telefono</label>
-                        <input name="telefonoCasa" type="text" class="form-control" id="telefono" placeholder="Telefono" required>                      
+                        <input name="telefonoCasa" type="number" class="form-control" id="telefono" placeholder="Telefono" required>                      
                     </div>        
                     <div class="form-group col-md-3">
                         <label for="cellulare">Cellulare</label>
-                        <input name="cellulare" type="text" class="form-control" id="telefono" placeholder="Cellulare" required>                      
+                        <input name="cellulare" type="number" class="form-control" id="telefono" placeholder="Cellulare" required>                      
                     </div> 
                     <div class="form-group col-md-6">
                         <label for="occupazione">Occupazione</label>
@@ -192,8 +196,8 @@
                     <div class="form-group">
                         <label><input value="esterni" onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
                     </div>
-                
-             </div>
+
+                </div>
                 <h3>Note: </h3>
                 <label>1) Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.</label>
                 <label>2) Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione.</label>
@@ -205,7 +209,7 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             <script type="text/javascript" src="bootstrap-table.js"></script>
-       </div>
+        </div>
     </body>
 </html>
 

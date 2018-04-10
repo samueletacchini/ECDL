@@ -21,7 +21,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="card">Skill Card N.</label>
-                        <input name="nskill" type="text" class="form-control" id="card" placeholder="Numero SkillCard" required>
+                        <input name="nskill" type="number" class="form-control" id="card" placeholder="Numero SkillCard" required>
                     </div>
                 </div>
 
@@ -104,7 +104,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="telefono">Telefono</label>
-                        <input name="telefono" type="text" class="form-control" id="telefono" placeholder="Telefono" required>                      
+                        <input name="telefono" type="number" class="form-control" id="telefono" placeholder="Telefono" required>                      
                     </div>         
                     <div class="form-group col-md-8">                   
                         <label for="mail">Indirizzo E-Mail</label>
