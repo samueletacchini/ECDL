@@ -1,19 +1,23 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
-        <link rel="stylesheet" href="file.css">
+        <link rel="stylesheet" href="css/PrenotazioneRegistrazione.css">
         <link rel="stylesheet" href="file.js">
     </head>
     <body>
+        <div class="jumbotron text-center">
+            <h1 align="center"> Prenotazione Degli Esami </h1>
+            <p>
+                <span class="glyphicon glyphicon-phone"></span>
+                0592917000 -
+                <span class="glyphicon glyphicon-envelope"></span>
+                ecdl@istitutocorni.it
+            </p>
+        </div>
 
-        <nav class="navbar navbar-dark bg-primary">
-
-        </nav>
-        <h2 align="center"> PRENOTAZIONE ESAME </h2>   
-
-        <div class="container">
+        <div class="container-fluid bg-grey">
             <form name="casellaTesto" method="get" class="was-validated">
-
+                <h2 align="center"> Modulo Di Prenotazione</h2>
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="card">Skill Card N.</label>
@@ -84,8 +88,8 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-7">
-                        <label for="city">Città</label>
-                        <input name="citta" type="text" class="form-control" id="city" placeholder="Città" required>
+                        <label for="city">Citta'</label>
+                        <input name="citta" type="text" class="form-control" id="city" placeholder="Citta'" required>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="cap">CAP</label>
@@ -207,16 +211,16 @@
                     </thead>
                 </table>
                 </table>
+        
+    <center><input type="submit" value="Prenota" class="btn btn-info btn-lg"></center>
 
-                <center><input type="submit" value="Prenota" class="btn btn-info btn-lg"></center>
+</form>
 
-            </form>
-
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-            <script type="text/javascript" src="bootstrap-table.js"></script>
-        </div>
-    </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bootstrap-table.js"></script>
+</div>
+</body>
 </html>
 
 

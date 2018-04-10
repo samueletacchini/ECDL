@@ -3,18 +3,17 @@ session_start();
 ?>
 <html>
     <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
-        <link rel="stylesheet" href="file.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="file.js">
         <style>
             body{
                 background-color:DodgerBlue;
                 max-width: auto;
                 overflow: hidden;
-}
+                }
             .form-container {
                 min-width: 500px;
-                margin-top: 10%;
+                margin-top: 13%;
                 margin-left: auto;
                 margin-right: auto;
                 width: 500px;
