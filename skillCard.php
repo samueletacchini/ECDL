@@ -8,20 +8,7 @@
     <body>
         <div class="jumbotron text-center">
             <h1 align="center"> Registrazione </h1>
-            <?php
-            if (isset($_REQUEST["a"])) {
-                $a = $_REQUEST["a"];
-                if ($a == "0") {
-                    //NUOVA SKILLCARD
-                    
-                    
-                } else {
-                    //SKILLCARD ESISTENTE
-                    
-                    
-                }
-            }
-            ?>
+
             <p>
                 <span class="glyphicon glyphicon-phone"></span>
                 0592917000 -
@@ -33,14 +20,30 @@
             <h2 align="center"> Modulo Di Acquisto Skill Card </h2>
             <form name="casellaTesto" method="get" class="was-validated" role="form" action="/ecdl/registrazione.php">
                 <div class="form-row">
-                    <div class="form-group col-md-4">
+
+                    <?php
+                    if (isset($_REQUEST["a"])) {
+                        $a = $_REQUEST["a"];
+                        if ($a == "0") {
+                            //NUOVA SKILLCARD
+                            echo '<div class="form-group col-md-8">
+                        <label for="codeFiscale">Codice Fiscale</label>
+                        <input name="codiceFiscale" type="text" class="form-control" id="codeFiscale" placeholder="Codice Fiscale" required>
+                    </div>';
+                        } else {
+                            //SKILLCARD ESISTENTE
+                            echo '<div class="form-group col-md-4">
                         <label for="card">Skill Card N.</label>
                         <input name="nskill" type="number" class="form-control" id="codeFiscale" placeholder="Numero SkillCard" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="codeFiscale">Codice Fiscale</label>
                         <input name="codiceFiscale" type="text" class="form-control" id="codeFiscale" placeholder="Codice Fiscale" required>
-                    </div>
+                    </div>';
+                        }
+                    }
+                    ?>
+                   
                     <div class="form-group col-md-4">
                         <label for="sesso">Sesso</label>
                         <select name="sesso" class="form-control" required>
