@@ -15,7 +15,7 @@ and open the template in the editor.
         <br><a href='login.php'> login </a>
         <p>
         <?php
-     
+   
 //
 //        require_once("ConnessioneDb.php");
 //        $db = new ConnessioneDb();
