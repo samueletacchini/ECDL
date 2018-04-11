@@ -23,7 +23,6 @@ and open the template in the editor.
                 <input type="hidden" name="type" value="skillcard">
                 <br><input type="submit" value="CERCA">
             </form>
-            <br><a href='pdf.php?id=0&type=prenotazione'> PDF PRENOTAZIONE </a>
         </div>
         <div>
             <br><form method="post" action="pdf.php">
