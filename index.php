@@ -10,15 +10,21 @@ and open the template in the editor.
 
     </head>
     <body>
-        <form>
+        <div>
             <a href='skillCard.php?a=0'>skillcard NUOVO </a>
             <br><a href='skillCard.php?a=1'>HO GIA skillcard</a>
             <br><a href='prenotazione.php'> prenotazione esame </a>
             <br><a href='login.php'> login </a>
-            <br><a href='pdf.php?id=0&type=skillcard'> PDF SKILLCARD </a>
-            <br><a href='pdf.php?id=0&type=prenotazione'> PDF PRENOTAZIONE </a>
-        </form>
 
+        </div>
+        <div>
+            <br><form method="post" action="pdf.php">
+                Cerca skillcard per CF: <br><input required type="text" name="id">
+                <input type="hidden" name="type" value="skillcard">
+                <br><input type="submit" value="CERCA">
+            </form>
+            <br><a href='pdf.php?id=0&type=prenotazione'> PDF PRENOTAZIONE </a>
+        </div>
 
 
 
@@ -30,52 +36,30 @@ and open the template in the editor.
 //
 //        //skillcard
 //        if (isset($_REQUEST['codiceFiscale'])) {
-//            echo $codicefiscale = $_REQUEST['codiceFiscale'];
-//            echo "<br>";
-//            echo $sesso = $_REQUEST['sesso'];
-//            echo "<br>";
-//            echo $cognome = $_REQUEST['cognome'];
-//            echo "<br>";
-//            echo $nome = $_REQUEST['nome'];
-//            echo "<br>";
-//            echo $giorno = $_REQUEST['giorno'];
-//            echo "<br>";
-//            echo $mese = $_REQUEST['mese'];
-//            echo "<br>";
-//            echo $anno = $_REQUEST['anno'];
-//            echo "<br>";
-//            echo $statocivile = $_REQUEST['statoCivile'];
-//            echo "<br>";
-//            echo $lnascita = $_REQUEST['lnascita'];
-//            echo "<br>";
-//            echo $indirizzo = $_REQUEST['indirizzo'];
-//            echo "<br>";
-//            echo $stato = $_REQUEST['stato'];
-//            echo "<br>";
-//            echo $citta = $_REQUEST['citta'];
-//            echo "<br>";
-//            echo $cap = $_REQUEST['cap'];
-//            echo "<br>";
-//            echo $provincia = $_REQUEST['provincia'];
-//            echo "<br>";
-//            echo $telefono = $_REQUEST['telefonoCasa'];
-//            echo "<br>";
-//            echo $cellulare = $_REQUEST['cellulare'];
-//            echo "<br>";
-//            echo $mail = $_REQUEST['mail'];
-//            echo "<br>";
-//            echo $occupazione = $_REQUEST['occupazione'];
-//            echo "<br>";
-//            $optradio = $_REQUEST['optradio'];
-//            "<br>";
-//            if ($optradio == "studenti") {
-//                echo $scuola = $_REQUEST['scuola'];
-//                echo "<br>";
-//                echo $classe = $_REQUEST['classe'];
-//                echo "<br>";
-//                echo $specializzazione = $_REQUEST['specializzazione'];
-//                echo "<br>";
-//            }
+//             //             $codicefiscale = $_REQUEST['codiceFiscale'];
+//             //             $sesso = $_REQUEST['sesso'];
+//             //             $cognome = $_REQUEST['cognome'];
+//             //             $nome = $_REQUEST['nome'];
+//             //             $giorno = $_REQUEST['giorno'];
+//             //             $mese = $_REQUEST['mese'];
+//             //             $anno = $_REQUEST['anno'];
+//             //             $statocivile = $_REQUEST['statoCivile'];
+//             //             $lnascita = $_REQUEST['lnascita'];
+//             //             $indirizzo = $_REQUEST['indirizzo'];
+//             //             $stato = $_REQUEST['stato'];
+//             //             $citta = $_REQUEST['citta'];
+//             //             $cap = $_REQUEST['cap'];
+//             //             $provincia = $_REQUEST['provincia'];
+//             //             $telefono = $_REQUEST['telefonoCasa'];
+//             //             $cellulare = $_REQUEST['cellulare'];
+//             //             $mail = $_REQUEST['mail'];
+//             //             $occupazione = $_REQUEST['occupazione'];
+//             //            $optradio = $_REQUEST['optradio'];
+//            //            if ($optradio == "studenti") {
+//                 $scuola = $_REQUEST['scuola'];
+//                 //                 $classe = $_REQUEST['classe'];
+//                 //                 $specializzazione = $_REQUEST['specializzazione'];
+//                 //            }
 //            $indirizzo = "";
 //            $birthdate = "$anno-$mese-$giorno";
 //            $query = "INSERT INTO `user`(`skill_card`, `password`, `rilasciata`, `codice_fiscale`, `sesso`, `cognome`, `nome`, `data_nascita`, `luogo_nascita`, `stato_civile`, `indirizzo`, `stato`, `citta`, `cap`, `provincia`, `email`, `cellulare`, `telefono`, `occupazione`, `pagato`) "
@@ -85,14 +69,14 @@ and open the template in the editor.
 //
 //
 ////       $ris = $db->query("select * from user");
-////        echo "<table border><tr><th>ID</th><th>Descrizione</th><tr>";
+////         "<table border><tr><th>ID</th><th>Descrizione</th><tr>";
 ////        while ($riga = $ris->fetch_array()) {
-////            echo "<tr><td>{$riga["codice_fiscale"]}</td>";
-////            echo '<td>' . $riga["sesso"] . '</td>';
-////            //echo "<td>{$riga["sconto"]}</td>";
-////            echo "</tr>";
+////             "<tr><td>{$riga["codice_fiscale"]}</td>";
+////             '<td>' . $riga["sesso"] . '</td>';
+////            // "<td>{$riga["sconto"]}</td>";
+////             "</tr>";
 ////        }
-////        echo "</table>";
+////         "</table>";
 //        
             ?>
         </p>
