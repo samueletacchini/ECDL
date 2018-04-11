@@ -40,18 +40,20 @@ if (isset($_REQUEST['codiceFiscale'])) {
 
      $occupazione = $_REQUEST['occupazione'];
 
-    $optradio = $_REQUEST['optradio'];
-    if ($optradio == "studenti") {
+    $tipo = $_REQUEST['optradio'];
+    if ($tipo == "studenti") {
          $scuola = $_REQUEST['scuola'];
     
          $classe = $_REQUEST['classe'];
     
          $specializzazione = $_REQUEST['specializzazione'];
+         
+         $tipo = "studente: " + $classe + " " + $specializzazione + ", " + $scuola;
     
     }
     $datenow = date("y-m-d");
     $birthdate = "$anno-$mese-$giorno";
-    $query = "INSERT INTO `user`(`skill_card`, `password`, `rilasciata`, `codice_fiscale`, `sesso`, `cognome`, `nome`, `data_nascita`, `luogo_nascita`, `stato_civile`, `indirizzo`, `stato`, `citta`, `cap`, `provincia`, `email`, `cellulare`, `telefono`, `occupazione`, `pagato`) "
-            . " VALUES ('default', 'admin', '$datenow', '$codicefiscale', '$sesso', '$cognome', '$nome', '$birthdate', '$lnascita', '$statocivile', '$indirizzo', '$stato', '$citta', '$cap', '$provincia', '$mail', '$cellulare', '$telefono', '$occupazione', 0)";
+    $query = "INSERT INTO `user`(`skill_card`, `password`, `rilasciata`, `codice_fiscale`, `sesso`, `cognome`, `nome`, `data_nascita`, `luogo_nascita`, `stato_civile`, `indirizzo`, `stato`, `citta`, `cap`, `provincia`, `email`, `cellulare`, `telefono`, `occupazione`, `pagato`, `tipo`) "
+            . " VALUES ('default', 'admin', '$datenow', '$codicefiscale', '$sesso', '$cognome', '$nome', '$birthdate', '$lnascita', '$statocivile', '$indirizzo', '$stato', '$citta', '$cap', '$provincia', '$mail', '$cellulare', '$telefono', '$occupazione', 0, $tipo)";
     $ris = $db->query($query);
 }
