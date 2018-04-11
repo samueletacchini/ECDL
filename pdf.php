@@ -194,7 +194,7 @@ switch ($type) {
         break;
 }
 
-$pdf->Output("D", "nomefile.pdf");
-//$pdf->Output();
+//$pdf->Output("D", "nomefile.pdf");
+$pdf->Output();
 ?>
 
