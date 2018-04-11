@@ -15,31 +15,102 @@
             </p>
         </div>
 
+        <?php
+        require_once("ConnessioneDb.php");
+        $db = new ConnessioneDb();
+        $datenow = date("d/m/y");
+        $pre = false;
+        if (isset($_REQUEST["id"])) {
+
+            $pre = true;
+            $id = $_REQUEST["id"];
+            $query = "SELECT * FROM `user` WHERE `codice_fiscale` = '$id'";
+            $ris = $db->query($query);
+
+            $riga = $ris->fetch_array();
+            if ($riga["codice_fiscale"] != "") {
+
+                $skillcard = $riga['skill_card'];
+                $codicefiscale = $riga['codice_fiscale'];
+                $sesso = $riga['sesso'];
+                $cognome = $riga['cognome'];
+                $nome = $riga['nome'];
+                $data = $riga['data_nascita'];
+                $lnascita = $riga['luogo_nascita'];
+                $statocivile = $riga['stato_civile'];
+                $indirizzo = $riga['indirizzo'];
+                $stato = $riga['stato'];
+                $citta = $riga['citta'];
+                $cap = $riga['cap'];
+                $provincia = $riga['provincia'];
+                $telefono = $riga['telefono'];
+                $cellulare = $riga['cellulare'];
+                $mail = $riga['email'];
+                $occupazione = $riga['occupazione'];
+                $tipo = $riga['tipo'];
+
+                $gigi = explode('-', $data);
+                $anno = $gigi[0];
+                $mese = $gigi[1];
+                $giorno = $gigi[2];
+                
+                if (substr($tipo, 0, 8) == "studente") {
+                    $scuola = substr($tipo, 10);
+                    $tipo = substr($tipo, 0, 8);
+                }
+            } else {
+                echo "UTENTE NON TROVATO!";
+            }
+        } else {
+            echo "dovresti fornire un ID!";
+        }
+        ?>
+
+
+
+
         <div class="container-fluid bg-grey">
             <form name="casellaTesto" method="get" class="was-validated">
                 <h2 align="center"> Modulo Di Prenotazione</h2>
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="card">Skill Card N.</label>
-                        <input name="nskill" type="number" class="form-control" id="card" placeholder="Numero SkillCard" required>
+                        <input 
+                        <?php
+                        if ($pre) {
+                            echo "value='$skillcard'";
+                        }
+                        ?> name="nskill" type="text" class="form-control" id="card" placeholder="Numero SkillCard" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-6">                       
                         <label for="cognome">Cognome</label>
-                        <input name="cognome" type="text" class="form-control" id="cognome" placeholder="Cognome" required>                      
+                        <input <?php
+                        if ($pre) {
+                            echo "value='$cognome'";
+                        }
+                        ?>  name="cognome" type="text" class="form-control" id="cognome" placeholder="Cognome" required>                      
                     </div>         
                     <div class="form-group col-md-6">                   
                         <label for="nome">Nome</label>
-                        <input name="nome" type="text" class="form-control" id="nome" placeholder="Nome" required>
+                        <input <?php
+                        if ($pre) {
+                            echo "value='$nome'";
+                        }
+                        ?>  name="nome" type="text" class="form-control" id="nome" placeholder="Nome" required>
                     </div>
                 </div>
 
                 <label for="data" class="col-md-12">Data Di Nascita</label>
                 <div class="form-row">
                     <div class="form-group col-md-4"> 
-                        <select name="giorno" class="form-control" id="day">
+                        <select value="<?php
+                        if ($pre) {
+                            echo "value='$giorno'";
+                        }
+                        ?> " name="giorno" class="form-control" id="day">
                             <option disabled selected>Giorno</option>
                             <?php
                             for ($day = 1; $day <= 31; $day++)
@@ -48,7 +119,11 @@
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <select name='mese' class="form-control" id="mounth">
+                        <select <?php
+                        if ($pre) {
+                            echo "value='$mese'";
+                        }
+                        ?>   name='mese' class="form-control" id="mounth">
                             <option value='' disabled selected>Mese</option>
                             <option value='1'>Gennaio</option>
                             <option value='2'>Febbraio</option>
@@ -65,7 +140,11 @@
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <select name='anno' class="form-control" id="year">
+                        <select <?php
+                        if ($pre) {
+                            echo "value='$anno'";
+                        }
+                        ?>  name='anno' class="form-control" id="year">
                             <option disabled selected>Anno</option>
                             <?php
                             for ($year = Date('Y'); $year >= 1900; $year--)
@@ -78,37 +157,66 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="luogo">Luogo Di Nascita</label>
-                        <input name="lnascita" type="text" class="form-control" id="luogo" placeholder="Luogo" required>
+                        <input
+                        <?php
+                        if ($pre) {
+                            echo "value='$lnascita'";
+                        }
+                        ?>  name="lnascita" type="text" class="form-control" id="luogo" placeholder="Luogo" required>
                     </div>
                     <div class="form-group col-md-8">                   
                         <label for="card">Indirizzo</label>
-                        <input name="indirizzo" type="text" class="form-control" id="indirizzo" placeholder="Indirizzo" required>                 
+                        <input <?php
+                        if ($pre) {
+                            echo "value='$indirizzo'";
+                        }
+                        ?> name="indirizzo" type="text" class="form-control" id="indirizzo" placeholder="Indirizzo" required>                 
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-7">
                         <label for="city">Citta'</label>
-                        <input name="citta" type="text" class="form-control" id="city" placeholder="Citta'" required>
+                        <input <?php
+                        if ($pre) {
+                            echo "value='$citta'";
+                        }
+                        ?>  name="citta" type="text" class="form-control" id="city" placeholder="Citta'" required>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="cap">CAP</label>
-                        <input name="cap" type="number" class="form-control" id="cap" placeholder="CAP" required>
+                        <input <?php
+                        if ($pre) {
+                            echo "value='$cap'";
+                        }
+                        ?>  name="cap" type="number" class="form-control" id="cap" placeholder="CAP" required>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="provincia">Provincia</label>
-                        <input name="provincia" type="text" class="form-control" id="provincia" placeholder="Provincia" required>
+                        <input <?php
+                        if ($pre) {
+                            echo "value='$provincia'";
+                        }
+                        ?>  name="provincia" type="text" class="form-control" id="provincia" placeholder="Provincia" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="telefono">Telefono</label>
-                        <input name="telefono" type="number" class="form-control" id="telefono" placeholder="Telefono" required>                      
+                        <input <?php
+                        if ($pre) {
+                            echo "value='$telefono'";
+                        }
+                        ?>  name="telefono" type="number" class="form-control" id="telefono" placeholder="Telefono" required>                      
                     </div>         
                     <div class="form-group col-md-8">                   
                         <label for="mail">Indirizzo E-Mail</label>
-                        <input name="mail" type="text" class="form-control" id="mail" placeholder="E-Mail" required>
+                        <input <?php
+                        if ($pre) {
+                            echo "value='$mail'";
+                        }
+                        ?>  name="mail" type="text" class="form-control" id="mail" placeholder="E-Mail" required>
                     </div>
                 </div>
 
@@ -211,16 +319,16 @@
                     </thead>
                 </table>
                 </table>
-        
-    <center><input type="submit" value="Prenota" class="btn btn-info btn-lg"></center>
 
-</form>
+                <center><input type="submit" value="Prenota" class="btn btn-info btn-lg"></center>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="bootstrap-table.js"></script>
-</div>
-</body>
+            </form>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="bootstrap-table.js"></script>
+        </div>
+    </body>
 </html>
 
 

@@ -8,8 +8,7 @@ require_once("ConnessioneDb.php");
 $db = new ConnessioneDb();
 $datenow = date("d/m/y");
 
-//HUST FR TESTINGG!!!
-$tipo = "studente";
+
 
 
 if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
