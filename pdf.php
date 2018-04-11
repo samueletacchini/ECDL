@@ -99,9 +99,6 @@ switch ($type) {
 //codice fiscale
         $pdf->SetXY(42, 69);
         //$pdf->Write(0, "codice fiscale");
-//sesso
-        $pdf->SetXY(140, 69);
-        $pdf->Write(0, "sesso");
 
 //cognome
         $pdf->SetXY(124.5, 77);
@@ -150,7 +147,7 @@ switch ($type) {
         switch ($tipo) {
             case "studente":
                 //studente
-                $pdf->SetXY(48.5, 136.5);
+                $pdf->SetXY(48.7, 136.5);
                 $pdf->Write(0, "X");
 
                 //scuola
@@ -167,7 +164,7 @@ switch ($type) {
                 break;
             case "docenti":
                 //docenti
-                $pdf->SetXY(48.5, 127.5);
+                $pdf->SetXY(48.7, 127.5);
                 $pdf->Write(0, "X");
                 break;
             case "personale":
@@ -177,7 +174,7 @@ switch ($type) {
                 break;
             default :
                 //esterni
-                $pdf->SetXY(48.5, 151.5);
+                $pdf->SetXY(48.7, 151.5);
                 $pdf->Write(0, "X");
         }
 
@@ -186,16 +183,10 @@ switch ($type) {
         for ($i = 0; $i < strlen($prova); $i++) {
             $prova[$i] = $prova[$i] - 1;
 
-            $pdf->SetXY(48.5, (165.5 + ($prova[$i] * 7.2)));
+            $pdf->SetXY(48.7, (165.5 + ($prova[$i] * 7.1)));
             $pdf->Write(0, "X");
         }
-//        for ($i = 0; $i < 7; $i++) {
-//            $pdf->SetXY(48.5, (165.5 + ($i * 7.2)));
-//            $pdf->Write(0, "X");
-//            //+ 7.2
-////            $pdf->SetXY(48.5, 172.7);
-////            $pdf->Write(0, "X");
-//        }
+
 //modena DATA
         $pdf->SetXY(49, 266);
         $pdf->Write(0, $datenow);
@@ -203,7 +194,7 @@ switch ($type) {
         break;
 }
 
-
-$pdf->Output();
+$pdf->Output("D", "nomefile.pdf");
+//$pdf->Output();
 ?>
 
