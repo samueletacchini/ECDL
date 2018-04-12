@@ -313,7 +313,6 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
             break;
         case "aica": {
 
-
                 $query = "SELECT * FROM `user` WHERE `codice_fiscale` = '$id'";
                 $ris = $db->query($query);
 
@@ -348,64 +347,64 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                 } else {
                     echo "UTENTE NON TROVATO!";
                 }
-                $pdf->Image('pdf/aica.png', 0, 0, 210, 297);
+                $pdf->Image('pdf/aica.jpg', 0, 0, 210, 297);
                 //n skill card
-                $pdf->SetXY(39, 58);
+                $pdf->SetXY(126, 77);
                 $pdf->Write(0, "$skillcard");
                 //rilasciata il
                 $pdf->SetXY(98, 57.5);
-                $pdf->Write(0, "$datenow");
+                //$pdf->Write(0, "$datenow");
                 //codice fiscale
-                $pdf->SetXY(42, 69);
+                $pdf->SetXY(35, 77);
                 $pdf->Write(0, "$codicefiscale");
                 //sesso
                 $pdf->SetXY(140, 69);
-                $pdf->Write(0, "$sesso");
+                //$pdf->Write(0, "$sesso");
                 //cognome
-                $pdf->SetXY(42, 77);
+                $pdf->SetXY(29, 63);
                 $pdf->Write(0, "$cognome");
                 //data di nascita
-                $pdf->SetXY(140, 77.5);
+                $pdf->SetXY(140, 70);
                 $pdf->Write(0, "$data");
                 //nome
-                $pdf->SetXY(42, 86);
+                $pdf->SetXY(113, 63);
                 $pdf->Write(0, "$nome");
                 //luogo di nascita
-                $pdf->SetXY(140, 86);
+                $pdf->SetXY(29, 70);
                 $pdf->Write(0, "$lnascita");
                 //stato civile
                 $pdf->SetXY(128, 94.5);
-                $pdf->Write(0, "$statocivile");
+                //$pdf->Write(0, "$statocivile");
                 //indirizzo
                 $pdf->SetXY(42, 103);
-                $pdf->Write(0, "$indirizzo");
+                //$pdf->Write(0, "$indirizzo");
                 //cap
                 $pdf->SetXY(158, 103);
-                $pdf->Write(0, "$cap");
+                //$pdf->Write(0, "$cap");
                 //provincia
-                $pdf->SetXY(42, 111.5);
+                $pdf->SetXY(115, 70);
                 $pdf->Write(0, "$provincia");
                 //città
-                $pdf->SetXY(97, 111.5);
+                $pdf->SetXY(50, 84);
                 $pdf->Write(0, "$citta");
                 //stato
                 $pdf->SetXY(158, 111.5);
-                $pdf->Write(0, "$stato");
+                //$pdf->Write(0, "$stato");
                 //tel
                 $pdf->SetXY(39, 120);
-                $pdf->Write(0, "$telefono");
+                //$pdf->Write(0, "$telefono");
                 //email
                 $pdf->SetXY(97, 120);
-                $pdf->Write(0, "$mail");
+                //$pdf->Write(0, "$mail");
                 //cellulare
                 $pdf->SetXY(97, 128.5);
-                $pdf->Write(0, "$cellulare");
+                //$pdf->Write(0, "$cellulare");
                 //scolarita
                 $pdf->SetXY(41.5, 145.7);
-                $pdf->Write(0, "?????????");
+                //$pdf->Write(0, "?????????");
                 //occupazione
                 $pdf->SetXY(140, 145.5);
-                $pdf->Write(0, "$occupazione");
+                //$pdf->Write(0, "$occupazione");
 
 
                 switch ($tipo) {

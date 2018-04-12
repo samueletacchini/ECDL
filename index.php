@@ -24,8 +24,9 @@ and open the template in the editor.
                 <br><input type="submit" value="CERCA Skillcard">
             </form>
         </div>
+        <br>
         <div>
-            <br><form method="post" action="pdf.php">
+            <form method="post" action="pdf.php">
                 Cerca PDF prenotazione per CF: <br><input value="tccsml0257blew99" required type="text" name="id">
                 <br>e per ID prenotazione: <br><input required type="number" name="idprenota">
                 <input type="hidden" name="type" value="prenotazione">
@@ -38,7 +39,14 @@ and open the template in the editor.
                 <br><input type="submit" value="Compilami">
             </form>
         </div>
-
+        <br>
+        <div>
+            <form method="post" action="pdf.php">
+                Cerca PDF AICA per CF: <br><input value="tccsml0257blew99" required type="text" name="id">
+                <input type="hidden" name="type" value="aica">
+                <br><input type="submit" value="CERCA">
+            </form>
+        </div>
 
         <p>
             <?php
