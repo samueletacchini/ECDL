@@ -123,7 +123,7 @@
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="luogo">Luogo Di Nascita</label>
+                        <label for="luogo">Comune Di Nascita</label>
                         <input name="lnascita" type="text" class="form-control" id="luogo" placeholder="Luogo" required>
                     </div>
                     <div class="form-group col-md-5">                   
@@ -138,7 +138,7 @@
                         <input name="stato" type="text" class="form-control" id="city" placeholder="Stato" required>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="city">Citta'</label>
+                        <label for="city">Comune'</label>
                         <input name="citta" type="text" class="form-control" id="city" placeholder="Citta'" required>
                     </div>
                     <div class="form-group col-md-3">

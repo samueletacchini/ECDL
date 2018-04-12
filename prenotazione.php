@@ -349,22 +349,18 @@
                                 if ($pre == true) {
                                     if ($tipo == "studente") {
                                         echo " <br><div class='form-row'> <div class='col-md-4'> <label for='scuola'>Scuola</label> <input value='$scuola' name='scuola' type='text' class='form-control' id='scuola'> </div> <div class='col-md-2'> <label for='classe'>Classe</label> <input value='$classe' name='classe' type='text' class='form-control' id='classe'> </div> <div class='col-md-6'> <label for='specializzazione'>Specializzazione</label> <input value='$specializzazione' name='specializzazione' type='text' class='form-control' id='specializzazione'> </div> </div>";
-                                        
-                                        
-                                        
-                                        
                                     }
                                 }
                                 ?></div>
                     </div>
                     <div class="form-group">
                         <label><input <?php
-                                if ($pre == true) {
-                                    if ($tipo == "esterni") {
-                                        echo " checked ";
-                                    }
+                            if ($pre == true) {
+                                if ($tipo == "esterni") {
+                                    echo " checked ";
                                 }
-                                ?> onclick="cancella()"  type="radio" name="optradioEsterni" id="radioEsterno"> Esterni</label>
+                            }
+                            ?> onclick="cancella()"  type="radio" name="optradioEsterni" id="radioEsterno"> Esterni</label>
                     </div>
                 </div>
 
