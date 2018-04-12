@@ -41,9 +41,15 @@
                         <input name="codiceFiscale" type="text" class="form-control" id="codeFiscale" placeholder="Codice Fiscale" required>
                     </div>';
                         }
+                    } else {
+                        //NUOVA SKILLCARD
+                        echo '<div class="form-group col-md-8">
+                        <label for="codeFiscale">Codice Fiscale</label>
+                        <input name="codiceFiscale" type="text" class="form-control" id="codeFiscale" placeholder="Codice Fiscale" required>
+                    </div>';
                     }
                     ?>
-                   
+
                     <div class="form-group col-md-4">
                         <label for="sesso">Sesso</label>
                         <select name="sesso" class="form-control" required>
@@ -194,7 +200,7 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label for="inputPassword" class="control-label">Conferma Password</label>       
-                        <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
+                        <input name="password2" type="password" data-minlength="6" class="form-control" id="inputPassword2" placeholder="Password" required>
                     </div>
                 </div>
 
@@ -232,10 +238,19 @@
                                 function cancella() {
                                     document.getElementById("clicco").innerHTML = "";
                                 }
+
+                                function controlla() {
+                                    var gigi = document.getElementById("password").value;
+                                    document.getElementById("lol").innerHTML = gigi;
+
+
+                                }
+
                             </script>
                     </div>
                     <div class="form-group">
-                        <label><input value="esterni" onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
+                        <label><input value="esterni"   type="radio" name="optradio" id="radioEsterno"> Esterni</label>
+
                     </div>
 
                 </div>
@@ -243,10 +258,9 @@
                 <label>1) Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.</label>
                 <label>2) Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione.</label>
 
-                <br><br><center><input type="submit" value="registrati" class="btn btn-info btn-lg"></center>
+                <br><br><center><input onclick="controlla()" type="submit" value="registrati" class="btn btn-info btn-lg"></center>
 
             </form>
-
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             <script type="text/javascript" src="bootstrap-table.js"></script>
