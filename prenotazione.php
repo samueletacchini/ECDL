@@ -53,10 +53,11 @@
                 $anno = $gigi[0];
                 $mese = $gigi[1];
                 $giorno = $gigi[2];
-                
+
                 if (substr($tipo, 0, 8) == "studente") {
-                    $scuola = substr($tipo, 10);
-                    $tipo = substr($tipo, 0, 8);
+                    $classe = substr($tipo, 10, 2);
+                    $specializzazione = substr(explode(',', "$tipo")[0], 13);
+                    $scuola = explode(',', $tipo)[1];
                 }
             } else {
                 echo "UTENTE NON TROVATO!";
@@ -106,49 +107,119 @@
                 <label for="data" class="col-md-12">Data Di Nascita</label>
                 <div class="form-row">
                     <div class="form-group col-md-4"> 
-                        <select value="<?php
-                        if ($pre) {
-                            echo "value='$giorno'";
-                        }
-                        ?> " name="giorno" class="form-control" id="day">
+                        <select name="giorno" class="form-control" id="day" >
                             <option disabled selected>Giorno</option>
                             <?php
-                            for ($day = 1; $day <= 31; $day++)
-                                echo "<option value = '" . $day . "'>" . $day . "</option>";
+                            for ($day = 1; $day <= 31; $day++) {
+                                if ($giorno == $day) {
+                                    echo "<option selected value = '" . $day . "'>" . $day . "</option>";
+                                } else {
+                                    echo "<option value = '" . $day . "'>" . $day . "</option>";
+                                }
+                            }
                             ?>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <select <?php
-                        if ($pre) {
-                            echo "value='$mese'";
-                        }
-                        ?>   name='mese' class="form-control" id="mounth">
-                            <option value='' disabled selected>Mese</option>
-                            <option value='1'>Gennaio</option>
-                            <option value='2'>Febbraio</option>
-                            <option value='3'>Marzo</option>
-                            <option value='4'>Aprile</option>
-                            <option value='5'>Maggio</option>
-                            <option value='6'>Giugno</option>
-                            <option value='7'>Luglio</option>
-                            <option value='8'>Agosto</option>
-                            <option value='9'>Settebre</option>
-                            <option value='10'>Ottobre</option>
-                            <option value='11'>Novembre</option>
-                            <option value='12'>Dicembre</option>
+                        <select name='mese' class="form-control" id="mounth">
+                            <option  value='' disabled selected>Mese</option>
+                            <option <?php
+                            if ($pre == true) {
+                                if ($mese == "1") {
+                                    echo " selected ";
+                                }
+                            }
+                            ?> value='1'>Gennaio</option>
+                            <option <?php
+                            if ($pre == true) {
+                                if ($mese == "2") {
+                                    echo " selected ";
+                                }
+                            }
+                            ?> value='2'>Febbraio</option>
+                            <option <?php
+                            if ($pre == true) {
+                                if ($mese == "3") {
+                                    echo " selected ";
+                                }
+                            }
+                            ?> value='3'>Marzo</option>
+                            <option <?php
+                            if ($pre == true) {
+                                if ($mese == "4") {
+                                    echo " selected ";
+                                }
+                            }
+                            ?> value='4'>Aprile</option>
+                            <option <?php
+                            if ($pre == true) {
+                                if ($mese == "5") {
+                                    echo " selected ";
+                                }
+                            }
+                            ?> value='5'>Maggio</option>
+                            <option <?php
+                            if ($pre == true) {
+                                if ($mese == "6") {
+                                    echo " selected ";
+                                }
+                            }
+                            ?> value='6'>Giugno</option>
+                            <option <?php
+                            if ($pre == true) {
+                                if ($mese == "7") {
+                                    echo " selected ";
+                                }
+                            }
+                            ?> value='7'>Luglio</option>
+                            <option <?php
+                            if ($pre == true) {
+                                if ($mese == "8") {
+                                    echo " selected ";
+                                }
+                            }
+                            ?> value='8'>Agosto</option>
+                            <option <?php
+                            if ($pre == true) {
+                                if ($mese == "9") {
+                                    echo " selected ";
+                                }
+                            }
+                            ?> value='9'>Settebre</option>
+                            <option <?php
+                            if ($pre == true) {
+                                if ($mese == "10") {
+                                    echo " selected ";
+                                }
+                            }
+                            ?> value='10'>Ottobre</option>
+                            <option <?php
+                            if ($pre == true) {
+                                if ($mese == "11") {
+                                    echo " selected ";
+                                }
+                            }
+                            ?> value='11'>Novembre</option>
+                            <option <?php
+                            if ($pre == true) {
+                                if ($mese == "2") {
+                                    echo " selected ";
+                                }
+                            }
+                            ?> value='12'>Dicembre</option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <select <?php
-                        if ($pre) {
-                            echo "value='$anno'";
-                        }
-                        ?>  name='anno' class="form-control" id="year">
+                        <select name='anno' class="form-control" id="year">
                             <option disabled selected>Anno</option>
                             <?php
-                            for ($year = Date('Y'); $year >= 1900; $year--)
-                                echo"<option value = '" . $year . "'>" . $year . "</option>";
+                            for ($year = Date('Y'); $year >= 1900; $year--) {
+                                if ($anno == $year) {
+                                    echo"<option selected value = '" . $year . "'>" . $year . "</option>";
+                                } else {
+                                    echo"<option value = '" . $year . "'>" . $year . "</option>";
+                                }
+                            }
                             ?>
                         </select>
                     </div>
@@ -224,13 +295,31 @@
 
                 <br><div class="checkbox-inline">
                     <div class="form-group">
-                        <label><input onclick="cancella()" type="radio" name="optradio" id="radioDocenti"> Docenti ATA: </label>
+                        <label><input <?php
+                            if ($pre == true) {
+                                if ($tipo == "docenti") {
+                                    echo " selected ";
+                                }
+                            }
+                            ?> onclick="cancella()" type="radio" name="optradio" id="radioDocenti"> Docenti ATA: </label>
                     </div>
                     <div class="form-group">
-                        <label><input  onclick="cancella()" type="radio" name="optradio" id="radioPersonale"> Personale Corpi Militari ed Enti Ministeriali convenzionati: </label>
+                        <label><input <?php
+                            if ($pre == true) {
+                                if ($mese == "personale") {
+                                    echo " selected ";
+                                }
+                            }
+                            ?> onclick="cancella()" type="radio" name="optradio" id="radioPersonale"> Personale Corpi Militari ed Enti Ministeriali convenzionati: </label>
                     </div>
                     <div class="form-group">
-                        <label><input  onclick="myFunction()"  type="radio" name="optradio" id="radioStudente"> Studente sup. :
+                        <label><input <?php
+                            if ($pre == true) {
+                                if ($mese == "studente") {
+                                    echo " selected ";
+                                }
+                            }
+                            ?> onclick="myFunction()"  type="radio" name="optradio" id="radioStudente"> Studente sup. :
                             <p id="clicco"></p>
                             <script>
                                 var html = "<br><div class='form-row'>" +
@@ -256,7 +345,13 @@
                             </script>
                     </div>
                     <div class="form-group">
-                        <label><input  onclick="cancella()"  type="radio" name="optradioEsterni" id="radioEsterno"> Esterni</label>
+                        <label><input <?php
+                            if ($pre == true) {
+                                if ($mese == "2") {
+                                    echo " esterni ";
+                                }
+                            }
+                            ?> onclick="cancella()"  type="radio" name="optradioEsterni" id="radioEsterno"> Esterni</label>
                     </div>
                 </div>
 
