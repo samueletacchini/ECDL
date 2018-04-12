@@ -107,7 +107,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label> Stato Civile </label>
-                        <select name="statocivile" class="form-control">
+                        <select name="statocivile" class="form-control" required>
                             <option value="" disabled selected>Stato Civile</option>
                             <option value="single"> Single</option>
                             <option value="coniug"> Coniugato/a</option>
@@ -154,9 +154,32 @@
                         <label for="cellulare">Cellulare</label>
                         <input name="cellulare" type="number" class="form-control" id="telefono" placeholder="Cellulare" required>                      
                     </div> 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-3">
+                        <label for="scolaro">Titolo Di Studio</label>
+                        <select name="scolaro" class="form-control" required>
+                            <option value="" disabled selected>Titoto Di Studio</option>
+                            <option value="sObbligo"> Scuola Dell'Obbligo</option>
+                            <option value="diplomato"> Diplomato</option>
+                            <option value="laureato"> Laureato</option>
+                            <option value="nDichiarato"> Non Dichiarato</option>
+                            <option value="alt"> Altro ..</option>
+                        </select>                      
+                    </div>
+                    <div class="form-group col-md-3">
                         <label for="occupazione">Occupazione</label>
-                        <input name="occupazione" type="text" class="form-control" id="occupazione" placeholder="Occupazione" required>                      
+                        <select name="occupazione" class="form-control" required>
+                            <option value="" disabled selected>Occupazione</option>
+                            <option value="sPrimaria"> Studente Scuola Primaria</option>    
+                            <option value="sScuolasUno"> Studente Scuola Secondaria 1°</option>
+                            <option value="sScuolaDue"> Studente Scuola Secondaria 2°</option>
+                            <option value="sUniversitario"> Studente Universitario</option>
+                            <option value="lDipendente"> Lavoratore Dipendente</option>
+                            <option value="lAutonomo"> Lavoratore Autonomo</option>
+                            <option value="Pensionato"> Pensionato</option>
+                            <option value="casalingo"> Casalingo/a</option>
+                            <option value="cerca"> In Cerca Di Occupazione</option>
+                            <option value="alt"> Altro ..</option>
+                        </select>                       
                     </div>
                 </div>
 
