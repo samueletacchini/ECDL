@@ -58,8 +58,10 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                 $tipo = $riga['tipo'];
 
                 if (substr($tipo, 0, 8) == "studente") {
-                    $scuola = substr($tipo, 10);
-                    $tipo = substr($tipo, 0, 8);
+
+                    $classe = substr($tipo, 10, 2);
+                    $specializzazione = substr(explode(',', "$tipo")[0], 13);
+                    $scuola = explode(',', $tipo)[1];
                 }
             } else {
                 echo "UTENTE NON TROVATO!";
