@@ -41,9 +41,15 @@
                         <input name="codiceFiscale" type="text" class="form-control" id="codeFiscale" placeholder="Codice Fiscale" required>
                     </div>';
                         }
+                    } else {
+                        //NUOVA SKILLCARD
+                        echo '<div class="form-group col-md-8">
+                        <label for="codeFiscale">Codice Fiscale</label>
+                        <input name="codiceFiscale" type="text" class="form-control" id="codeFiscale" placeholder="Codice Fiscale" required>
+                    </div>';
                     }
                     ?>
-                   
+
                     <div class="form-group col-md-4">
                         <label for="sesso">Sesso</label>
                         <select name="sesso" class="form-control" required>
