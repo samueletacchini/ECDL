@@ -348,7 +348,7 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                 } else {
                     echo "UTENTE NON TROVATO!";
                 }
-                $pdf->Image('pdf/skillcard.png', 0, 0, 210, 297);
+                $pdf->Image('pdf/aica.png', 0, 0, 210, 297);
                 //n skill card
                 $pdf->SetXY(39, 58);
                 $pdf->Write(0, "$skillcard");

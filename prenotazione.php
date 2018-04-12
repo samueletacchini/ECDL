@@ -15,6 +15,30 @@
             </p>
         </div>
 
+        <script>
+
+            function myFunction() {
+                var html = "<br><div class='form-row'>" +
+                        " <div class='col-md-4'>" +
+                        " <label for='scuola'>Scuola</label>" +
+                        " <input name='scuola' type='text' class='form-control' id='scuola'>" +
+                        "</div>" +
+                        "<div class='col-md-2'>" +
+                        " <label for='classe'>Classe</label>" +
+                        " <input name='classe' type='text' class='form-control' id='classe'>" +
+                        "</div>" +
+                        "<div class='col-md-6'>" +
+                        "<label for='specializzazione'>Specializzazione</label>" +
+                        "<input name='specializzazione' type='text' class='form-control' id='specializzazione'>" +
+                        "</div>" +
+                        "</div>";
+                document.getElementById("clicco").innerHTML = html;
+            }
+            function cancella() {
+                document.getElementById("clicco").innerHTML = "";
+            }
+        </script>
+
         <?php
         require_once("ConnessioneDb.php");
         $db = new ConnessioneDb();
@@ -58,6 +82,7 @@
                     $classe = substr($tipo, 10, 2);
                     $specializzazione = substr(explode(',', "$tipo")[0], 13);
                     $scuola = explode(',', $tipo)[1];
+                    $tipo = "studente";
                 }
             } else {
                 echo "UTENTE NON TROVATO!";
@@ -298,7 +323,7 @@
                         <label><input <?php
                             if ($pre == true) {
                                 if ($tipo == "docenti") {
-                                    echo " selected ";
+                                    echo " checked ";
                                 }
                             }
                             ?> onclick="cancella()" type="radio" name="optradio" id="radioDocenti"> Docenti ATA: </label>
@@ -306,8 +331,8 @@
                     <div class="form-group">
                         <label><input <?php
                             if ($pre == true) {
-                                if ($mese == "personale") {
-                                    echo " selected ";
+                                if ($tipo == "personale") {
+                                    echo " checked ";
                                 }
                             }
                             ?> onclick="cancella()" type="radio" name="optradio" id="radioPersonale"> Personale Corpi Militari ed Enti Ministeriali convenzionati: </label>
@@ -315,40 +340,24 @@
                     <div class="form-group">
                         <label><input <?php
                             if ($pre == true) {
-                                if ($mese == "studente") {
-                                    echo " selected ";
+                                if ($tipo == "studente") {
+                                    echo " checked ";
                                 }
                             }
                             ?> onclick="myFunction()"  type="radio" name="optradio" id="radioStudente"> Studente sup. :
-                            <p id="clicco"></p>
-                            <script>
-                                var html = "<br><div class='form-row'>" +
-                                        " <div class='col-md-4'>" +
-                                        " <label for='scuola'>Scuola</label>" +
-                                        " <input name='scuola' type='text' class='form-control' id='scuola'>" +
-                                        "</div>" +
-                                        "<div class='col-md-2'>" +
-                                        " <label for='classe'>Classe</label>" +
-                                        " <input name='classe' type='text' class='form-control' id='classe'>" +
-                                        "</div>" +
-                                        "<div class='col-md-6'>" +
-                                        "<label for='specializzazione'>Specializzazione</label>" +
-                                        "<input name='specializzazione' type='text' class='form-control' id='specializzazione'>" +
-                                        "</div>" +
-                                        "</div>";
-                                function myFunction() {
-                                    document.getElementById("clicco").innerHTML = html;
+                            <div id="clicco"><?php
+                                if ($pre == true) {
+                                    if ($tipo == "studente") {
+                                        echo " <br><div class='form-row'> <div class='col-md-4'> <label for='scuola'>Scuola</label> <input name='scuola' type='text' class='form-control' id='scuola'> </div> <div class='col-md-2'> <label for='classe'>Classe</label> <input name='classe' type='text' class='form-control' id='classe'> </div> <div class='col-md-6'> <label for='specializzazione'>Specializzazione</label> <input name='specializzazione' type='text' class='form-control' id='specializzazione'> </div> </div>";
+                                    }
                                 }
-                                function cancella() {
-                                    document.getElementById("clicco").innerHTML = "";
-                                }
-                            </script>
+                                ?></div>
                     </div>
                     <div class="form-group">
                         <label><input <?php
                             if ($pre == true) {
-                                if ($mese == "2") {
-                                    echo " esterni ";
+                                if ($tipo == "esterni") {
+                                    echo " checked ";
                                 }
                             }
                             ?> onclick="cancella()"  type="radio" name="optradioEsterni" id="radioEsterno"> Esterni</label>
