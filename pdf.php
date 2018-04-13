@@ -44,7 +44,7 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                     $cognome = $riga['cognome'];
                     $nome = $riga['nome'];
                     $data = $riga['data_nascita'];
-                    $lnascita = $riga['luogo_nascita'];
+                    $lnascita = $riga['comune_nascita'];
                     $statocivile = $riga['stato_civile'];
                     $indirizzo = $riga['indirizzo'];
                     $stato = $riga['stato'];
@@ -170,7 +170,7 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                     $cognome = $riga['cognome'];
                     $nome = $riga['nome'];
                     $data = $riga['data_nascita'];
-                    $lnascita = $riga['luogo_nascita'];
+                    $lnascita = $riga['comune_nascita'];
                     $statocivile = $riga['stato_civile'];
                     $indirizzo = $riga['indirizzo'];
                     $stato = $riga['stato'];
@@ -325,7 +325,7 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                     $cognome = $riga['cognome'];
                     $nome = $riga['nome'];
                     $data = $riga['data_nascita'];
-                    $lnascita = $riga['luogo_nascita'];
+                    $lnascita = $riga['comune_nascita'];
                     $statocivile = $riga['stato_civile'];
                     $indirizzo = $riga['indirizzo'];
                     $stato = $riga['stato'];
@@ -376,29 +376,29 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                 $pdf->SetXY(128, 94.5);
                 //$pdf->Write(0, "$statocivile");
                 //indirizzo
-                $pdf->SetXY(42, 103);
-                //$pdf->Write(0, "$indirizzo");
+                $pdf->SetXY(29, 90);
+                $pdf->Write(0, "$indirizzo");
                 //cap
-                $pdf->SetXY(158, 103);
-                //$pdf->Write(0, "$cap");
+                $pdf->SetXY(171, 90);
+                $pdf->Write(0, "$cap");
                 //provincia
-                $pdf->SetXY(115, 70);
+                $pdf->SetXY(159, 83.5);
                 $pdf->Write(0, "$provincia");
                 //città
-                $pdf->SetXY(50, 84);
+                $pdf->SetXY(50, 83.5);
                 $pdf->Write(0, "$citta");
                 //stato
                 $pdf->SetXY(158, 111.5);
                 //$pdf->Write(0, "$stato");
                 //tel
-                $pdf->SetXY(39, 120);
-                //$pdf->Write(0, "$telefono");
+                $pdf->SetXY(25, 103.5);
+                $pdf->Write(0, "$telefono");
                 //email
-                $pdf->SetXY(97, 120);
-                //$pdf->Write(0, "$mail");
+                $pdf->SetXY(25, 97);
+                $pdf->Write(0, "$mail");
                 //cellulare
-                $pdf->SetXY(97, 128.5);
-                //$pdf->Write(0, "$cellulare");
+                $pdf->SetXY(111, 103.5);
+                $pdf->Write(0, "$cellulare");
                 //scolarita
                 $pdf->SetXY(41.5, 145.7);
                 //$pdf->Write(0, "?????????");
@@ -434,7 +434,7 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                 }
                 //modena DATA
                 $pdf->SetXY(39, 215);
-                $pdf->Write(0, $datenow);
+                //$pdf->Write(0, $datenow);
                 break;
             }
             break;

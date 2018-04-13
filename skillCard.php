@@ -124,7 +124,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="luogo">Comune Di Nascita</label>
-                        <input name="lnascita" type="text" class="form-control" id="luogo" placeholder="Luogo" required>
+                        <input name="lnascita" type="text" class="form-control" id="luogo" placeholder="Comune" required>
                     </div>
                     <div class="form-group col-md-5">                   
                         <label for="indirizzo">Indirizzo</label>
