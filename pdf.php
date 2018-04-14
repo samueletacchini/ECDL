@@ -9,6 +9,11 @@ $db = new ConnessioneDb();
 $datenow = date("d/m/y");
 
 
+//JUST FOR TESTINGGG
+$scolarita = "terza media";
+$via = "678";
+$pnascita = "mo";
+
 
 
 if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
@@ -20,8 +25,6 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
         $id = $_REQUEST["id"];
         $type = $_REQUEST["type"];
     }
-
-
 
 
 
@@ -57,11 +60,15 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                     $occupazione = $riga['occupazione'];
                     $tipo = $riga['tipo'];
 
-                    if (substr($tipo, 0, 8) == "studente") {
+//                    $scolarita = $riga['scolarita'];
+//                    $via = $riga['via'];
+//                    $pnascita = $riga['pnascita'];
 
+                    if (substr($tipo, 0, 8) == "studente") {
                         $classe = substr($tipo, 10, 2);
                         $specializzazione = substr(explode(',', "$tipo")[0], 13);
                         $scuola = explode(',', $tipo)[1];
+                        $tipo = substr($tipo, 0, 8);
                     }
                 } else {
                     echo "UTENTE NON TROVATO!";
@@ -96,7 +103,7 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                 $pdf->Write(0, "$statocivile");
                 //indirizzo
                 $pdf->SetXY(42, 103);
-                $pdf->Write(0, "$indirizzo");
+                $pdf->Write(0, "$indirizzo $via");
                 //cap
                 $pdf->SetXY(158, 103);
                 $pdf->Write(0, "$cap");
@@ -120,7 +127,7 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                 $pdf->Write(0, "$cellulare");
                 //scolarita
                 $pdf->SetXY(41.5, 145.7);
-                $pdf->Write(0, "?????????");
+                $pdf->Write(0, "$scolarita");
                 //occupazione
                 $pdf->SetXY(140, 145.5);
                 $pdf->Write(0, "$occupazione");
@@ -130,7 +137,7 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                     case "studente":
                         //scuola e classe
                         $pdf->SetXY(97, 154.2);
-                        $pdf->Write(0, "$scuola");
+                        $pdf->Write(0, "$classe $specializzazione, $scuola");
 
                         //studenti
                         $pdf->SetXY(38.2, 172);
@@ -183,7 +190,9 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                     $occupazione = $riga['occupazione'];
                     $tipo = $riga['tipo'];
                     if (substr($tipo, 0, 8) == "studente") {
-                        $scuola = substr($tipo, 10);
+                        $classe = substr($tipo, 10, 2);
+                        $specializzazione = substr(explode(',', "$tipo")[0], 13);
+                        $scuola = explode(',', $tipo)[1];
                         $tipo = substr($tipo, 0, 8);
                     }
 
@@ -254,12 +263,6 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
 
                 switch (substr($tipo, 0, 8)) {
                     case "studente":
-
-                        $classe = substr($tipo, 10, 2);
-                        $specializzazione = substr(explode(',', "$tipo")[0], 13);
-                        $scuola = explode(',', $tipo)[1];
-
-                        $tipo = substr($tipo, 0, 8);
 
                         //studente
                         $pdf->SetXY(48.7, 136.5);
@@ -339,10 +342,10 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                     $tipo = $riga['tipo'];
 
                     if (substr($tipo, 0, 8) == "studente") {
-
                         $classe = substr($tipo, 10, 2);
                         $specializzazione = substr(explode(',', "$tipo")[0], 13);
                         $scuola = explode(',', $tipo)[1];
+                        $tipo = substr($tipo, 0, 8);
                     }
                 } else {
                     echo "UTENTE NON TROVATO!";
