@@ -11,7 +11,7 @@ $datenow = date("d/m/y");
 
 //JUST FOR TESTINGGG
 $scolarita = "terza media";
-$via = "678";
+$civico = "678";
 $pnascita = "mo";
 
 
@@ -61,8 +61,7 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                     $tipo = $riga['tipo'];
 
 //                    $scolarita = $riga['scolarita'];
-//                    $via = $riga['via'];
-//                    $pnascita = $riga['pnascita'];
+//                    $civico = $riga['civico'];
 
                     if (substr($tipo, 0, 8) == "studente") {
                         $classe = substr($tipo, 10, 2);
@@ -103,7 +102,7 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                 $pdf->Write(0, "$statocivile");
                 //indirizzo
                 $pdf->SetXY(42, 103);
-                $pdf->Write(0, "$indirizzo $via");
+                $pdf->Write(0, "$indirizzo $civico");
                 //cap
                 $pdf->SetXY(158, 103);
                 $pdf->Write(0, "$cap");
@@ -341,6 +340,10 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                     $occupazione = $riga['occupazione'];
                     $tipo = $riga['tipo'];
 
+//                    $scolarita = $riga['scolarita'];
+//                    $civico = $riga['civico'];
+//                    $pnascita = $riga['pnascita'];
+
                     if (substr($tipo, 0, 8) == "studente") {
                         $classe = substr($tipo, 10, 2);
                         $specializzazione = substr(explode(',', "$tipo")[0], 13);
@@ -354,15 +357,9 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                 //n skill card
                 $pdf->SetXY(126, 77);
                 $pdf->Write(0, "$skillcard");
-                //rilasciata il
-                $pdf->SetXY(98, 57.5);
-                //$pdf->Write(0, "$datenow");
                 //codice fiscale
                 $pdf->SetXY(35, 77);
                 $pdf->Write(0, "$codicefiscale");
-                //sesso
-                $pdf->SetXY(140, 69);
-                //$pdf->Write(0, "$sesso");
                 //cognome
                 $pdf->SetXY(29, 63);
                 $pdf->Write(0, "$cognome");
@@ -375,24 +372,24 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                 //luogo di nascita
                 $pdf->SetXY(29, 70);
                 $pdf->Write(0, "$lnascita");
-                //stato civile
-                $pdf->SetXY(128, 94.5);
-                //$pdf->Write(0, "$statocivile");
+                //provincia nascita
+                $pdf->SetXY(119, 70);
+                $pdf->Write(0, "$pnascita");
                 //indirizzo
                 $pdf->SetXY(29, 90);
                 $pdf->Write(0, "$indirizzo");
                 //cap
-                $pdf->SetXY(171, 90);
+                $pdf->SetXY(170, 90);
                 $pdf->Write(0, "$cap");
                 //provincia
-                $pdf->SetXY(159, 83.5);
+                $pdf->SetXY(160, 83.5);
                 $pdf->Write(0, "$provincia");
                 //città
                 $pdf->SetXY(50, 83.5);
                 $pdf->Write(0, "$citta");
-                //stato
-                $pdf->SetXY(158, 111.5);
-                //$pdf->Write(0, "$stato");
+                //civico
+                $pdf->SetXY(146, 90);
+                $pdf->Write(0, "$civico");
                 //tel
                 $pdf->SetXY(25, 103.5);
                 $pdf->Write(0, "$telefono");
@@ -402,37 +399,33 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                 //cellulare
                 $pdf->SetXY(111, 103.5);
                 $pdf->Write(0, "$cellulare");
-                //scolarita
-                $pdf->SetXY(41.5, 145.7);
-                //$pdf->Write(0, "?????????");
-                //occupazione
-                $pdf->SetXY(140, 145.5);
-                //$pdf->Write(0, "$occupazione");
+                //email seconda
+                $pdf->SetXY(26, 179);
+                $pdf->Write(0, "$mail");
+                //nome e gognome
+                $pdf->SetXY(45, 174);
+                $pdf->Write(0, "$cognome $nome");
 
-
-                switch ($tipo) {
-                    case "studente":
-                        //scuola e classe
-                        $pdf->SetXY(97, 154.2);
-                        $pdf->Write(0, "$scuola");
-
-                        //studenti
-                        $pdf->SetXY(38.2, 172);
+                //Titolo di studio
+                switch ($scolarita) {
+                    case "scuola dell'obbligo":
+                        //scuola dell'obbligo
+                        $pdf->SetXY(21.7, 123.7);
                         $pdf->Write(0, "x");
                         break;
-                    case "docenti":
-                        //docenti
-                        $pdf->SetXY(38.2, 172);
+                    case "diplomato":
+                        //diplomato
+                        $pdf->SetXY(21.7, 128.4);
                         $pdf->Write(0, "x");
                         break;
-                    case "personale":
-                        //personale e corpi militari
-                        $pdf->SetXY(38.2, 172);
+                    case "laureato":
+                        //laureato
+                        $pdf->SetXY(21.7, 132.7);
                         $pdf->Write(0, "x");
                         break;
                     default :
-                        //esterni
-                        $pdf->SetXY(38.2, 193.7);
+                        //Non dichiarato
+                        $pdf->SetXY(21.7, 137.5);
                         $pdf->Write(0, "x");
                 }
                 //modena DATA
