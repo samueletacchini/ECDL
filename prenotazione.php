@@ -4,6 +4,16 @@
         <link rel="stylesheet" href="css/PrenotazioneRegistrazione.css">
         <link rel="stylesheet" href="file.js">
     </head>
+    <style>
+        .container-fluid{ 
+            border-style:solid; 
+            border-color:#CCCCCC; 
+            border-width:1px; 
+            border-radius:4px 4px 4px 4px;
+            color:black;   
+        }
+
+    </style>
     <body>
         <div class="jumbotron text-center">
             <h1 align="center"> Prenotazione Degli Esami </h1>
@@ -94,8 +104,8 @@
 
 
 
-
-        <div class="container-fluid bg-grey">
+        <div class="col-md-2"></div>
+        <div class="container-fluid bg-grey col-md-8">
             <form name="casellaTesto" method="get" class="was-validated">
                 <h2 align="center"> Modulo Di Prenotazione</h2>
                 <div class="form-row">
@@ -432,6 +442,7 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             <script type="text/javascript" src="bootstrap-table.js"></script>
         </div>
+        <div class="col-md-2"></div>
     </body>
 </html>
 

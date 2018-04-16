@@ -33,7 +33,14 @@ p {
 .bg-grey {
     background-color: #f6f6f6;
 }
-
+#contenitore{ 
+    border-style:solid; 
+    border-color:#CCCCCC; 
+    border-width:1px; 
+    border-radius:4px 4px 4px 4px;
+    color:black;   
+}
+    
 
 
 
