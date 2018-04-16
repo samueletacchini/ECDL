@@ -11,19 +11,10 @@ and open the template in the editor.
     </head>
     <body>
         <div>
-            <a href='skillCard.php?a=0'>skillcard NUOVO </a>
-            <br><a href='skillCard.php?a=1'>HO GIA skillcard</a>
-            <br><a href='prenotazione.php'> prenotazione NON precompilata esame </a>
             <br><a href='login.php'> login </a>
 
         </div>
-        <div>
-            <br><form method="post" action="pdf.php">
-                Cerca PDF skillcard per CF: <br><input value="tccsml0257blew99" required type="text" name="id">
-                <input type="hidden" name="type" value="skillcard">
-                <br><input type="submit" value="CERCA Skillcard">
-            </form>
-        </div>
+        
         <br>
         <div>
             <form method="post" action="pdf.php">
@@ -33,20 +24,8 @@ and open the template in the editor.
                 <br><input type="submit" value="CERCA">
             </form>
         </div>
-        <div>
-            <br><form method="post" action="prenotazione.php">
-                Cerca Prenotazione compilata in base al CF: <br><input value="tccsml0257blew99" required type="text" name="id">
-                <br><input type="submit" value="Compilami">
-            </form>
-        </div>
-        <br>
-        <div>
-            <form method="post" action="pdf.php">
-                Cerca PDF AICA per CF: <br><input value="tccsml0257blew99" required type="text" name="id">
-                <input type="hidden" name="type" value="aica">
-                <br><input type="submit" value="CERCA">
-            </form>
-        </div>
+        
+
 
         <p>
             <?php

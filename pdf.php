@@ -35,11 +35,11 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
     switch ($type) {
         case "skillcard": {
 
-                $query = "SELECT * FROM `user` WHERE `codice_fiscale` = '$id'";
+                $query = "SELECT * FROM `user` WHERE `email` = '$id'";
                 $ris = $db->query($query);
 
                 $riga = $ris->fetch_array();
-                if ($riga["codice_fiscale"] != "") {
+                if ($riga["email"] != "") {
 
                     $skillcard = $riga['skill_card'];
                     $codicefiscale = $riga['codice_fiscale'];
@@ -163,7 +163,7 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                 break;
             }
         case "prenotazione": {
-                $query = "SELECT user.*, prenotazione.esami, sessioni.data, sessioni.ora_da, sessioni.ora_a FROM `user`JOIN prenotazione ON prenotazione.ID_codice_fiscale = user.codice_fiscale JOIN sessioni ON sessioni.ID = prenotazione.ID_sessione WHERE user.codice_fiscale = '$id' && prenotazione.ID = $idprenotazione";
+                $query = "SELECT user.*, prenotazione.esami, sessioni.data, sessioni.ora_da, sessioni.ora_a FROM `user`JOIN prenotazione ON prenotazione.ID_codice_fiscale = user.codice_fiscale JOIN sessioni ON sessioni.ID = prenotazione.ID_sessione WHERE user.email = '$id' && prenotazione.ID = $idprenotazione";
                 $ris = $db->query($query);
 
                 $riga = $ris->fetch_array();
@@ -315,11 +315,11 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
             break;
         case "aica": {
 
-                $query = "SELECT * FROM `user` WHERE `codice_fiscale` = '$id'";
+                $query = "SELECT * FROM `user` WHERE `email` = '$id'";
                 $ris = $db->query($query);
 
                 $riga = $ris->fetch_array();
-                if ($riga["codice_fiscale"] != "") {
+                if ($riga["email"] != "") {
 
                     $skillcard = $riga['skill_card'];
                     $codicefiscale = $riga['codice_fiscale'];
