@@ -6,12 +6,14 @@ session_start();
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/PrenotazioneRegistrazione.css">
         <link rel="stylesheet" href="file.js">
+        <meta name="viewport" content="width=device-width,initial-sclae=1.0">
     </head>
     <style>
         #registrazione{
             background-color:DodgerBlue;
             border-radius:5px 5px 5px 5px;
             height:150px;
+            min-width:150px;
         }
         #registrazione1{
             height:75px;
@@ -21,8 +23,11 @@ session_start();
             font-size: 18px;
             line-height: 1.33;
             border-radius: 6px;
-            width: 175px;
+            width: 100%;
             background-color: DodgerBlue;
+        }
+        #link{
+            height:302.5px;
         }
     </style>
     <body>
@@ -63,7 +68,7 @@ session_start();
                         </div>
                         <div class="panel-body">
                             <p>Cos’è Lorem Ipsum?</p>
-                                <br><p>
+                            <br><p>
                                 Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. 
                                 Lorem Ipsum è considerato il testo segnaposto standard sin dal sedicesimo secolo, 
                                 quando un anonimo tipografo prese una cassetta di caratteri e li assemblò per preparare un 
@@ -72,9 +77,9 @@ session_start();
                                 con la diffusione dei fogli di caratteri trasferibili “Letraset”, che contenevano passaggi del 
                                 Lorem Ipsum, e più recentemente da software di impaginazione come Aldus PageMaker, che includeva 
                                 versioni del Lorem Ipsum.
-                                </p>
-                                <br><p>Perchè lo utilizziamo?</p>
-                                <br><p>È universalmente riconosciuto che un lettore che osserva il layout di una pagina viene distratto 
+                            </p>
+                            <br><p>Perchè lo utilizziamo?</p>
+                            <br><p>È universalmente riconosciuto che un lettore che osserva il layout di una pagina viene distratto 
                                 dal contenuto testuale se questo è leggibile. Lo scopo dell’utilizzo del Lorem Ipsum è che offre 
                                 una normale distribuzione delle lettere (al contrario di quanto avviene se si utilizzano brevi 
                                 frasi ripetute, ad esempio “testo qui”), apparendo come un normale blocco di testo leggibile. 
@@ -86,46 +91,58 @@ session_start();
                 </div>
             </div>
         </div>
+
         <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel">
-                    <h3 align='center'>Login</h3>
-                </div>
-                <div class="panel-body">
-                    <form name=”casellaTesto” method=”get” class="was-validated" action="/ecdl/login.php">
-                        <div class="form-group">
-                            <label> E-Mail</label>
-                            <input name="email" type="text" id="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label> Password </label>
-                            <input name="password" type="password" id="password" class="form-control" required>
-                        </div>
-                        <?php
-                        if (isset($_REQUEST["email"])) {
+            <div>
+                <div class="panel panel-default">
+                    <div class="panel">
+                        <h3 align='center'>Login</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form name=”casellaTesto” method=”get” class="was-validated" action="/ecdl/login.php">
+                            <div class="form-group">
+                                <label> E-Mail</label>
+                                <input name="email" type="text" id="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label> Password </label>
+                                <input name="password" type="password" id="password" class="form-control" required>
+                            </div>
+                            <?php
+                            if (isset($_REQUEST["email"])) {
 
 
-                            require_once('ConnessioneDb.php');
-                            $db = new ConnessioneDb();
-                            //trim toglie gli spazi bianchi doppi o tripli ed evita problemi di SQL INJECTION
-                            $email = $db->real_escape_string($_REQUEST["email"]);
-                            $pwd = $db->real_escape_string($_REQUEST["password"]);
-                            //controlla correttezza username e pwd
-                            $sql = "select * from user where email='$email'and password='$pwd'";
-                            $result = $db->query($sql);
-                            if ($result->num_rows == 0) {
-                                echo("<center><br><p><font color='red'>E-Mail o Password Errati!</font></p></center>");
-                            } else {
-                                $riga = $result->fetch_array();
-                                $_SESSION['utente'] = $riga[''];
-                                $result->close();
-                                //richiama la pagina index.php
-                                header("location: index.php");
+                                require_once('ConnessioneDb.php');
+                                $db = new ConnessioneDb();
+                                //trim toglie gli spazi bianchi doppi o tripli ed evita problemi di SQL INJECTION
+                                $email = $db->real_escape_string($_REQUEST["email"]);
+                                $pwd = $db->real_escape_string($_REQUEST["password"]);
+                                //controlla correttezza username e pwd
+                                $sql = "select * from user where email='$email'and password='$pwd'";
+                                $result = $db->query($sql);
+                                if ($result->num_rows == 0) {
+                                    echo("<center><br><p><font color='red'>E-Mail o Password Errati!</font></p></center>");
+                                } else {
+                                    $riga = $result->fetch_array();
+                                    $_SESSION['utente'] = $riga[''];
+                                    $result->close();
+                                    //richiama la pagina index.php
+                                    header("location: index.php");
+                                }
                             }
-                        }
-                        ?>
-                        <center><br><button type="submit" class="btn btn-info btn-lg" value="accedi"> Accedi </button></center>
+                            ?>
+                            <center><br><button type="submit" class="btn btn-info btn-lg" value="accedi"> Accedi </button></center>
 
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="panel panel-default"  id="link">
+                    <div class="panel">
+                        <h3 align='center'>Metti i tuoi link Sergio</h3>
+                    </div>
+                    <div class="panel-body">
+                    </div>
                 </div>
             </div>
         </div>
