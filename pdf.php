@@ -354,6 +354,7 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                     echo "UTENTE NON TROVATO!";
                 }
                 $pdf->Image('pdf/aica.jpg', 0, 0, 210, 297);
+
                 //n skill card
                 $pdf->SetXY(126, 77);
                 $pdf->Write(0, "$skillcard");
@@ -423,20 +424,102 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                         $pdf->SetXY(21.7, 132.7);
                         $pdf->Write(0, "x");
                         break;
-                    default :
+                    default:
                         //Non dichiarato
                         $pdf->SetXY(21.7, 137.5);
                         $pdf->Write(0, "x");
                 }
+
+                //Occupazione
+                switch ($occupazione) {
+                    case "studente scuola primaria":
+                        //scuola dell'obbligo
+                        $pdf->SetXY(84.1, 123.7);
+                        $pdf->Write(0, "x");
+                        break;
+                    case "studente scuola secondaria primo grado":
+                        //diplomato
+                        $pdf->SetXY(84.1, 128.4);
+                        $pdf->Write(0, "x");
+                        break;
+                    case "studente scuola secondaria secondo grado":
+                        //laureato
+                        $pdf->SetXY(84.1, 133, 1);
+                        $pdf->Write(0, "x");
+                        break;
+                    case "studente universitario":
+                        //laureato
+                        $pdf->SetXY(84.1, 137.5);
+                        $pdf->Write(0, "x");
+                        break;
+                    case "lavoratore dipendente":
+                        //laureato
+                        $pdf->SetXY(84.1, 141.9);
+                        $pdf->Write(0, "x");
+                        break;
+                    case "lavoratore autonomo":
+                        //laureato
+                        $pdf->SetXY(84.1, 146.3);
+                        $pdf->Write(0, "x");
+                        break;
+                    case "pensionato":
+                        //laureato
+                        $pdf->SetXY(84.1, 150.9);
+                        $pdf->Write(0, "x");
+                        break;
+                    case "casalinga":
+                        //laureato
+                        $pdf->SetXY(84.1, 155.2);
+                        $pdf->Write(0, "x");
+                        break;
+                    case "in cerca di occupazione":
+                        //laureato
+                        $pdf->SetXY(84.1, 159.7);
+                        $pdf->Write(0, "x");
+                        break;
+                }
+                //aggiungo la seconda pagine
+                $addPage = $pdf->AddPage();
+                $pdf->Image('pdf/aica2.jpg', 0, 0, 210, 297);
+
+
                 //modena DATA
-                $pdf->SetXY(39, 215);
-                //$pdf->Write(0, $datenow);
+                $pdf->SetXY(25, 129);
+                $pdf->Write(0, $datenow);
+
+                //Acconsento
+                $pdf->SetXY(34.8, 166);
+                $pdf->Write(0, "x");
+                //Acconsento
+                $pdf->SetXY(34.8, 183.1);
+                $pdf->Write(0, "x");
+                $consento = false;
+                if ($consento) {
+                    //Acconsento
+                    $pdf->SetXY(34.8, 202);
+                    $pdf->Write(0, "x");
+                } else {
+                    //NON Acconsento
+                    $pdf->SetXY(97.2, 202);
+                    $pdf->Write(0, "x");
+                }
+
+                //modena DATA
+                $pdf->SetXY(25, 231);
+                $pdf->Write(0, $datenow);
+
+                //aggiungo la seconda pagine
+                $addPage = $pdf->AddPage();
+                $pdf->Image('pdf/aica3.jpg', 0, 0, 210, 297);
+
+
+
                 break;
             }
             break;
     }
 
-//$pdf->Output("D", "nomefile.pdf");
+    //$pdf->Output("D", "nomefile.pdf");
     $pdf->Output();
 } else {
     echo "effettuare la richieste fornendo un id e un tipo di PDF";

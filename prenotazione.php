@@ -88,7 +88,7 @@
                 echo "UTENTE NON TROVATO!";
             }
         } else {
-            echo "dovresti fornire un ID!";
+            echo "";
         }
         ?>
 
