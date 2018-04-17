@@ -39,7 +39,6 @@
         </div>
 
         <script>
-
             function myFunction() {
                 var html = "<br><div class='form-row'>" +
                         " <div class='col-md-4'>" +
@@ -63,20 +62,17 @@
         </script>
 
         <?php
-        require_once("ConnessioneDb.php");
+       require_once("ConnessioneDb.php");
         $db = new ConnessioneDb();
         $datenow = date("d/m/y");
         $pre = false;
         if (isset($_REQUEST["id"])) {
-
             $pre = true;
             $id = $_REQUEST["id"];
             $query = "SELECT * FROM `user` WHERE `email` = '$id'";
             $ris = $db->query($query);
-
             $riga = $ris->fetch_array();
             if ($riga["email"] != "") {
-
                 $skillcard = $riga['skill_card'];
                 $codicefiscale = $riga['codice_fiscale'];
                 $sesso = $riga['sesso'];
@@ -96,12 +92,10 @@
                 $occupazione = $riga['occupazione'];
                 $tipo = $riga['tipo'];
                 $civico = $riga['civico'];
-
                 $gigi = explode('-', $data);
                 $anno = $gigi[0];
                 $mese = $gigi[1];
                 $giorno = $gigi[2];
-
                 if (substr($tipo, 0, 8) == "studente") {
                     $classe = substr($tipo, 10, 2);
                     $specializzazione = substr(explode(',', "$tipo")[0], 13);
@@ -115,56 +109,6 @@
             echo "";
         }
         ?>
-
-
-
-        <div class="col-md-2"></div>
-        <div class="container-fluid bg-grey col-md-8">
-            <form name="casellaTesto" method="get" class="was-validated" action="/ecdl/registrazione.php">
-                <h2 align="center"> Modulo Di Prenotazione</h2>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <label for="card">Skill Card N.</label>
-                        <input 
-                        <?php
-                        if ($pre) {
-                            echo "value='$skillcard'";
-                        }
-                        ?> name="nskill" type="text" class="form-control" id="card" placeholder="Numero SkillCard" required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">                       
-                        <label for="cognome">Cognome</label>
-                        <input <?php
-                        if ($pre) {
-                            echo "value='$cognome'";
-                        }
-                        ?>  name="cognome" type="text" class="form-control" id="cognome" placeholder="Cognome" required>                      
-                    </div>         
-                    <div class="form-group col-md-6">                   
-                        <label for="nome">Nome</label>
-                        <input <?php
-                        if ($pre) {
-                            echo "value='$nome'";
-                        }
-                        ?>  name="nome" type="text" class="form-control" id="nome" placeholder="Nome" required>
-                    </div>
-                </div>
-
-                <label for="data" class="col-md-12">Data Di Nascita</label>
-                <div class="form-row">
-                    <div class="form-group col-md-4"> 
-                        <select name="giorno" class="form-control" id="day" >
-                            <option disabled selected>Giorno</option>
-                            <?php
-                            for ($day = 1; $day <= 31; $day++) {
-                                if ($giorno == $day) {
-                                    echo "<option selected value = '" . $day . "'>" . $day . "</option>";
-                                } else {
-                                    echo "< option value = '" . $day . "'>" . $day . "</option>";
-
         <div>
             <div class="col-md-2"></div>
             <div class="container-fluid bg-grey col-md-8">
@@ -442,13 +386,12 @@
                                         echo " checked ";
                                     }
                                 }
-                                ?> onclick="cancella()"  type="radio" name="optradioEsterni" id="radioEsterno"> Esterni</label>
+                                ?> onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
                         </div>
                     </div>
 
 
                     <br><h3 align="center">Barrare con una SPUNTA uno o più moduli per i quali si vuole sostenere l'esame:</h3>
-
 
                     <br><div class="checkbox-inline col-md-offset-5">
                         <div class="form-group">
@@ -507,11 +450,7 @@
                     </table>
                     </table>
 
-
-                
-
-                <center><input type="submit" value="Prenota" class="btn btn-info btn-lg"></center>
-
+                    <center><input type="submit" value="Prenota" class="btn btn-info btn-lg"></center>
 
                 </form>
 
@@ -532,5 +471,3 @@
         </div>  
     </body>
 </html>
-
-
