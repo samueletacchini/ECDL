@@ -224,6 +224,7 @@
                         </div>
                     </div>
 
+
                     <div class="form-row">
                         <div class="col-md-12">
                             <div class="form-group col-md-6">                   
@@ -288,7 +289,10 @@
                         <div class="form-group">
                             <label><input value="esterni"   type="radio" name="optradio" id="radioEsterno"> Esterni</label>
 
-                        </div>
+                            </script>
+                    </div>
+                    <div class="form-group">
+                        <label><input value="esterni" onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
 
                     </div>
                     <h3>Note: </h3>
