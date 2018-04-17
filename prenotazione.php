@@ -82,6 +82,7 @@
                 $mail = $riga['email'];
                 $occupazione = $riga['occupazione'];
                 $tipo = $riga['tipo'];
+                $civico = $riga['civico'];
 
                 $gigi = explode('-', $data);
                 $anno = $gigi[0];
@@ -106,7 +107,7 @@
 
         <div class="col-md-2"></div>
         <div class="container-fluid bg-grey col-md-8">
-            <form name="casellaTesto" method="get" class="was-validated">
+            <form name="casellaTesto" method="get" class="was-validated" action="/ecdl/registrazione.php">
                 <h2 align="center"> Modulo Di Prenotazione</h2>
                 <div class="form-row">
                     <div class="form-group col-md-12">
@@ -380,43 +381,43 @@
                 <br><div class="checkbox-inline col-md-offset-5">
                     <div class="form-group">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        <label name='1' class="form-check-label" for="defaultCheck1">
+                        <label value="1" name='1' class="form-check-label" for="defaultCheck1">
                             Modulo 1: Computer Essentials
                         </label>
                     </div>
                     <div class="form-group">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                        <label name='2' class="form-check-label" for="defaultCheck2">
+                        <label value="2" name='2' class="form-check-label" for="defaultCheck2">
                             Modulo 2: Online Essentials
                         </label>
                     </div>
                     <div class="form-group">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                        <label name='3' class="form-check-label" for="defaultCheck3">
+                        <label value="3" name='3' class="form-check-label" for="defaultCheck3">
                             Modulo 3: Word Processing
                         </label>
                     </div>
                     <div class="form-group">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
-                        <label name='4' class="form-check-label" for="defaultCheck4">
+                        <label value="4" name='4' class="form-check-label" for="defaultCheck4">
                             Modulo 4: Spreadsheets
                         </label>
                     </div>
                     <div class="form-group">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
-                        <label name='5' class="form-check-label" for="defaultCheck5">
+                        <label value="5" name='5' class="form-check-label" for="defaultCheck5">
                             Modulo 5: IT Security
                         </label>
                     </div>
                     <div class="form-group">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck6">
-                        <label name='6' class="form-check-label" for="defaultCheck6">
+                        <label value="6" name='6' class="form-check-label" for="defaultCheck6">
                             Modulo 6: Presentation
                         </label>
                     </div>
                     <div class="form-group">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck7">
-                        <label name='7' class="form-check-label" for="defaultCheck7">
+                        <label value="7" name='7' class="form-check-label" for="defaultCheck7">
                             Modulo 7: Online Collaboration
                         </label>
                     </div>
@@ -433,6 +434,9 @@
                     </thead>
                 </table>
                 </table>
+
+
+                
 
                 <center><input type="submit" value="Prenota" class="btn btn-info btn-lg"></center>
 

@@ -178,7 +178,6 @@
                             <option value="diplomato"> Diplomato</option>
                             <option value="laureato"> Laureato</option>
                             <option value="nDichiarato"> Non Dichiarato</option>
-                            <option value="alt"> Altro ..</option>
                         </select>                      
                     </div>
                     <div class="form-group col-md-3">
@@ -259,7 +258,7 @@
                             </script>
                     </div>
                     <div class="form-group">
-                        <label><input value="esterni"   type="radio" name="optradio" id="radioEsterno"> Esterni</label>
+                        <label><input value="esterni" onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
 
                     </div>
 
