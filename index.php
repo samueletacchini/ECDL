@@ -46,7 +46,7 @@ session_start();
                     <div class="panel">
                         <h3 align='center'>Lorem ipsum</h3>
                     </div>
-                    <div class="panel-body">
+                    <div id="buttons" class="panel-body">
                         <div class="form-group col-md-3">
                             <?php
                             if (isset($_SESSION['user'])) {
@@ -126,15 +126,15 @@ session_start();
                         </div>
                         <div class="panel-body">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ante felis, imperdiet ac placerat at, tincidunt ac nibh. Aliquam erat volutpat. Phasellus venenatis gravida justo, ac accumsan nibh pretium ac. In blandit dictum libero, non faucibus lectus malesuada sit amet. Sed ultrices est nec euismod vehicula. Fusce scelerisque molestie felis, in suscipit risus viverra in. Duis eget porttitor lorem. Donec imperdiet magna sit amet enim vehicula efficitur.
-
+                            <br><br>
                             Fusce et vehicula nisl. Curabitur ut vehicula ante, at imperdiet quam. Nam quis dolor neque. Proin metus lorem, finibus a odio sed, viverra lobortis quam. Phasellus quis hendrerit dui. Maecenas rhoncus accumsan ligula, posuere sagittis enim dignissim vel. In iaculis laoreet justo et placerat. Morbi vitae pretium mi. Maecenas cursus, neque viverra placerat pulvinar, ante arcu pretium nisi, vestibulum pretium erat odio eget leo. Nam placerat molestie elit ac elementum. Suspendisse molestie id eros non malesuada. Donec lobortis viverra velit eu sodales. Phasellus hendrerit malesuada sapien sit amet tincidunt. Ut tempor bibendum rutrum. Proin in ultrices nunc.
-
+                            <br><br>
                             Praesent aliquet laoreet nisl aliquam faucibus. Quisque rutrum luctus tortor, quis facilisis leo egestas ut. Nam varius nisi ac cursus tempor. Ut eget rhoncus justo. Morbi non libero ut lectus molestie volutpat. Nunc id metus et lorem mollis vestibulum. Ut id posuere nisi, a pretium ex. Maecenas egestas ipsum nec massa cursus rutrum. Donec ligula ante, dictum ut dictum nec, semper non metus. Aliquam ut sem quis ex finibus posuere. Mauris scelerisque nec metus ac mattis. Nam auctor, felis ut consequat cursus, est metus faucibus risus, non tincidunt purus diam vitae lorem.
-
+                            <br><br>
                             Phasellus ac fringilla nibh, ac porttitor tortor. Sed tellus lectus, sodales a bibendum ac, aliquet nec elit. In molestie sollicitudin est, a finibus quam porttitor volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dui sapien, accumsan a sapien quis, feugiat tempor tortor. Vivamus tristique enim ac lorem ultricies consequat. Mauris imperdiet sollicitudin sem, nec pulvinar elit sagittis quis. Duis eu ligula eu est pharetra mollis. Maecenas porttitor mauris at ipsum tempus posuere. Phasellus porttitor ornare volutpat. Proin vel tristique ligula.
-
+                            <br><br>
                             Mauris faucibus augue vitae orci pharetra, in egestas nisl dictum. Mauris ut porta lectus, a rhoncus ipsum. Nullam commodo quis dolor sed imperdiet. Aenean tincidunt ultrices nisl, a semper neque accumsan eu. Donec ut elit vehicula, consectetur augue nec, faucibus enim. Sed feugiat orci sed ligula imperdiet fringilla. Fusce tempus iaculis odio non sagittis. Donec eu facilisis risus. Nullam turpis massa, pulvinar vitae neque vel, laoreet posuere eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse finibus blandit porttitor. In in tincidunt risus, eu ullamcorper massa. Sed consectetur turpis lorem, eu pellentesque purus tempus vitae. Nunc non leo erat.
-
+                            <br><br>
                             In hac habitasse platea dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec pulvinar nibh. Vivamus tempor, lacus venenatis consequat posuere, ipsum ligula blandit justo, sed bibendum libero lacus non lorem. Suspendisse finibus elementum convallis. Phasellus sed tortor est. Praesent tincidunt id turpis ut maximus. Vestibulum in arcu id sapien iaculis tempus. Curabitur accumsan est a purus pretium mattis. Proin porta magna at massa malesuada commodo eu id lorem. Morbi posuere egestas porttitor. Nunc eleifend tristique semper. Cras diam odio, fringilla non massa vitae, pulvinar faucibus massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla facilisi. Aenean sit amet dui dolor.
                         </div>
                     </div>
@@ -148,36 +148,12 @@ session_start();
                     <div class="panel">
                         <h3 align='center'>Login</h3>
                     </div>
-                    <div class="panel-body">
+                    <div id="login" class="panel-body">
                         <?php
-                        if (isset($_REQUEST["email"])) {
-
-                            require_once('ConnessioneDb.php');
-                            $db = new ConnessioneDb();
-                            //trim toglie gli spazi bianchi doppi o tripli ed evita problemi di SQL INJECTION
-                            $email = $db->real_escape_string($_REQUEST["email"]);
-                            $pwd = $db->real_escape_string($_REQUEST["password"]);
-                            //controlla correttezza username e pwd
-                            $sql = "select * from user where email='$email'and password='$pwd'";
-                            $result = $db->query($sql);
-                            if ($result->num_rows == 0) {
-                                echo("<center><br><p><font color='red'>E-Mail o Password Errati!</font></p></center>");
-                            } else {
-                                $riga = $result->fetch_array();
-                                $_SESSION['user'] = $riga['email'];
-                                $result->close();
-                                //richiama la pagina index.php
-                                // header("location: index.php");
-                            }
-                        }
-
-
-
-                        if (isset($_SESSION['user']) && isset($_REQUEST['exit'])) {
-                            session_destroy();
-                        }
 
                         if (isset($_SESSION['user'])) {
+
+
                             require_once('ConnessioneDb.php');
                             $db = new ConnessioneDb();
                             $sql = "select * from user where email='" . $_SESSION['user'] . "'";
@@ -224,9 +200,17 @@ session_start();
         </div>
     </form>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="bootstrap-table.js"></script>
+    <script>
+        function updateDiv()
+        {
+            document.getElementById("buttons").innerHTML = document.getElementById("buttons").innerHTML;
+            document.getElementById("login").innerHTML = document.getElementById("login").innerHTML;
+        }
+
+        src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+        src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        type = "text/javascript" src = "bootstrap-table.js"
+    </script>
 
 </div>
 </body>

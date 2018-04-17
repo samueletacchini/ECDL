@@ -160,6 +160,9 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                 //modena DATA
                 $pdf->SetXY(39, 215);
                 $pdf->Write(0, $datenow);
+
+                $pdf->Output('skillcard.pdf', 'D');
+
                 break;
             }
         case "prenotazione": {
@@ -311,6 +314,8 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                 //modena DATA
                 $pdf->SetXY(49, 266);
                 $pdf->Write(0, $datenow);
+
+                $pdf->Output('prenotazione.pdf', 'D');
             }
             break;
         case "aica": {
@@ -513,14 +518,12 @@ if (isset($_REQUEST["id"]) && isset($_REQUEST["type"])) {
                 $pdf->Image('pdf/aica3.jpg', 0, 0, 210, 297);
 
 
+                $pdf->Output('aica.pdf', 'D');
 
                 break;
             }
             break;
     }
-
-    //$pdf->Output("D", "nomefile.pdf");
-    $pdf->Output();
 } else {
     echo "effettuare la richieste fornendo un id e un tipo di PDF";
 }
