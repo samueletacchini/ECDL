@@ -287,19 +287,14 @@
                                 </script>
                         </div>
                         <div class="form-group">
-                            <label><input value="esterni"   type="radio" name="optradio" id="radioEsterno"> Esterni</label>
+                            <label><input value="esterni" onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
 
-                            </script>
-                    </div>
-                    <div class="form-group">
-                        <label><input value="esterni" onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
+                        </div>
+                        <h3>Note: </h3>
+                        <label>1) Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.</label>
+                        <label>2) Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione.</label>
 
-                    </div>
-                    <h3>Note: </h3>
-                    <label>1) Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.</label>
-                    <label>2) Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione.</label>
-
-                    <br><br><center><input onclick="controlla()" type="submit" value="registrati" class="btn btn-info btn-lg"></center>
+                        <br><br><center><input onclick="controlla()" type="submit" value="registrati" class="btn btn-info btn-lg"></center>
 
                 </form>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
