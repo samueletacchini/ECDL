@@ -150,7 +150,6 @@ session_start();
                     </div>
                     <div id="login" class="panel-body">
                         <?php
-
                         if (isset($_SESSION['user'])) {
 
 
@@ -160,9 +159,24 @@ session_start();
                             $result = $db->query($sql);
                             $user = $result->fetch_array();
 
+                            $sql = "SELECT sessioni.*, prenotazione.esami FROM sessioni JOIN `prenotazione` ON prenotazione.ID_sessione = sessioni.ID JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale WHERE user.email = '" . $_SESSION['user'] . "'";
+                            $ris2 = $db->query($sql);
+
                             echo "<p> Logged User : " . $user['email'] . "</p>";
                             echo "<p> Skillcard number: " . $user['skill_card'] . "</p>";
-                            echo "<p> Quali altre info?: " . "??????" . "</p>";
+
+                            echo "Esami prenotati:";
+                            echo "<table border><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";
+                            while ($riga2 = $ris2->fetch_array()) {
+                                echo "<tr><td>{$riga2["data"]}</td>";
+                                echo "<td>{$riga2["ora_da"]}</td>";
+                                echo "<td>{$riga2["ora_a"]}</td> <td> ";
+                                for ($i = 0; $i < strlen($riga2["esami"]); $i++) {
+                                    echo" " . $riga2["esami"][$i] . " ";
+                                }
+                                echo "</td></tr>";
+                            }
+                            echo "</table>";
 
 
                             echo '<form action="login.php" method="post">
@@ -189,10 +203,25 @@ session_start();
             <div>
                 <div class="panel panel-default"  id="link">
                     <div class="panel">
-                        <h3 align='center'>Metti i tuoi link Sergio</h3>
+                        <h3 align='center'>Prossime date Esami</h3>
                     </div>
                     <div class="panel-body">
-                        In hac habitasse platea dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec pulvinar nibh. Vivamus tempor, lacus venenatis consequat posuere, ipsum ligula blandit justo, sed bibendum libero lacus non lorem. Suspendisse finibus elementum convallis. Phasellus sed tortor est. Praesent tincidunt id turpis ut maximus. Vestibulum in arcu id sapien iaculis tempus. Curabitur accumsan est a purus pretium mattis. Proin porta magna at massa malesuada commodo eu id lorem. Morbi posuere egestas porttitor.
+                        <?php
+                        require_once('ConnessioneDb.php');
+                        $db = new ConnessioneDb();
+                        $sql = "SELECT * FROM `sessioni`";
+                        $ris = $db->query($sql);
+                        echo "<table border><tr><th>DATA</th><th>Dalle</th><th>alle</th><tr>";
+                        while ($riga = $ris->fetch_array()) {
+                            echo "<tr><td>{$riga["data"]}</td>";
+                            echo "<td>{$riga["ora_da"]}</td>";
+                            echo "<td>{$riga["ora_a"]}</td>";
+                            echo "</tr>";
+                        }
+                        echo "</table>";
+                        ?>
+
+                        Grouss ti prego fammi bellissima ^^^
 
                     </div>
                 </div>

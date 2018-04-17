@@ -62,7 +62,7 @@
         </script>
 
         <?php
-       require_once("ConnessioneDb.php");
+        require_once("ConnessioneDb.php");
         $db = new ConnessioneDb();
         $datenow = date("d/m/y");
         $pre = false;
@@ -112,7 +112,13 @@
         <div>
             <div class="col-md-2"></div>
             <div class="container-fluid bg-grey col-md-8">
-                <form name="casellaTesto" method="get" class="was-validated">
+                <form name="casellaTesto" method="get" class="was-validated" action="registrazione.php">
+
+                    <input type="hidden" name="codiceFiscale" value="<?php
+                    if ($pre) {
+                        echo $codicefiscale;
+                    }
+                    ?> ">
                     <h2 align="center"> Modulo Di Prenotazione</h2>
                     <div class="form-row">
                         <div class="col-md-12">
@@ -300,22 +306,14 @@
                                 <label for="nCivico">N.Civico</label>
                                 <input <?php
                                 if ($pre) {
-                                    echo "value='$civico";
+                                    echo "value='$civico'";
                                 }
-                                ?>    name="civico" type="text" class="form-control" id="nCivico" placeholder="N.Civico" required>                 
+                                ?> name="civico" type="text" class="form-control" id="nCivico" placeholder="N.Civico" required>                 
                             </div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-12">
-                            <div class="form-group col-md-2">
-                                <label for="cap">CAP</label>
-                                <input <?php
-                                if ($pre) {
-                                    echo "value='$cap'";
-                                }
-                                ?>  name="cap" type="number" class="form-control" id="cap" placeholder="CAP" required>
-                            </div>
                             <div class="form-group col-md-2">
                                 <label for="provincia">Provincia</label>
                                 <input <?php
@@ -395,44 +393,44 @@
 
                     <br><div class="checkbox-inline col-md-offset-5">
                         <div class="form-group">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label name='1' class="form-check-label" for="defaultCheck1">
+                            <input name='1' class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
+                            <label  class="form-check-label" for="defaultCheck1">
                                 Modulo 1: Computer Essentials
                             </label>
                         </div>
                         <div class="form-group">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                            <label name='2' class="form-check-label" for="defaultCheck2">
+                            <input name='2'  class="form-check-input" type="checkbox" value="1" id="defaultCheck2">
+                            <label  class="form-check-label" for="defaultCheck2">
                                 Modulo 2: Online Essentials
                             </label>
                         </div>
                         <div class="form-group">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                            <label name='3' class="form-check-label" for="defaultCheck3">
+                            <input  name='3'  class="form-check-input" type="checkbox" value="1" id="defaultCheck3">
+                            <label  class="form-check-label" for="defaultCheck3">
                                 Modulo 3: Word Processing
                             </label>
                         </div>
                         <div class="form-group">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
-                            <label name='4' class="form-check-label" for="defaultCheck4">
+                            <input name='4'  class="form-check-input" type="checkbox" value="1" id="defaultCheck4">
+                            <label  class="form-check-label" for="defaultCheck4">
                                 Modulo 4: Spreadsheets
                             </label>
                         </div>
                         <div class="form-group">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
-                            <label name='5' class="form-check-label" for="defaultCheck5">
+                            <input name='5'  class="form-check-input" type="checkbox" value="1" id="defaultCheck5">
+                            <label  class="form-check-label" for="defaultCheck5">
                                 Modulo 5: IT Security
                             </label>
                         </div>
                         <div class="form-group">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck6">
-                            <label name='6' class="form-check-label" for="defaultCheck6">
+                            <input name='6'  class="form-check-input" type="checkbox" value="1" id="defaultCheck6">
+                            <label  class="form-check-label" for="defaultCheck6">
                                 Modulo 6: Presentation
                             </label>
                         </div>
                         <div class="form-group">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck7">
-                            <label name='7' class="form-check-label" for="defaultCheck7">
+                            <input name='7'  class="form-check-input" type="checkbox" value="1" id="defaultCheck7">
+                            <label  class="form-check-label" for="defaultCheck7">
                                 Modulo 7: Online Collaboration
                             </label>
                         </div>
@@ -443,11 +441,19 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr><td> Data </td><td> Ora</td></tr>
-                            <tr><td><input name='d1' type="checkbox" name="data1" class="form-check-input" value="modulo1"/> Giovedì 22 Marzo 2018</td><td> 17:00 - 19:30 </td></tr>
-                            <tr><td><input name='d2' type="checkbox" name="data2" class="form-check-input" value="modulo2"/> Giovedì 19 Aprile 2018</td><td> 15:00 - 17:30</td></tr>
-                            <tr><td><input name='d3' type="checkbox" name="data3" class="form-check-input" value="modulo3"/> Giovedì 24 Maggio 2018 </td><td>    17:00 - 19:30</td></tr>
+
+                            <?php
+                            require_once('ConnessioneDb.php');
+                            $db = new ConnessioneDb();
+                            $sql = "SELECT * FROM `sessioni`";
+                            $ris = $db->query($sql);
+
+                            while ($riga = $ris->fetch_array()) {
+                                echo '<tr><td><input type="radio" required  name="sessione" class="form-check-input" value="' . $riga["ID"] . '"/> ' . $riga["data"] . '</td><td> ' . $riga["ora_da"] . ' - ' . $riga["ora_a"] . ' </td></tr>';
+                            }
+                            echo "</table>";
+                            ?>
                         </thead>
-                    </table>
                     </table>
 
                     <center><input type="submit" value="Prenota" class="btn btn-info btn-lg"></center>
