@@ -71,11 +71,11 @@
 
             $pre = true;
             $id = $_REQUEST["id"];
-            $query = "SELECT * FROM `user` WHERE `codice_fiscale` = '$id'";
+            $query = "SELECT * FROM `user` WHERE `email` = '$id'";
             $ris = $db->query($query);
 
             $riga = $ris->fetch_array();
-            if ($riga["codice_fiscale"] != "") {
+            if ($riga["email"] != "") {
 
                 $skillcard = $riga['skill_card'];
                 $codicefiscale = $riga['codice_fiscale'];
@@ -83,7 +83,7 @@
                 $cognome = $riga['cognome'];
                 $nome = $riga['nome'];
                 $data = $riga['data_nascita'];
-                $lnascita = $riga['luogo_nascita'];
+                $lnascita = $riga['comune_nascita'];
                 $statocivile = $riga['stato_civile'];
                 $indirizzo = $riga['indirizzo'];
                 $stato = $riga['stato'];
