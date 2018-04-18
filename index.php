@@ -149,42 +149,44 @@ session_start();
                         <h3 align='center'>Login</h3>
                     </div>
                     <div id="login" class="panel-body">
-                        <?php
-                        if (isset($_SESSION['user'])) {
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>
+                                    <?php
+                                    if (isset($_SESSION['user'])) {
 
 
-                            require_once('ConnessioneDb.php');
-                            $db = new ConnessioneDb();
-                            $sql = "select * from user where email='" . $_SESSION['user'] . "'";
-                            $result = $db->query($sql);
-                            $user = $result->fetch_array();
+                                        require_once('ConnessioneDb.php');
+                                        $db = new ConnessioneDb();
+                                        $sql = "select * from user where email='" . $_SESSION['user'] . "'";
+                                        $result = $db->query($sql);
+                                        $user = $result->fetch_array();
 
-                            $sql = "SELECT sessioni.*, prenotazione.esami FROM sessioni JOIN `prenotazione` ON prenotazione.ID_sessione = sessioni.ID JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale WHERE user.email = '" . $_SESSION['user'] . "'";
-                            $ris2 = $db->query($sql);
+                                        $sql = "SELECT sessioni.*, prenotazione.esami FROM sessioni JOIN `prenotazione` ON prenotazione.ID_sessione = sessioni.ID JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale WHERE user.email = '" . $_SESSION['user'] . "'";
+                                        $ris2 = $db->query($sql);
 
-                            echo "<p> Logged User : " . $user['email'] . "</p>";
-                            echo "<p> Skillcard number: " . $user['skill_card'] . "</p>";
+                                        echo "<p><font color='grey'> Logged User : " . $user['email'] . "</font></p>";
+                                        echo "<p><font color='grey'>  Skillcard number: " . $user['skill_card'] . "</font></p>";
 
-                            echo "Esami prenotati:";
-                            echo "<table border><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";
-                            while ($riga2 = $ris2->fetch_array()) {
-                                echo "<tr><td>{$riga2["data"]}</td>";
-                                echo "<td>{$riga2["ora_da"]}</td>";
-                                echo "<td>{$riga2["ora_a"]}</td> <td> ";
-                                for ($i = 0; $i < strlen($riga2["esami"]); $i++) {
-                                    echo" " . $riga2["esami"][$i] . " ";
-                                }
-                                echo "</td></tr>";
-                            }
-                            echo "</table>";
+                                        echo "<p><font color='grey'>Esami prenotati:</font></p>";
+                                        while ($riga2 = $ris2->fetch_array()) {
+                                            echo "<tr><td>{$riga2["data"]}</td>";
+                                            echo "<td>{$riga2["ora_da"]}</td>";
+                                            echo "<td>{$riga2["ora_a"]}</td> <td> ";
+                                            for ($i = 0; $i < strlen($riga2["esami"]); $i++) {
+                                                echo" " . $riga2["esami"][$i] . " ";
+                                            }
+                                            echo "</td></tr>";
+                                        }
+                                        echo "</table>";
 
 
-                            echo '<form action="login.php" method="post">
+                                        echo '<form action="login.php" method="post">
                             <input type="hidden" name="exit" value="1">
                             <input type="submit" value="Logout" class="btn btn-info btn-lg">
                         </form> ';
-                        } else {
-                            echo ' <form name=”casellaTesto” method="post" class="was-validated" action="/ecdl/login.php">
+                                    } else {
+                                        echo ' <form name=”casellaTesto” method="post" class="was-validated" action="/ecdl/login.php">
                             <div class="form-group">
                                 <label> E-Mail</label>
                                 <input name="email" type="text" id="email" class="form-control" required>
@@ -193,10 +195,11 @@ session_start();
                                 <label> Password </label>
                                 <input name="password" type="password" id="password" class="form-control" required>
                             </div>';
-                            echo '<center><br><button type="submit" class="btn btn-info btn-lg" value="accedi"> Accedi </button></center>';
-                        }
-                        ?>
-
+                                        echo '<center><br><button type="submit" class="btn btn-info btn-lg" value="accedi"> Accedi </button></center>';
+                                    }
+                                    ?>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -206,23 +209,25 @@ session_start();
                         <h3 align='center'>Prossime date Esami</h3>
                     </div>
                     <div class="panel-body">
-                        <?php
-                        require_once('ConnessioneDb.php');
-                        $db = new ConnessioneDb();
-                        $sql = "SELECT * FROM `sessioni`";
-                        $ris = $db->query($sql);
-                        echo "<table border><tr><th>DATA</th><th>Dalle</th><th>alle</th><tr>";
-                        while ($riga = $ris->fetch_array()) {
-                            echo "<tr><td>{$riga["data"]}</td>";
-                            echo "<td>{$riga["ora_da"]}</td>";
-                            echo "<td>{$riga["ora_a"]}</td>";
-                            echo "</tr>";
-                        }
-                        echo "</table>";
-                        ?>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr><th>DATA</th><th>Dalle</th><th>alle</th><tr>
+                                    <?php
+                                    require_once('ConnessioneDb.php');
+                                    $db = new ConnessioneDb();
+                                    $sql = "SELECT * FROM `sessioni`";
+                                    $ris = $db->query($sql);
 
-                        Grouss ti prego fammi bellissima ^^^
-
+                                    while ($riga = $ris->fetch_array()) {
+                                        echo "<tr><td>{$riga["data"]}</td>";
+                                        echo "<td>{$riga["ora_da"]}</td>";
+                                        echo "<td>{$riga["ora_a"]}</td>";
+                                        echo "</tr>";
+                                    }
+                                    echo "</table>";
+                                    ?>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>
