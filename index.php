@@ -133,9 +133,7 @@ session_start();
                             <br><br>
                             Phasellus ac fringilla nibh, ac porttitor tortor. Sed tellus lectus, sodales a bibendum ac, aliquet nec elit. In molestie sollicitudin est, a finibus quam porttitor volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dui sapien, accumsan a sapien quis, feugiat tempor tortor. Vivamus tristique enim ac lorem ultricies consequat. Mauris imperdiet sollicitudin sem, nec pulvinar elit sagittis quis. Duis eu ligula eu est pharetra mollis. Maecenas porttitor mauris at ipsum tempus posuere. Phasellus porttitor ornare volutpat. Proin vel tristique ligula.
                             <br><br>
-                            Mauris faucibus augue vitae orci pharetra, in egestas nisl dictum. Mauris ut porta lectus, a rhoncus ipsum. Nullam commodo quis dolor sed imperdiet. Aenean tincidunt ultrices nisl, a semper neque accumsan eu. Donec ut elit vehicula, consectetur augue nec, faucibus enim. Sed feugiat orci sed ligula imperdiet fringilla. Fusce tempus iaculis odio non sagittis. Donec eu facilisis risus. Nullam turpis massa, pulvinar vitae neque vel, laoreet posuere eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse finibus blandit porttitor. In in tincidunt risus, eu ullamcorper massa. Sed consectetur turpis lorem, eu pellentesque purus tempus vitae. Nunc non leo erat.
                             <br><br>
-                            In hac habitasse platea dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec pulvinar nibh. Vivamus tempor, lacus venenatis consequat posuere, ipsum ligula blandit justo, sed bibendum libero lacus non lorem. Suspendisse finibus elementum convallis. Phasellus sed tortor est. Praesent tincidunt id turpis ut maximus. Vestibulum in arcu id sapien iaculis tempus. Curabitur accumsan est a purus pretium mattis. Proin porta magna at massa malesuada commodo eu id lorem. Morbi posuere egestas porttitor. Nunc eleifend tristique semper. Cras diam odio, fringilla non massa vitae, pulvinar faucibus massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla facilisi. Aenean sit amet dui dolor.
                         </div>
                     </div>
                 </div>
@@ -226,20 +224,69 @@ session_start();
                     </div>
                 </div>
             </div>
+
+            <div class="panel panel-default"  id="link">
+                <div class="panel">
+                    <h3 align='center'>Carca File</h3>
+                </div>
+                <div class="panel-body">
+                    <?php
+                    ?>
+
+
+                    <form name="carica" action="registrazione.php" method="post" >
+                        <div class="form-group">
+                            <input name='pdf skillcard'  class="form-check-input" type="checkbox" value="1" id="defaultCheck7">
+                            <label  class="form-check-label" for="defaultCheck7">
+                                pdf skillcard
+                            </label>
+                        </div>                            
+                        <div class="form-group">
+                            <input name='pdf prenotazione'  class="form-check-input" type="checkbox" value="1" id="defaultCheck7">
+                            <label  class="form-check-label" for="defaultCheck7">
+                                pdf prenotazione
+                            </label>
+                        </div>                            
+                        <div class="form-group">
+                            <input name='pdf aica'  class="form-check-input" type="checkbox" value="1" id="defaultCheck7">
+                            <label  class="form-check-label" for="defaultCheck7">
+                                pdf aica
+                            </label>
+                        </div>                            
+                        <div class="form-group">
+                            <input name='bollettino skillcard'  class="form-check-input" type="checkbox" value="1" id="defaultCheck7">
+                            <label  class="form-check-label" for="defaultCheck7">
+                                bollettino skillcard
+                            </label>
+                        </div>                            
+                        <div class="form-group">
+                            <input name='bollettino prenotazione'  class="form-check-input" type="checkbox" value="1" id="defaultCheck7">
+                            <label  class="form-check-label" for="defaultCheck7">
+                                bollettino prenotazione 
+                            </label>
+                        </div>                            
+
+
+                    </form>
+
+
+                </div>
+            </div>
         </div>
-    </form>
+    </div>
+</form>
 
-    <script>
-        function updateDiv()
-        {
-            document.getElementById("buttons").innerHTML = document.getElementById("buttons").innerHTML;
-            document.getElementById("login").innerHTML = document.getElementById("login").innerHTML;
-        }
+<script>
+    function updateDiv()
+    {
+        document.getElementById("buttons").innerHTML = document.getElementById("buttons").innerHTML;
+        document.getElementById("login").innerHTML = document.getElementById("login").innerHTML;
+    }
 
-        src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-        src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        type = "text/javascript" src = "bootstrap-table.js"
-    </script>
+    src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+    src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    type = "text/javascript" src = "bootstrap-table.js"
+</script>
 
 </div>
 </body>
