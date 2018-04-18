@@ -147,12 +147,10 @@ session_start();
                         <h3 align='center'>Login</h3>
                     </div>
                     <div id="login" class="panel-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>
+                        
                                     <?php
                                     if (isset($_SESSION['user'])) {
-
+                                        echo "<table class='table table-bordered'><thead><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";
 
                                         require_once('ConnessioneDb.php');
                                         $db = new ConnessioneDb();
@@ -182,7 +180,8 @@ session_start();
                                         echo '<form action="login.php" method="post">
                             <input type="hidden" name="exit" value="1">
                             <input type="submit" value="Logout" class="btn btn-info btn-lg">
-                        </form> ';
+                        </form> </thead>
+                        </table>';
                                     } else {
                                         echo ' <form name=”casellaTesto” method="post" class="was-validated" action="/ecdl/login.php">
                             <div class="form-group">
@@ -196,8 +195,7 @@ session_start();
                                         echo '<center><br><button type="submit" class="btn btn-info btn-lg" value="accedi"> Accedi </button></center>';
                                     }
                                     ?>
-                            </thead>
-                        </table>
+                            
                     </div>
                 </div>
             </div>
