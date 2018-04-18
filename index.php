@@ -29,11 +29,25 @@ session_start();
         #link{
             height:302.5px;
         }
+        #foot{
+            width: 100%;
+        }
+        p {
+            display: block;
+            color:gray;
+            -webkit-margin-before: 1em;
+            -webkit-margin-after: 1em;
+            -webkit-margin-start: 0px;
+            -webkit-margin-end: 0px;
+        }
+        #bar{
+            color:white;
+        }
     </style>
     <body>
         <div class="jumbotron text-center">
             <h1 align="center"> ECDL</h1>
-            <p>
+            <p id="bar">
                 <span class="glyphicon glyphicon-phone"></span>
                 0592917000 -
                 <span class="glyphicon glyphicon-envelope"></span>
@@ -44,7 +58,7 @@ session_start();
             <div>
                 <div class="panel panel-default">
                     <div class="panel">
-                        <h3 align='center'>Lorem ipsum</h3>
+                        <h3 align='center'>Registrazione</h3>
                     </div>
                     <div id="buttons" class="panel-body">
                         <div class="form-group col-md-3">
@@ -97,8 +111,6 @@ session_start();
                                 if (isset($_SESSION['user'])) {
                                     echo '<input type="hidden" name="id" value="' . $_SESSION['user'] . '">';
                                     echo '<input type="submit" value="Prenota esame" class="btn btn-info btn-lg">';
-                                } else {
-                                    echo '<input type="submit" value="prenota esame" class="btn btn-info btn-lg">';
                                 }
                                 ?>
 
@@ -112,8 +124,6 @@ session_start();
                                       <input type="hidden" name="id" value="' . $_SESSION['user'] . '">
                                       <input type="submit" value="PDF AICA" class="btn btn-info btn-lg">
                                       </form>';
-                            } else {
-                                echo '<input type="submit" value="Sono inutile" class="btn btn-info btn-lg">';
                             }
                             ?>
                         </div>
@@ -292,7 +302,15 @@ session_start();
     src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
     type = "text/javascript" src = "bootstrap-table.js"
 </script>
-
 </div>
+<div class="col-md-12">
+    <footer class="container text-center" id="foot" >
+        <p><br/><strong>IIS F.CORNI - LICEO E TECNICO</strong> <br/>
+            Sede centrale: L.go A. Moro 25 Tel 059/400700 Fax 059/243391 <br/>   
+            Succursale: Via Leonardo da Vinci 300 Tel 059/2917000 Fax 059/344709 <br/>
+            ecdl@istitutocorni.it - http://www.istitutocorni.gov.it
+        </p>
+    </footer>
+</div>  
 </body>
 </html>
