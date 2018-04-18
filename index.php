@@ -27,7 +27,9 @@ session_start();
             background-color: DodgerBlue;
         }
         #link{
-            height:302.5px;
+            height:30% + 100px;
+        }#link2{
+            height:50% + 100px;
         }
         #foot{
             width: 100%;
@@ -81,6 +83,7 @@ session_start();
                         <div class="form-group col-md-3">
 
                             <?php
+                            //sono loggato
                             if (isset($_SESSION['user'])) {
 
                                 require_once('ConnessioneDb.php');
@@ -157,44 +160,43 @@ session_start();
                         <h3 align='center'>Login</h3>
                     </div>
                     <div id="login" class="panel-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>
-                                    <?php
-                                    if (isset($_SESSION['user'])) {
+
+                        <?php
+                        if (isset($_SESSION['user'])) {
+                            echo "<table class='table table-bordered'><thead><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";
+
+                            require_once('ConnessioneDb.php');
+                            $db = new ConnessioneDb();
+                            $sql = "select * from user where email='" . $_SESSION['user'] . "'";
+                            $result = $db->query($sql);
+                            $user = $result->fetch_array();
+
+                            $sql = "SELECT sessioni.*, prenotazione.esami FROM sessioni JOIN `prenotazione` ON prenotazione.ID_sessione = sessioni.ID JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale WHERE user.email = '" . $_SESSION['user'] . "'";
+                            $ris2 = $db->query($sql);
+
+                            echo "<p><font color='#585858'> Logged User : " . $user['email'] . "</font></p>";
+                            echo "<p><font color='#585858'>  Skillcard number: " . $user['skill_card'] . "</font></p>";
+
+                            echo "<p><font color='#585858'>Esami prenotati:</font></p>";
+                            while ($riga2 = $ris2->fetch_array()) {
+                                echo "<tr><td>{$riga2["data"]}</td>";
+                                echo "<td>{$riga2["ora_da"]}</td>";
+                                echo "<td>{$riga2["ora_a"]}</td> <td> ";
+                                for ($i = 0; $i < strlen($riga2["esami"]); $i++) {
+                                    echo" " . $riga2["esami"][$i] . " ";
+                                }
+                                echo "</td></tr>";
+                            }
+                            echo "</table>";
 
 
-                                        require_once('ConnessioneDb.php');
-                                        $db = new ConnessioneDb();
-                                        $sql = "select * from user where email='" . $_SESSION['user'] . "'";
-                                        $result = $db->query($sql);
-                                        $user = $result->fetch_array();
-
-                                        $sql = "SELECT sessioni.*, prenotazione.esami FROM sessioni JOIN `prenotazione` ON prenotazione.ID_sessione = sessioni.ID JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale WHERE user.email = '" . $_SESSION['user'] . "'";
-                                        $ris2 = $db->query($sql);
-
-                                        echo "<p><font color='#585858'> Logged User : " . $user['email'] . "</font></p>";
-                                        echo "<p><font color='#585858'>  Skillcard number: " . $user['skill_card'] . "</font></p>";
-
-                                        echo "<p><font color='#585858'>Esami prenotati:</font></p>";
-                                        while ($riga2 = $ris2->fetch_array()) {
-                                            echo "<tr><td>{$riga2["data"]}</td>";
-                                            echo "<td>{$riga2["ora_da"]}</td>";
-                                            echo "<td>{$riga2["ora_a"]}</td> <td> ";
-                                            for ($i = 0; $i < strlen($riga2["esami"]); $i++) {
-                                                echo" " . $riga2["esami"][$i] . " ";
-                                            }
-                                            echo "</td></tr>";
-                                        }
-                                        echo "</table>";
-
-
-                                        echo '<form action="login.php" method="post">
+                            echo '<form action="login.php" method="post">
                             <input type="hidden" name="exit" value="1">
                             <input type="submit" value="Logout" class="btn btn-info btn-lg">
-                        </form> ';
-                                    } else {
-                                        echo ' <form name=”casellaTesto” method="post" class="was-validated" action="/ecdl/login.php">
+                        </form> </thead>
+                        </table>';
+                        } else {
+                            echo ' <form name=”casellaTesto” method="post" class="was-validated" action="/ecdl/login.php">
                             <div class="form-group">
                                 <label> E-Mail</label>
                                 <input name="email" type="text" id="email" class="form-control" required>
@@ -203,11 +205,10 @@ session_start();
                                 <label> Password </label>
                                 <input name="password" type="password" id="password" class="form-control" required>
                             </div>';
-                                        echo '<center><br><button type="submit" class="btn btn-info btn-lg" value="accedi"> Accedi </button></center>';
-                                    }
-                                    ?>
-                            </thead>
-                        </table>
+                            echo '<center><br><button type="submit" class="btn btn-info btn-lg" value="accedi"> Accedi </button></center>';
+                        }
+                        ?>
+
                     </div>
                 </div>
             </div>
@@ -240,15 +241,14 @@ session_start();
                 </div>
             </div>
 
-            <div class="panel panel-default"  id="link">
+            <div class="panel panel-default"  id="link2">
                 <div class="panel">
                     <h3 align='center'>Carca File</h3>
                 </div>
                 <div class="panel-body">
                     <?php
                     ?>
-
-
+                    selezionare il/i tipi di file che si è caricato
                     <form name="carica" action="registrazione.php" method="post" >
                         <div class="form-group">
                             <input name='pdf skillcard'  class="form-check-input" type="checkbox" value="1" id="defaultCheck7">
@@ -281,6 +281,10 @@ session_start();
                             </label>
                         </div>                            
 
+                        Select image to upload:
+                        <input type="file" name="file" id="file">
+                        <br>
+                        <input type="submit" value="Upload" name="submit">
 
                     </form>
 
