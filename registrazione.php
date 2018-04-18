@@ -67,8 +67,6 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
     . "  VALUES ('$password', '$datenow', '$codicefiscale', '$sesso', '$cognome', '$nome', '$birthdate', '$lnascita', '$pnascita', '$statocivile', '$indirizzo', '$civico', '$stato', '$citta', '$cap', '$provincia', '$mail', '$cellulare', '$telefono', '$occupazione', '$titolo', 0, '$tipo')";
 
     $ris = $db->query($query);
-
-    header("Location: index.php");
 } elseif (isset($_REQUEST['sessione'])) {
 
     echo "eheh<br><br>";
@@ -89,4 +87,5 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
     $sql = "INSERT INTO `prenotazione`(`ID_codice_fiscale`, `esami`, `ID_sessione`, `pagato`) VALUES ('$codicefiscale','$esami','$sessione',0)";
     $ris = $db->query($sql);
 }
-    
+
+header("Location: index.php");
