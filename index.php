@@ -163,10 +163,10 @@ session_start();
                                         $sql = "SELECT sessioni.*, prenotazione.esami FROM sessioni JOIN `prenotazione` ON prenotazione.ID_sessione = sessioni.ID JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale WHERE user.email = '" . $_SESSION['user'] . "'";
                                         $ris2 = $db->query($sql);
 
-                                        echo "<p><font color='grey'> Logged User : " . $user['email'] . "</font></p>";
-                                        echo "<p><font color='grey'>  Skillcard number: " . $user['skill_card'] . "</font></p>";
+                                        echo "<p><font color='#585858'> Logged User : " . $user['email'] . "</font></p>";
+                                        echo "<p><font color='#585858'>  Skillcard number: " . $user['skill_card'] . "</font></p>";
 
-                                        echo "<p><font color='grey'>Esami prenotati:</font></p>";
+                                        echo "<p><font color='#585858'>Esami prenotati:</font></p>";
                                         while ($riga2 = $ris2->fetch_array()) {
                                             echo "<tr><td>{$riga2["data"]}</td>";
                                             echo "<td>{$riga2["ora_da"]}</td>";
