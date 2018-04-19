@@ -69,12 +69,14 @@ session_start();
                     </div>
                     <div id="buttons" class="panel-body">
                         <div class="form-group col-md-3">
-                            <?php
-                            if (isset($_SESSION['user'])) {
-                                echo '<input type="hidden" name="id" value="' . $_SESSION['user'] . '">';
-                                echo '<input type="submit" value="Prenota esame" class="btn btn-info btn-lg">';
-                            }
-                            ?>
+                            <form action="prenotazione.php" method="post">
+                                <?php
+                                if (isset($_SESSION['user'])) {
+                                    echo '<input type="hidden" name="id" value="' . $_SESSION['user'] . '">';
+                                    echo '<input type="submit" value="Prenota esame" class="btn btn-info btn-lg">';
+                                }
+                                ?>
+                            </form>
                         </div>
                         <div class="form-group col-md-3">
 
@@ -108,21 +110,21 @@ session_start();
                         <div class="form-group col-md-3" id="prenota">
                             <form action="skillCard.php" method="post">
 
-                                <?php
-                                if (isset($_SESSION['user'])) {
-                                    echo '<form action="pdf.php" method="post">
+                            <?php
+                            if (isset($_SESSION['user'])) {
+                                echo '<form action="pdf.php" method="post">
                                       <input type="hidden" name="type" value="skillcard">
                                       <input type="hidden" name="id" value="' . $_SESSION['user'] . '">
                                       <input type="submit" value="PDF Skillcard" class="btn btn-info btn-lg">
                                       </form>';
-                                } else {
-                                    echo '<form action="skillCard.php" method="post">
+                            } else {
+                                echo '<form action="skillCard.php" method="post">
                                 <input type="hidden" name="a" value="0">
                                 <input type="submit" value="Nuova Skillcard" class="btn btn-info btn-lg">
                             </form>';
-                                }
-                                ?>
-                            </form>
+                            }
+                            ?>
+
                         </div>
                         <div class="form-group col-md-3">
                             <?php
@@ -259,12 +261,10 @@ session_start();
                     <h3 align="center">carica File</h3>
                 </div>
                 <div class="panel-body">
-                    <?php
-                    ?>
                     selezionare il/i tipi di file che si è caricato
-                    <form name="carica" action="registrazione.php" method="get" >
+                    <form name="carica" action="pdf.php" method="post" >
                         <div class="form-group">
-                            <input name="pdfskillcard"  class="form-check-input" type="checkbox" value="1" id="pdfskillcard">
+                            <input name="pdfskillcard"  class="form-check-input" type="checkbox" value="1" id="https://github.com/samueletacchini/ECDLcard">
                             <label  class="form-check-label" for="defaultCheck7">
                                 pdf skillcard
                             </label>
