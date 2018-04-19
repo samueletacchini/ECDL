@@ -277,13 +277,6 @@
                                         document.getElementById("clicco").innerHTML = "";
                                     }
 
-                                    function controlla() {
-                                        var gigi = document.getElementById("password").value;
-                                        document.getElementById("lol").innerHTML = gigi;
-
-
-                                    }
-
                                 </script>
                         </div>
                         <div class="form-group">

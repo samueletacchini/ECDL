@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once('ConnessioneDb.php');
 $db = new ConnessioneDb();
 $pnascita = "default";
@@ -86,6 +87,54 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
     $db = new ConnessioneDb();
     $sql = "INSERT INTO `prenotazione`(`ID_codice_fiscale`, `esami`, `ID_sessione`, `pagato`) VALUES ('$codicefiscale','$esami','$sessione',0)";
     $ris = $db->query($sql);
+} elseif (isset($_REQUEST['upload'])) {
+
+    $tipo = "";
+    if (isset($_REQUEST['prenotazioni'])) {
+        $prenotazioni = $_REQUEST['prenotazioni'];
+        echo "Prenotazioniii : $prenotazioni<br><br>";
+    }
+    if (isset($_REQUEST['file'])) {
+        $file = $_REQUEST['file'];
+        echo "FILEEE <br><br>";
+    }
+    if (isset($_REQUEST['pdfskillcard'])) {
+        $pdfskillcard = $_REQUEST['pdfskillcard'];
+        $tipo .= "pdfskillcard, ";
+        echo 'pdfskillcard <br><br>';
+    }
+    if (isset($_REQUEST['pdfprenotazione'])) {
+        $pdfprenotazione = $_REQUEST['pdfprenotazione'];
+        $tipo .= "pdfprenotazione, ";
+        echo 'pdfprenotazione <br><br>';
+    }
+    if (isset($_REQUEST['pdfaica'])) {
+        $pdfaica = $_REQUEST['pdfaica'];
+        $tipo .= "pdfaica, ";
+        echo 'pdfaica <br><br>';
+    }
+    if (isset($_REQUEST['bollettinoskillcard'])) {
+        $bollettinoskillcard = $_REQUEST['bollettinoskillcard'];
+        $tipo .= "bollettinoskillcard, ";
+        echo 'bollettinoskillcard <br><br>';
+    }
+    if (isset($_REQUEST['bollettinoprenotazione'])) {
+        $bollettinoprenotazione = $_REQUEST['bollettinoprenotazione'];
+        $tipo .= "bollettinoprenotazione, ";
+        echo 'bollettinoprenotazione <br><br>';
+    }
+
+    $tipo = substr($tipo,  0, -2);
+    echo $tipo;
+    require_once('ConnessioneDb.php');
+    $db = new ConnessioneDb();
+    $sql = "INSERT INTO `file`(`tipo`, `ID_user`, `ID_prenotazione`, `file`) VALUES ('$tipo',(select user.codice_fiscale FROM user WHERE user.email = '{$_SESSION['user']}'),$prenotazioni,'file?')";
+    $ris = $db->query($sql);
 }
 
-header("Location: index.php");
+
+//header("Location: index.php");
+?>
+
+
+
