@@ -13,7 +13,9 @@ if (isset($_REQUEST["email"])) {
     $sql = "select * from user where email='$email'and password='$pwd'";
     $result = $db->query($sql);
     if ($result->num_rows == 0) {
+        echo '<div class="panel" id="classeLogin">';
         echo("<center><br><p><font color='red'>E-Mail o Password Errati!</font></p></center>");
+        echo '</div>';
     } else {
         $riga = $result->fetch_array();
         $_SESSION['user'] = $riga['email'];

@@ -9,6 +9,9 @@ session_start();
         <meta name="viewport" content="width=device-width,initial-sclae=1.0">
     </head>
     <style>
+        .panel{
+            margin-bottom:2%;
+        }
         #registrazione{
             background-color:DodgerBlue;
             border-radius:5px 5px 5px 5px;
@@ -66,19 +69,10 @@ session_start();
                         <div class="form-group col-md-3">
                             <?php
                             if (isset($_SESSION['user'])) {
-                                echo '<form action="pdf.php" method="post">
-                                      <input type="hidden" name="type" value="skillcard">
-                                      <input type="hidden" name="id" value="' . $_SESSION['user'] . '">
-                                      <input type="submit" value="PDF Skillcard" class="btn btn-info btn-lg">
-                                      </form>';
-                            } else {
-                                echo '<form action="skillCard.php" method="post">
-                                <input type="hidden" name="a" value="0">
-                                <input type="submit" value="Nuova Skillcard" class="btn btn-info btn-lg">
-                            </form>';
+                                echo '<input type="hidden" name="id" value="' . $_SESSION['user'] . '">';
+                                echo '<input type="submit" value="Prenota esame" class="btn btn-info btn-lg">';
                             }
                             ?>
-
                         </div>
                         <div class="form-group col-md-3">
 
@@ -100,7 +94,8 @@ session_start();
                                         <input type="submit" value="PDF prenotazione" class="btn btn-info btn-lg">
                                     </form>';
                             } else {
-                                echo '<form action="skillCard.php" method="post">
+                                echo '
+                                    <form action="skillCard.php" method="post">
                                 <input type="hidden" name="a" value="1">
                                 <input type="submit" value="Registrati" class="btn btn-info btn-lg">
                             </form>';
@@ -110,13 +105,21 @@ session_start();
                         </div>
                         <div class="form-group col-md-3" id="prenota">
                             <form action="prenotazione.php" method="post">
+
                                 <?php
                                 if (isset($_SESSION['user'])) {
-                                    echo '<input type="hidden" name="id" value="' . $_SESSION['user'] . '">';
-                                    echo '<input type="submit" value="Prenota esame" class="btn btn-info btn-lg">';
+                                    echo '<form action="pdf.php" method="post">
+                                      <input type="hidden" name="type" value="skillcard">
+                                      <input type="hidden" name="id" value="' . $_SESSION['user'] . '">
+                                      <input type="submit" value="PDF Skillcard" class="btn btn-info btn-lg">
+                                      </form>';
+                                } else {
+                                    echo '<form action="skillCard.php" method="post">
+                                <input type="hidden" name="a" value="0">
+                                <input type="submit" value="Nuova Skillcard" class="btn btn-info btn-lg">
+                            </form>';
                                 }
                                 ?>
-
                             </form>
                         </div>
                         <div class="form-group col-md-3">
@@ -157,7 +160,19 @@ session_start();
             <div>
                 <div class="panel panel-default">
                     <div class="panel">
-                        <h3 align='center'>Login</h3>
+                        <?php
+                        require_once('ConnessioneDb.php');
+                        $db = new ConnessioneDb();
+
+                        if (isset($_SESSION['user'])) {
+                            $sql = "select * from user where email='" . $_SESSION['user'] . "'";
+                            $result = $db->query($sql);
+                            $user = $result->fetch_array();
+                            echo "<h2 align='center'><font color='#585858'>" . $user['nome'] . " " . $user['cognome'] . "</font></h2>";
+                        } else {
+                            echo "<h3 align='center'>Login</h3>";
+                        }
+                        ?>
                     </div>
                     <div id="login" class="panel-body">
 
@@ -174,10 +189,7 @@ session_start();
                             $sql = "SELECT sessioni.*, prenotazione.esami FROM sessioni JOIN `prenotazione` ON prenotazione.ID_sessione = sessioni.ID JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale WHERE user.email = '" . $_SESSION['user'] . "'";
                             $ris2 = $db->query($sql);
 
-                            echo "<p><font color='#585858'> Logged User : " . $user['email'] . "</font></p>";
-                            echo "<p><font color='#585858'>  Skillcard number: " . $user['skill_card'] . "</font></p>";
-
-                            echo "<p><font color='#585858'>Esami prenotati:</font></p>";
+                            echo "<b><font color='#585858'>Esami prenotati:</font></b>";
                             while ($riga2 = $ris2->fetch_array()) {
                                 echo "<tr><td>{$riga2["data"]}</td>";
                                 echo "<td>{$riga2["ora_da"]}</td>";
@@ -188,13 +200,10 @@ session_start();
                                 echo "</td></tr>";
                             }
                             echo "</table>";
-
-
                             echo '<form action="login.php" method="post">
-                            <input type="hidden" name="exit" value="1">
-                            <input type="submit" value="Logout" class="btn btn-info btn-lg">
-                        </form> </thead>
-                        </table>';
+                                     <input type="hidden" name="exit" value="1">
+                                     <input type="submit" value="Logout" class="btn btn-info btn-lg">
+                                  </form>';
                         } else {
                             echo ' <form name=”casellaTesto” method="post" class="was-validated" action="/ecdl/login.php">
                             <div class="form-group">
