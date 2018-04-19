@@ -46,6 +46,8 @@ session_start();
             color:white;
         }
     </style>
+
+
     <body>
         <div class="jumbotron text-center">
             <h1 align="center"> ECDL</h1>
@@ -241,41 +243,43 @@ session_start();
                 </div>
             </div>
 
-            <div class="panel panel-default"  id="link2">
+            <?php
+            if (isset($_SESSION['user'])) {
+                echo '<div class="panel panel-default"  id="link2">
                 <div class="panel">
-                    <h3 align='center'>Carca File</h3>
+                    <h3 align="center">carica File</h3>
                 </div>
                 <div class="panel-body">
                     <?php
                     ?>
                     selezionare il/i tipi di file che si è caricato
-                    <form name="carica" action="registrazione.php" method="post" >
+                    <form name="carica" action="registrazione.php" method="get" >
                         <div class="form-group">
-                            <input name='pdf skillcard'  class="form-check-input" type="checkbox" value="1" id="defaultCheck7">
+                            <input name="pdfskillcard"  class="form-check-input" type="checkbox" value="1" id="pdfskillcard">
                             <label  class="form-check-label" for="defaultCheck7">
                                 pdf skillcard
                             </label>
                         </div>                            
                         <div class="form-group">
-                            <input name='pdf prenotazione'  class="form-check-input" type="checkbox" value="1" id="defaultCheck7">
+                            <input name="pdfprenotazione" onclick="myFunction()" class="form-check-input" type="checkbox" value="1" id="pdfprenotazione">
                             <label  class="form-check-label" for="defaultCheck7">
                                 pdf prenotazione
                             </label>
                         </div>                            
                         <div class="form-group">
-                            <input name='pdf aica'  class="form-check-input" type="checkbox" value="1" id="defaultCheck7">
+                            <input name="pdfaica"  class="form-check-input" type="checkbox" value="1" id="pdfaica">
                             <label  class="form-check-label" for="defaultCheck7">
                                 pdf aica
                             </label>
                         </div>                            
                         <div class="form-group">
-                            <input name='bollettino skillcard'  class="form-check-input" type="checkbox" value="1" id="defaultCheck7">
+                            <input name="bollettinoskillcard" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard">
                             <label  class="form-check-label" for="defaultCheck7">
                                 bollettino skillcard
                             </label>
                         </div>                            
                         <div class="form-group">
-                            <input name='bollettino prenotazione'  class="form-check-input" type="checkbox" value="1" id="defaultCheck7">
+                            <input name="bollettinoprenotazione" onclick="myFunction()" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
                             <label  class="form-check-label" for="defaultCheck7">
                                 bollettino prenotazione 
                             </label>
@@ -283,29 +287,74 @@ session_start();
 
                         Select image to upload:
                         <input type="file" name="file" id="file">
+                        <input type="hidden" name="upload" value="1">
                         <br>
-                        <input type="submit" value="Upload" name="submit">
+                        <input type="submit" value="Upload">
 
-                    </form>
+                        <div id="clicco">eheheh</div>
+                        
+                    </form>';
+            }
+            ?>
 
 
-                </div>
-            </div>
+
         </div>
     </div>
-</form>
 
-<script>
-    function updateDiv()
-    {
-        document.getElementById("buttons").innerHTML = document.getElementById("buttons").innerHTML;
-        document.getElementById("login").innerHTML = document.getElementById("login").innerHTML;
+    <script>
+        function updateDiv()
+        {
+            document.getElementById("buttons").innerHTML = document.getElementById("buttons").innerHTML;
+            document.getElementById("login").innerHTML = document.getElementById("login").innerHTML;
+        }
+
+        src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+        src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        type = "text/javascript" src = "bootstrap-table.js"
+
+
+
+
+    </script>
+    <?php
+    if (isset($_SESSION['user'])) {
+        require_once('ConnessioneDb.php');
+        $db = new ConnessioneDb();
+        $sql = "SELECT *, prenotazione.ID AS 'ip'  FROM `prenotazione`  JOIN sessioni ON sessioni.ID = prenotazione.ID_sessione WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = '{$_SESSION['user']}')";
+        $ris = $db->query($sql);
+        $reggia = "";
+        while ($riga = $ris->fetch_array()) {
+            $esami = "";
+            for ($i = 0; $i < strlen($riga["esami"]); $i++) {
+                $esami .= ' ' . $riga["esami"][$i] . ' ';
+            }
+            $reggia .= '<option value="' . $riga["ip"] . '">' . $riga["data"] . ' dalle ' . $riga["ora_da"] . ' alle' . $riga["ora_a"] . ' Moduli prenotati: ' . $esami . '</option>';
+//        $reggia .= $riga["data"];
+//        $reggia .= ' dalle ' . $riga["ora_da"];
+//        $reggia .= ' alle' . $riga["ora_a"];
+//        $reggia .= ' Moduli prenotati: ';
+//        $reggia .= $riga["esami"];
+//        for ($i = 0; $i < strlen($riga["esami"]); $i++) {
+//            $reggia .= ' ' . $riga["esami"][$i] . ' ';
+//        }
+//        $reggia .= '</option>';
+        }
     }
+    ?>
 
-    src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-    src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    type = "text/javascript" src = "bootstrap-table.js"
-</script>
+    <script>
+
+
+                var html = '<br><div class="form-row"><div class="col-md-10"><label for="scuola">Selezione per quale prenotazione</label><select name="prenotazioni" class="form-control" id="prenotazioni"> ' + '<?php echo $reggia; ?>' + '</select></div></div>';
+        function myFunction() {
+            document.getElementById("clicco").innerHTML = html;
+        }
+
+        function cancella() {
+            document.getElementById("clicco").innerHTML = "";
+        }
+    </script>
 </div>
 <div class="col-md-12">
     <footer class="container text-center" id="foot" >
