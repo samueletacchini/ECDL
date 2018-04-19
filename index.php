@@ -108,8 +108,6 @@ session_start();
 
                         </div>
                         <div class="form-group col-md-3" id="prenota">
-                            <form action="skillCard.php" method="post">
-
                             <?php
                             if (isset($_SESSION['user'])) {
                                 echo '<form action="pdf.php" method="post">
