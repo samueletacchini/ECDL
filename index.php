@@ -106,7 +106,7 @@ session_start();
 
                         </div>
                         <div class="form-group col-md-3" id="prenota">
-                            <form action="prenotazione.php" method="post">
+                            <form action="skillCard.php" method="post">
 
                                 <?php
                                 if (isset($_SESSION['user'])) {
