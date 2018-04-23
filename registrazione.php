@@ -89,14 +89,11 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
     $ris = $db->query($sql);
 } elseif (isset($_REQUEST['upload'])) {
 
+    $prenotazioni = "";
     $tipo = "";
     if (isset($_REQUEST['prenotazioni'])) {
         $prenotazioni = $_REQUEST['prenotazioni'];
         echo "Prenotazioniii : $prenotazioni<br><br>";
-    }
-    if (isset($_REQUEST['file'])) {
-        $file = $_REQUEST['file'];
-        echo "FILEEE <br><br>";
     }
     if (isset($_REQUEST['pdfskillcard'])) {
         $pdfskillcard = $_REQUEST['pdfskillcard'];
@@ -124,11 +121,20 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
         echo 'bollettinoprenotazione <br><br>';
     }
 
-    $tipo = substr($tipo,  0, -2);
+    $imagename = $_FILES["pdfs"]["name"];
+    $imagetmp = addslashes(file_get_contents($_FILES['pdfs']['tmp_name']));
+
+
+
+    $tipo = substr($tipo, 0, -2);
     echo $tipo;
     require_once('ConnessioneDb.php');
     $db = new ConnessioneDb();
-    $sql = "INSERT INTO `file`(`tipo`, `ID_user`, `ID_prenotazione`, `file`) VALUES ('$tipo',(select user.codice_fiscale FROM user WHERE user.email = '{$_SESSION['user']}'),$prenotazioni,'file?')";
+    if ($prenotazioni != NULL) {
+        $sql = "INSERT INTO `file`(`tipo`, `ID_user`, `ID_prenotazione`, `file`) VALUES ('$tipo',(select user.codice_fiscale FROM user WHERE user.email = '{$_SESSION['user']}'),$prenotazioni,'$imagetmp')";
+    } else {
+        $sql = "INSERT INTO `file`(`tipo`, `ID_user`, `file`) VALUES ('$tipo',(select user.codice_fiscale FROM user WHERE user.email = '{$_SESSION['user']}'),'$imagetmp')";
+    }
     $ris = $db->query($sql);
 }
 
