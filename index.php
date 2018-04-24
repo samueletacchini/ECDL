@@ -42,7 +42,7 @@ session_start();
         }
     </style>
 
-    
+
 
     <style>
         .panel{
@@ -224,7 +224,7 @@ session_start();
                             $result = $db->query($sql);
                             $user = $result->fetch_array();
 
-                            $sql = "SELECT sessioni.*, prenotazione.esami FROM sessioni JOIN `prenotazione` ON prenotazione.ID_sessione = sessioni.ID JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale WHERE user.email = '" . $_SESSION['user'] . "'";
+                            $sql = "SELECT prenotazione.ID as PID, sessioni.*, prenotazione.esami FROM sessioni JOIN `prenotazione` ON prenotazione.ID_sessione = sessioni.ID JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale WHERE user.email = '" . $_SESSION['user'] . "'";
                             $ris2 = $db->query($sql);
 
                             echo "<b><font color='#585858'>Esami prenotati:</font></b>";
@@ -232,6 +232,7 @@ session_start();
                                 echo "<tr><td>{$riga2["data"]}</td>";
                                 echo "<td>{$riga2["ora_da"]}</td>";
                                 echo "<td>{$riga2["ora_a"]}</td> <td> ";
+                                
                                 for ($i = 0; $i < strlen($riga2["esami"]); $i++) {
                                     echo" " . $riga2["esami"][$i] . " ";
                                 }
@@ -246,7 +247,7 @@ session_start();
                         } else {
                             if (isset($_SESSION['err']) && $_SESSION['err'] == '0') {
                                 $_SESSION['err'] = null;
-                                
+
                                 echo 'PASSWORD ERRATA';
                             }
                             echo ' <form name=”casellaTesto” method="post" class="was-validated" action="/ecdl/login.php">
@@ -274,29 +275,29 @@ session_start();
                         <table class="table table-bordered">
                             <thead>
                                 <tr><th>DATA</th><th>Dalle</th><th>alle</th><tr>
-<?php
-require_once('ConnessioneDb.php');
-$db = new ConnessioneDb();
-$sql = "SELECT * FROM `sessioni`";
-$ris = $db->query($sql);
+                                    <?php
+                                    require_once('ConnessioneDb.php');
+                                    $db = new ConnessioneDb();
+                                    $sql = "SELECT * FROM `sessioni`";
+                                    $ris = $db->query($sql);
 
-while ($riga = $ris->fetch_array()) {
-    echo "<tr><td>{$riga["data"]}</td>";
-    echo "<td>{$riga["ora_da"]}</td>";
-    echo "<td>{$riga["ora_a"]}</td>";
-    echo "</tr>";
-}
-echo "</table>";
-?>
+                                    while ($riga = $ris->fetch_array()) {
+                                        echo "<tr><td>{$riga["data"]}</td>";
+                                        echo "<td>{$riga["ora_da"]}</td>";
+                                        echo "<td>{$riga["ora_a"]}</td>";
+                                        echo "</tr>";
+                                    }
+                                    echo "</table>";
+                                    ?>
                             </thead>
                         </table>
                     </div>
                 </div>
             </div>
 
-<?php
-if (isset($_SESSION['user'])) {
-    echo '<div class="panel panel-default"  id="link2">
+            <?php
+            if (isset($_SESSION['user'])) {
+                echo '<div class="panel panel-default"  id="link2">
                 <div class="panel">
                     <h3 align="center">Carica File</h3>
                 </div>
@@ -345,8 +346,8 @@ if (isset($_SESSION['user'])) {
                         <div id="clicco">eheheh</div>
                         
                     </form>';
-}
-?>
+            }
+            ?>
 
 
 
@@ -365,15 +366,15 @@ if (isset($_SESSION['user'])) {
         type = "text/javascript" src = "bootstrap-table.js"
     </script>
     <script>
-        document.getElementById('get_file').onclick = function () {
+                document.getElementById('get_file').onclick = function () {
             document.getElementById('my_file').click();
         };
 
         $('input[type=file]').change(function (e) {
             $('#customfileupload').html($(this).val());
-        }); 
+        });
     </script>
-    
+
     <?php
     if (isset($_SESSION['user'])) {
         require_once('ConnessioneDb.php');
@@ -390,11 +391,10 @@ if (isset($_SESSION['user'])) {
 //     
         }
     }
-}
-?>
+    ?>
 
     <script>
-                var html = '<br><div class="form-row"><div class="col-md-10"><label for="scuola">Selezione per quale prenotazione</label><select name="prenotazioni" class="form-control" id="prenotazioni"> ' + '<?php echo $reggia; ?>' + '</select></div></div>';
+        var html = '<br><div class="form-row"><div class="col-md-10"><label for="scuola">Selezione per quale prenotazione</label><select name="prenotazioni" class="form-control" id="prenotazioni"> ' + '<?php echo $reggia; ?>' + '</select></div></div>';
         function myFunction() {
             document.getElementById("clicco").innerHTML = html;
         }
