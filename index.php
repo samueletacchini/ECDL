@@ -215,6 +215,7 @@ session_start();
 
                         <?php
                         if (isset($_SESSION['user'])) {
+
                             echo "<table class='table table-bordered'><thead><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";
 
                             require_once('ConnessioneDb.php');
@@ -243,6 +244,11 @@ session_start();
                                      <input type="submit" value="Logout" class="btn btn-info btn-lg">
                                   </form>';
                         } else {
+                            if (isset($_SESSION['err']) && $_SESSION['err'] == '0') {
+                                $_SESSION['err'] = null;
+                                
+                                echo 'PASSWORD ERRATA';
+                            }
                             echo ' <form name=”casellaTesto” method="post" class="was-validated" action="/ecdl/login.php">
                             <div class="form-group">
                                 <label> E-Mail</label>
@@ -268,35 +274,35 @@ session_start();
                         <table class="table table-bordered">
                             <thead>
                                 <tr><th>DATA</th><th>Dalle</th><th>alle</th><tr>
-                                    <?php
-                                    require_once('ConnessioneDb.php');
-                                    $db = new ConnessioneDb();
-                                    $sql = "SELECT * FROM `sessioni`";
-                                    $ris = $db->query($sql);
+<?php
+require_once('ConnessioneDb.php');
+$db = new ConnessioneDb();
+$sql = "SELECT * FROM `sessioni`";
+$ris = $db->query($sql);
 
-                                    while ($riga = $ris->fetch_array()) {
-                                        echo "<tr><td>{$riga["data"]}</td>";
-                                        echo "<td>{$riga["ora_da"]}</td>";
-                                        echo "<td>{$riga["ora_a"]}</td>";
-                                        echo "</tr>";
-                                    }
-                                    echo "</table>";
-                                    ?>
+while ($riga = $ris->fetch_array()) {
+    echo "<tr><td>{$riga["data"]}</td>";
+    echo "<td>{$riga["ora_da"]}</td>";
+    echo "<td>{$riga["ora_a"]}</td>";
+    echo "</tr>";
+}
+echo "</table>";
+?>
                             </thead>
                         </table>
                     </div>
                 </div>
             </div>
 
-            <?php
-            if (isset($_SESSION['user'])) {
-                echo '<div class="panel panel-default"  id="link2">
+<?php
+if (isset($_SESSION['user'])) {
+    echo '<div class="panel panel-default"  id="link2">
                 <div class="panel">
                     <h3 align="center">Carica File</h3>
                 </div>
                 <div class="panel-body">
                     <p align="center" style="color:grey">Selezionare il/i tipi di file che si è caricato:<p>
-                    <form name="carica" action="pdf.php" method="post" >
+                    <form name="carica" action="registrazione.php" method="post" >
                         <div class="checkbox-inline col-md-offset-4">
                         <div class="form-group">
                             <input name="pdfskillcard"  class="form-check-input" type="checkbox" value="1" id="https://github.com/samueletacchini/ECDLcard">
@@ -328,11 +334,10 @@ session_start();
                                 bollettino prenotazione 
                             </label>
                         </div>                            
-                        </div>
-                        
+          
                         <p align="center" style="color:grey">Seleziona il file:</p>
                         <input type="button" id="get_file" value="Seleziona file" style="background-color:Dodgerblue">
-                        <input type="file" id="my_file">
+                        <input type="file" name="pdfs" id="my_file">
                         <div id="customfileupload">Seleziona il file</div>
                         
                         <input type="hidden" name="upload" value="1">
@@ -340,8 +345,8 @@ session_start();
                         <div id="clicco">eheheh</div>
                         
                     </form>';
-            }
-            ?>
+}
+?>
 
 
 
@@ -385,7 +390,8 @@ session_start();
 //     
         }
     }
-    ?>
+}
+?>
 
     <script>
                 var html = '<br><div class="form-row"><div class="col-md-10"><label for="scuola">Selezione per quale prenotazione</label><select name="prenotazioni" class="form-control" id="prenotazioni"> ' + '<?php echo $reggia; ?>' + '</select></div></div>';
