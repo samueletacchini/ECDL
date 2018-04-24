@@ -88,7 +88,7 @@ session_start();
                                 $db = new ConnessioneDb();
                                 $sql = 'SELECT ID FROM `prenotazione` WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = "' . $_SESSION['user'] . '")';
                                 $result = $db->query($sql);
-                                    $gigi = $result->fetch_array();
+                                $gigi = $result->fetch_array();
                                 $idpren = $gigi['ID'];
 
                                 echo '<form method="post" action="pdf.php">
@@ -181,7 +181,7 @@ session_start();
 
                         <?php
                         if (isset($_SESSION['user'])) {
-                            
+
                             echo "<table class='table table-bordered'><thead><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";
 
                             require_once('ConnessioneDb.php');
@@ -209,10 +209,10 @@ session_start();
                                      <input type="submit" value="Logout" class="btn btn-info btn-lg">
                                   </form>';
                         } else {
-                            if (isset($_REQUEST['if']) && $_REQUEST['if'] == '0') {
+                            if (isset($_SESSION['err']) && $_SESSION['err'] == '0') {
+                                $_SESSION['err'] = null;
+                                
                                 echo 'PASSWORD ERRATA';
-                                
-                                
                             }
                             echo ' <form name=”casellaTesto” method="post" class="was-validated" action="/ecdl/login.php">
                             <div class="form-group">
@@ -239,29 +239,29 @@ session_start();
                         <table class="table table-bordered">
                             <thead>
                                 <tr><th>DATA</th><th>Dalle</th><th>alle</th><tr>
-                                    <?php
-                                    require_once('ConnessioneDb.php');
-                                    $db = new ConnessioneDb();
-                                    $sql = "SELECT * FROM `sessioni`";
-                                    $ris = $db->query($sql);
+<?php
+require_once('ConnessioneDb.php');
+$db = new ConnessioneDb();
+$sql = "SELECT * FROM `sessioni`";
+$ris = $db->query($sql);
 
-                                    while ($riga = $ris->fetch_array()) {
-                                        echo "<tr><td>{$riga["data"]}</td>";
-                                        echo "<td>{$riga["ora_da"]}</td>";
-                                        echo "<td>{$riga["ora_a"]}</td>";
-                                        echo "</tr>";
-                                    }
-                                    echo "</table>";
-                                    ?>
+while ($riga = $ris->fetch_array()) {
+    echo "<tr><td>{$riga["data"]}</td>";
+    echo "<td>{$riga["ora_da"]}</td>";
+    echo "<td>{$riga["ora_a"]}</td>";
+    echo "</tr>";
+}
+echo "</table>";
+?>
                             </thead>
                         </table>
                     </div>
                 </div>
             </div>
 
-            <?php
-            if (isset($_SESSION['user'])) {
-                echo '<div class="panel panel-default"  id="link2">
+<?php
+if (isset($_SESSION['user'])) {
+    echo '<div class="panel panel-default"  id="link2">
                 <div class="panel">
                     <h3 align="center">carica File</h3>
                 </div>
@@ -308,8 +308,8 @@ session_start();
                         <div id="clicco">eheheh</div>
                         
                     </form>';
-            }
-            ?>
+}
+?>
 
 
 
@@ -331,19 +331,19 @@ session_start();
 
 
     </script>
-    <?php
-    if (isset($_SESSION['user'])) {
-        require_once('ConnessioneDb.php');
-        $db = new ConnessioneDb();
-        $sql = "SELECT *, prenotazione.ID AS 'ip'  FROM `prenotazione`  JOIN sessioni ON sessioni.ID = prenotazione.ID_sessione WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = '{$_SESSION['user']}')";
-        $ris = $db->query($sql);
-        $reggia = "";
-        while ($riga = $ris->fetch_array()) {
-            $esami = "";
-            for ($i = 0; $i < strlen($riga["esami"]); $i++) {
-                $esami .= ' ' . $riga["esami"][$i] . ' ';
-            }
-            $reggia .= '<option value="' . $riga["ip"] . '">' . $riga["data"] . ' dalle ' . $riga["ora_da"] . ' alle' . $riga["ora_a"] . ' Moduli prenotati: ' . $esami . '</option>';
+<?php
+if (isset($_SESSION['user'])) {
+    require_once('ConnessioneDb.php');
+    $db = new ConnessioneDb();
+    $sql = "SELECT *, prenotazione.ID AS 'ip'  FROM `prenotazione`  JOIN sessioni ON sessioni.ID = prenotazione.ID_sessione WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = '{$_SESSION['user']}')";
+    $ris = $db->query($sql);
+    $reggia = "";
+    while ($riga = $ris->fetch_array()) {
+        $esami = "";
+        for ($i = 0; $i < strlen($riga["esami"]); $i++) {
+            $esami .= ' ' . $riga["esami"][$i] . ' ';
+        }
+        $reggia .= '<option value="' . $riga["ip"] . '">' . $riga["data"] . ' dalle ' . $riga["ora_da"] . ' alle' . $riga["ora_a"] . ' Moduli prenotati: ' . $esami . '</option>';
 //        $reggia .= $riga["data"];
 //        $reggia .= ' dalle ' . $riga["ora_da"];
 //        $reggia .= ' alle' . $riga["ora_a"];
@@ -353,9 +353,9 @@ session_start();
 //            $reggia .= ' ' . $riga["esami"][$i] . ' ';
 //        }
 //        $reggia .= '</option>';
-        }
     }
-    ?>
+}
+?>
 
     <script>
 
