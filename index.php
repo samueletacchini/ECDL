@@ -8,6 +8,42 @@ session_start();
         <link rel="stylesheet" href="file.js">
         <meta name="viewport" content="width=device-width,initial-sclae=1.0">
     </head>
+
+    <style>
+        #my_file {
+            display: none;
+        }
+
+        #get_file {
+            background: #f9f9f9;
+            border: 1px solid #88c;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        #customfileupload
+        {
+            display: inline;
+            background-color: #fff;
+            font-size: 14px;
+            padding: 10px 30px 10px 10px;
+            width: 250px;
+            border: 1px solid #999;
+            box-shadow: inset 1px 1px 5px #ccc;
+            -webkit-box-shadow: inset 1px 1px 5px #ccc;
+            -moz-box-shadow: inset 0px 0px 4px #ccc;
+            -ms-box-shadow: inset 0px 0px 4px #ccc;
+            -o-box-shadow: inset 0px 0px 4px #ccc;
+            z-index: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+
+    
+
     <style>
         .panel{
             margin-bottom:2%;
@@ -48,9 +84,8 @@ session_start();
         #bar{
             color:white;
         }
+
     </style>
-
-
     <body>
         <div class="jumbotron text-center">
             <h1 align="center"> ECDL</h1>
@@ -108,7 +143,6 @@ session_start();
 
                         </div>
                         <div class="form-group col-md-3" id="prenota">
-
                             <?php
                             if (isset($_SESSION['user'])) {
                                 echo '<form action="pdf.php" method="post">
@@ -201,6 +235,7 @@ session_start();
                                 for ($i = 0; $i < strlen($riga2["esami"]); $i++) {
                                     echo" " . $riga2["esami"][$i] . " ";
                                 }
+                                echo "<td><img src='images/false.png' style='height:3%; margin-left:10%;' title='Elimina Prenotazione'></td>";
                                 echo "</td></tr>";
                             }
                             echo "</table>";
@@ -223,7 +258,7 @@ session_start();
                                 <label> Password </label>
                                 <input name="password" type="password" id="password" class="form-control" required>
                             </div>';
-                            echo '<center><br><button type="submit" class="btn btn-info btn-lg" value="accedi"> Accedi </button></center>';
+                            echo '<center><br><button type="submit" class="btn btn-info btn-lg" value="accedi" data-toggle="modal" data-target="#myModal"> Accedi </button></center>';
                         }
                         ?>
 
@@ -263,11 +298,12 @@ echo "</table>";
 if (isset($_SESSION['user'])) {
     echo '<div class="panel panel-default"  id="link2">
                 <div class="panel">
-                    <h3 align="center">carica File</h3>
+                    <h3 align="center">Carica File</h3>
                 </div>
                 <div class="panel-body">
-                    selezionare il/i tipi di file che si è caricato
-                    <form name="carica" action="registrazione.php" method="post" enctype="multipart/form-data">
+                    <p align="center" style="color:grey">Selezionare il/i tipi di file che si è caricato:<p>
+                    <form name="carica" action="registrazione.php" method="post" >
+                        <div class="checkbox-inline col-md-offset-4">
                         <div class="form-group">
                             <input name="pdfskillcard"  class="form-check-input" type="checkbox" value="1" id="https://github.com/samueletacchini/ECDLcard">
                             <label  class="form-check-label" for="defaultCheck7">
@@ -298,13 +334,14 @@ if (isset($_SESSION['user'])) {
                                 bollettino prenotazione 
                             </label>
                         </div>                            
-
-                        Select image to upload:
-                        <input type="file" name="pdfs">
+          
+                        <p align="center" style="color:grey">Seleziona il file:</p>
+                        <input type="button" id="get_file" value="Seleziona file" style="background-color:Dodgerblue">
+                        <input type="file" name="pdfs" id="my_file">
+                        <div id="customfileupload">Seleziona il file</div>
+                        
                         <input type="hidden" name="upload" value="1">
-                        <br>
-                        <input type="submit" value="Upload">
-
+                        <br><input type="submit" value="Upload">
                         <div id="clicco">eheheh</div>
                         
                     </form>';
@@ -326,40 +363,37 @@ if (isset($_SESSION['user'])) {
         src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
         src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         type = "text/javascript" src = "bootstrap-table.js"
-
-
-
-
     </script>
-<?php
-if (isset($_SESSION['user'])) {
-    require_once('ConnessioneDb.php');
-    $db = new ConnessioneDb();
-    $sql = "SELECT *, prenotazione.ID AS 'ip'  FROM `prenotazione`  JOIN sessioni ON sessioni.ID = prenotazione.ID_sessione WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = '{$_SESSION['user']}')";
-    $ris = $db->query($sql);
-    $reggia = "";
-    while ($riga = $ris->fetch_array()) {
-        $esami = "";
-        for ($i = 0; $i < strlen($riga["esami"]); $i++) {
-            $esami .= ' ' . $riga["esami"][$i] . ' ';
+    <script>
+        document.getElementById('get_file').onclick = function () {
+            document.getElementById('my_file').click();
+        };
+
+        $('input[type=file]').change(function (e) {
+            $('#customfileupload').html($(this).val());
+        }); 
+    </script>
+    
+    <?php
+    if (isset($_SESSION['user'])) {
+        require_once('ConnessioneDb.php');
+        $db = new ConnessioneDb();
+        $sql = "SELECT *, prenotazione.ID AS 'ip'  FROM `prenotazione`  JOIN sessioni ON sessioni.ID = prenotazione.ID_sessione WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = '{$_SESSION['user']}')";
+        $ris = $db->query($sql);
+        $reggia = "";
+        while ($riga = $ris->fetch_array()) {
+            $esami = "";
+            for ($i = 0; $i < strlen($riga["esami"]); $i++) {
+                $esami .= ' ' . $riga["esami"][$i] . ' ';
+            }
+            $reggia .= '<option value="' . $riga["ip"] . '">' . $riga["data"] . ' dalle ' . $riga["ora_da"] . ' alle' . $riga["ora_a"] . ' Moduli prenotati: ' . $esami . '</option>';
+//     
         }
-        $reggia .= '<option value="' . $riga["ip"] . '">' . $riga["data"] . ' dalle ' . $riga["ora_da"] . ' alle' . $riga["ora_a"] . ' Moduli prenotati: ' . $esami . '</option>';
-//        $reggia .= $riga["data"];
-//        $reggia .= ' dalle ' . $riga["ora_da"];
-//        $reggia .= ' alle' . $riga["ora_a"];
-//        $reggia .= ' Moduli prenotati: ';
-//        $reggia .= $riga["esami"];
-//        for ($i = 0; $i < strlen($riga["esami"]); $i++) {
-//            $reggia .= ' ' . $riga["esami"][$i] . ' ';
-//        }
-//        $reggia .= '</option>';
     }
 }
 ?>
 
     <script>
-
-
                 var html = '<br><div class="form-row"><div class="col-md-10"><label for="scuola">Selezione per quale prenotazione</label><select name="prenotazioni" class="form-control" id="prenotazioni"> ' + '<?php echo $reggia; ?>' + '</select></div></div>';
         function myFunction() {
             document.getElementById("clicco").innerHTML = html;
