@@ -336,11 +336,8 @@ session_start();
                             </label>
                         </div>                            
           
-                        <p align="center" style="color:grey">Seleziona il file:</p>
-                        <input type="button" id="get_file" value="Seleziona file" style="background-color:Dodgerblue">
-                        <input type="file" name="pdfs" id="my_file">
-                        <div id="customfileupload">Seleziona il file</div>
-                        
+
+                        <input type="file" name="pdfs">                        
                         <input type="hidden" name="upload" value="1">
                         <br><input type="submit" value="Upload">
                         <div id="clicco">eheheh</div>
