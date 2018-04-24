@@ -88,7 +88,7 @@ session_start();
                                 $db = new ConnessioneDb();
                                 $sql = 'SELECT ID FROM `prenotazione` WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = "' . $_SESSION['user'] . '")';
                                 $result = $db->query($sql);
-                                $gigi = $result->fetch_array();
+                                    $gigi = $result->fetch_array();
                                 $idpren = $gigi['ID'];
 
                                 echo '<form method="post" action="pdf.php">
@@ -181,6 +181,7 @@ session_start();
 
                         <?php
                         if (isset($_SESSION['user'])) {
+                            
                             echo "<table class='table table-bordered'><thead><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";
 
                             require_once('ConnessioneDb.php');
@@ -208,6 +209,11 @@ session_start();
                                      <input type="submit" value="Logout" class="btn btn-info btn-lg">
                                   </form>';
                         } else {
+                            if (isset($_REQUEST['if']) && $_REQUEST['if'] == '0') {
+                                echo 'PASSWORD ERRATA';
+                                
+                                
+                            }
                             echo ' <form name=”casellaTesto” method="post" class="was-validated" action="/ecdl/login.php">
                             <div class="form-group">
                                 <label> E-Mail</label>

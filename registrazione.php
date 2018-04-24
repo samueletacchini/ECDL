@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require_once('ConnessioneDb.php');
 $db = new ConnessioneDb();
@@ -28,11 +27,11 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
 
     echo "<br>" . $lnascita = $_REQUEST['lnascita'];
 
-    // $pnascita = $_REQUEST['$pnascita'];
+// $pnascita = $_REQUEST['$pnascita'];
 
     echo "<br>" . $indirizzo = $_REQUEST['indirizzo'];
 
-    //$civico = $_REQUEST['civico'];
+//$civico = $_REQUEST['civico'];
 
     echo "<br>" . $stato = $_REQUEST['stato'];
 
@@ -40,7 +39,7 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
 
     echo "<br>" . $cap = $_REQUEST['cap'];
 
-    //echo "<br>" .  $titolo = $_REQUEST['titolo'];
+//echo "<br>" .  $titolo = $_REQUEST['titolo'];
 
     echo "<br>" . $provincia = $_REQUEST['provincia'];
 
@@ -91,52 +90,118 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
 
     $prenotazioni = "";
     $tipo = "";
-    if (isset($_REQUEST['prenotazioni'])) {
-        $prenotazioni = $_REQUEST['prenotazioni'];
-        echo "Prenotazioniii : $prenotazioni<br><br>";
-    }
+
     if (isset($_REQUEST['pdfskillcard'])) {
         $pdfskillcard = $_REQUEST['pdfskillcard'];
         $tipo .= "pdfskillcard, ";
-        echo 'pdfskillcard <br><br>';
+        ////////////////////echo 'pdfskillcard <br><br>';
     }
     if (isset($_REQUEST['pdfprenotazione'])) {
         $pdfprenotazione = $_REQUEST['pdfprenotazione'];
         $tipo .= "pdfprenotazione, ";
-        echo 'pdfprenotazione <br><br>';
+        ////////////////////echo 'pdfprenotazione <br><br>';
     }
     if (isset($_REQUEST['pdfaica'])) {
         $pdfaica = $_REQUEST['pdfaica'];
         $tipo .= "pdfaica, ";
-        echo 'pdfaica <br><br>';
+        ////////////////////echo 'pdfaica <br><br>';
     }
     if (isset($_REQUEST['bollettinoskillcard'])) {
         $bollettinoskillcard = $_REQUEST['bollettinoskillcard'];
         $tipo .= "bollettinoskillcard, ";
-        echo 'bollettinoskillcard <br><br>';
+        ////////////////////echo 'bollettinoskillcard <br><br>';
     }
     if (isset($_REQUEST['bollettinoprenotazione'])) {
         $bollettinoprenotazione = $_REQUEST['bollettinoprenotazione'];
         $tipo .= "bollettinoprenotazione, ";
-        echo 'bollettinoprenotazione <br><br>';
+        ////////////////////echo 'bollettinoprenotazione <br><br>';
+    }
+    if (isset($_REQUEST['prenot azioni'])) {
+        $prenotazioni = $_REQUEST['prenotazioni'];
+        ////////////////////echo "Prenotazioniii : $prenotazioni<br><br>";
     }
 
-    $imagename = $_FILES["pdfs"]["name"];
-    $imagetmp = addslashes(file_get_contents($_FILES['pdfs']['tmp_name']));
+
+    $name = $_FILES["pdfs"]["name"];
+    $size = $_FILES["pdfs"]["size"];
+    $type = $_FILES["pdfs"]["type"];
+    $tmp_name = $_FILES['pdfs']['tmp_name'];
 
 
+// get the width & height of the file (we don't need the other stuff) 
+    list($width, $height, $typeb, $attr) = getimagesize($tmp_name);
+
+
+
+// if width is over 600 px or height is over 500 px, kill it    
+// help me 
+//    if ($width > 600 || $height > 500) {
+//        echo $name . "'s dimensions exceed the 600x500 pixel limit.";
+//        echo " <a href='form.html'>Click here</a> to try again. ";
+//        die();
+//    }
+// if the mime type is anything other than what we specify below, kill it     
+    if (!(
+            $type == 'image/jpeg' ||
+            $type == 'image/png' ||
+            $type == 'image/gif' ||
+            $type == 'image/pdf' ||
+            $type == 'application/pdf'
+            )) {
+        echo $type . " is not an acceptable format.";
+        echo ' <a href="form.html">Click here</a> to try again. ';
+        die();
+    }
+
+// if the file size is larger than 1MB, kill it 
+    if ($size > '1000000') {
+        echo $name . " is over 1MB. Please make it smaller.";
+        echo' <a href="ecdl/index.html">Click here</a> to try again. ';
+        die();
+    }
+
+// if your server has magic quotes turned off, add slashes manually 
+    if (!get_magic_quotes_gpc()) {
+        $name = addslashes($name);
+    }
+
+// open up the file and extract the data/content from it 
+    $extract = fopen($tmp_name, 'r');
+    $content = fread($extract, $size);
+    $content = addslashes($content);
+    fclose($extract);
 
     $tipo = substr($tipo, 0, -2);
-    echo $tipo;
+    
     require_once('ConnessioneDb.php');
     $db = new ConnessioneDb();
     if ($prenotazioni != NULL) {
-        $sql = "INSERT INTO `file`(`tipo`, `ID_user`, `ID_prenotazione`, `file`) VALUES ('$tipo',(select user.codice_fiscale FROM user WHERE user.email = '{$_SESSION['user']}'),$prenotazioni,'$imagetmp')";
+        $sql = "INSERT INTO `file`(`tipo`, `ID_user`, `ID_prenotazione`, `nome`, `estensione`, `dimensione`, `file`) VALUES ('$tipo',(select user.codice_fiscale FROM user WHERE user.email = '{$_SESSION['user']}'),'$prenotazioni','$name','$type',$size,'$content')";
     } else {
-        $sql = "INSERT INTO `file`(`tipo`, `ID_user`, `file`) VALUES ('$tipo',(select user.codice_fiscale FROM user WHERE user.email = '{$_SESSION['user']}'),'$imagetmp')";
+        $sql = "INSERT INTO `file`(`tipo`, `ID_user`, `nome`, `estensione`, `dimensione`, `file`) VALUES ('$tipo',(select user.codice_fiscale FROM user WHERE user.email = '{$_SESSION['user']}'),'$name','$type',$size,'$content')";
     }
     $ris = $db->query($sql);
+
+   // $inserted_fid = mysql_insert_id();
+   $inserted_fid = $db->insert_id;
+
+
+   
+
+// display the image 
+    ?> 
+    <div align="center"> 
+        <strong><?php echo $name; ?><br> 
+
+        </strong><img name="<?php echo $name; ?>" src="getpicture.php?fid=<?php echo $inserted_fid; ?> alt="Unable to view image > 
+        <br> 
+    </div> 
+    <?php
+// we still have to close the original IF statement. If there was nothing posted, kill the page. 
+} else {
+    die("No uploaded file present");
 }
+
 
 
 //header("Location: index.php");

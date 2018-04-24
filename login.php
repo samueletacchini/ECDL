@@ -16,16 +16,18 @@ if (isset($_REQUEST["email"])) {
         echo '<div class="panel" id="classeLogin">';
         echo("<center><br><p><font color='red'>E-Mail o Password Errati!</font></p></center>");
         echo '</div>';
+        header("Location: index.php?if=0");
     } else {
         $riga = $result->fetch_array();
         $_SESSION['user'] = $riga['email'];
         $result->close();
+        header("Location: index.php?if=1");
     }
 }
 
 if (isset($_SESSION['user']) && isset($_REQUEST['exit'])) {
     session_destroy();
+    header("Location: index.php");
 }
-
-header("Location: index.php");
+echo "sono uscito";
 ?>
