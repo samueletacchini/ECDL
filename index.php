@@ -7,6 +7,7 @@ session_start();
         <link rel="stylesheet" href="css/PrenotazioneRegistrazione.css">
         <link rel="stylesheet" href="file.js">
         <meta name="viewport" content="width=device-width,initial-sclae=1.0">
+
     </head>
 
     <style>
@@ -229,14 +230,14 @@ session_start();
 
                             echo "<b><font color='#585858'>Esami prenotati:</font></b>";
                             while ($riga2 = $ris2->fetch_array()) {
-                                echo "<tr><td>{$riga2["data"]}</td>";
+                                echo "<br><tr><td>{$riga2["data"]}</td>";
                                 echo "<td>{$riga2["ora_da"]}</td>";
                                 echo "<td>{$riga2["ora_a"]}</td> <td> ";
                                 
                                 for ($i = 0; $i < strlen($riga2["esami"]); $i++) {
                                     echo" " . $riga2["esami"][$i] . " ";
                                 }
-                                echo "<td><img src='images/false.png' style='height:3%; margin-left:10%;' title='Elimina Prenotazione'></td>";
+                                echo "<td><a href=registrazione.php?elimina={$riga2["PID"]}><img src='images/false.png' style='height:3%; margin-left:10%;' title='Elimina Prenotazione'></td>";
                                 echo "</td></tr>";
                             }
                             echo "</table>";
@@ -250,6 +251,7 @@ session_start();
 
                                 echo 'PASSWORD ERRATA';
                             }
+
                             echo ' <form name=”casellaTesto” method="post" class="was-validated" action="/ecdl/login.php">
                             <div class="form-group">
                                 <label> E-Mail</label>
@@ -259,6 +261,12 @@ session_start();
                                 <label> Password </label>
                                 <input name="password" type="password" id="password" class="form-control" required>
                             </div>';
+                            if (isset($_SESSION['err']) && $_SESSION['err'] == '0') {
+                                $_SESSION['err'] = null;
+
+                                echo '<p style="color:#B40404" align="center"> E-mail o Password Errati</p>';
+                            }
+
                             echo '<center><br><button type="submit" class="btn btn-info btn-lg" value="accedi" data-toggle="modal" data-target="#myModal"> Accedi </button></center>';
                         }
                         ?>
