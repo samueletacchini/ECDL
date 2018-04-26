@@ -233,6 +233,7 @@ session_start();
                                 echo "<br><tr><td>{$riga2["data"]}</td>";
                                 echo "<td>{$riga2["ora_da"]}</td>";
                                 echo "<td>{$riga2["ora_a"]}</td> <td> ";
+                                
                                 for ($i = 0; $i < strlen($riga2["esami"]); $i++) {
                                     echo" " . $riga2["esami"][$i] . " ";
                                 }
@@ -245,6 +246,12 @@ session_start();
                                      <input type="submit" value="Logout" class="btn btn-info btn-lg">
                                   </form>';
                         } else {
+                            if (isset($_SESSION['err']) && $_SESSION['err'] == '0') {
+                                $_SESSION['err'] = null;
+
+                                echo 'PASSWORD ERRATA';
+                            }
+
                             echo ' <form name=”casellaTesto” method="post" class="was-validated" action="/ecdl/login.php">
                             <div class="form-group">
                                 <label> E-Mail</label>
@@ -304,7 +311,7 @@ session_start();
                 </div>
                 <div class="panel-body">
                     <p align="center" style="color:grey">Selezionare il/i tipi di file che si è caricato:<p>
-                    <form name="carica" action="registrazione.php" method="post" >
+                    <form name="carica" action="registrazione.php" method="post" enctype="multipart/form-data">
                         <div class="checkbox-inline col-md-offset-4">
                         <div class="form-group">
                             <input name="pdfskillcard"  class="form-check-input" type="checkbox" value="1" id="https://github.com/samueletacchini/ECDLcard">
@@ -337,13 +344,11 @@ session_start();
                             </label>
                         </div>                            
           
-                        <p align="center" style="color:grey">Seleziona il file:</p>
-                        <input type="button" id="get_file" value="Seleziona file" style="background-color:Dodgerblue">
-                        <input type="file" name="pdfs" id="my_file">
-                        <div id="customfileupload">Seleziona il file</div>
-                        
-                        <input type="hidden" name="upload" value="1">
-                        <br><input type="submit" value="Upload">
+
+                         Select image to upload:
+                        <input type="file" name="pdfs">
+                        <br>
+                        <input type="submit" name="carica" value="Upload">
                         <div id="clicco">eheheh</div>
                         
                     </form>';

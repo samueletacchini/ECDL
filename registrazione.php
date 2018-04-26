@@ -86,8 +86,8 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
     $db = new ConnessioneDb();
     $sql = "INSERT INTO `prenotazione`(`ID_codice_fiscale`, `esami`, `ID_sessione`, `pagato`) VALUES ('$codicefiscale','$esami','$sessione',0)";
     $ris = $db->query($sql);
-} elseif (isset($_REQUEST['upload'])) {
-
+} elseif (isset($_REQUEST['carica'])) {
+    //var_dump($_REQUEST['pdfs']);
     $prenotazioni = "";
     $tipo = "";
 
@@ -104,7 +104,7 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
     if (isset($_REQUEST['pdfaica'])) {
         $pdfaica = $_REQUEST['pdfaica'];
         $tipo .= "pdfaica, ";
-        ////////////////////echo 'pdfaica <br><br>';
+        //////////////////echo 'pdfaica <br><br>';
     }
     if (isset($_REQUEST['bollettinoskillcard'])) {
         $bollettinoskillcard = $_REQUEST['bollettinoskillcard'];
@@ -120,7 +120,6 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
         $prenotazioni = $_REQUEST['prenotazioni'];
         ////////////////////echo "Prenotazioniii : $prenotazioni<br><br>";
     }
-
 
     $name = $_FILES["pdfs"]["name"];
     $size = $_FILES["pdfs"]["size"];
@@ -145,18 +144,15 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
             $type == 'image/jpeg' ||
             $type == 'image/png' ||
             $type == 'image/gif' ||
-            $type == 'image/pdf' ||
             $type == 'application/pdf'
             )) {
         echo $type . " is not an acceptable format.";
-        echo ' <a href="form.html">Click here</a> to try again. ';
         die();
     }
 
 // if the file size is larger than 1MB, kill it 
-    if ($size > '1000000') {
+    if ($size > '10000000') {
         echo $name . " is over 1MB. Please make it smaller.";
-        echo' <a href="ecdl/index.html">Click here</a> to try again. ';
         die();
     }
 
@@ -182,21 +178,12 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
     }
     $ris = $db->query($sql);
 
-   // $inserted_fid = mysql_insert_id();
-   $inserted_fid = $db->insert_id;
+   
 
 
    
 
-// display the image 
-    ?> 
-    <div align="center"> 
-        <strong><?php echo $name; ?><br> 
 
-        </strong><img name="<?php echo $name; ?>" src="getpicture.php?fid=<?php echo $inserted_fid; ?> alt="Unable to view image > 
-        <br> 
-    </div> 
-    <?php
 // we still have to close the original IF statement. If there was nothing posted, kill the page. 
 }
 
