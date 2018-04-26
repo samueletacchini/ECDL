@@ -303,7 +303,7 @@ session_start();
                 </div>
                 <div class="panel-body">
                     <p align="center" style="color:grey">Selezionare il/i tipi di file che si è caricato:<p>
-                    <form name="carica" action="registrazione.php" method="post" >
+                    <form name="carica" action="registrazione.php" method="post" enctype="multipart/form-data">
                         <div class="checkbox-inline col-md-offset-4">
                         <div class="form-group">
                             <input name="pdfskillcard"  class="form-check-input" type="checkbox" value="1" id="https://github.com/samueletacchini/ECDLcard">
@@ -337,9 +337,10 @@ session_start();
                         </div>                            
           
 
-                        <input type="file" name="pdfs">                        
-                        <input type="hidden" name="upload" value="1">
-                        <br><input type="submit" value="Upload">
+                         Select image to upload:
+                        <input type="file" name="pdfs">
+                        <br>
+                        <input type="submit" name="carica" value="Upload">
                         <div id="clicco">eheheh</div>
                         
                     </form>';
