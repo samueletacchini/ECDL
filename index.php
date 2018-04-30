@@ -217,8 +217,6 @@ session_start();
                         <?php
                         if (isset($_SESSION['user'])) {
 
-                            echo "<table class='table table-bordered'><thead><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";
-
                             require_once('ConnessioneDb.php');
                             $db = new ConnessioneDb();
                             $sql = "select * from user where email='" . $_SESSION['user'] . "'";
@@ -228,19 +226,26 @@ session_start();
                             $sql = "SELECT prenotazione.ID as PID, sessioni.*, prenotazione.esami FROM sessioni JOIN `prenotazione` ON prenotazione.ID_sessione = sessioni.ID JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale WHERE user.email = '" . $_SESSION['user'] . "'";
                             $ris2 = $db->query($sql);
 
-                            echo "<b><font color='#585858'>Esami prenotati:</font></b>";
-                            while ($riga2 = $ris2->fetch_array()) {
-                                echo "<br><tr><td>{$riga2["data"]}</td>";
-                                echo "<td>{$riga2["ora_da"]}</td>";
-                                echo "<td>{$riga2["ora_a"]}</td> <td> ";
-                                
-                                for ($i = 0; $i < strlen($riga2["esami"]); $i++) {
-                                    echo" " . $riga2["esami"][$i] . " ";
+                            if (mysqli_num_rows($ris2) > 0) {
+                                echo "<table class='table table-bordered'><thead><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";
+                                echo "<b><font color='#585858'>Esami prenotati:</font></b>";
+                                while ($riga2 = $ris2->fetch_array()) {
+                                    echo "<br><tr><td>{$riga2["data"]}</td>";
+                                    echo "<td>{$riga2["ora_da"]}</td>";
+                                    echo "<td>{$riga2["ora_a"]}</td> <td> ";
+
+                                    for ($i = 0; $i < strlen($riga2["esami"]); $i++) {
+                                        echo" " . $riga2["esami"][$i] . " ";
+                                    }
+                                    echo "<td><a href=registrazione.php?elimina={$riga2["PID"]}><img src='images/false.png' style='height:3%; margin-left:10%;' title='Elimina Prenotazione'></td>";
+                                    echo "</td></tr>";
                                 }
-                                echo "<td><a href=registrazione.php?elimina={$riga2["PID"]}><img src='images/false.png' style='height:3%; margin-left:10%;' title='Elimina Prenotazione'></td>";
-                                echo "</td></tr>";
+                                echo "</table>";
+                            }else{
+                                echo "<b>non hai prenotazioni</b>";
                             }
-                            echo "</table>";
+
+
                             echo '<form action="login.php" method="post">
                                      <input type="hidden" name="exit" value="1">
                                      <input type="submit" value="Logout" class="btn btn-info btn-lg">
@@ -314,7 +319,7 @@ session_start();
                     <form name="carica" action="registrazione.php" method="post" enctype="multipart/form-data">
                         <div class="checkbox-inline col-md-offset-4">
                         <div class="form-group">
-                            <input name="pdfskillcard"  class="form-check-input" type="checkbox" value="1" id="https://github.com/samueletacchini/ECDLcard">
+                            <input name="pdfskillcard"  class="form-check-input" type="checkbox" value="1" >
                             <label  class="form-check-label" for="defaultCheck7">
                                 pdf skillcard
                             </label>
