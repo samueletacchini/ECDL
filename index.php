@@ -237,7 +237,7 @@ session_start();
                                     for ($i = 0; $i < strlen($riga2["esami"]); $i++) {
                                         echo" " . $riga2["esami"][$i] . " ";
                                     }
-                                    echo "<td><a href=registrazione.php?elimina={$riga2["PID"]}><img src='images/false.png' style='height:3%; margin-left:10%;' title='Elimina Prenotazione'></td>";
+                                    echo "<td><a href=eliminaPrenotazione.php?elimina={$riga2["PID"]}><img src='images/false.png' style='height:3%; margin-left:10%;' title='Elimina Prenotazione'></td>";
                                     echo "</td></tr>";
                                 }
                                 echo "</table>";
@@ -316,7 +316,7 @@ session_start();
                 </div>
                 <div class="panel-body">
                     <p align="center" style="color:grey">Selezionare il/i tipi di file che si è caricato:<p>
-                    <form name="carica" action="registrazione.php" method="post" enctype="multipart/form-data">
+                    <form name="carica" action="caricaFile.php" method="post" enctype="multipart/form-data">
                         <div class="checkbox-inline col-md-offset-4">
                         <div class="form-group">
                             <input name="pdfskillcard"  class="form-check-input" type="checkbox" value="1" >

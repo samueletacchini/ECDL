@@ -112,7 +112,7 @@
         <div>
             <div class="col-md-2"></div>
             <div class="container-fluid bg-grey col-md-8">
-                <form name="casellaTesto" method="get" class="was-validated" action="registrazione.php">
+                <form name="casellaTesto" method="get" class="was-validated" action="eliminaPrenotazione.php">
 
                     <input type="hidden" name="codiceFiscale" value="<?php
                     if ($pre) {
