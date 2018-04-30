@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if (isset($_REQUEST['carica'])) {
     //var_dump($_REQUEST['pdfs']);
     $prenotazioni = "";
