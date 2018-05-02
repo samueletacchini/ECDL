@@ -13,6 +13,8 @@ if (isset($_REQUEST['elimina'])) {
     header("Location: index.php");
 } elseif (isset($_REQUEST['sessione']) && isset($_REQUEST['codiceFiscale'])) {
 
+    
+
     echo "eheh<br><br>";
     $sessione = $_REQUEST['sessione'];
     $esami = "";
@@ -25,11 +27,10 @@ if (isset($_REQUEST['elimina'])) {
     }
     $codicefiscale = $_REQUEST['codiceFiscale'];
 
-
     require_once('ConnessioneDb.php');
     $db = new ConnessioneDb();
-    $sql = "INSERT INTO `prenotazione`(`ID_codice_fiscale`, `esami`, `ID_sessione`, `pagato`) VALUES ('$codicefiscale','$esami','$sessione',0)";
+    $sql = "INSERT INTO `prenotazione`(`ID_codice_fiscale`, `esami`, `ID_sessione`, `pagato`) VALUES ('$codicefiscale','$esami' ,'$sessione',0)";
     $ris = $db->query($sql);
 }
 
-header("Location: index.php");
+//header("Location: index.php");

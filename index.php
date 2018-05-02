@@ -173,22 +173,29 @@ session_start();
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div class="panel panel-default">
-                        <div class="panel">
-                            <h3 align='center'>Lorem Ipsum</h3>
-                        </div>
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ante felis, imperdiet ac placerat at, tincidunt ac nibh. Aliquam erat volutpat. Phasellus venenatis gravida justo, ac accumsan nibh pretium ac. In blandit dictum libero, non faucibus lectus malesuada sit amet. Sed ultrices est nec euismod vehicula. Fusce scelerisque molestie felis, in suscipit risus viverra in. Duis eget porttitor lorem. Donec imperdiet magna sit amet enim vehicula efficitur.
-                            <br><br>
-                            Fusce et vehicula nisl. Curabitur ut vehicula ante, at imperdiet quam. Nam quis dolor neque. Proin metus lorem, finibus a odio sed, viverra lobortis quam. Phasellus quis hendrerit dui. Maecenas rhoncus accumsan ligula, posuere sagittis enim dignissim vel. In iaculis laoreet justo et placerat. Morbi vitae pretium mi. Maecenas cursus, neque viverra placerat pulvinar, ante arcu pretium nisi, vestibulum pretium erat odio eget leo. Nam placerat molestie elit ac elementum. Suspendisse molestie id eros non malesuada. Donec lobortis viverra velit eu sodales. Phasellus hendrerit malesuada sapien sit amet tincidunt. Ut tempor bibendum rutrum. Proin in ultrices nunc.
-                            <br><br>
-                            Praesent aliquet laoreet nisl aliquam faucibus. Quisque rutrum luctus tortor, quis facilisis leo egestas ut. Nam varius nisi ac cursus tempor. Ut eget rhoncus justo. Morbi non libero ut lectus molestie volutpat. Nunc id metus et lorem mollis vestibulum. Ut id posuere nisi, a pretium ex. Maecenas egestas ipsum nec massa cursus rutrum. Donec ligula ante, dictum ut dictum nec, semper non metus. Aliquam ut sem quis ex finibus posuere. Mauris scelerisque nec metus ac mattis. Nam auctor, felis ut consequat cursus, est metus faucibus risus, non tincidunt purus diam vitae lorem.
-                            <br><br>
-                            Phasellus ac fringilla nibh, ac porttitor tortor. Sed tellus lectus, sodales a bibendum ac, aliquet nec elit. In molestie sollicitudin est, a finibus quam porttitor volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dui sapien, accumsan a sapien quis, feugiat tempor tortor. Vivamus tristique enim ac lorem ultricies consequat. Mauris imperdiet sollicitudin sem, nec pulvinar elit sagittis quis. Duis eu ligula eu est pharetra mollis. Maecenas porttitor mauris at ipsum tempus posuere. Phasellus porttitor ornare volutpat. Proin vel tristique ligula.
-                            <br><br>
-                            <br><br>
-                        </div>
+                <div class="panel panel-default">
+                    <div class="panel">
+                        <h3 align='center'>Ricordati di caricare i file!</h3>
+                    </div>
+                    <div class="panel-body">
+                        Prenotazioni di cui devi caricare i file!
+
+
+                    </div>
+                </div><div class="panel panel-default">
+                    <div class="panel">
+                        <h3 align='center'>Lorem Ipsum</h3>
+                    </div>
+                    <div class="panel-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ante felis, imperdiet ac placerat at, tincidunt ac nibh. Aliquam erat volutpat. Phasellus venenatis gravida justo, ac accumsan nibh pretium ac. In blandit dictum libero, non faucibus lectus malesuada sit amet. Sed ultrices est nec euismod vehicula. Fusce scelerisque molestie felis, in suscipit risus viverra in. Duis eget porttitor lorem. Donec imperdiet magna sit amet enim vehicula efficitur.
+                        <br><br>
+                        Fusce et vehicula nisl. Curabitur ut vehicula ante, at imperdiet quam. Nam quis dolor neque. Proin metus lorem, finibus a odio sed, viverra lobortis quam. Phasellus quis hendrerit dui. Maecenas rhoncus accumsan ligula, posuere sagittis enim dignissim vel. In iaculis laoreet justo et placerat. Morbi vitae pretium mi. Maecenas cursus, neque viverra placerat pulvinar, ante arcu pretium nisi, vestibulum pretium erat odio eget leo. Nam placerat molestie elit ac elementum. Suspendisse molestie id eros non malesuada. Donec lobortis viverra velit eu sodales. Phasellus hendrerit malesuada sapien sit amet tincidunt. Ut tempor bibendum rutrum. Proin in ultrices nunc.
+                        <br><br>
+                        Praesent aliquet laoreet nisl aliquam faucibus. Quisque rutrum luctus tortor, quis facilisis leo egestas ut. Nam varius nisi ac cursus tempor. Ut eget rhoncus justo. Morbi non libero ut lectus molestie volutpat. Nunc id metus et lorem mollis vestibulum. Ut id posuere nisi, a pretium ex. Maecenas egestas ipsum nec massa cursus rutrum. Donec ligula ante, dictum ut dictum nec, semper non metus. Aliquam ut sem quis ex finibus posuere. Mauris scelerisque nec metus ac mattis. Nam auctor, felis ut consequat cursus, est metus faucibus risus, non tincidunt purus diam vitae lorem.
+                        <br><br>
+                        Phasellus ac fringilla nibh, ac porttitor tortor. Sed tellus lectus, sodales a bibendum ac, aliquet nec elit. In molestie sollicitudin est, a finibus quam porttitor volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dui sapien, accumsan a sapien quis, feugiat tempor tortor. Vivamus tristique enim ac lorem ultricies consequat. Mauris imperdiet sollicitudin sem, nec pulvinar elit sagittis quis. Duis eu ligula eu est pharetra mollis. Maecenas porttitor mauris at ipsum tempus posuere. Phasellus porttitor ornare volutpat. Proin vel tristique ligula.
+                        <br><br>
+                        <br><br>
                     </div>
                 </div>
             </div>
@@ -226,22 +233,28 @@ session_start();
                             $sql = "SELECT prenotazione.ID as PID, sessioni.*, prenotazione.esami FROM sessioni JOIN `prenotazione` ON prenotazione.ID_sessione = sessioni.ID JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale WHERE user.email = '" . $_SESSION['user'] . "'";
                             $ris2 = $db->query($sql);
 
+                            $sql3 = "";
+                            //$ris3 = $db->query($sql3);
+
+                            
                             if (mysqli_num_rows($ris2) > 0) {
                                 echo "<table class='table table-bordered'><thead><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";
                                 echo "<b><font color='#585858'>Esami prenotati:</font></b>";
                                 while ($riga2 = $ris2->fetch_array()) {
-                                    echo "<br><tr><td>{$riga2["data"]}</td>";
+
+                                    echo "<br><tr ><td>{$riga2["data"]}</td>";
                                     echo "<td>{$riga2["ora_da"]}</td>";
                                     echo "<td>{$riga2["ora_a"]}</td> <td> ";
 
                                     for ($i = 0; $i < strlen($riga2["esami"]); $i++) {
                                         echo" " . $riga2["esami"][$i] . " ";
                                     }
+
                                     echo "<td><a href=eliminaPrenotazione.php?elimina={$riga2["PID"]}><img src='images/false.png' style='height:3%; margin-left:10%;' title='Elimina Prenotazione'></td>";
                                     echo "</td></tr>";
                                 }
                                 echo "</table>";
-                            }else{
+                            } else {
                                 echo "<b>non hai prenotazioni</b>";
                             }
 
@@ -287,17 +300,19 @@ session_start();
                     <div class="panel-body">
                         <table class="table table-bordered">
                             <thead>
-                                <tr><th>DATA</th><th>Dalle</th><th>alle</th><tr>
                                     <?php
                                     require_once('ConnessioneDb.php');
                                     $db = new ConnessioneDb();
                                     $sql = "SELECT * FROM `sessioni`";
                                     $ris = $db->query($sql);
 
+                                    
+                                    //{$riga["ID"]}
                                     while ($riga = $ris->fetch_array()) {
                                         echo "<tr><td>{$riga["data"]}</td>";
                                         echo "<td>{$riga["ora_da"]}</td>";
                                         echo "<td>{$riga["ora_a"]}</td>";
+                                       // echo "<td>  prenota </td>";
                                         echo "</tr>";
                                     }
                                     echo "</table>";
@@ -399,7 +414,6 @@ session_start();
                 $esami .= ' ' . $riga["esami"][$i] . ' ';
             }
             $reggia .= '<option value="' . $riga["ip"] . '">' . $riga["data"] . ' dalle ' . $riga["ora_da"] . ' alle' . $riga["ora_a"] . ' Moduli prenotati: ' . $esami . '</option>';
-//     
         }
     }
     ?>

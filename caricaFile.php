@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 if (isset($_REQUEST['carica'])) {
     //var_dump($_REQUEST['pdfs']);
@@ -30,7 +31,7 @@ if (isset($_REQUEST['carica'])) {
         $tipo .= "bollettinoprenotazione, ";
         ////////////////////echo 'bollettinoprenotazione <br><br>';
     }
-    if (isset($_REQUEST['prenot azioni'])) {
+    if (isset($_REQUEST['prenotazioni'])) {
         $prenotazioni = $_REQUEST['prenotazioni'];
         ////////////////////echo "Prenotazioniii : $prenotazioni<br><br>";
     }
@@ -94,4 +95,5 @@ if (isset($_REQUEST['carica'])) {
 
 // we still have to close the original IF statement. If there was nothing posted, kill the page. 
 }
+header("Location: index.php");
 ?>
