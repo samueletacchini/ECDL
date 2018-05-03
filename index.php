@@ -178,7 +178,12 @@ session_start();
                         <h3 align='center'>Ricordati di caricare i file!</h3>
                     </div>
                     <div class="panel-body">
-                        Prenotazioni di cui devi caricare i file!
+                        Prenotazioni di cui devi caricare i file!<br>
+                        ricordati di caricare i file delle prenotazioni segnate sennò non verranno considerate!<br>
+                        blu: caricato solo il pdf!<br>
+                        rosso: caricato solo il bollettino<br>
+                        verde: tutto apposto!<br>
+                        giallo: nessun file caricato
 
 
                     </div>
@@ -233,16 +238,60 @@ session_start();
                             $sql = "SELECT prenotazione.ID as PID, sessioni.*, prenotazione.esami FROM sessioni JOIN `prenotazione` ON prenotazione.ID_sessione = sessioni.ID JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale WHERE user.email = '" . $_SESSION['user'] . "'";
                             $ris2 = $db->query($sql);
 
-                            $sql3 = "";
-                            //$ris3 = $db->query($sql3);
+                            $sql3 = "SELECT prenotazione.ID AS pid, file.tipo FROM `file` JOIN prenotazione ON prenotazione.ID = file.ID_prenotazione WHERE `ID_user` = (SELECT user.codice_fiscale FROM user WHERE user.email = '{$_SESSION['user']}')";
+                            $ris3 = $db->query($sql3);
 
-                            
+                            $l = 0;
+                            while ($riga3 = $ris3->fetch_array()) {
+                                $pids[$l] = $riga3['pid'];
+                                $tipi[$l] = $riga3['tipo'];
+                                $tipi[$l] = explode(", ", $tipi[$l]);
+                                $l++;
+                            }
+
+//                            for ($n = 0; $n < count($tipi); $n++) {
+//                                echo "r: $n  ";
+//                                for ($m = 0; $m < count($tipi[$n]); $m++) {
+//                                    echo " c: $m  {$tipi[$n][$m]}";
+//                                }
+//                                echo '<br>';
+//                            }
+
                             if (mysqli_num_rows($ris2) > 0) {
                                 echo "<table class='table table-bordered'><thead><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";
                                 echo "<b><font color='#585858'>Esami prenotati:</font></b>";
                                 while ($riga2 = $ris2->fetch_array()) {
+                                    $tipis = "";
 
-                                    echo "<br><tr ><td>{$riga2["data"]}</td>";
+                                    for ($i = 0; $i < count($pids); $i++) {
+                                        //echo $pids[$i] . " oo " . $riga2['PID'];
+                                        if ($pids[$i] == $riga2["PID"]) {
+                                            for ($m = 0; $m < count($tipi[$i]); $m++) {
+
+                                                if ($tipi[$i][$m] == "pdfprenotazione") {
+                                                    $tipis .= "p";
+                                                    //echo "<tr bgcolor='#6666ff'><td>{$riga2["data"]}</td>";
+                                                } elseif ($tipi[$i][$m] == "bollettinoprenotazione") {
+                                                    $tipis .= "b";
+                                                    //echo "<tr bgcolor='#ff4d4d'><td>{$riga2["data"]}</td>";
+                                                }
+                                            }
+                                            //ha il file 
+                                        }
+                                    }
+
+                                    if ($tipis == "p") {
+                                        echo "<tr bgcolor='#6666ff'><td>{$riga2["data"]}</td>";
+                                    } elseif ($tipis == "b") {
+                                        echo "<tr bgcolor='#ff4d4d'><td>{$riga2["data"]}</td>";
+                                    } elseif ($tipis == "pb") {
+                                        echo "<tr bgcolor='#80ff80'><td>{$riga2["data"]}</td>";
+                                    } elseif($tipis == "") {
+                                        echo "<tr bgcolor='#ffff66'><td>{$riga2["data"]}</td>";
+                                    }
+
+
+
                                     echo "<td>{$riga2["ora_da"]}</td>";
                                     echo "<td>{$riga2["ora_a"]}</td> <td> ";
 
@@ -250,14 +299,15 @@ session_start();
                                         echo" " . $riga2["esami"][$i] . " ";
                                     }
 
+                                    echo "<td>{$riga2["PID"]}</td>";
                                     echo "<td><a href=eliminaPrenotazione.php?elimina={$riga2["PID"]}><img src='images/false.png' style='height:3%; margin-left:10%;' title='Elimina Prenotazione'></td>";
+
                                     echo "</td></tr>";
                                 }
                                 echo "</table>";
                             } else {
                                 echo "<b>non hai prenotazioni</b>";
                             }
-
 
                             echo '<form action="login.php" method="post">
                                      <input type="hidden" name="exit" value="1">
@@ -300,23 +350,23 @@ session_start();
                     <div class="panel-body">
                         <table class="table table-bordered">
                             <thead>
-                                    <?php
-                                    require_once('ConnessioneDb.php');
-                                    $db = new ConnessioneDb();
-                                    $sql = "SELECT * FROM `sessioni`";
-                                    $ris = $db->query($sql);
+                                <?php
+                                require_once('ConnessioneDb.php');
+                                $db = new ConnessioneDb();
+                                $sql = "SELECT * FROM `sessioni`";
+                                $ris = $db->query($sql);
 
-                                    
-                                    //{$riga["ID"]}
-                                    while ($riga = $ris->fetch_array()) {
-                                        echo "<tr><td>{$riga["data"]}</td>";
-                                        echo "<td>{$riga["ora_da"]}</td>";
-                                        echo "<td>{$riga["ora_a"]}</td>";
-                                       // echo "<td>  prenota </td>";
-                                        echo "</tr>";
-                                    }
-                                    echo "</table>";
-                                    ?>
+
+                                //{$riga["ID"]}
+                                while ($riga = $ris->fetch_array()) {
+                                    echo "<tr><td>{$riga["data"]}</td>";
+                                    echo "<td>{$riga["ora_da"]}</td>";
+                                    echo "<td>{$riga["ora_a"]}</td>";
+                                    // echo "<td>  prenota </td>";
+                                    echo "</tr>";
+                                }
+                                echo "</table>";
+                                ?>
                             </thead>
                         </table>
                     </div>
