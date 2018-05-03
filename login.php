@@ -30,5 +30,4 @@ if (isset($_SESSION['user']) && isset($_REQUEST['exit'])) {
     session_destroy();
     header("Location: index.php");
 }
-echo "sono uscito";
 ?>
