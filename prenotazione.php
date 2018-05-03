@@ -67,6 +67,7 @@
         $datenow = date("d/m/y");
         $pre = false;
         if (isset($_REQUEST["id"])) {
+            
             $pre = true;
             $id = $_REQUEST["id"];
             $query = "SELECT * FROM `user` WHERE `email` = '$id'";
@@ -110,9 +111,12 @@
         }
         ?>
         <div>
+            <?php if (isset($_REQUEST["sid"])) {
+                echo "dlouishdfòosajdnfpoòsadjfnapoòdfjnaòdofjnaldjfn";
+            }?>
             <div class="col-md-2"></div>
             <div class="container-fluid bg-grey col-md-8">
-                <form name="casellaTesto" method="get" class="was-validated" action="registrazione.php">
+                <form name="casellaTesto" method="post" class="was-validated" action="eliminaPrenotazione.php">
 
                     <input type="hidden" name="codiceFiscale" value="<?php
                     if ($pre) {

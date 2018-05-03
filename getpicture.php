@@ -13,19 +13,18 @@ if (isset($_REQUEST['fid'])) {
 
 // define results into variables 
     $name = $gigi["nome"];
-    $size = $gigi["dimensione"];
+    //$size = $gigi["dimensione"];
     $type = $gigi["estensione"];
     $content = $gigi["file"];
 
 
-// give our picture the proper headers...otherwise our page will be confused 
+    // give our picture the proper headers...otherwise our page will be confused 
     header("Content-Disposition: attachment; filename=$name");
-    header("Content-length: $size");
+    //header("Content-length: $size");
     header("Content-type: $type");
-    echo $content;
 
-    mysql_close();
+    echo $content;
 } else {
-    die("No file ID given...");
+    echo"No file ID given...";
 }
 ?>
