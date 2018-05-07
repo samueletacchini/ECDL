@@ -52,7 +52,7 @@
                         <li><a href="#" style='color:white'>Page 2</a></li>
                         <li><a href="#" style='color:white'>Page 3</a></li>
                     </ul>
-                    <form class="navbar-form navbar-right" action="/action_page.php">
+                    <form class="navbar-form navbar-right">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Search">
                         </div>
@@ -62,41 +62,204 @@
             </nav>
             <div class="panel panel-default">
                 <div class="panel">
-                    <h3 align='center'>Lorem Ipsum</h3>
+                    <h3 align='center'>Utenti vari</h3>
                 </div>
                 <div class="panel-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ante felis, imperdiet ac placerat at, tincidunt ac nibh. Aliquam erat volutpat. Phasellus venenatis gravida justo, ac accumsan nibh pretium ac. In blandit dictum libero, non faucibus lectus malesuada sit amet. Sed ultrices est nec euismod vehicula. Fusce scelerisque molestie felis, in suscipit risus viverra in. Duis eget porttitor lorem. Donec imperdiet magna sit amet enim vehicula efficitur.
-                    <br><br>
-                    Fusce et vehicula nisl. Curabitur ut vehicula ante, at imperdiet quam. Nam quis dolor neque. Proin metus lorem, finibus a odio sed, viverra lobortis quam. Phasellus quis hendrerit dui. Maecenas rhoncus accumsan ligula, posuere sagittis enim dignissim vel. In iaculis laoreet justo et placerat. Morbi vitae pretium mi. Maecenas cursus, neque viverra placerat pulvinar, ante arcu pretium nisi, vestibulum pretium erat odio eget leo. Nam placerat molestie elit ac elementum. Suspendisse molestie id eros non malesuada. Donec lobortis viverra velit eu sodales. Phasellus hendrerit malesuada sapien sit amet tincidunt. Ut tempor bibendum rutrum. Proin in ultrices nunc.
-                    <br><br>
-                    Praesent aliquet laoreet nisl aliquam faucibus. Quisque rutrum luctus tortor, quis facilisis leo egestas ut. Nam varius nisi ac cursus tempor. Ut eget rhoncus justo. Morbi non libero ut lectus molestie volutpat. Nunc id metus et lorem mollis vestibulum. Ut id posuere nisi, a pretium ex. Maecenas egestas ipsum nec massa cursus rutrum. Donec ligula ante, dictum ut dictum nec, semper non metus. Aliquam ut sem quis ex finibus posuere. Mauris scelerisque nec metus ac mattis. Nam auctor, felis ut consequat cursus, est metus faucibus risus, non tincidunt purus diam vitae lorem.
-                    <br><br>
-                    Phasellus ac fringilla nibh, ac porttitor tortor. Sed tellus lectus, sodales a bibendum ac, aliquet nec elit. In molestie sollicitudin est, a finibus quam porttitor volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dui sapien, accumsan a sapien quis, feugiat tempor tortor. Vivamus tristique enim ac lorem ultricies consequat. Mauris imperdiet sollicitudin sem, nec pulvinar elit sagittis quis. Duis eu ligula eu est pharetra mollis. Maecenas porttitor mauris at ipsum tempus posuere. Phasellus porttitor ornare volutpat. Proin vel tristique ligula.
-                    <br><br>
-                    <br><br>
+                    <table class="table table-bordered">
+                        <?php
+                        
+                        
+                        
+                        
+                        
+                        
+                        require_once('ConnessioneDb.php');
+                        $db = new ConnessioneDb();
+                        $sql = "SELECT * FROM `user`";
+                        $ris = $db->query($sql);
+                        while ($riga = $ris->fetch_array()) {
+                            echo "<tr><td>{$riga["email"]}</td>";
+                            echo "<td>{$riga["skill_card"]}</td>";
+                            echo "<td>{$riga["nome"]}</td>";
+                            // echo "<td>  prenota </td>";
+                            echo "</tr>";
+                        }
+                        echo "</table>";
+                        ?>
+                    </table>
                 </div>
             </div>
         </div>
-            <div class='col-md-4'>
-                <div class="panel panel-default">
-                    <div class="panel">
-                        
-                    </div>
-                    <div class="panel-body">
-                        
-                    </div>
+        <div class='col-md-4'>
+            <div class="panel panel-default">
+                <div class="panel">
                 </div>
+                <form name=”visualizza” method="post" class="was-validated" action="/ecdl/portale.php">
+                    <div class="panel-body">
+                        <div class="checkbox-inline col-md-4">
+                            <div class="form-group">
+                                <input name="skill_card"  class="form-check-input" type="checkbox" value="1" >
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    skillcard
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="rilasciata" class="form-check-input" type="checkbox" value="1" id="pdfprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    rilasciata
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="codice_fiscale"  class="form-check-input" type="checkbox" value="1" id="pdfaica">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    codicefiscale
+                                </label>
+                            </div>   
+                            <div class="form-group">
+                                <input name="sesso" class="form-check-input" type="checkbox" value="1" id="pdfupdate">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    sesso
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="cognome" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    cognome
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="nome" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    nome    
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="data_nascita" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    data di nascita
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="comune_nascita" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    comune di nascita	    
+                                </label>
+                            </div>
+                            </form>
+                        </div>
+                        <div class="checkbox-inline col-md-4">
+                            <div class="form-group">
+                                <input name="provincia_nascita"  class="form-check-input" type="checkbox" value="1" >
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    provincia nascita	
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="stato_civile" class="form-check-input" type="checkbox" value="1" id="pdfprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    stato civile
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="indirizzo"  class="form-check-input" type="checkbox" value="1" id="pdfaica">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    indirizzo 
+                                </label>
+                            </div>   
+                            <div class="form-group">
+                                <input name="civico" class="form-check-input" type="checkbox" value="1" id="pdfupdate">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    civico  
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="stato" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    stato
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="citta" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    citta
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="cap" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    cap    
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="provincia" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    provincia    
+                                </label>
+                            </div>
+                        </div>
+                        <div class="checkbox-inline col-md-3">
+                            <div class="form-group">
+                                <input name="email"  class="form-check-input" type="checkbox" value="1" >
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    email 
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="cellulare" class="form-check-input" type="checkbox" value="1" id="pdfprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    cellulare 
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="telefono"  class="form-check-input" type="checkbox" value="1" id="pdfaica">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    telefono
+                                </label>
+                            </div>   
+                            <div class="form-group">
+                                <input name="occupazione" class="form-check-input" type="checkbox" value="1" id="pdfupdate">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    occupazione  
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="titolo_studio" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    titolo di studio
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="pagato" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    pagato
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="tipo" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7">
+                                    tipo    
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="ok" class="form-check-input" type="submit" value="conferma" >
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="col-md-12">                                 
-                <footer class="container text-center" id="foot" >                                         
-                    <p>                            
-                        <br/><strong>IIS F.CORNI - LICEO E TECNICO</strong>                              
-                        <br/>                    Sede centrale: L.go A. Moro 25 Tel 059/400700 Fax 059/243391                              
-                        <br/>                        Succursale: Via Leonardo da Vinci 300 Tel 059/2917000 Fax 059/344709                              
-                        <br/>                    ecdl@istitutocorni.it - http://www.istitutocorni.gov.it                                          
-                    </p>                                 
-                </footer>     
-            </div>
+        </div>
+        <div class="col-md-12">                                 
+            <footer class="container text-center" id="foot" >                                         
+                <p>                            
+                    <br/><strong>IIS F.CORNI - LICEO E TECNICO</strong>                              
+                    <br/>                    Sede centrale: L.go A. Moro 25 Tel 059/400700 Fax 059/243391                              
+                    <br/>                        Succursale: Via Leonardo da Vinci 300 Tel 059/2917000 Fax 059/344709                              
+                    <br/>                    ecdl@istitutocorni.it - http://www.istitutocorni.gov.it                                          
+                </p>                                 
+            </footer>     
+        </div>
     </body>
 </html>
+
+
 

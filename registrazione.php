@@ -1,57 +1,56 @@
 <?php
+
 session_start();
 require_once('ConnessioneDb.php');
 $db = new ConnessioneDb();
-$pnascita = "default";
-$civico = "111";
-$titolo = "titolo di studio";
+
 if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
 
-    echo "<br>" . $password = $_REQUEST['password'];
+    $password = $_REQUEST['password'];
 
-    echo "<br>" . $codicefiscale = $_REQUEST['codiceFiscale'];
+    $codicefiscale = $_REQUEST['codiceFiscale'];
 
-    echo "<br>" . $sesso = $_REQUEST['sesso'];
+    $sesso = $_REQUEST['sesso'];
 
-    echo "<br>" . $cognome = $_REQUEST['cognome'];
+    $cognome = $_REQUEST['cognome'];
 
-    echo "<br>" . $nome = $_REQUEST['nome'];
+    $nome = $_REQUEST['nome'];
 
-    echo "<br>" . $giorno = $_REQUEST['giorno'];
+    $giorno = $_REQUEST['giorno'];
 
-    echo "<br>" . $mese = $_REQUEST['mese'];
+    $mese = $_REQUEST['mese'];
 
-    echo "<br>" . $anno = $_REQUEST['anno'];
+    $anno = $_REQUEST['anno'];
 
-    echo "<br>" . $statocivile = $_REQUEST['statocivile'];
+    $statocivile = $_REQUEST['statocivile'];
 
-    echo "<br>" . $lnascita = $_REQUEST['lnascita'];
+    $lnascita = $_REQUEST['lnascita'];
 
-// $pnascita = $_REQUEST['$pnascita'];
+    $pnascita = $_REQUEST['$pnascita'];
 
-    echo "<br>" . $indirizzo = $_REQUEST['indirizzo'];
+    $indirizzo = $_REQUEST['indirizzo'];
 
-//$civico = $_REQUEST['civico'];
+    $civico = $_REQUEST['civico'];
 
-    echo "<br>" . $stato = $_REQUEST['stato'];
+    $stato = $_REQUEST['stato'];
 
-    echo "<br>" . $citta = $_REQUEST['citta'];
+    $citta = $_REQUEST['citta'];
 
-    echo "<br>" . $cap = $_REQUEST['cap'];
+    $cap = $_REQUEST['cap'];
 
-//echo "<br>" .  $titolo = $_REQUEST['titolo'];
+    $titolo = $_REQUEST['titolo'];
 
-    echo "<br>" . $provincia = $_REQUEST['provincia'];
+    $provincia = $_REQUEST['provincia'];
 
-    echo "<br>" . $telefono = $_REQUEST['telefonoCasa'];
+    $telefono = $_REQUEST['telefonoCasa'];
 
-    echo "<br>" . $cellulare = $_REQUEST['cellulare'];
+    $cellulare = $_REQUEST['cellulare'];
 
-    echo "<br>" . $mail = $_REQUEST['mail'];
+    $mail = $_REQUEST['mail'];
 
-    echo "<br>" . $occupazione = $_REQUEST['occupazione'];
+    $occupazione = $_REQUEST['occupazione'];
 
-    echo "<br>" . $tipo = $_REQUEST['optradio'];
+    $tipo = $_REQUEST['optradio'];
     if ($tipo == "studenti") {
         $scuola = $_REQUEST['scuola'];
 
@@ -67,11 +66,9 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
     . "  VALUES ('$password', '$datenow', '$codicefiscale', '$sesso', '$cognome', '$nome', '$birthdate', '$lnascita', '$pnascita', '$statocivile', '$indirizzo', '$civico', '$stato', '$citta', '$cap', '$provincia', '$mail', '$cellulare', '$telefono', '$occupazione', '$titolo', 0, '$tipo')";
 
     $ris = $db->query($query);
-} 
+}
 
 header("Location: index.php");
- 
-
 ?>
 
 
