@@ -96,18 +96,29 @@ session_start();
             <div>
                 <div class="panel panel-default">
                     <div class="panel">
-                        <h3 align='center'>Registrazione</h3>
+                        <h3 align='center'>PDF</h3>
                     </div>
                     <div id="buttons" class="panel-body">
-                        <div class="form-group col-md-3">
-                            <form action="prenotazione.php" method="post">
-                                <?php
-                                if (isset($_SESSION['user'])) {
-                                    echo '<input type="hidden" name="id" value="' . $_SESSION['user'] . '">';
-                                    echo '<input type="submit" value="Prenota esame" class="btn btn-info btn-lg">';
-                                }
-                                ?>
-                            </form>
+
+                        <div class="form-group col-md-3" id="prenota">
+
+                            <?php
+                            //sono loggato
+                            if (isset($_SESSION['user'])) {
+                                require_once('ConnessioneDb.php');
+                                $db = new ConnessioneDb();
+                                $sql = 'SELECT ID FROM `prenotazione` WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = "' . $_SESSION['user'] . '")';
+                                $result = $db->query($sql);
+                                $gigi = $result->fetch_array();
+                                $idpren = $gigi['ID'];
+                                echo '<form method="post" action="pdfUpdate.php">
+                                        <input value="' . $_SESSION['user'] . '"  type="hidden" name="id">
+                                        <input value="' . $idpren . '" type="hidden" name="idprenota">
+                                        <input type="submit" value="PDF Update" class="btn btn-info btn-lg">
+                                    </form>';
+                            }
+                            ?>
+
                         </div>
                         <div class="form-group col-md-3">
 
@@ -120,10 +131,9 @@ session_start();
                                 $result = $db->query($sql);
                                 $gigi = $result->fetch_array();
                                 $idpren = $gigi['ID'];
-                                echo '<form method="post" action="pdf.php">
+                                echo '<form method="post" action="pdfPrenotazione.php">
                                         <input value="' . $_SESSION['user'] . '"  type="hidden" name="id">
                                         <input value="' . $idpren . '" type="hidden" name="idprenota">
-                                        <input type="hidden" name="type" value="prenotazione">
                                         <input type="submit" value="PDF prenotazione" class="btn btn-info btn-lg">
                                     </form>';
                             } else {
@@ -139,8 +149,7 @@ session_start();
                         <div class="form-group col-md-3" id="prenota">
                             <?php
                             if (isset($_SESSION['user'])) {
-                                echo '<form action="pdf.php" method="post">
-                                      <input type="hidden" name="type" value="skillcard">
+                                echo '<form action="pdfSkillcard.php" method="post">
                                       <input type="hidden" name="id" value="' . $_SESSION['user'] . '">
                                       <input type="submit" value="PDF Skillcard" class="btn btn-info btn-lg">
                                       </form>';
@@ -156,8 +165,7 @@ session_start();
                         <div class="form-group col-md-3">
                             <?php
                             if (isset($_SESSION['user'])) {
-                                echo '<form action="pdf.php" method="post">
-                                      <input type="hidden" name="type" value="aica">
+                                echo '<form action="pdfAica.php" method="post">
                                       <input type="hidden" name="id" value="' . $_SESSION['user'] . '">
                                       <input type="submit" value="PDF AICA" class="btn btn-info btn-lg">
                                       </form>';
@@ -167,8 +175,8 @@ session_start();
                     </div>
                 </div>
                 <?php
-                if (isset($_SESSION['user'])){
-                echo '<div class="panel panel-default">
+                if (isset($_SESSION['user'])) {
+                    echo '<div class="panel panel-default">
                     <div class="panel">
                         <h3 align="center">Ricordati di caricare i file!</h3>
                     </div>
@@ -278,7 +286,6 @@ session_start();
                                     $p = false;
                                     $b = false;
                                     for ($h = 0; $h < strlen($tipis); $h++) {
-                                        echo $h;
                                         if ($tipis[$h] == "p") {
                                             $p = true;
                                         } elseif ($tipis[$h] == "b") {
@@ -358,6 +365,15 @@ session_start();
                                 ?>
                             </thead>
                         </table>
+
+                        <form action="prenotazione.php" method="post">
+                            <?php
+                            if (isset($_SESSION['user'])) {
+                                echo '<input type="hidden" name="id" value="' . $_SESSION['user'] . '">';
+                                echo '<input type="submit" value="Prenota esame" class="btn btn-info btn-lg">';
+                            }
+                            ?>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -403,7 +419,7 @@ session_start();
                             </label>
                         </div>  
                         </div>                           
-                        </form>
+                        
                         
                         <div class="text-center">
                         <p>Select image to upload:</p>
@@ -412,8 +428,8 @@ session_start();
                         <input type="submit" name="carica" value="Upload">
                         <div id="clicco"></div>
                         </div>
-                        </div>';
-                    
+                        </div>
+                        </form>';
             }
             ?>
         </div>
