@@ -246,7 +246,7 @@ session_start();
 //                                }
 //                                echo '<br>';
 //                            }
-                            if (mysqli_num_rows($ris2) > 0) {
+                            if (mysqli_num_rows($ris2) > 0 && mysqli_num_rows($ris3) > 0) {
                                 echo "<table class='table table-bordered'><thead><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";
                                 echo "<b><font color='#585858'>Esami prenotati:</font></b>";
                                 while ($riga2 = $ris2->fetch_array()) {
@@ -266,27 +266,41 @@ session_start();
                                             //ha il file 
                                         }
                                     }
-                                    if ($tipis == "p") {
-                                        echo "<tr bgcolor='#6666ff'><td>{$riga2["data"]}</td>";
-                                    } elseif ($tipis == "b") {
-                                        echo "<tr bgcolor='#ff4d4d'><td>{$riga2["data"]}</td>";
-                                    } elseif ($tipis == "pb") {
-                                        echo "<tr bgcolor='#80ff80'><td>{$riga2["data"]}</td>";
-                                    } elseif ($tipis == "") {
-                                        echo "<tr bgcolor='#ffff66'><td>{$riga2["data"]}</td>";
-                                    }
+
+                                    //style='color:#80ff80'
+                                    echo "<tr><td>{$riga2["data"]}</td>";
                                     echo "<td>{$riga2["ora_da"]}</td>";
                                     echo "<td>{$riga2["ora_a"]}</td> <td> ";
                                     for ($i = 0; $i < strlen($riga2["esami"]); $i++) {
                                         echo" " . $riga2["esami"][$i] . " ";
                                     }
-                                    echo "<td>{$riga2["PID"]}</td>";
+                                    //echo "<td>{$riga2["PID"]}</td>";
+                                    $p = false;
+                                    $b = false;
+                                    for ($h = 0; $h < strlen($tipis); $h++) {
+                                        echo $h;
+                                        if ($tipis[$h] == "p") {
+                                            $p = true;
+                                        } elseif ($tipis[$h] == "b") {
+                                            $b = true;
+                                        }
+                                    }
+                                    if ($b == true && $p == true) {
+                                        echo "<td><img src='images/tick.png' style='height:4%; margin-left:10%; ' title='File mancanti'></td>";
+                                    } elseif ($b == true) {
+                                        echo "<td><img src='images/!.jpg' style='height:9%;' title='File mancanti'></td>";
+                                    } elseif ($p == true) {
+                                        echo "<td><img src='images/!.jpg' style='height:9%;' title='File mancanti'></td>";
+                                    } elseif ($tipis == "") {
+                                        echo "<td>lele<img src='images/false.png' style='height:9%; margin-left:10%; ' title='File mancanti'></td>";
+                                    }
+
                                     echo "<td><a href=eliminaPrenotazione.php?elimina={$riga2["PID"]}><img src='images/false.png' style='height:3%; margin-left:10%;' title='Elimina Prenotazione'></td>";
                                     echo "</td></tr>";
                                 }
                                 echo "</table>";
                             } else {
-                                echo "<b>non hai prenotazioni</b>";
+                                echo "<b>non hai prenotazioni <br><br></b>";
                             }
                             echo '<form action="login.php" method="post">
                                      <input type="hidden" name="exit" value="1">
@@ -330,7 +344,7 @@ session_start();
                                 $db = new ConnessioneDb();
                                 $sql = "SELECT * FROM `sessioni`";
                                 $ris = $db->query($sql);
-                                //{$riga["ID"]}
+//{$riga["ID"]}
                                 while ($riga = $ris->fetch_array()) {
                                     echo "<tr><td>{$riga["data"]}</td>";
                                     echo "<td>{$riga["ora_da"]}</td>";
