@@ -69,7 +69,7 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
     $ris = $db->query($query);
 } 
 
-//header("Location: index.php");
+header("Location: index.php");
  
 
 ?>
