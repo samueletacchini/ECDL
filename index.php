@@ -41,9 +41,6 @@ session_start();
             text-overflow: ellipsis;
         }
     </style>
-
-
-
     <style>
         .panel{
             margin-bottom:2%;
@@ -169,21 +166,24 @@ session_start();
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-default">
+                <?php
+                if (isset($_SESSION['user'])){
+                echo '<div class="panel panel-default">
                     <div class="panel">
-                        <h3 align='center'>Ricordati di caricare i file!</h3>
+                        <h3 align="center">Ricordati di caricare i file!</h3>
                     </div>
                     <div class="panel-body">
-                        Prenotazioni di cui devi caricare i file!<br>
+                        <p>Prenotazioni di cui devi caricare i file!<br>
                         ricordati di caricare i file delle prenotazioni segnate sennò non verranno considerate!<br>
-                        blu: caricato solo il pdf!<br>
-                        rosso: caricato solo il bollettino<br>
-                        verde: tutto apposto!<br>
-                        giallo: nessun file caricato
-
-
+                        <font style="color:blue">blu</font>: caricato solo il pdf!<br>
+                        <font style="color:red">rosso</font>: caricato solo il bollettino<br>
+                        <font style="color:green">verde</font>: tutto apposto!<br>
+                        <font style="color:#e6e600">giallo</font>: nessun file caricato</p>
                     </div>
-                </div><div class="panel panel-default">
+                </div>';
+                }
+                ?>
+                <div class="panel panel-default">
                     <div class="panel">
                         <h3 align='center'>Lorem Ipsum</h3>
                     </div>
@@ -286,7 +286,8 @@ session_start();
                                 }
                                 echo "</table>";
                             } else {
-                                echo "<b>non hai prenotazioni</b>";
+                                echo "<p align='center'>Non hai prenotazioni !</p>";
+                                echo "<p align='center'><a href='prenotazione.php'>Prenota Subito Un Esame</a></p>";
                             }
                             echo '<form action="login.php" method="post">
                                      <input type="hidden" name="exit" value="1">
@@ -359,50 +360,49 @@ session_start();
                         <div class="form-group">
                             <input name="pdfskillcard"  class="form-check-input" type="checkbox" value="1" >
                             <label  class="form-check-label" for="defaultCheck7">
-                                pdf skillcard
+                                Pdf skillcard
                             </label>
                         </div>                            
                         <div class="form-group">
                             <input name="pdfprenotazione" onclick="myFunction()" class="form-check-input" type="checkbox" value="1" id="pdfprenotazione">
                             <label  class="form-check-label" for="defaultCheck7">
-                                pdf prenotazione
+                                Pdf prenotazione
                             </label>
                         </div>                            
                         <div class="form-group">
                             <input name="pdfaica"  class="form-check-input" type="checkbox" value="1" id="pdfaica">
                             <label  class="form-check-label" for="defaultCheck7">
-                                pdf aica
+                                Pdf aica
                             </label>
                         </div>                            
                         <div class="form-group">
                             <input name="bollettinoskillcard" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard">
                             <label  class="form-check-label" for="defaultCheck7">
-                                bollettino skillcard
+                                Bollettino skillcard
                             </label>
                         </div>                            
                         <div class="form-group">
                             <input name="bollettinoprenotazione" onclick="myFunction()" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
                             <label  class="form-check-label" for="defaultCheck7">
-                                bollettino prenotazione 
+                                Bollettino prenotazione 
                             </label>
-                        </div>                            
-          
-                         Select image to upload:
-                        <input type="file" name="pdfs">
+                        </div>  
+                        </div>                           
+                        </form>
+                        
+                        <div class="text-center">
+                        <p>Select image to upload:</p>
+                        <p align="center"><input type="file" name="pdfs"></p>
                         <br>
                         <input type="submit" name="carica" value="Upload">
-                        <div id="clicco">eheheh</div>
+                        <div id="clicco"></div>
                         </div>
-                        </div>
-                    </form>';
+                        </div>';
+                    
             }
             ?>
-
-
-
         </div>
     </div>
-
     <script>
         function updateDiv()
         {
@@ -448,8 +448,6 @@ session_start();
             document.getElementById("clicco").innerHTML = "";
         }
     </script>
-
-
     <div class="col-md-12">                                 
         <footer class="container text-center" id="foot" >                                         
             <p>                            
@@ -461,6 +459,4 @@ session_start();
         </footer>     
     </div>
 </body>
-
-
 </html>

@@ -1,7 +1,6 @@
 <?php
 
 if (isset($_REQUEST['elimina'])) {
-    echo "gogo";
     require_once ('ConnessioneDb.php');
 
     $pid = $_REQUEST['elimina'];
