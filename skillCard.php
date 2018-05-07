@@ -202,7 +202,6 @@
                                     <option value="diplomato"> Diplomato</option>
                                     <option value="laureato"> Laureato</option>
                                     <option value="nDichiarato"> Non Dichiarato</option>
-                                    <option value="alt"> Altro ..</option>
                                 </select>                      
                             </div>
                             <div class="form-group col-md-3">
@@ -218,7 +217,6 @@
                                     <option value="Pensionato"> Pensionato</option>
                                     <option value="casalingo"> Casalingo/a</option>
                                     <option value="cerca"> In Cerca Di Occupazione</option>
-                                    <option value="alt"> Altro ..</option>
                                 </select>                       
                             </div>
                         </div>

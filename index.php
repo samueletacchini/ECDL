@@ -96,18 +96,29 @@ session_start();
             <div>
                 <div class="panel panel-default">
                     <div class="panel">
-                        <h3 align='center'>Registrazione</h3>
+                        <h3 align='center'>PDF</h3>
                     </div>
                     <div id="buttons" class="panel-body">
-                        <div class="form-group col-md-3">
-                            <form action="prenotazione.php" method="post">
-                                <?php
-                                if (isset($_SESSION['user'])) {
-                                    echo '<input type="hidden" name="id" value="' . $_SESSION['user'] . '">';
-                                    echo '<input type="submit" value="Prenota esame" class="btn btn-info btn-lg">';
-                                }
-                                ?>
-                            </form>
+
+                        <div class="form-group col-md-3" id="prenota">
+
+                            <?php
+                            //sono loggato
+                            if (isset($_SESSION['user'])) {
+                                require_once('ConnessioneDb.php');
+                                $db = new ConnessioneDb();
+                                $sql = 'SELECT ID FROM `prenotazione` WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = "' . $_SESSION['user'] . '")';
+                                $result = $db->query($sql);
+                                $gigi = $result->fetch_array();
+                                $idpren = $gigi['ID'];
+                                echo '<form method="post" action="pdfUpdate.php">
+                                        <input value="' . $_SESSION['user'] . '"  type="hidden" name="id">
+                                        <input value="' . $idpren . '" type="hidden" name="idprenota">
+                                        <input type="submit" value="PDF Update" class="btn btn-info btn-lg">
+                                    </form>';
+                            }
+                            ?>
+
                         </div>
                         <div class="form-group col-md-3">
 
@@ -120,10 +131,9 @@ session_start();
                                 $result = $db->query($sql);
                                 $gigi = $result->fetch_array();
                                 $idpren = $gigi['ID'];
-                                echo '<form method="post" action="pdf.php">
+                                echo '<form method="post" action="pdfPrenotazione.php">
                                         <input value="' . $_SESSION['user'] . '"  type="hidden" name="id">
                                         <input value="' . $idpren . '" type="hidden" name="idprenota">
-                                        <input type="hidden" name="type" value="prenotazione">
                                         <input type="submit" value="PDF prenotazione" class="btn btn-info btn-lg">
                                     </form>';
                             } else {
@@ -139,8 +149,7 @@ session_start();
                         <div class="form-group col-md-3" id="prenota">
                             <?php
                             if (isset($_SESSION['user'])) {
-                                echo '<form action="pdf.php" method="post">
-                                      <input type="hidden" name="type" value="skillcard">
+                                echo '<form action="pdfSkillcard.php" method="post">
                                       <input type="hidden" name="id" value="' . $_SESSION['user'] . '">
                                       <input type="submit" value="PDF Skillcard" class="btn btn-info btn-lg">
                                       </form>';
@@ -156,8 +165,7 @@ session_start();
                         <div class="form-group col-md-3">
                             <?php
                             if (isset($_SESSION['user'])) {
-                                echo '<form action="pdf.php" method="post">
-                                      <input type="hidden" name="type" value="aica">
+                                echo '<form action="pdfAica.php" method="post">
                                       <input type="hidden" name="id" value="' . $_SESSION['user'] . '">
                                       <input type="submit" value="PDF AICA" class="btn btn-info btn-lg">
                                       </form>';
@@ -166,23 +174,7 @@ session_start();
                         </div>
                     </div>
                 </div>
-                <?php
-                if (isset($_SESSION['user'])){
-                echo '<div class="panel panel-default">
-                    <div class="panel">
-                        <h3 align="center">Ricordati di caricare i file!</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p>Prenotazioni di cui devi caricare i file!<br>
-                        ricordati di caricare i file delle prenotazioni segnate sennò non verranno considerate!<br>
-                        <font style="color:blue">blu</font>: caricato solo il pdf!<br>
-                        <font style="color:red">rosso</font>: caricato solo il bollettino<br>
-                        <font style="color:green">verde</font>: tutto apposto!<br>
-                        <font style="color:#e6e600">giallo</font>: nessun file caricato</p>
-                    </div>
-                </div>';
-                }
-                ?>
+                
                 <div class="panel panel-default">
                     <div class="panel">
                         <h3 align='center'>Lorem Ipsum</h3>
@@ -247,8 +239,8 @@ session_start();
 //                                echo '<br>';
 //                            }
                             if (mysqli_num_rows($ris2) > 0 && mysqli_num_rows($ris3) > 0) {
-                                echo "<table class='table table-bordered'><thead><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";
                                 echo "<b><font color='#585858'>Esami prenotati:</font></b>";
+                                echo "<table class='table table-bordered'><thead><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";                           
                                 while ($riga2 = $ris2->fetch_array()) {
                                     $tipis = "";
                                     for ($i = 0; $i < count($pids); $i++) {
@@ -262,7 +254,7 @@ session_start();
                                                     $tipis .= "b";
                                                     //echo "<tr bgcolor='#ff4d4d'><td>{$riga2["data"]}</td>";
                                                 }
-                                            }
+                                               }
                                             //ha il file 
                                         }
                                     }
@@ -278,24 +270,25 @@ session_start();
                                     $p = false;
                                     $b = false;
                                     for ($h = 0; $h < strlen($tipis); $h++) {
-                                        echo $h;
                                         if ($tipis[$h] == "p") {
                                             $p = true;
                                         } elseif ($tipis[$h] == "b") {
                                             $b = true;
                                         }
                                     }
+                                    
+                                    
                                     if ($b == true && $p == true) {
-                                        echo "<td><img src='images/tick.png' style='height:4%; margin-left:10%; ' title='File mancanti'></td>";
+                                        echo "<td><span style='color:#33cc33' class='glyphicon glyphicon-ok-sign' title='completo'></span></td>";
                                     } elseif ($b == true) {
-                                        echo "<td><img src='images/!.jpg' style='height:9%;' title='File mancanti'></td>";
+                                        echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='prenotazione mancante'></span></td>";
                                     } elseif ($p == true) {
-                                        echo "<td><img src='images/!.jpg' style='height:9%;' title='File mancanti'></td>";
+                                        echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='bollettino mancante'></span></td>";
                                     } elseif ($tipis == "") {
-                                        echo "<td>lele<img src='images/false.png' style='height:9%; margin-left:10%; ' title='File mancanti'></td>";
+                                        echo "<td><span style='color:#e60000' class='glyphicon glyphicon-remove-sign' title='nessun file'></span></td>";
                                     }
 
-                                    echo "<td><a href=eliminaPrenotazione.php?elimina={$riga2["PID"]}><img src='images/false.png' style='height:3%; margin-left:10%;' title='Elimina Prenotazione'></td>";
+                                    echo "<td><a href=eliminaPrenotazione.php?elimina={$riga2["PID"]}><span style='color:#737373' class='glyphicon glyphicon-trash'></span></td>";
                                     echo "</td></tr>";
                                 }
                                 echo "</table>";
@@ -358,6 +351,15 @@ session_start();
                                 ?>
                             </thead>
                         </table>
+
+                        <form action="prenotazione.php" method="post">
+                            <?php
+                            if (isset($_SESSION['user'])) {
+                                echo '<input type="hidden" name="id" value="' . $_SESSION['user'] . '">';
+                                echo '<input type="submit" value="Prenota esame" class="btn btn-info btn-lg">';
+                            }
+                            ?>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -389,7 +391,13 @@ session_start();
                             <label  class="form-check-label" for="defaultCheck7">
                                 Pdf aica
                             </label>
-                        </div>                            
+                        </div>   
+                        <div class="form-group">
+                            <input name="pdfupdate" onclick="myFunction()" class="form-check-input" type="checkbox" value="1" id="pdfupdate">
+                            <label  class="form-check-label" for="defaultCheck7">
+                                Pdf update 
+                            </label>
+                        </div>
                         <div class="form-group">
                             <input name="bollettinoskillcard" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard">
                             <label  class="form-check-label" for="defaultCheck7">
@@ -402,18 +410,22 @@ session_start();
                                 Bollettino prenotazione 
                             </label>
                         </div>  
+                          
                         </div>                           
-                        </form>
+                        
                         
                         <div class="text-center">
-                        <p>Select image to upload:</p>
-                        <p align="center"><input type="file" name="pdfs"></p>
+                        <p>Seleziona i file da caricare:</p>
+                        <span class="btn btn-default btn-file">
+                        <p align="center"><input type="file" name="pdfs" > </p>
+                        </span>
+
                         <br>
-                        <input type="submit" name="carica" value="Upload">
+                        <input type="submit" name="carica" value="Carica" style="background-color:Dodgerblue; border-radius:3px; color:white;">
                         <div id="clicco"></div>
                         </div>
-                        </div>';
-                    
+                        </div>
+                        </form>';
             }
             ?>
         </div>
