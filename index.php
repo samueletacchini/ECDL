@@ -174,23 +174,7 @@ session_start();
                         </div>
                     </div>
                 </div>
-                <?php
-                if (isset($_SESSION['user'])) {
-                    echo '<div class="panel panel-default">
-                    <div class="panel">
-                        <h3 align="center">Ricordati di caricare i file!</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p>Prenotazioni di cui devi caricare i file!<br>
-                        ricordati di caricare i file delle prenotazioni segnate sennò non verranno considerate!<br>
-                        <font style="color:blue">blu</font>: caricato solo il pdf!<br>
-                        <font style="color:red">rosso</font>: caricato solo il bollettino<br>
-                        <font style="color:green">verde</font>: tutto apposto!<br>
-                        <font style="color:#e6e600">giallo</font>: nessun file caricato</p>
-                    </div>
-                </div>';
-                }
-                ?>
+                
                 <div class="panel panel-default">
                     <div class="panel">
                         <h3 align='center'>Lorem Ipsum</h3>
@@ -255,8 +239,8 @@ session_start();
 //                                echo '<br>';
 //                            }
                             if (mysqli_num_rows($ris2) > 0 && mysqli_num_rows($ris3) > 0) {
-                                echo "<table class='table table-bordered'><thead><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";
                                 echo "<b><font color='#585858'>Esami prenotati:</font></b>";
+                                echo "<table class='table table-bordered'><thead><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";                           
                                 while ($riga2 = $ris2->fetch_array()) {
                                     $tipis = "";
                                     for ($i = 0; $i < count($pids); $i++) {
@@ -270,7 +254,7 @@ session_start();
                                                     $tipis .= "b";
                                                     //echo "<tr bgcolor='#ff4d4d'><td>{$riga2["data"]}</td>";
                                                 }
-                                            }
+                                               }
                                             //ha il file 
                                         }
                                     }
@@ -292,17 +276,19 @@ session_start();
                                             $b = true;
                                         }
                                     }
+                                    
+                                    
                                     if ($b == true && $p == true) {
-                                        echo "<td><img src='images/tick.png' style='height:4%; margin-left:10%; ' title='File mancanti'></td>";
+                                        echo "<td><span style='color:#33cc33' class='glyphicon glyphicon-ok-sign' title='completo'></span></td>";
                                     } elseif ($b == true) {
-                                        echo "<td><img src='images/!.jpg' style='height:9%;' title='File mancanti'></td>";
+                                        echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='prenotazione mancante'></span></td>";
                                     } elseif ($p == true) {
-                                        echo "<td><img src='images/!.jpg' style='height:9%;' title='File mancanti'></td>";
+                                        echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='bollettino mancante'></span></td>";
                                     } elseif ($tipis == "") {
-                                        echo "<td>lele<img src='images/false.png' style='height:9%; margin-left:10%; ' title='File mancanti'></td>";
+                                        echo "<td><span style='color:#e60000' class='glyphicon glyphicon-remove-sign' title='nessun file'></span></td>";
                                     }
 
-                                    echo "<td><a href=eliminaPrenotazione.php?elimina={$riga2["PID"]}><img src='images/false.png' style='height:3%; margin-left:10%;' title='Elimina Prenotazione'></td>";
+                                    echo "<td><a href=eliminaPrenotazione.php?elimina={$riga2["PID"]}><span style='color:#737373' class='glyphicon glyphicon-trash'></span></td>";
                                     echo "</td></tr>";
                                 }
                                 echo "</table>";
@@ -405,7 +391,13 @@ session_start();
                             <label  class="form-check-label" for="defaultCheck7">
                                 Pdf aica
                             </label>
-                        </div>                            
+                        </div>   
+                        <div class="form-group">
+                            <input name="pdfupdate" onclick="myFunction()" class="form-check-input" type="checkbox" value="1" id="pdfupdate">
+                            <label  class="form-check-label" for="defaultCheck7">
+                                Pdf update 
+                            </label>
+                        </div>
                         <div class="form-group">
                             <input name="bollettinoskillcard" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard">
                             <label  class="form-check-label" for="defaultCheck7">
@@ -418,14 +410,18 @@ session_start();
                                 Bollettino prenotazione 
                             </label>
                         </div>  
+                          
                         </div>                           
                         
                         
                         <div class="text-center">
-                        <p>Select image to upload:</p>
-                        <p align="center"><input type="file" name="pdfs"></p>
+                        <p>Seleziona i file da caricare:</p>
+                        <span class="btn btn-default btn-file">
+                        <p align="center"><input type="file" name="pdfs" > </p>
+                        </span>
+
                         <br>
-                        <input type="submit" name="carica" value="Upload">
+                        <input type="submit" name="carica" value="Carica" style="background-color:Dodgerblue; border-radius:3px; color:white;">
                         <div id="clicco"></div>
                         </div>
                         </div>
