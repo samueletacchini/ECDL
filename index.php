@@ -169,6 +169,7 @@ session_start();
                 <?php
                 if (isset($_SESSION['user'])){
                 echo '<div class="panel panel-default">
+                   
                     <div class="panel">
                         <h3 align="center">Ricordati di caricare i file!</h3>
                     </div>
@@ -278,7 +279,6 @@ session_start();
                                     $p = false;
                                     $b = false;
                                     for ($h = 0; $h < strlen($tipis); $h++) {
-                                        echo $h;
                                         if ($tipis[$h] == "p") {
                                             $p = true;
                                         } elseif ($tipis[$h] == "b") {
@@ -295,7 +295,7 @@ session_start();
                                         echo "<td>lele<img src='images/false.png' style='height:9%; margin-left:10%; ' title='File mancanti'></td>";
                                     }
 
-                                    echo "<td><a href=eliminaPrenotazione.php?elimina={$riga2["PID"]}><img src='images/false.png' style='height:3%; margin-left:10%;' title='Elimina Prenotazione'></td>";
+                                    echo "<td><a href='eliminaPrenotazione.php?elimina={$riga2["PID"]}'><img src='images/false.png' style='height:3%; margin-left:10%;' title='Elimina Prenotazione'></td>";
                                     echo "</td></tr>";
                                 }
                                 echo "</table>";
@@ -309,10 +309,10 @@ session_start();
                                      <input type="submit" value="Logout" class="btn btn-info btn-lg">
                                   </form>';
                         } else {
-                            if (isset($_SESSION['err']) && $_SESSION['err'] == '0') {
-                                $_SESSION['err'] = null;
-                                echo 'PASSWORD ERRATA';
-                            }
+//                            if (isset($_SESSION['err']) && $_SESSION['err'] == '0') {
+//                                $_SESSION['err'] = null;
+//                                echo '<p align="center" style="color:#B80707">Email o Password Errati !</p>';
+//                            }
                             echo ' <form name=”casellaTesto” method="post" class="was-validated" action="/ecdl/login.php">
                             <div class="form-group">
                                 <label> E-Mail</label>
