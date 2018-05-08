@@ -1,7 +1,8 @@
 <?php
 
 if (isset($_REQUEST['elimina'])) {
-    require_once ('ConnessioneDb.php');
+    echo 'va';
+    require_once('ConnessioneDb.php');
 
     $pid = $_REQUEST['elimina'];
     $db = new ConnessioneDb();
@@ -9,10 +10,10 @@ if (isset($_REQUEST['elimina'])) {
 
     $ris = $db->query($sql);
 
-    header("Location: index.php");
+    //header("Location: index.php");
 } elseif (isset($_REQUEST['sessione']) && isset($_REQUEST['codiceFiscale'])) {
 
-    
+
 
     echo "eheh<br><br>";
     $sessione = $_REQUEST['sessione'];
@@ -32,4 +33,4 @@ if (isset($_REQUEST['elimina'])) {
     $ris = $db->query($sql);
 }
 
-header("Location: index.php");
+//header("Location: index.php");
