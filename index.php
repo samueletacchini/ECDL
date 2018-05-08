@@ -288,7 +288,7 @@ session_start();
                                         echo "<td><span style='color:#e60000' class='glyphicon glyphicon-remove-sign' title='nessun file'></span></td>";
                                     }
 
-                                    echo "<td><a href=eliminaPrenotazione.php?elimina={$riga2["PID"]}><span style='color:#737373' class='glyphicon glyphicon-trash'></span></td>";
+                                    echo "<td><a href='eliminaPrenotazione.php?elimina={$riga2["PID"]}'><span   style='color:#737373' class='glyphicon glyphicon-trash'></span></td>";
                                     echo "</td></tr>";
                                 }
                                 echo "</table>";
@@ -416,9 +416,7 @@ session_start();
                         
                         <div class="text-center">
                         <p>Seleziona i file da caricare:</p>
-                        <span class="btn btn-default btn-file">
-                        <p align="center"><input type="file" name="pdfs" > </p>
-                        </span>
+                        <p align="center"><input type="file" name="pdfs" required> </p>
 
                         <br>
                         <input type="submit" name="carica" value="Carica" style="background-color:Dodgerblue; border-radius:3px; color:white;">

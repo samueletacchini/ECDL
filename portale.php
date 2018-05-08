@@ -9,7 +9,6 @@
             background:DodgerBlue;
             border-radius:5px;
             border:0px;
-
         }
         .container-fluid{ 
             border-style:solid; 
@@ -52,7 +51,7 @@
                         <li><a href="#" style='color:white'>Page 2</a></li>
                         <li><a href="#" style='color:white'>Page 3</a></li>
                     </ul>
-                    <form class="navbar-form navbar-right" action="/action_page.php">
+                    <form class="navbar-form navbar-right">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Search">
                         </div>
@@ -62,41 +61,441 @@
             </nav>
             <div class="panel panel-default">
                 <div class="panel">
-                    <h3 align='center'>Lorem Ipsum</h3>
+                    <h3 align='center'>Utenti vari</h3>
                 </div>
                 <div class="panel-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ante felis, imperdiet ac placerat at, tincidunt ac nibh. Aliquam erat volutpat. Phasellus venenatis gravida justo, ac accumsan nibh pretium ac. In blandit dictum libero, non faucibus lectus malesuada sit amet. Sed ultrices est nec euismod vehicula. Fusce scelerisque molestie felis, in suscipit risus viverra in. Duis eget porttitor lorem. Donec imperdiet magna sit amet enim vehicula efficitur.
-                    <br><br>
-                    Fusce et vehicula nisl. Curabitur ut vehicula ante, at imperdiet quam. Nam quis dolor neque. Proin metus lorem, finibus a odio sed, viverra lobortis quam. Phasellus quis hendrerit dui. Maecenas rhoncus accumsan ligula, posuere sagittis enim dignissim vel. In iaculis laoreet justo et placerat. Morbi vitae pretium mi. Maecenas cursus, neque viverra placerat pulvinar, ante arcu pretium nisi, vestibulum pretium erat odio eget leo. Nam placerat molestie elit ac elementum. Suspendisse molestie id eros non malesuada. Donec lobortis viverra velit eu sodales. Phasellus hendrerit malesuada sapien sit amet tincidunt. Ut tempor bibendum rutrum. Proin in ultrices nunc.
-                    <br><br>
-                    Praesent aliquet laoreet nisl aliquam faucibus. Quisque rutrum luctus tortor, quis facilisis leo egestas ut. Nam varius nisi ac cursus tempor. Ut eget rhoncus justo. Morbi non libero ut lectus molestie volutpat. Nunc id metus et lorem mollis vestibulum. Ut id posuere nisi, a pretium ex. Maecenas egestas ipsum nec massa cursus rutrum. Donec ligula ante, dictum ut dictum nec, semper non metus. Aliquam ut sem quis ex finibus posuere. Mauris scelerisque nec metus ac mattis. Nam auctor, felis ut consequat cursus, est metus faucibus risus, non tincidunt purus diam vitae lorem.
-                    <br><br>
-                    Phasellus ac fringilla nibh, ac porttitor tortor. Sed tellus lectus, sodales a bibendum ac, aliquet nec elit. In molestie sollicitudin est, a finibus quam porttitor volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dui sapien, accumsan a sapien quis, feugiat tempor tortor. Vivamus tristique enim ac lorem ultricies consequat. Mauris imperdiet sollicitudin sem, nec pulvinar elit sagittis quis. Duis eu ligula eu est pharetra mollis. Maecenas porttitor mauris at ipsum tempus posuere. Phasellus porttitor ornare volutpat. Proin vel tristique ligula.
-                    <br><br>
-                    <br><br>
+                    <table class="table table-bordered"> 
+                        <?php
+                        require_once('ConnessioneDb.php');
+                        $db = new ConnessioneDb();
+
+                        for ($i = 0; $i <= 22; $i++) {
+                            $set[$i] = "a";
+                        }
+                        if (isset($_REQUEST["skill_card"])) {
+                            $set[0] = $_REQUEST['skill_card'];
+                            echo '"AçSJDNAçSOD';
+                        }
+                        if (isset($_REQUEST["rilasciata"])) {
+                            $set[1] = $_REQUEST['rilasciata'];
+                        }
+                        if (isset($_REQUEST["codice_fiscale"])) {
+                            $set[2] = $_REQUEST['codice_fiscale'];
+                        }
+                        if (isset($_REQUEST["sesso"])) {
+                            $set[3] = $_REQUEST['sesso'];
+                        }
+                        if (isset($_REQUEST["cognome"])) {
+                            $set[4] = $_REQUEST['cognome'];
+                        }
+                        if (isset($_REQUEST["nome"])) {
+                            $set[5] = $_REQUEST['nome'];
+                        }
+                        if (isset($_REQUEST["data_nascita"])) {
+                            $set[6] = $_REQUEST['data_nascita'];
+                        }
+                        if (isset($_REQUEST["comune_nascita"])) {
+                            $set[7] = $_REQUEST['comune_nascita'];
+                        }
+                        if (isset($_REQUEST["provincia_nascita"])) {
+                            $set[8] = $_REQUEST['provincia_nascita'];
+                        }
+                        if (isset($_REQUEST["stato_civile"])) {
+                            $set[9] = $_REQUEST['stato_civile'];
+                        }
+                        if (isset($_REQUEST["indirizzo"])) {
+                            $set[10] = $_REQUEST['indirizzo'];
+                        }
+                        if (isset($_REQUEST["civico"])) {
+                            $set[11] = $_REQUEST['civico'];
+                        }
+                        if (isset($_REQUEST["stato"])) {
+                            $set[12] = $_REQUEST['stato'];
+                        }
+                        if (isset($_REQUEST["citta"])) {
+                            $set[13] = $_REQUEST['citta'];
+                        }
+                        if (isset($_REQUEST["cap"])) {
+                            $set[14] = $_REQUEST['cap'];
+                        }
+                        if (isset($_REQUEST["provincia"])) {
+                            $set[15] = $_REQUEST['provincia'];
+                        }
+                        if (isset($_REQUEST["email"])) {
+                            $set[16] = $_REQUEST['email'];
+                        }
+                        if (isset($_REQUEST["telefono"])) {
+                            $set[17] = $_REQUEST['telefono'];
+                        }
+                        if (isset($_REQUEST["cellulare"])) {
+                            $set[18] = $_REQUEST['cellulare'];
+                        }
+                        if (isset($_REQUEST["occupazione"])) {
+                            $set[19] = $_REQUEST['occupazione'];
+                        }
+                        if (isset($_REQUEST["titolo_studio"])) {
+                            $set[20] = $_REQUEST['titolo_studio'];
+                        }
+                        if (isset($_REQUEST["pagato"])) {
+                            $set[21] = $_REQUEST['pagato'];
+                        }
+                        if (isset($_REQUEST["tipo"])) {
+                            $set[22] = $_REQUEST['tipo'];
+                        }
+
+
+                        $sql = "SELECT * FROM `user`";
+                        $ris = $db->query($sql);
+                        echo '<tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>';
+                        while ($riga = $ris->fetch_array()) {
+
+                            echo "<tr><td>" . $riga["skill_card"] . "</td>";
+                            if ($set[0] != "a") {
+                                echo "<td>" . $skillcard = $riga['skill_card'] . "</td>";
+                            }
+                            if ($set[1] != "a") {
+                                echo "<td>" . $drilasciata = $riga['rilasciata'] . "</td>";
+                            }
+                            if ($set[2] != "a") {
+                                echo "<td>" . $codicefiscale = $riga['codice_fiscale'] . "</td>";
+                            }
+                            if ($set[3] != "a") {
+                                echo "<td>" . $sesso = $riga['sesso'] . "</td>";
+                            }
+                            if ($set[4] != "a") {
+                                echo "<td>" . $cognome = $riga['cognome'] . "</td>";
+                            }
+                            if ($set[5] != "a") {
+                                echo "<td>" . $nome = $riga['nome'] . "</td>";
+                            }
+                            if ($set[6] != "a") {
+                                echo "<td>" . $dnascita = $riga['data_nascita'] . "</td>";
+                            }
+                            if ($set[7] != "a") {
+                                echo "<td>" . $cnascita = $riga['comune_nascita'] . "</td>";
+                            }
+                            if ($set[8] != "a") {
+                                echo "<td>" . $pnascita = $riga['provincia_nascita'] . "</td>";
+                            }
+                            if ($set[9] != "a") {
+                                echo "<td>" . $statocivile = $riga['stato_civile'] . "</td>";
+                            }
+                            if ($set[10] != "a") {
+                                echo "<td>" . $indirizzo = $riga['indirizzo'] . "</td>";
+                            }
+                            if ($set[11] != "a") {
+                                echo "<td>" . $civico = $riga['civico'] . "</td>";
+                            }
+                            if ($set[12] != "a") {
+                                echo "<td>" . $stato = $riga['stato'] . "</td>";
+                            }
+                            if ($set[13] != "a") {
+                                echo "<td>" . $citta = $riga['citta'] . "</td>";
+                            }
+                            if ($set[14] != "a") {
+                                echo "<td>" . $cap = $riga['cap'] . "</td>";
+                            }
+                            if ($set[15] != "a") {
+                                echo "<td>" . $provincia = $riga['provincia'] . "</td>";
+                            }
+                            if ($set[16] != "a") {
+                                echo "<td>" . $mail = $riga['email'] . "</td>";
+                            }
+                            if ($set[17] != "a") {
+                                echo "<td>" . $telefono = $riga['telefono'] . "</td>";
+                            }
+                            if ($set[18] != "a") {
+                                echo "<td>" . $cellulare = $riga['cellulare'] . "</td>";
+                            }
+                            if ($set[19] != "a") {
+                                echo "<td>" . $occupazione = $riga['occupazione'] . "</td>";
+                            }
+                            if ($set[20] != "a") {
+                                echo "<td>" . $titolo = $riga['titolo_studio'] . "</td>";
+                            }
+                            if ($set[21] != "a") {
+                                echo "<td>" . $pagato = $riga['pagato'] . "</td>";
+                            }
+                            if ($set[22] != "a") {
+                                echo "<td>" . $tipo = $riga['tipo'] . "</td>";
+                            }
+
+
+
+                            echo "</tr>";
+                        }
+                        echo "</table>";
+                        ?>
+
+
+                    </table>
                 </div>
             </div>
         </div>
-            <div class='col-md-4'>
-                <div class="panel panel-default">
-                    <div class="panel">
-                        
-                    </div>
-                    <div class="panel-body">
-                        
-                    </div>
+        <div class='col-md-4'>
+            <div class="panel panel-default">
+                <div class="panel">
                 </div>
+                <form name=”visualizza” method="post" class="was-validated" action="/ecdl/portale.php">
+                    <div class="panel-body">
+                        <div class="checkbox-inline col-md-4">
+                            <div class="form-group">
+                                <input name="skill_card"  class="form-check-input" type="checkbox" value="1" >
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    skill_card
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="rilasciata" class="form-check-input" type="checkbox" value="1" id="pdfprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    rilasciata
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="codice_fiscale"  class="form-check-input" type="checkbox" value="1" id="pdfaica">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    codice_fiscale
+                                </label>
+                            </div>   
+                            <div class="form-group">
+                                <input name="sesso" class="form-check-input" type="checkbox" value="1" id="pdfupdate">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    sesso
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="cognome" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    cognome
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="nome" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    nome
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="data_nascita" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    data_nascita
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="comune_nascita" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?>	     >
+                                    comune_nascita
+                                </label>
+                            </div>
+                            </form>
+                        </div>
+                        <div class="checkbox-inline col-md-4">
+                            <div class="form-group">
+                                <input name="provincia_nascita"  class="form-check-input" type="checkbox" value="1" >
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?>  >
+                                    provincia_nascita  
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="stato_civile" class="form-check-input" type="checkbox" value="1" id="pdfprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?>
+                                        >
+                                    stato_civile
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="indirizzo"  class="form-check-input" type="checkbox" value="1" id="pdfaica">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    indirizzo
+                                </label>
+                            </div>   
+                            <div class="form-group">
+                                <input name="civico" class="form-check-input" type="checkbox" value="1" id="pdfupdate">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    civico
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="stato" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    stato
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="citta" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    citta
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="cap" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    cap
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="provincia" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    provincia
+                                </label>
+                            </div>
+                        </div>
+                        <div class="checkbox-inline col-md-3">
+                            <div class="form-group">
+                                <input name="email"  class="form-check-input" type="checkbox" value="1" >
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    email
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="cellulare" class="form-check-input" type="checkbox" value="1" id="pdfprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    cellulare
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="telefono"  class="form-check-input" type="checkbox" value="1" id="pdfaica">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    telefono
+                                </label>
+                            </div>   
+                            <div class="form-group">
+                                <input name="occupazione" class="form-check-input" type="checkbox" value="1" id="pdfupdate">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    occupazione
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="titolo_studio" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    titolo_studio
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="pagato" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    pagato                                    
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="tipo" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                                <label  class="form-check-label" for="defaultCheck7" <?php
+                                if ($set[0] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                    tipo                                    
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <input name="ok" class="form-check-input" type="submit" value="conferma" >
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="col-md-12">                                 
-                <footer class="container text-center" id="foot" >                                         
-                    <p>                            
-                        <br/><strong>IIS F.CORNI - LICEO E TECNICO</strong>                              
-                        <br/>                    Sede centrale: L.go A. Moro 25 Tel 059/400700 Fax 059/243391                              
-                        <br/>                        Succursale: Via Leonardo da Vinci 300 Tel 059/2917000 Fax 059/344709                              
-                        <br/>                    ecdl@istitutocorni.it - http://www.istitutocorni.gov.it                                          
-                    </p>                                 
-                </footer>     
-            </div>
+        </div>
+        <div class="col-md-12">                                 
+            <footer class="container text-center" id="foot" >                                         
+                <p>                            
+                    <br/><strong>IIS F.CORNI - LICEO E TECNICO</strong>                              
+                    <br/>                    Sede centrale: L.go A. Moro 25 Tel 059/400700 Fax 059/243391                              
+                    <br/>                        Succursale: Via Leonardo da Vinci 300 Tel 059/2917000 Fax 059/344709                              
+                    <br/>                    ecdl@istitutocorni.it - http://www.istitutocorni.gov.it                                          
+                </p>                                 
+            </footer>     
+        </div>
     </body>
 </html>
+
+
 

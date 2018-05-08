@@ -174,12 +174,16 @@
                                 <input name="cap" type="number" class="form-control" id="cap" placeholder="CAP" required>
                             </div>
                             <div class="form-group col-md-2">
-                                <label for="provincia">Provincia</label>
+                                <label for="$pnascita">Provincia</label>
                                 <input name="provincia" type="text" class="form-control" id="provincia" placeholder="Provincia" required>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="state">Stato</label>
+                                <label for="stato">Stato</label>
                                 <input name="stato" type="text" class="form-control" id="city" placeholder="Stato" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="pnascita">provincia di nascita</label>
+                                <input name="pnascita" type="text" class="form-control" id="pnascita" placeholder="provincia nascita" required>
                             </div>
                         </div>
                     </div>
@@ -196,7 +200,7 @@
                             </div> 
                             <div class="form-group col-md-3">
                                 <label for="scolaro">Titolo Di Studio</label>
-                                <select name="scolaro" class="form-control" required>
+                                <select name="titolo" class="form-control" required>
                                     <option value="" disabled selected>Titoto Di Studio</option>
                                     <option value="sObbligo"> Scuola Dell'Obbligo</option>
                                     <option value="diplomato"> Diplomato</option>
