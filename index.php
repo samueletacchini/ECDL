@@ -3,13 +3,54 @@ session_start();
 ?>
 <html>
     <head>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/PrenotazioneRegistrazione.css">
         <link rel="stylesheet" href="file.js">
         <meta name="viewport" content="width=device-width,initial-sclae=1.0">
 
     </head>
+    <script type="text/javascript">
+        $(function () {
+            $('#modal').click(function () {
+                alert('Conferma Cancellazione');
+                return false;
+            });
+        });
+    </script>
+    <script>
+        $(function () {
 
+            // We can attach the `fileselect` event to all file inputs on the page
+            $(document).on('change', ':file', function () {
+                var input = $(this),
+                        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                input.trigger('fileselect', [numFiles, label]);
+            });
+
+            // We can watch for our custom `fileselect` event like this
+            $(document).ready(function () {
+                $(':file').on('fileselect', function (event, numFiles, label) {
+
+                    var input = $(this).parents('.input-group').find(':text'),
+                            log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                    if (input.length) {
+                        input.val(log);
+                    } else {
+                        if (log)
+                            alert(log);
+                    }
+
+                });
+            });
+
+        });
+    </script>
     <style>
         #my_file {
             display: none;
@@ -288,7 +329,7 @@ session_start();
                                         echo "<td><span style='color:#e60000' class='glyphicon glyphicon-remove-sign' title='nessun file'></span></td>";
                                     }
 
-                                    echo "<td><a href='eliminaPrenotazione.php?elimina={$riga2["PID"]}'><span   style='color:#737373' class='glyphicon glyphicon-trash'></span></td>";
+                                    echo "<td><a href='eliminaPrenotazione.php?elimina={$riga2["PID"]}' id='modal' name='modal'><span   style='color:#737373' class='glyphicon glyphicon-trash'></span></td>";
                                     echo "</td></tr>";
                                 }
                                 echo "</table>";
@@ -302,10 +343,6 @@ session_start();
                                      <input type="submit" value="Logout" class="btn btn-info btn-lg">
                                   </form>';
                         } else {
-//                            if (isset($_SESSION['err']) && $_SESSION['err'] == '0') {
-//                                $_SESSION['err'] = null;
-//                                echo '<p align="center" style="color:#B80707">Email o Password Errati !</p>';
-//                            }
                             echo ' <form name=”casellaTesto” method="post" class="was-validated" action="/ecdl/login.php">
                             <div class="form-group">
                                 <label> E-Mail</label>
@@ -315,6 +352,7 @@ session_start();
                                 <label> Password </label>
                                 <input name="password" type="password" id="password" class="form-control" required>
                             </div>';
+                           echo "<a href='recupera.php'><p align='right' style='color:grey'>Recupera Password</p></a>";
                             if (isset($_SESSION['err']) && $_SESSION['err'] == '0') {
                                 $_SESSION['err'] = null;
                                 echo '<p style="color:#B40404" align="center"> E-mail o Password Errati</p>';
@@ -363,7 +401,11 @@ session_start();
                     </div>
                 </div>
             </div>
-
+            <?php
+             if(!isset($_SESSION['user'])){
+                 echo '<div class="panel panel-default" style="height:20% width:5%;"><iframe style="max-width:100%;min-width:100%;" height="400" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2838.5097460187676!2d10.88803611520416!3d44.64793607909977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477fef95e7474705%3A0xe65e79e7b059ecb4!2sIstituto+di+Istruzione+Superiore+F.Corni%2C+sede+Vinci!5e0!3m2!1sit!2sit!4v1525778801134" frameborder="0" style="border:0" allowfullscreen></iframe></div>';
+             }
+                 ?>
             <?php
             if (isset($_SESSION['user'])) {
                 echo '<div class="panel panel-default"  id="link2">
@@ -414,13 +456,27 @@ session_start();
                         </div>                           
                         
                         
-                        <div class="text-center">
-                        <p>Seleziona i file da caricare:</p>
-                        <p align="center"><input type="file" name="pdfs" required> </p>
-
-                        <br>
-                        <input type="submit" name="carica" value="Carica" style="background-color:Dodgerblue; border-radius:3px; color:white;">
+                        <div class="col-md-12">
+                        <p align="center">Seleziona i file da caricare:</p>
+                        <div class="input-group">
+                        <label class="input-group-btn">
+                        <span class="btn btn-primary" style="background-color:Dodgerblue; color:white;">
+                        Scegli File <input type="file" style="display: none;" multiple required>
+                        </span>
+                        </label>
+                        <input type="text" class="form-control" readonly>
+                        </div>
+                        <span class="help-block"></span>
+                        <div class="btn btn-primary col-md-3" style="background-color:Dodgerblue; color:white;">
+                        <input type="submit" name="carica" value="Carica" style="display: none;" multiplemi>Carica</input>
                         <div id="clicco"></div>
+                        </div>
+                        </div>
+        
+
+                        
+                        
+                        
                         </div>
                         </div>
                         </form>';
