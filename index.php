@@ -289,7 +289,6 @@ session_start();
                                     }
 
                                     echo "<td><a href='eliminaPrenotazione.php?elimina={$riga2["PID"]}'><span   style='color:#737373' class='glyphicon glyphicon-trash'></span></td>";
-                                    echo "<td><a href='eliminaPrenotazione.php?elimina={$riga2["PID"]}'><img src='images/false.png' style='height:3%; margin-left:10%;' title='Elimina Prenotazione'></td>";
                                     echo "</td></tr>";
                                 }
                                 echo "</table>";
