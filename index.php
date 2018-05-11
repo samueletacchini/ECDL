@@ -164,7 +164,7 @@ session_start();
                         <div class="form-group col-md-3">
 
                             <?php
-                            //sono loggato
+//sono loggato
                             if (isset($_SESSION['user'])) {
                                 require_once('ConnessioneDb.php');
                                 $db = new ConnessioneDb();
@@ -266,11 +266,16 @@ session_start();
                             $sql3 = "SELECT prenotazione.ID AS pid, file.tipo FROM `file` JOIN prenotazione ON prenotazione.ID = file.ID_prenotazione WHERE `ID_user` = (SELECT user.codice_fiscale FROM user WHERE user.email = '{$_SESSION['user']}')";
                             $ris3 = $db->query($sql3);
                             $l = 0;
-                            while ($riga3 = $ris3->fetch_array()) {
-                                $pids[$l] = $riga3['pid'];
-                                $tipi[$l] = $riga3['tipo'];
-                                $tipi[$l] = explode(", ", $tipi[$l]);
-                                $l++;
+                            if (mysqli_num_rows($ris3) > 0) {
+                                while ($riga3 = $ris3->fetch_array()) {
+                                    $pids[$l] = $riga3['pid'];
+                                    $tipi[$l] = $riga3['tipo'];
+                                    $tipi[$l] = explode(", ", $tipi[$l]);
+                                    $l++;
+                                }
+                            } else {
+                                $pids[0] = 0;
+                                $tipi[0] = "";
                             }
 //                            for ($n = 0; $n < count($tipi); $n++) {
 //                                echo "r: $n  ";
@@ -279,7 +284,7 @@ session_start();
 //                                }
 //                                echo '<br>';
 //                            }
-                            if (mysqli_num_rows($ris2) > 0 && mysqli_num_rows($ris3) > 0) {
+                            if (mysqli_num_rows($ris2) > 0) {
                                 echo "<b><font color='#585858'>Esami prenotati:</font></b>";
                                 echo "<table class='table table-bordered'><thead><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";
                                 while ($riga2 = $ris2->fetch_array()) {
@@ -352,7 +357,7 @@ session_start();
                                 <label> Password </label>
                                 <input name="password" type="password" id="password" class="form-control" required>
                             </div>';
-                           echo "<a href='recupera.php'><p align='right' style='color:grey'>Recupera Password</p></a>";
+                            echo "<a href='recupera.php'><p align='right' style='color:grey'>Recupera Password</p></a>";
                             if (isset($_SESSION['err']) && $_SESSION['err'] == '0') {
                                 $_SESSION['err'] = null;
                                 echo '<p style="color:#B40404" align="center"> E-mail o Password Errati</p>';
@@ -377,13 +382,17 @@ session_start();
                                 $db = new ConnessioneDb();
                                 $sql = "SELECT * FROM `sessioni`";
                                 $ris = $db->query($sql);
-//{$riga["ID"]}
+
+                                $datenow = date("Y-m-d");
+
                                 while ($riga = $ris->fetch_array()) {
-                                    echo "<tr><td>{$riga["data"]}</td>";
-                                    echo "<td>{$riga["ora_da"]}</td>";
-                                    echo "<td>{$riga["ora_a"]}</td>";
-                                    // echo "<td>  prenota </td>";
-                                    echo "</tr>";
+                                    if ($riga["data"] > $datenow) {
+                                        echo "<tr><td>{$riga["data"]}</td>";
+                                        echo "<td>{$riga["ora_da"]}</td>";
+                                        echo "<td>{$riga["ora_a"]}</td>";
+                                        // echo "<td>  prenota </td>";
+                                        echo "</tr>";
+                                    }
                                 }
                                 echo "</table>";
                                 ?>
@@ -402,10 +411,10 @@ session_start();
                 </div>
             </div>
             <?php
-             if(!isset($_SESSION['user'])){
-                 echo '<div class="panel panel-default" style="height:20% width:5%;"><iframe style="max-width:100%;min-width:100%;" height="400" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2838.5097460187676!2d10.88803611520416!3d44.64793607909977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477fef95e7474705%3A0xe65e79e7b059ecb4!2sIstituto+di+Istruzione+Superiore+F.Corni%2C+sede+Vinci!5e0!3m2!1sit!2sit!4v1525778801134" frameborder="0" style="border:0" allowfullscreen></iframe></div>';
-             }
-                 ?>
+            if (!isset($_SESSION['user'])) {
+                echo '<div class="panel panel-default" style="height:20% width:5%;"><iframe style="max-width:100%;min-width:100%;" height="400" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2838.5097460187676!2d10.88803611520416!3d44.64793607909977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477fef95e7474705%3A0xe65e79e7b059ecb4!2sIstituto+di+Istruzione+Superiore+F.Corni%2C+sede+Vinci!5e0!3m2!1sit!2sit!4v1525778801134" frameborder="0" style="border:0" allowfullscreen></iframe></div>';
+            }
+            ?>
             <?php
             if (isset($_SESSION['user'])) {
                 echo '<div class="panel panel-default"  id="link2">
