@@ -67,7 +67,7 @@
         $datenow = date("d/m/y");
         $pre = false;
         if (isset($_REQUEST["id"])) {
-            
+
             $pre = true;
             $id = $_REQUEST["id"];
             $query = "SELECT * FROM `user` WHERE `email` = '$id'";
@@ -111,9 +111,11 @@
         }
         ?>
         <div>
-            <?php if (isset($_REQUEST["sid"])) {
+            <?php
+            if (isset($_REQUEST["sid"])) {
                 echo "dlouishdfòosajdnfpoòsadjfnapoòdfjnaòdofjnaldjfn";
-            }?>
+            }
+            ?>
             <div class="col-md-2"></div>
             <div class="container-fluid bg-grey col-md-8">
                 <form name="casellaTesto" method="post" class="was-validated" action="eliminaPrenotazione.php">
@@ -451,9 +453,11 @@
                             $db = new ConnessioneDb();
                             $sql = "SELECT * FROM `sessioni`";
                             $ris = $db->query($sql);
-
+                            $datenow = date("Y-m-d");
                             while ($riga = $ris->fetch_array()) {
-                                echo '<tr><td><input type="radio" required  name="sessione" class="form-check-input" value="' . $riga["ID"] . '"/> ' . $riga["data"] . '</td><td> ' . $riga["ora_da"] . ' - ' . $riga["ora_a"] . ' </td></tr>';
+                                if ($riga["data"] > $datenow) {
+                                    echo '<tr><td><input type="radio" required  name="sessione" class="form-check-input" value="' . $riga["ID"] . '"/> ' . $riga["data"] . '</td><td> ' . $riga["ora_da"] . ' - ' . $riga["ora_a"] . ' </td></tr>';
+                                }
                             }
                             echo "</table>";
                             ?>
