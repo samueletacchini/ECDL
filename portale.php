@@ -216,7 +216,7 @@
                     }
 
 
-
+                    
                     if (!isset($_SESSION["s0"])) {
                         for ($i = 0; $i <= 22; $i++) {
                             $_SESSION["s$i"] = "a";
