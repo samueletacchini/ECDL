@@ -366,7 +366,7 @@
                     for ($c = 0; $c <= 22; $c++) {
                         if ($_SESSION["s$c"] != "a") {
                             if ($_SESSION["ordina"] == $_SESSION["s$c"]) {
-                                echo '<th > ' . $_SESSION["s$c"] . '<form method="post" action="portale.php"> <input value="' . $_SESSION["s$c"] . '" type="hidden" name="ordina"> <input type="submit" value="' . $_SESSION["s$c"] . '" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                                echo '<th ><form method="post" action="portale.php"> <input value="' . $_SESSION["s$c"] . '" type="hidden" name="ordina"> <input type="submit" value="' . $_SESSION["s$c"] . '" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
                             } else {
                                 echo '<th><form method="post" action="portale.php"> <input value="' . $_SESSION["s$c"] . '" type="hidden" name="ordina"> <input type="submit" value="' . $_SESSION["s$c"] . '" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
                             }
