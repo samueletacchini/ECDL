@@ -48,45 +48,43 @@
         <div class='col-md-8'>
             <nav class="navbar navbar-inverse" id="barraPortale">
                 <div class="container-fluid">             
-                    <form action="  portale.php" method="post" class="navbar-form navbar-right">
-                        <ul class="nav navbar-nav text-right">
-                            <li> 
-                                <select name="colonna" class="form-control" required>
-                                    <option value="skill_card" selected> skill_card</option>    
-                                    <option value="rilasciata"> rilasciata</option>
-                                    <option value="codice_fiscale"> codice_fiscale</option>
-                                    <option value="sesso">sesso </option>
-                                    <option value="cognome">cognome </option>
-                                    <option value="nome"> nome</option>
-                                    <option value="data_nascita"> data_nascita</option>
-                                    <option value="comune_nascita"> comune_nascita</option>
-                                    <option value="provincia_nascita"> provincia_nascita </option>
-                                    <option value="stato_civile"> stato_civile </option>
-                                    <option value="indirizzo"> indirizzo </option>
-                                    <option value="civico"> civico </option>
-                                    <option value="stato"> stato </option>
-                                    <option value="citta"> citta </option>
-                                    <option value="cap"> cap </option>
-                                    <option value="provincia"> provincia </option>
-                                    <option value="email"> email </option>
-                                    <option value="cellulare"> cellulare </option>
-                                    <option value="telefono"> telefono </option>
-                                    <option value="occupazione"> occupazione </option>
-                                    <option value="titolo_studio"> titolo_studio </option>
-                                    <option value="pagato"> pagato </option>
-                                    <option value="tipo"> tipo </option>
-                                </select>
-                            </li>
+                    <form action="portale.php" method="post" class="nav navbar-nav">
+                        <ul class="nav navbar-nav">
+                            <div class="navbar-form navbar-right">
+                                <li> 
+                                    <select name="colonna" class="form-control" required>
+                                        <option value="skill_card" selected> skill_card</option>    
+                                        <option value="rilasciata"> rilasciata</option>
+                                        <option value="codice_fiscale"> codice_fiscale</option>
+                                        <option value="sesso">sesso </option>
+                                        <option value="cognome">cognome </option>
+                                        <option value="nome"> nome</option>
+                                        <option value="data_nascita"> data_nascita</option>
+                                        <option value="comune_nascita"> comune_nascita</option>
+                                        <option value="provincia_nascita"> provincia_nascita </option>
+                                        <option value="stato_civile"> stato_civile </option>
+                                        <option value="indirizzo"> indirizzo </option>
+                                        <option value="civico"> civico </option>
+                                        <option value="stato"> stato </option>
+                                        <option value="citta"> citta </option>
+                                        <option value="cap"> cap </option>
+                                        <option value="provincia"> provincia </option>
+                                        <option value="email"> email </option>
+                                        <option value="cellulare"> cellulare </option>
+                                        <option value="telefono"> telefono </option>
+                                        <option value="occupazione"> occupazione </option>
+                                        <option value="titolo_studio"> titolo_studio </option>
+                                        <option value="pagato"> pagato </option>
+                                        <option value="tipo"> tipo </option>
+                                    </select>
+                                </li>
+                            </div>
                             <li><a href="#" style='color:white'>Home</a></li>
-                            <li><a href="#" style='color:white'>Assegna SkillCard</a></li>
-                            <li><a href="#" style='color:white'>Page 2</a></li>
-                            <li><a href="reset.php" style='color:white'>Page 3</a></li>
-
+                            <li><div class="form-group">    
+                                    <input name="cerca" type="text" class="form-control" placeholder="cerca">
+                                </div>
+                                <button type="submit" class="btn btn-default">cerca</button></li>
                         </ul>
-                        <div class="form-group">
-                            <input name="cerca" type="text" class="form-control" placeholder="cerca">
-                        </div>
-                        <button type="submit" class="btn btn-default">cerca</button>
                     </form>
                 </div>
             </nav>
