@@ -46,7 +46,7 @@
             </p>
         </div>
         <div class='col-md-8'>
-            <div class="container-fluid">             
+            <div class="container-fluid" style="background-color:Dodgerblue;">             
                 <form action="portale.php" method="post">
                         <div class="form-group col-md-3" style="margin-top:1.5%;">
                             <select name="colonna" class="form-control" required>
@@ -366,9 +366,9 @@
                     for ($c = 0; $c <= 22; $c++) {
                         if ($_SESSION["s$c"] != "a") {
                             if ($_SESSION["ordina"] == $_SESSION["s$c"]) {
-                                echo '<th><form method="post" action="portale.php"> <input value="' . $_SESSION["s$c"] . '" type="hidden" name="ordina"> <input type="submit" value="' . $_SESSION["s$c"] . '" class="btn btn-info btn-lg" style="color:black;"> </form></th>';
+                                echo '<th><form method="post" action="portale.php"> <input value="' . $_SESSION["s$c"] . '" type="hidden" name="ordina"> <input type="submit" value="' . $_SESSION["s$c"] . '" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
                             } else {
-                                echo '<th><form method="post" action="portale.php"> <input value="' . $_SESSION["s$c"] . '" type="hidden" name="ordina"> <input type="submit" value="' . $_SESSION["s$c"] . '" class="btn btn-info btn-lg"> </form></th>';
+                                echo '<th><form method="post" action="portale.php"> <input value="' . $_SESSION["s$c"] . '" type="hidden" name="ordina"> <input type="submit" value="' . $_SESSION["s$c"] . '" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
                             }
                         }
                     }
