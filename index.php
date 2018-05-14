@@ -13,44 +13,7 @@ session_start();
         <meta name="viewport" content="width=device-width,initial-sclae=1.0">
 
     </head>
-    <script type="text/javascript">
-        $(function () {
-            $('#modal').click(function () {
-                alert('Conferma Cancellazione');
-                return false;
-            });
-        });
-    </script>
-    <script>
-        $(function () {
 
-            // We can attach the `fileselect` event to all file inputs on the page
-            $(document).on('change', ':file', function () {
-                var input = $(this),
-                        numFiles = input.get(0).files ? input.get(0).files.length : 1,
-                        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-                input.trigger('fileselect', [numFiles, label]);
-            });
-
-            // We can watch for our custom `fileselect` event like this
-            $(document).ready(function () {
-                $(':file').on('fileselect', function (event, numFiles, label) {
-
-                    var input = $(this).parents('.input-group').find(':text'),
-                            log = numFiles > 1 ? numFiles + ' files selected' : label;
-
-                    if (input.length) {
-                        input.val(log);
-                    } else {
-                        if (log)
-                            alert(log);
-                    }
-
-                });
-            });
-
-        });
-    </script>
     <style>
         #my_file {
             display: none;
@@ -465,30 +428,21 @@ session_start();
                         </div>                           
                         
                         
-                        <div class="col-md-12">
                         <p align="center">Seleziona i file da caricare:</p>
-                        <div class="input-group">
-                        <label class="input-group-btn">
-                        <span class="btn btn-primary" style="background-color:Dodgerblue; color:white;">
-                        Scegli File <input type="file" style="display: none;" multiple required>
-                        </span>
-                        </label>
-                        <input type="text" class="form-control" readonly>
-                        </div>
-                        <span class="help-block"></span>
-                        <div class="btn btn-primary col-md-3" style="background-color:Dodgerblue; color:white;">
-                        <input type="submit" name="carica" value="Carica" style="display: none;" multiplemi>Carica</input>
+                        <label class="input-group-btn">Scegli File </label>
+                        <input name="pdfs"  type="file" required>
+                        <br>
+                        <input type="submit" name="carica" value="Carica">
                         <div id="clicco"></div>
-                        </div>
-                        </div>
-        
+
 
                         
                         
+                        </form>
+                        </div>
                         
                         </div>
-                        </div>
-                        </form>';
+                        ';
             }
             ?>
         </div>
