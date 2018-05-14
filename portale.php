@@ -48,45 +48,43 @@
         <div class='col-md-8'>
             <nav class="navbar navbar-inverse" id="barraPortale">
                 <div class="container-fluid">             
-                    <form action="  portale.php" method="post" class="navbar-form navbar-right">
-                        <ul class="nav navbar-nav text-right">
-                            <li> 
-                                <select name="colonna" class="form-control" required>
-                                    <option value="skill_card" selected> skill_card</option>    
-                                    <option value="rilasciata"> rilasciata</option>
-                                    <option value="codice_fiscale"> codice_fiscale</option>
-                                    <option value="sesso">sesso </option>
-                                    <option value="cognome">cognome </option>
-                                    <option value="nome"> nome</option>
-                                    <option value="data_nascita"> data_nascita</option>
-                                    <option value="comune_nascita"> comune_nascita</option>
-                                    <option value="provincia_nascita"> provincia_nascita </option>
-                                    <option value="stato_civile"> stato_civile </option>
-                                    <option value="indirizzo"> indirizzo </option>
-                                    <option value="civico"> civico </option>
-                                    <option value="stato"> stato </option>
-                                    <option value="citta"> citta </option>
-                                    <option value="cap"> cap </option>
-                                    <option value="provincia"> provincia </option>
-                                    <option value="email"> email </option>
-                                    <option value="cellulare"> cellulare </option>
-                                    <option value="telefono"> telefono </option>
-                                    <option value="occupazione"> occupazione </option>
-                                    <option value="titolo_studio"> titolo_studio </option>
-                                    <option value="pagato"> pagato </option>
-                                    <option value="tipo"> tipo </option>
-                                </select>
-                            </li>
+                    <form action="portale.php" method="post" class="nav navbar-nav">
+                        <ul class="nav navbar-nav">
+                            <div class="navbar-form navbar-right">
+                                <li> 
+                                    <select name="colonna" class="form-control" required>
+                                        <option value="skill_card" selected> skill_card</option>    
+                                        <option value="rilasciata"> rilasciata</option>
+                                        <option value="codice_fiscale"> codice_fiscale</option>
+                                        <option value="sesso">sesso </option>
+                                        <option value="cognome">cognome </option>
+                                        <option value="nome"> nome</option>
+                                        <option value="data_nascita"> data_nascita</option>
+                                        <option value="comune_nascita"> comune_nascita</option>
+                                        <option value="provincia_nascita"> provincia_nascita </option>
+                                        <option value="stato_civile"> stato_civile </option>
+                                        <option value="indirizzo"> indirizzo </option>
+                                        <option value="civico"> civico </option>
+                                        <option value="stato"> stato </option>
+                                        <option value="citta"> citta </option>
+                                        <option value="cap"> cap </option>
+                                        <option value="provincia"> provincia </option>
+                                        <option value="email"> email </option>
+                                        <option value="cellulare"> cellulare </option>
+                                        <option value="telefono"> telefono </option>
+                                        <option value="occupazione"> occupazione </option>
+                                        <option value="titolo_studio"> titolo_studio </option>
+                                        <option value="pagato"> pagato </option>
+                                        <option value="tipo"> tipo </option>
+                                    </select>
+                                </li>
+                            </div>
                             <li><a href="#" style='color:white'>Home</a></li>
-                            <li><a href="#" style='color:white'>Assegna SkillCard</a></li>
-                            <li><a href="#" style='color:white'>Page 2</a></li>
-                            <li><a href="reset.php" style='color:white'>Page 3</a></li>
-
+                            <li><div class="form-group">    
+                                    <input name="cerca" type="text" class="form-control" placeholder="cerca">
+                                </div>
+                                <button type="submit" class="btn btn-default">cerca</button></li>
                         </ul>
-                        <div class="form-group">
-                            <input name="cerca" type="text" class="form-control" placeholder="cerca">
-                        </div>
-                        <button type="submit" class="btn btn-default">cerca</button>
                     </form>
                 </div>
             </nav>
@@ -572,10 +570,10 @@
                         <div class="checkbox-inline col-md-4">
                             <div class="form-group">
                                 <input name="skill_card"  class="form-check-input" type="checkbox" value="1"  <?php
-                    if ($_SESSION["s0"] != "a") {
-                        echo "checked";
-                    }
-                    ?> >
+                                if ($_SESSION["s0"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"    >
                                     skill_card
                                 </label>
@@ -585,7 +583,7 @@
                                 if ($_SESSION["s1"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     rilasciata
                                 </label>
@@ -595,7 +593,7 @@
                                 if ($_SESSION["s2"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     codice_fiscale
                                 </label>
@@ -605,7 +603,7 @@
                                 if ($_SESSION["s3"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     sesso
                                 </label>
@@ -615,7 +613,7 @@
                                 if ($_SESSION["s4"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     cognome
                                 </label>
@@ -625,7 +623,7 @@
                                 if ($_SESSION["s5"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     nome
                                 </label>
@@ -635,7 +633,7 @@
                                 if ($_SESSION["s6"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     data_nascita
                                 </label>
@@ -645,7 +643,7 @@
                                 if ($_SESSION["s7"] != "a") {
                                     echo "checked";
                                 }
-                    ?>	      >
+                                ?>	      >
                                 <label  class="form-check-label" for="defaultCheck7" >
                                     comune_nascita
                                 </label>
@@ -658,7 +656,7 @@
                                 if ($_SESSION["s8"] != "a") {
                                     echo "checked";
                                 }
-                    ?>  >
+                                ?>  >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     provincia_nascita  
                                 </label>
@@ -668,7 +666,7 @@
                                 if ($_SESSION["s9"] != "a") {
                                     echo "checked";
                                 }
-                    ?>>
+                                ?>>
                                 <label class = "form-check-label" for="defaultCheck7">
                                     stato_civile
                                 </label>
@@ -678,7 +676,7 @@
                                 if ($_SESSION["s10"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     indirizzo
                                 </label>
@@ -688,7 +686,7 @@
                                 if ($_SESSION["s11"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     civico
                                 </label>
@@ -698,7 +696,7 @@
                                 if ($_SESSION["s12"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     stato
                                 </label>
@@ -708,7 +706,7 @@
                                 if ($_SESSION["s13"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     citta
                                 </label>
@@ -718,7 +716,7 @@
                                 if ($_SESSION["s14"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     cap
                                 </label>
@@ -728,7 +726,7 @@
                                 if ($_SESSION["s15"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     provincia
                                 </label>
@@ -740,7 +738,7 @@
                                 if ($_SESSION["s16"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     email
                                 </label>
@@ -750,7 +748,7 @@
                                 if ($_SESSION["s17"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     cellulare
                                 </label>
@@ -760,7 +758,7 @@
                                 if ($_SESSION["s18"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     telefono
                                 </label>
@@ -770,7 +768,7 @@
                                 if ($_SESSION["s19"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     occupazione
                                 </label>
@@ -780,7 +778,7 @@
                                 if ($_SESSION["s20"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     titolo_studio
                                 </label>
@@ -790,7 +788,7 @@
                                 if ($_SESSION["s21"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     pagato                                    
                                 </label>
@@ -800,7 +798,7 @@
                                 if ($_SESSION["s22"] != "a") {
                                     echo "checked";
                                 }
-                    ?> >
+                                ?> >
                                 <label  class="form-check-label" for="defaultCheck7"  >
                                     tipo                                    
                                 </label>
