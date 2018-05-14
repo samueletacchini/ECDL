@@ -558,9 +558,9 @@
                             }
 
                             if ($modifica == true) {
-                                echo '<td> <input value="' . $riga['codice_fiscale'] . '" type="hidden" name="salva"> <input type="submit" value="SALVA " class="btn btn-info btn-lg" style="color:red;"> </form></td>';
+                                echo '<td> <input value="' . $riga['codice_fiscale'] . '" type="hidden" name="salva"> <input type="submit" value="SALVA " class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></td>';
                             } else {
-                                echo '<td><form method="post" action="portale.php"> <input  value="' . $riga['codice_fiscale'] . '" type="hidden" name="modifica"> <input type="submit" value="Modifica" class="btn btn-info btn-lg" style="color:red;"> </form></td>';
+                                echo '<td><form method="post" action="portale.php"> <input  value="' . $riga['codice_fiscale'] . '" type="hidden" name="modifica"> <input type="submit" value="Modifica" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></td>';
                             }
                             echo "</tr> ";
                             if ($modifica) {
@@ -581,7 +581,7 @@
                     <form name=”visualizza” method="post" class="was-validated" action="portale.php"> 
 
                         <input  value="1" type="hidden" name="seleziona">
-                        <input name="seleziona" class="form-check-input" type="submit" value="tutti/nessuno" >
+                        <input name="seleziona" class="btn btn-info" style="background-color:Dodgerblue; margin-top:1.7%; margin-left:73%;" type="submit" value="Tutti/Nsessuno" >
                     </form>
                 </div>
                 <form name=”visualizza” method="post" class="was-validated" action="portale.php">
@@ -826,7 +826,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input name="ok" class="form-check-input" type="submit" value="conferma" >
+                                <input name="ok" type="submit" value="conferma" class="btn btn-info" style="background-color:Dodgerblue;">
                             </div>
                         </div>
                 </form>
@@ -854,7 +854,7 @@
 
                                 echo '<td> <form action="portale.php" method="post">';
                                 echo '<input type="hidden" name="pren" value="' . $riga["ID"] . '">';
-                                echo '<input type="submit" value="visualizza" class="btn btn-info btn-lg">';
+                                echo '<input type="submit" value="visualizza" class="btn btn-info" style="background-color:Dodgerblue;">';
                                 echo "</td> </form> </tr>";
                             }
                         }
@@ -865,7 +865,7 @@
 
 
                 <div id="sesione">
-                    <button type="button" onclick="myFunction()">Nuova Sessione</button>
+                    <button type="button" onclick="myFunction()" class="btn btn-info btn-lg" style="background-color:Dodgerblue;">Nuova Sessione</button>
 
 
                 </div>
