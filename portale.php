@@ -894,8 +894,9 @@
         </div>
     </div>
     <script>
+
         function printInsert() {
-            var html = '<form action="inserisciSessione.php" method="post"><input type="text" name="data" value=""><label  class="form-check-label" for="defaultCheck7"  >data </label> <input type="text" name="ora_da" value=""><label  class="form-check-label" for="defaultCheck7"  > dalle </label><input type="text" name="ora_a" value=""><label  class="form-check-label" for="defaultCheck7"  > alle </label><input type="submit" value="Inserisci" class="btn btn-info btn-lg"></form>';
+            var html = '<form action="inserisciSessione.php" method="post"><div class="col-md-4"><label  class="form-check-label" for="defaultCheck7"  >data </label><input type="text" name="data" value="" class="form-control" required></div><div class="col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Dalle </label><input type="text" name="ora_da" value="" class="form-control" required></div><div class="col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Alle </label><input type="text" name="ora_a" value="" class="form-control" required></div><input type="submit" value="Inserisci" class="btn btn-info" style="background-color:Dodgerblue;"></form>';
 
             document.getElementById("sesione").innerHTML = html;
         }
