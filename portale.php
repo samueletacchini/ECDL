@@ -81,6 +81,12 @@
                     <div class="form-group col-md-3" style="margin-top:1.7%;">
                         <button type="submit" class="btn btn-default">cerca</button>
                     </div>
+
+
+                </form>
+                <form method='post' action='portale.php'>
+                    <input name='tartaruga' type='hidden' value='1'>
+                    <input type='submit' value='RESET' class='btn btn-info btn-lg '>
                 </form>
             </div>
 
@@ -93,6 +99,11 @@
                     <?php
                     require_once('ConnessioneDb.php');
                     $db = new ConnessioneDb();
+
+                    if (isset($_REQUEST["tartaruga"])) {
+                        $_SESSION["cerca"] = "codice_fiscale";
+                        $_SESSION["cosa"] = "%";
+                    }
 
                     if (isset($_REQUEST["seleziona"])) {
                         if ($_SESSION['selezione'] == "bho" || $_SESSION['selezione'] == "nessuno") {
@@ -196,22 +207,32 @@
 
 
                     if (isset($_REQUEST['colonna']) && isset($_REQUEST['cerca'])) {
-                        $cerca = $_REQUEST['colonna'];
-                        $cosa = $_REQUEST['cerca'];
-                        $sql = "SELECT * FROM `user` WHERE `$cerca` LIKE '%$cosa%' ORDER BY $cerca";
-                    } elseif (isset($_REQUEST["pren"])) {
-                        $idpren = $_REQUEST["pren"];
-                        $sql = "SELECT * FROM `user` JOIN prenotazione ON user.codice_fiscale = prenotazione.ID_codice_fiscale WHERE prenotazione.ID_sessione = $idpren";
+                        $_SESSION["cerca"] = $_REQUEST['colonna'];
+                        $_SESSION["cosa"] = $_REQUEST['cerca'];
                     } else {
-                        if (isset($_REQUEST["ordina"])) {
-                            $ordina = $_SESSION["ordina"] = $_REQUEST["ordina"];
-                        } else {
-                            $_SESSION['ordina'] = "skill_card";
+                        if ($_SESSION["cerca"] == "codice_fiscale" && $_SESSION["cosa"] == "%" && !isset($_REQUEST["ordina"])) {
+                            $_SESSION["cerca"] = "codice_fiscale";
+                            $_SESSION["cosa"] = "%";
                         }
-                        $sql = "SELECT * FROM `user` ORDER BY `{$_SESSION["ordina"]}`";
                     }
 
-                    //   $sql = "SELECT * FROM `user` ORDER BY {$_SESSION["ordina"]}";
+                    if (isset($_REQUEST["ordina"])) {
+                        $_SESSION["ordina"] = $_REQUEST["ordina"];
+                    } else {
+                        $_SESSION['ordina'] = "skill_card";
+                    }
+
+                    if (isset($_REQUEST["pren"])) {
+                        $idpren = $_REQUEST["pren"];
+                    } else {
+                        $idpren = "%";
+                    }
+
+
+                    echo $_SESSION["query"] = "SELECT `user`.* FROM `user` inner JOIN prenotazione WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '{$idpren}' AND `{$_SESSION['cerca']}` LIKE '%{$_SESSION['cosa']}%' GROUP BY user.codice_fiscale ORDER BY {$_SESSION["ordina"]}";
+
+
+                    //   $_SESSION["query"] = "SELECT * FROM `user` ORDER BY {$_SESSION["ordina"]}";
 
                     if (!isset($_SESSION["s0"])) {
                         for ($i = 0; $i <= 22; $i++) {
@@ -360,7 +381,7 @@
                     }
 
 
-                    $ris = $db->query($sql);
+                    $ris = $db->query($_SESSION["query"]);
                     $righe = mysqli_num_rows($ris);
                     echo '<table class=" table table-bordered"> <tr>';
                     for ($c = 0; $c <= 22; $c++) {
@@ -374,7 +395,7 @@
                     }
                     if ($_SESSION['selezione'] == "bho") {
 
-                        echo "<th>Righe totali : {$righe}</th>";
+                        echo "<th>Righe totali : {$righe} </th>";
                         echo "</tr>";
                     }
 
@@ -557,10 +578,10 @@
                                 }
                             }
 
-                            if ($_SESSION["ordina"] == $_SESSION["s$c"]) {
-                                echo '<th ><form method="post" action="portale.php"> <input value="' . $_SESSION["s$c"] . '" type="hidden" name="ordina"> <input type="submit" value="' . $_SESSION["s$c"] . '" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                            if ($modifica == true) {
+                                echo '<td> <input value="' . $riga['codice_fiscale'] . '" type="hidden" name="salva"> <input type="submit" value="SALVA " class="btn btn-info btn-lg" style="color:red;"> </form></td>';
                             } else {
-                                echo '<th><form method="post" action="portale.php"> <input value="' . $_SESSION["s$c"] . '" type="hidden" name="ordina"> <input type="submit" value="' . $_SESSION["s$c"] . '" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
+                                echo '<td><form method="post" action="portale.php"> <input  value="' . $riga['codice_fiscale'] . '" type="hidden" name="modifica"> <input type="submit" value="Modifica" class="btn btn-info btn-lg" style="color:red;"> </form></td>';
                             }
                             echo "</tr> ";
                             if ($modifica) {
@@ -837,12 +858,12 @@
             <div class="panel">
                 <h3 align='center'>Prossime date Esami</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" >
                 <table class="table table-bordered">
                     <thead>
                         <?php
-                        $sql = "SELECT * FROM `sessioni`";
-                        $ris = $db->query($sql);
+                        $eh = "SELECT * FROM `sessioni`";
+                        $ris = $db->query($eh);
                         $datenow = date("Y-m-d");
                         while ($riga = $ris->fetch_array()) {
                             if ($riga["data"] > $datenow) {
@@ -864,8 +885,8 @@
                 </table>
 
 
-                <div id="sesione">
-                    <button type="button" onclick="myFunction()" class="btn btn-info btn-lg" style="background-color:Dodgerblue;">Nuova Sessione</button>
+                <div id="sesione"  > 
+                    <button  type="button" onclick="printInsert()" class="btn btn-info col-md-12 btn-lg" style="background-color:Dodgerblue;">Nuova Sessione</button>
 
 
                 </div>
@@ -873,7 +894,8 @@
         </div>
     </div>
     <script>
-        function myFunction() {
+
+        function printInsert() {
             var html = '<form action="inserisciSessione.php" method="post"><div class="col-md-4"><label  class="form-check-label" for="defaultCheck7"  >data </label><input type="text" name="data" value="" class="form-control" required></div><div class="col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Dalle </label><input type="text" name="ora_da" value="" class="form-control" required></div><div class="col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Alle </label><input type="text" name="ora_a" value="" class="form-control" required></div><input type="submit" value="Inserisci" class="btn btn-info" style="background-color:Dodgerblue;"></form>';
 
             document.getElementById("sesione").innerHTML = html;
