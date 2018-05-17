@@ -86,7 +86,7 @@
                 </form>
                 <form method='post' action='portale.php'>
                     <input name='tartaruga' type='hidden' value='1'>
-                    <input type='submit' value='RESET' class='btn btn-info btn-lg '>
+                    <input type='submit' value='Reset' class='btn btn-default'>
                 </form>
             </div>
 
@@ -602,7 +602,7 @@
                     <form name=”visualizza” method="post" class="was-validated" action="portale.php"> 
 
                         <input  value="1" type="hidden" name="seleziona">
-                        <input name="seleziona" class="btn btn-info" style="background-color:Dodgerblue; margin-top:1.7%; margin-left:73%;" type="submit" value="Tutti/Nsessuno" >
+                        <input name="seleziona" class="btn btn-info" style="background-color:Dodgerblue; margin-top:1.7%;" type="submit" value="Tutti/Nsessuno" >
                     </form>
                 </div>
                 <form name=”visualizza” method="post" class="was-validated" action="portale.php">
@@ -896,7 +896,7 @@
     <script>
 
         function printInsert() {
-            var html = '<form action="inserisciSessione.php" method="post"><div class="col-md-4"><label  class="form-check-label" for="defaultCheck7"  >data </label><input type="text" name="data" value="" class="form-control" required></div><div class="col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Dalle </label><input type="text" name="ora_da" value="" class="form-control" required></div><div class="col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Alle </label><input type="text" name="ora_a" value="" class="form-control" required></div><input type="submit" value="Inserisci" class="btn btn-info" style="background-color:Dodgerblue;"></form>';
+            var html = '<form action="inserisciSessione.php" method="post"><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  >Data </label><input type="text" name="data" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Dalle </label><input type="text" name="ora_da" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Alle </label><div class="form-row"><input type="text" name="ora_a" value="" class="form-control" required></div><div class="form-group"><input type="submit" value="Inserisci" class="btn btn-info col-md-12" style="background-color:Dodgerblue;"></div></form>';
 
             document.getElementById("sesione").innerHTML = html;
         }
