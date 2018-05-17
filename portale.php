@@ -100,13 +100,12 @@
                     require_once('ConnessioneDb.php');
                     $db = new ConnessioneDb();
 
-                    if (isset($_REQUEST["tartaruga"])) {
+                    if (isset($_REQUEST["tartaruga"]) || (!isset($_SESSION["cerca"]) && !isset($_SESSION["cosa"]))) {
                         $_SESSION["cerca"] = "codice_fiscale";
                         $_SESSION["cosa"] = "%";
                     }
-
                     if (isset($_REQUEST["seleziona"])) {
-                        if ($_SESSION['selezione'] == "bho" || $_SESSION['selezione'] == "nessuno") {
+                        if ($_SESSION['selezione'] == "bhe" || $_SESSION['selezione'] == "nessuno") {
                             $_SESSION['selezione'] = "tutti";
                             $tn = true;
                         } else {
@@ -120,7 +119,6 @@
                         $_SESSION['selezione'] = "bho";
                         $tn = false;
                     }
-
 
 
                     if (isset($_REQUEST['salva'])) {
@@ -210,6 +208,7 @@
                         $_SESSION["cerca"] = $_REQUEST['colonna'];
                         $_SESSION["cosa"] = $_REQUEST['cerca'];
                     } else {
+
                         if ($_SESSION["cerca"] == "codice_fiscale" && $_SESSION["cosa"] == "%" && !isset($_REQUEST["ordina"])) {
                             $_SESSION["cerca"] = "codice_fiscale";
                             $_SESSION["cosa"] = "%";
@@ -217,19 +216,21 @@
                     }
 
                     if (isset($_REQUEST["ordina"])) {
+
                         $_SESSION["ordina"] = $_REQUEST["ordina"];
                     } else {
-                        $_SESSION['ordina'] = "skill_card";
+                        if (!isset($_REQUEST["modifica"])) {
+                            $_SESSION['ordina'] = "skill_card";
+                        }
                     }
 
                     if (isset($_REQUEST["pren"])) {
                         $idpren = $_REQUEST["pren"];
+                        $_SESSION["query"] = "SELECT `user`.* FROM `user` inner JOIN prenotazione ON prenotazione.ID_codice_fiscale = user.codice_fiscale WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '{$idpren}' AND `{$_SESSION['cerca']}` LIKE '%{$_SESSION['cosa']}%' GROUP BY user.codice_fiscale ORDER BY {$_SESSION["ordina"]}";
                     } else {
                         $idpren = "%";
+                        $_SESSION["query"] = "SELECT `user`.* FROM `user` inner JOIN prenotazione WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '{$idpren}' AND `{$_SESSION['cerca']}` LIKE '%{$_SESSION['cosa']}%' GROUP BY user.codice_fiscale ORDER BY {$_SESSION["ordina"]}";
                     }
-
-
-                    echo $_SESSION["query"] = "SELECT `user`.* FROM `user` inner JOIN prenotazione WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '{$idpren}' AND `{$_SESSION['cerca']}` LIKE '%{$_SESSION['cosa']}%' GROUP BY user.codice_fiscale ORDER BY {$_SESSION["ordina"]}";
 
 
                     //   $_SESSION["query"] = "SELECT * FROM `user` ORDER BY {$_SESSION["ordina"]}";
@@ -240,164 +241,171 @@
                         }
                     }
 
+                    if (isset($_REQUEST["quali"]) || isset($_REQUEST["seleziona"])) {
+                        if (isset($_REQUEST["skill_card"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s0"] = 'skill_card';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s0"] = 'a';
+                        }
+                        if (isset($_REQUEST["rilasciata"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s1"] = 'rilasciata';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s1"] = 'a';
+                        }
+                        if (isset($_REQUEST["codice_fiscale"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s2"] = 'codice_fiscale';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s2"] = 'a';
+                        }
+                        if (isset($_REQUEST["sesso"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s3"] = 'sesso';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s3"] = 'a';
+                        }
+                        if (isset($_REQUEST["cognome"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s4"] = 'cognome';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s4"] = 'a';
+                        }
+                        if (isset($_REQUEST["nome"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s5"] = 'nome';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s5"] = 'a';
+                        }
+                        if (isset($_REQUEST["data_nascita"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s6"] = 'data_nascita';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s6"] = 'a';
+                        }
+                        if (isset($_REQUEST["comune_nascita"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s7"] = 'comune_nascita';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s7"] = 'a';
+                        }
+                        if (isset($_REQUEST["provincia_nascita"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s8"] = 'provincia_nascita';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s8"] = 'a';
+                        }
+                        if (isset($_REQUEST["stato_civile"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s9"] = 'stato_civile';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s9"] = 'a';
+                        }
+                        if (isset($_REQUEST["indirizzo"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s10"] = 'indirizzo';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s10"] = 'a';
+                        }
+                        if (isset($_REQUEST["civico"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s11"] = 'civico';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s11"] = 'a';
+                        }
+                        if (isset($_REQUEST["stato"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s12"] = 'stato';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s12"] = 'a';
+                        }
+                        if (isset($_REQUEST["citta"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s13"] = 'citta';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s13"] = 'a';
+                        }
+                        if (isset($_REQUEST["cap"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s14"] = 'cap';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s14"] = 'a';
+                        }
+                        if (isset($_REQUEST["provincia"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s15"] = 'provincia';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s15"] = 'a';
+                        }
+                        if (isset($_REQUEST["email"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s16"] = 'email';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s16"] = 'a';
+                        }
+                        if (isset($_REQUEST["telefono"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s17"] = 'telefono';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s17"] = 'a';
+                        }
+                        if (isset($_REQUEST["cellulare"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s18"] = 'cellulare';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s18"] = 'a';
+                        }
+                        if (isset($_REQUEST["occupazione"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s19"] = 'occupazione';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s19"] = 'a';
+                        }
+                        if (isset($_REQUEST["titolo_studio"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s20"] = 'titolo_studio';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s20"] = 'a';
+                        }
+                        if (isset($_REQUEST["pagato"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s21"] = 'pagato';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s21"] = 'a';
+                        }
+                        if (isset($_REQUEST["tipo"]) || $tn == true) {
+                            $_SESSION['selezione'] = "bho";
+                            $_SESSION["s22"] = 'tipo';
+                        } elseif (isset($_REQUEST["tipi"])) {
+                            $_SESSION["s22"] = 'a';
+                        }
+                    }
 
-                    if (isset($_REQUEST["skill_card"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s0"] = 'skill_card';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s0"] = 'a';
-                    }
-                    if (isset($_REQUEST["rilasciata"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s1"] = 'rilasciata';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s1"] = 'a';
-                    }
-                    if (isset($_REQUEST["codice_fiscale"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s2"] = 'codice_fiscale';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s2"] = 'a';
-                    }
-                    if (isset($_REQUEST["sesso"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s3"] = 'sesso';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s3"] = 'a';
-                    }
-                    if (isset($_REQUEST["cognome"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s4"] = 'cognome';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s4"] = 'a';
-                    }
-                    if (isset($_REQUEST["nome"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s5"] = 'nome';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s5"] = 'a';
-                    }
-                    if (isset($_REQUEST["data_nascita"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s6"] = 'data_nascita';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s6"] = 'a';
-                    }
-                    if (isset($_REQUEST["comune_nascita"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s7"] = 'comune_nascita';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s7"] = 'a';
-                    }
-                    if (isset($_REQUEST["provincia_nascita"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s8"] = 'provincia_nascita';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s8"] = 'a';
-                    }
-                    if (isset($_REQUEST["stato_civile"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s9"] = 'stato_civile';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s9"] = 'a';
-                    }
-                    if (isset($_REQUEST["indirizzo"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s10"] = 'indirizzo';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s10"] = 'a';
-                    }
-                    if (isset($_REQUEST["civico"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s11"] = 'civico';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s11"] = 'a';
-                    }
-                    if (isset($_REQUEST["stato"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s12"] = 'stato';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s12"] = 'a';
-                    }
-                    if (isset($_REQUEST["citta"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s13"] = 'citta';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s13"] = 'a';
-                    }
-                    if (isset($_REQUEST["cap"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s14"] = 'cap';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s14"] = 'a';
-                    }
-                    if (isset($_REQUEST["provincia"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s15"] = 'provincia';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s15"] = 'a';
-                    }
-                    if (isset($_REQUEST["email"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s16"] = 'email';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s16"] = 'a';
-                    }
-                    if (isset($_REQUEST["telefono"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s17"] = 'telefono';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s17"] = 'a';
-                    }
-                    if (isset($_REQUEST["cellulare"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s18"] = 'cellulare';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s18"] = 'a';
-                    }
-                    if (isset($_REQUEST["occupazione"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s19"] = 'occupazione';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s19"] = 'a';
-                    }
-                    if (isset($_REQUEST["titolo_studio"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s20"] = 'titolo_studio';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s20"] = 'a';
-                    }
-                    if (isset($_REQUEST["pagato"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s21"] = 'pagato';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s21"] = 'a';
-                    }
-                    if (isset($_REQUEST["tipo"]) || $tn == true) {
-                        $_SESSION['selezione'] = "bho";
-                        $_SESSION["s22"] = 'tipo';
-                    } elseif (isset($_REQUEST["tipi"])) {
-                        $_SESSION["s22"] = 'a';
-                    }
 
 
                     $ris = $db->query($_SESSION["query"]);
                     $righe = mysqli_num_rows($ris);
-                    echo '<table class=" table table-bordered"> <tr>';
-                    for ($c = 0; $c <= 22; $c++) {
-                        if ($_SESSION["s$c"] != "a") {
-                            if ($_SESSION["ordina"] == $_SESSION["s$c"]) {
-                                echo '<th ><form method="post" action="portale.php"> <input value="' . $_SESSION["s$c"] . '" type="hidden" name="ordina"> <input type="submit" value="' . $_SESSION["s$c"] . '" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
-                            } else {
-                                echo '<th><form method="post" action="portale.php"> <input value="' . $_SESSION["s$c"] . '" type="hidden" name="ordina"> <input type="submit" value="' . $_SESSION["s$c"] . '" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
+                    if ($righe > 0) {
+                        echo '<table class=" table table-bordered"> <tr>';
+                        for ($c = 0; $c <= 22; $c++) {
+                            if ($_SESSION["s$c"] != "a") {
+                                if ($_SESSION["ordina"] == $_SESSION["s$c"]) {
+                                    echo '<th ><form method="post" action="portale.php"> <input value="' . $_SESSION["s$c"] . '" type="hidden" name="ordina"> <input type="submit" value="' . $_SESSION["s$c"] . '" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                                } else {
+                                    echo '<th><form method="post" action="portale.php"> <input value="' . $_SESSION["s$c"] . '" type="hidden" name="ordina"> <input type="submit" value="' . $_SESSION["s$c"] . '" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
+                                }
                             }
                         }
-                    }
-                    if ($_SESSION['selezione'] == "bho") {
+                        if ($_SESSION['selezione'] == "bho") {
 
-                        echo "<th>Righe totali : {$righe} </th>";
-                        echo "</tr>";
+                            echo "<th>Righe totali : {$righe} </th>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo 'la ricerca non ha restituito nessun risultato';
                     }
+
 
                     while ($riga = $ris->fetch_array()) {
                         if ($_SESSION['selezione'] == "bho") {
@@ -606,7 +614,7 @@
                     </form>
                 </div>
                 <form name=”visualizza” method="post" class="was-validated" action="portale.php">
-
+                    <input name="quali"  type="hidden" value="1" >
                     <div class="panel-body">
                         <input value="1" type="hidden" name="tipi">
                         <div class="checkbox-inline col-md-4">
@@ -915,6 +923,3 @@
     </div>
 </body>
 </html>
-
-
-
