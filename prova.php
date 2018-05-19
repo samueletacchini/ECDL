@@ -1,30 +1,99 @@
-<html>
-    <head>
-        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<form class="form-horizontal" name="submitDetails" acttion="#">
+  <fieldset>
+    <div class="control-group oneLine">
+      <label class="control-label" for="custom1">1. Did you telephone us?</label>
+      <div class="controls">
+        <label class="radio span2" for="">
+          <input name="custom1" id="custom1" value="Yes" checked="checked" type="radio">
+          Yes </label>
+        <label class="radio span2" for="">
+          <input name="custom1" id="custom1" value="No" type="radio">
+          No </label>
+      </div>
+    </div>
+    <div class="control-group  oneLine">
+      <label class="control-label" for="custom2">2. How did you hear about us?</label>
+      <div class="controls">
+        <div class="row-fluid">
+          <label class="radio span3" for="">
+            <input name="custom2" id="custom2" value="1" checked="checked" type="radio">
+            Newspaper </label>
+          <label class="radio span3" for="">
+            <input name="custom2" id="custom2" value="2" type="radio">
+            Billboard </label>
+          <label class="radio span3" for="">
+            <input name="custom2" id="custom2" value="3" type="radio">
+            Yellow Pages </label>
+          <label class="radio span3 " for="">
+            <input name="custom2" id="custom2" value="4" type="radio">
+            Radio </label>
+        </div>
+        <div class="row-fluid">
+          <label class="radio span3" for="">
+            <input name="custom2" id="custom2" value="5" type="radio">
+            Google / Internet </label>
+          <label class="radio span3" for="">
+            <input name="custom2" id="custom2" value="23" type="radio">
+            White Pages </label>
+          <label class="radio span3" for="">
+            <input name="custom2" id="custom2" value="7" type="radio">
+            Referral </label>
+          <label class="radio span3" for="">
+            <input name="custom2" id="custom2" value="8" type="radio">
+            Television </label>
+        </div>
+        <div class="row-fluid">
+          <label class="radio span3" for="">
+            <input name="custom2" id="custom2" value="9" type="radio">
+            Familiar with area </label>
+          <label class="radio span3" for="">
+            <input name="custom2" id="custom2" value="10" type="radio">
+            Magazine </label>
+          <label class="radio span3" for="">
+            <input name="custom2" id="custom2" value="21" type="radio">
+            Catalogue </label>
+          <label class="radio span3" for="">
+            <input name="custom2" id="custom2" value="25" type="radio">
+            Our website </label>
+        </div>
+        <div class="row-fluid">
+          <label class="radio inline" for="">
+            <input name="custom2" id="custom2" value="24" type="radio">
+            1300 Number </label>
+        </div>
+      </div>
+    </div>
+<br/>
+<div align="right"><button>SUBMIT</button></div>
+  </fieldset>
+</form>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/PrenotazioneRegistrazione.css">
-        <link rel="stylesheet" href="file.js">
-        <meta name="viewport" content="width=device-width,initial-sclae=1.0">
 
-    </head>
-    <body>
-    <form action="inserisciSessione.php" method="post">
-        <div class="col-md-4">
-            <label  class="form-check-label" for="defaultCheck7"  >Data </label>
-            <input type="text" name="data" value="" class="form-control" required>
-        </div>
-        <div class="col-md-4">
-            <label  class="form-check-label" for="defaultCheck7"  > Dalle </label>
-            <input type="text" name="ora_da" value="" class="form-control" required>
-        </div>
-        <div class="col-md-4">
-            <label  class="form-check-label" for="defaultCheck7"  > Alle </label>
-            <input type="text" name="ora_a" value="" class="form-control" required>
-        </div>
-            <br><input type="submit" value="Inserisci" class="btn btn-info" style="background-color:Dodgerblue; margin-top:3%; margin-left:50%;">
-    </form>
-    </body>
-</html>
+    <style type="text/css">
+body {
+    background-color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+.oneLine .controls {
+    background-color: #d8d8d8;
+    margin:0px;
+    display:inline-block;
+    width:100%;
+}
+.control-group.oneLine > label {
+
+    float: none;
+    text-align: left;
+    width: 100%;
+}
+.error {
+    color: #ff0000;
+}
+.radio.inline{
+    margin-bottom:auto;
+    vertical-align: auto;
+}
+</style>
