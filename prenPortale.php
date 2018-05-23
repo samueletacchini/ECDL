@@ -259,39 +259,44 @@
                                 for ($p = 0; $p < 2; $p++) {
                                     if (isset($tipi[$p])) {
 
-                                        if ($tipi[$p] == "bollettinoprenotazione") {
-                                            if ($riga2['ok'] == 1) {
-                                                $boll = 2;
-                                            } else {
-                                                $boll = 1;
-                                            }
+                                    if ($tipi[$p] == "bollettinoprenotazione") {
+                                        $id = $riga2['id'];
+                                        if ($riga2['ok'] == 1) {
+                                            $boll = 2;
+                                        } else {
+                                            $boll = 1;
                                         }
-                                        if ($tipi[$p] == "pdfprenotazione") {
-                                            if ($riga2['ok'] == 1) {
-                                                $pren = 2;
-                                            } else {
-                                                $pren = 1;
-                                            }
+                                    }
+                                    if ($tipi[$p] == "pdfprenotazione") {
+                                        $id = $riga2['id'];
+                                        if ($riga2['ok'] == 1) {
+                                            $pren = 2;
+                                        } else {
+                                            $pren = 1;
+
                                         }
                                     }
                                 }
                             }
-                            if ($boll == 1) {
-                                echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='da approvare'></span></td>";
-                            } else if ($boll == 2) {
-                                echo "<td><span style='color:#33cc33' class='glyphicon glyphicon-ok-sign' title='OK'></span></td>";
-                            } else {
-                                echo "<td><span style='color:#ff0000' class='glyphicon glyphicon-remove-sign' title='OK'></td>";
-                            }
-                            //glyphicon glyphicon-remove-sign
-                            if ($pren == 1) {
-                                echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='da approvare'></span></td>";
-                            } else if ($pren == 2) {
-                                echo "<td><span style='color:#33cc33' class='glyphicon glyphicon-ok-sign' title='OK'></td>";
-                            } else {
-                                echo "<td><span style='color:#ff0000' class='glyphicon glyphicon-remove-sign' title='OK'></td>";
-                            }
+                        }
+                        if ($boll == 1) {
+                            echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='da approvare'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='scarica' ></span></a></td>";
+                        } else if ($boll == 2) {
+                            echo "<td><span style='color:#33cc33' class='glyphicon glyphicon-ok-sign' title='OK'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='scarica' ></span></a></span></td>";
+                        } else {
+                            echo "<td><span style='color:#ff0000' class='glyphicon glyphicon-remove-sign' title='NADA'></span></td>";
+                        }
+                        //glyphicon glyphicon-remove-sign
+                        if ($pren == 1) {
+                            echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='da approvare'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='scarica' ></span></a></td>";
+                        } else if ($pren == 2) {
+                            echo "<td><span style='color:#33cc33' class='glyphicon glyphicon-ok-sign' title='OK'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='scarica' ></span></a></td>";
+                        } else {
+                            echo "<td><span style='color:#ff0000' class='glyphicon glyphicon-remove-sign' title='OK'></span></td>";
+                        }
 
+
+ 
 
                             if ($modifica == true) {
                                 echo '<td><input value="' . $riga['ID'] . '" type="hidden" name="salva"> <input type="submit" value="SALVA " class="btn btn-info btn-lg" style="color:white;"> </form></td>';
