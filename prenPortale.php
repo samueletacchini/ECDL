@@ -160,13 +160,16 @@
                         $ris = $db->query($_SESSION["query"]);
                         $righe = mysqli_num_rows($ris);
                         if ($righe > 0) {
-                            echo '<table class=" table table-bordered"> <tr>';
 
-                            if (explode(".", $_SESSION["ordina"])[1] == "ID") {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID" type="hidden" name="ordina"> <input type="submit" value="ID" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
-                            } else {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID" type="hidden" name="ordina"> <input type="submit" value="ID" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
-                            }
+                            echo '<table class=" table table-bordered"> <tr>';
+                            echo "<th>Righe totali : {$righe} </th>";
+
+//                            if (explode(".", $_SESSION["ordina"])[1] == "ID") {
+//                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID" type="hidden" name="ordina"> <input type="submit" value="ID" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
+//                            } else {
+//                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID" type="hidden" name="ordina"> <input type="submit" value="ID" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+//                            }
+
                             if (explode(".", $_SESSION["ordina"])[1] == "ID_codice_fiscale") {
                                 echo '<th><form method="post" action="prenPortale.php"> <input value="ID_codice_fiscale" type="hidden" name="ordina"> <input type="submit" value="ID_codice_fiscale" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
                             } else {
@@ -188,9 +191,6 @@
 
                             echo '<th> <div class="btn btn-info btn-lg disabled" style="background-color:Dodgerblue;">pdf</div></th>';
 
-
-
-                            echo "<th>Righe totali : {$righe} </th>";
                             echo "</tr>";
                         } else {
                             echo 'la ricerca non ha restituito nessun risultato';
@@ -207,15 +207,21 @@
                                 $modifica = false;
                             }
 
-
-
-
-
+                            echo "<tr>";
                             if ($modifica == true) {
+
                                 echo "<tr><td> <input class='form-control' name='ID' type='text' value='" . $riga['ID'] . "' ></td>";
                             } else {
-                                echo "<tr><td> " . $riga['ID'] . "</td>";
+                                echo '<td><form method="post" action="prenPortale.php"> <input  value="' . $riga['ID'] . '" type="hidden" name="modifica"> <input type="submit" value="Modifica" class="btn btn-info btn-lg" style=" color:white;"> </td>';
                             }
+
+
+
+//                            if ($modifica == true) {
+//                                echo "<td> <input name='ID' type='text' value='" . $riga['ID'] . "' ></td>";
+//                            } else {
+//                                echo "<td> " . $riga['ID'] . "</td>";
+//                            }
 
                             if ($modifica == true) {
                                 echo "<td><input class='form-control' name='ID_codice_fiscale' type='text' value='" . $riga['ID_codice_fiscale'] . "'></td>";
@@ -279,6 +285,7 @@
                                 }
                             }
                             if ($boll == 1) {
+
                                 echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='Da approvare'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a></td>";
                             } else if ($boll == 2) {
                                 echo "<td><span style='color:#33cc33' class='glyphicon glyphicon-ok-sign' title='Completo'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a></span></td>";
@@ -297,13 +304,7 @@
 
 
 
-                            if ($modifica == true) {
-                                echo '<td><input value="' . $riga['ID'] . '" type="hidden" name="salva"> <input type="submit" value="SALVA " class="btn btn-info btn-lg" style="color:white;"> </form></td>';
-                            } else {
-                                echo '<td><form method="post" action="prenPortale.php"> <input  value="' . $riga['ID'] . '" type="hidden" name="modifica"> <input type="submit" value="Modifica" class="btn btn-info btn-lg" style=" color:white;"> </form></td>';
-                            }
-
-                            echo "</tr> ";
+                            echo " </form></tr> ";
                             if ($modifica) {
                                 echo '</form>';
                                 $modifica = false;
