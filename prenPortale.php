@@ -164,11 +164,11 @@
                             echo '<table class=" table table-bordered"> <tr>';
                             echo "<th>Righe totali : {$righe} </th>";
 
-                            if (explode(".", $_SESSION["ordina"])[1] == "ID") {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID" type="hidden" name="ordina"> <input type="submit" value="ID" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
-                            } else {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID" type="hidden" name="ordina"> <input type="submit" value="ID" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
-                            }
+//                            if (explode(".", $_SESSION["ordina"])[1] == "ID") {
+//                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID" type="hidden" name="ordina"> <input type="submit" value="ID" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
+//                            } else {
+//                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID" type="hidden" name="ordina"> <input type="submit" value="ID" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+//                            }
                             if (explode(".", $_SESSION["ordina"])[1] == "ID_codice_fiscale") {
                                 echo '<th><form method="post" action="prenPortale.php"> <input value="ID_codice_fiscale" type="hidden" name="ordina"> <input type="submit" value="ID_codice_fiscale" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
                             } else {
@@ -214,11 +214,11 @@
 
 
 
-                            if ($modifica == true) {
-                                echo "<td> <input name='ID' type='text' value='" . $riga['ID'] . "' ></td>";
-                            } else {
-                                echo "<td> " . $riga['ID'] . "</td>";
-                            }
+//                            if ($modifica == true) {
+//                                echo "<td> <input name='ID' type='text' value='" . $riga['ID'] . "' ></td>";
+//                            } else {
+//                                echo "<td> " . $riga['ID'] . "</td>";
+//                            }
 
                             if ($modifica == true) {
                                 echo "<td><input name='ID_codice_fiscale' type='text' value='" . $riga['ID_codice_fiscale'] . "'></td>";
