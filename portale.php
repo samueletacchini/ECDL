@@ -41,6 +41,10 @@
             width:20%;
             min-width:100%;
         }
+        .testimonial-group > .row {
+            overflow-y: auto;
+            height:94.3%;
+        }
     </style>
     <body>
         <div class="jumbotron text-center">
@@ -396,23 +400,24 @@
                         $righe = mysqli_num_rows($ris);
                         if ($righe > 0) {
                             echo '<table class=" table table-bordered"> <tr>';
-                            for ($c = 0; $c <= 22; $c++) {
-                                if ($_SESSION["s$c"] != "a") {
-                                    if ($_SESSION["ordina"] == $_SESSION["s$c"]) {
-                                        echo '<th ><form method="post" action="portale.php"> <input value="' . $_SESSION["s$c"] . '" type="hidden" name="ordina"> <input type="submit" value="' . $_SESSION["s$c"] . '" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
-                                    } else {
-                                        echo '<th><form method="post" action="portale.php"> <input value="' . $_SESSION["s$c"] . '" type="hidden" name="ordina"> <input type="submit" value="' . $_SESSION["s$c"] . '" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
-                                    }
-                                }
-                            }
                             if ($_SESSION['selezione'] == "bho") {
 
                                 echo "<th>Righe totali : {$righe} </th>";
-                                echo "</tr>";
+                                echo "";
                             }
                         } else {
                             echo '<p align="center" style="color:grey;">La ricerca non ha restituito nessun risultato</p>';
                         }
+                        for ($c = 0; $c <= 22; $c++) {
+                            if ($_SESSION["s$c"] != "a") {
+                                if ($_SESSION["ordina"] == $_SESSION["s$c"]) {
+                                    echo '<th ><form method="post" action="portale.php"> <input value="' . $_SESSION["s$c"] . '" type="hidden" name="ordina"> <input type="submit" value="' . $_SESSION["s$c"] . '" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                                } else {
+                                    echo '<th><form method="post" action="portale.php"> <input value="' . $_SESSION["s$c"] . '" type="hidden" name="ordina"> <input type="submit" value="' . $_SESSION["s$c"] . '" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
+                                }
+                            }
+                        }
+
 
 
                         while ($riga = $ris->fetch_array()) {
@@ -428,11 +433,17 @@
                                     $modifica = false;
                                 }
 
+                                if ($modifica == true) {
+                                    echo '<tr><td><input value="' . $riga['codice_fiscale'] . '" type="hidden" name="salva"> <input type="submit" value="Salva " class="btn btn-info btn-lg" style="color:white;"> </td>';
+                                } else {
+                                    echo '<tr><td><form method="post" action="portale.php"> <input  value="' . $riga['codice_fiscale'] . '" type="hidden" name="modifica"> <input type="submit" value="Modifica" class="btn btn-info btn-lg" style="color:white;"> </td>';
+                                }
+
                                 if ($_SESSION["s0"] != "a") {
                                     if ($modifica == true) {
-                                        echo "<tr><td> <input class='form-control' name='skill_card' type='text' value='" . $riga['skill_card'] . "' ></td>";
+                                        echo "<td> <input class='form-control' name='skill_card' type='text' value='" . $riga['skill_card'] . "' ></td>";
                                     } else {
-                                        echo "<tr><td> " . $riga['skill_card'] . "</td>";
+                                        echo "<td> " . $riga['skill_card'] . "</td>";
                                     }
                                 }
                                 if ($_SESSION["s1"] != "a") {
@@ -594,12 +605,8 @@
                                     }
                                 }
 
-                                if ($modifica == true) {
-                                    echo '<td> <input value="' . $riga['codice_fiscale'] . '" type="hidden" name="salva"> <input type="submit" value="Salva " class="btn btn-info btn-lg" style="color:white;"> </form></td>';
-                                } else {
-                                    echo '<td><form method="post" action="portale.php"> <input  value="' . $riga['codice_fiscale'] . '" type="hidden" name="modifica"> <input type="submit" value="Modifica" class="btn btn-info btn-lg" style="color:white;"> </form></td>';
-                                }
-                                echo "</tr> ";
+
+                                echo " </form></tr> ";
                                 if ($modifica) {
                                     echo '</form>';
                                     $modifica = false;
@@ -623,250 +630,250 @@
                 </div>
                 <form name=”visualizza” method="post" class="was-validated" action="portale.php">
                     <input name="quali"  type="hidden" value="1" >
-                        <input value="1" type="hidden" name="tipi">
-                        <div class="panel-body">
-                            <div class="checkbox-inline col-md-4">
-                                <div class="form-group">
-                                    <input name="skill_card"  class="form-check-input" type="checkbox" value="1"  <?php
-                                    if ($_SESSION["s0"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"    >
-                                        skill_card
-                                    </label>
-                                </div>                            
-                                <div class="form-group">
-                                    <input name="rilasciata" class="form-check-input" type="checkbox" value="1" id="pdfprenotazione" <?php
-                                    if ($_SESSION["s1"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        rilasciata
-                                    </label>
-                                </div>                            
-                                <div class="form-group">
-                                    <input name="codice_fiscale"  class="form-check-input" type="checkbox" value="1" id="pdfaica" <?php
-                                    if ($_SESSION["s2"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        codice_fiscale
-                                    </label>
-                                </div>   
-                                <div class="form-group">
-                                    <input name="sesso" class="form-check-input" type="checkbox" value="1" id="pdfupdate" <?php
-                                    if ($_SESSION["s3"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        sesso
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <input name="cognome" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard" <?php
-                                    if ($_SESSION["s4"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        cognome
-                                    </label>
-                                </div>                            
-                                <div class="form-group">
-                                    <input name="nome" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione" <?php
-                                    if ($_SESSION["s5"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        nome
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <input name="data_nascita" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione" <?php
-                                    if ($_SESSION["s6"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        data_nascita
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <input name="comune_nascita" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione" <?php
-                                    if ($_SESSION["s7"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?>	      >
-                                    <label  class="form-check-label" for="defaultCheck7" >
-                                        comune_nascita
-                                    </label>
-                                </div>
-                                </form>
+                    <input value="1" type="hidden" name="tipi">
+                    <div class="panel-body">
+                        <div class="checkbox-inline col-md-4">
+                            <div class="form-group">
+                                <input name="skill_card"  class="form-check-input" type="checkbox" value="1"  <?php
+                                if ($_SESSION["s0"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"    >
+                                    skill_card
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="rilasciata" class="form-check-input" type="checkbox" value="1" id="pdfprenotazione" <?php
+                                if ($_SESSION["s1"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    rilasciata
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="codice_fiscale"  class="form-check-input" type="checkbox" value="1" id="pdfaica" <?php
+                                if ($_SESSION["s2"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    codice_fiscale
+                                </label>
+                            </div>   
+                            <div class="form-group">
+                                <input name="sesso" class="form-check-input" type="checkbox" value="1" id="pdfupdate" <?php
+                                if ($_SESSION["s3"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    sesso
+                                </label>
                             </div>
-                            <div class="checkbox-inline col-md-4">
-                                <div class="form-group">
-                                    <input name="provincia_nascita"  class="form-check-input" type="checkbox" value="1"  <?php
-                                    if ($_SESSION["s8"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?>  >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        provincia_nascita  
-                                    </label>
-                                </div>                            
-                                <div class="form-group">
-                                    <input name="stato_civile" class="form-check-input" type="checkbox" value="1" id="pdfprenotazion " <?php
-                                    if ($_SESSION["s9"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?>>
-                                    <label class = "form-check-label" for="defaultCheck7">
-                                        stato_civile
-                                    </label>
-                                </div>                            
-                                <div class="form-group">
-                                    <input name="indirizzo"  class="form-check-input" type="checkbox" value="1" id="pdfaica" <?php
-                                    if ($_SESSION["s10"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        indirizzo
-                                    </label>
-                                </div>   
-                                <div class="form-group">
-                                    <input name="civico" class="form-check-input" type="checkbox" value="1" id="pdfupdate" <?php
-                                    if ($_SESSION["s11"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        civico
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <input name="stato" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard" <?php
-                                    if ($_SESSION["s12"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        stato
-                                    </label>
-                                </div>                            
-                                <div class="form-group">
-                                    <input name="citta" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione" <?php
-                                    if ($_SESSION["s13"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        citta
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <input name="cap" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione" <?php
-                                    if ($_SESSION["s14"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        cap
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <input name="provincia" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione" <?php
-                                    if ($_SESSION["s15"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        provincia
-                                    </label>
-                                </div>
+                            <div class="form-group">
+                                <input name="cognome" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard" <?php
+                                if ($_SESSION["s4"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    cognome
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="nome" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione" <?php
+                                if ($_SESSION["s5"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    nome
+                                </label>
                             </div>
-                            <div class="checkbox-inline col-md-3">
-                                <div class="form-group">
-                                    <input name="email"  class="form-check-input" type="checkbox" value="1"  <?php
-                                    if ($_SESSION["s16"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        email
-                                    </label>
-                                </div>                            
-                                <div class="form-group">
-                                    <input name="cellulare" class="form-check-input" type="checkbox" value="1" id="pdfprenotazione" <?php
-                                    if ($_SESSION["s17"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        cellulare
-                                    </label>
-                                </div>                            
-                                <div class="form-group">
-                                    <input name="telefono"  class="form-check-input" type="checkbox" value="1" id="pdfaica" <?php
-                                    if ($_SESSION["s18"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        telefono
-                                    </label>
-                                </div>   
-                                <div class="form-group">
-                                    <input name="occupazione" class="form-check-input" type="checkbox" value="1" id="pdfupdate" <?php
-                                    if ($_SESSION["s19"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        occupazione
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <input name="titolo_studio" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard" <?php
-                                    if ($_SESSION["s20"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        titolo_studio
-                                    </label>
-                                </div>                            
-                                <div class="form-group">
-                                    <input name="pagato" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione" <?php
-                                    if ($_SESSION["s21"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        pagato                                    
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <input name="tipo" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione" <?php
-                                    if ($_SESSION["s22"] != "a") {
-                                        echo "checked";
-                                    }
-                                    ?> >
-                                    <label  class="form-check-label" for="defaultCheck7"  >
-                                        tipo                                    
-                                    </label>
-                                </div>
+                            <div class="form-group">
+                                <input name="data_nascita" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione" <?php
+                                if ($_SESSION["s6"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    data_nascita
+                                </label>
                             </div>
-                        
+                            <div class="form-group">
+                                <input name="comune_nascita" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione" <?php
+                                if ($_SESSION["s7"] != "a") {
+                                    echo "checked";
+                                }
+                                ?>	      >
+                                <label  class="form-check-label" for="defaultCheck7" >
+                                    comune_nascita
+                                </label>
+                            </div>
+                            </form>
+                        </div>
+                        <div class="checkbox-inline col-md-4">
+                            <div class="form-group">
+                                <input name="provincia_nascita"  class="form-check-input" type="checkbox" value="1"  <?php
+                                if ($_SESSION["s8"] != "a") {
+                                    echo "checked";
+                                }
+                                ?>  >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    provincia_nascita  
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="stato_civile" class="form-check-input" type="checkbox" value="1" id="pdfprenotazion " <?php
+                                if ($_SESSION["s9"] != "a") {
+                                    echo "checked";
+                                }
+                                ?>>
+                                <label class = "form-check-label" for="defaultCheck7">
+                                    stato_civile
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="indirizzo"  class="form-check-input" type="checkbox" value="1" id="pdfaica" <?php
+                                if ($_SESSION["s10"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    indirizzo
+                                </label>
+                            </div>   
+                            <div class="form-group">
+                                <input name="civico" class="form-check-input" type="checkbox" value="1" id="pdfupdate" <?php
+                                if ($_SESSION["s11"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    civico
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="stato" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard" <?php
+                                if ($_SESSION["s12"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    stato
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="citta" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione" <?php
+                                if ($_SESSION["s13"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    citta
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="cap" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione" <?php
+                                if ($_SESSION["s14"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    cap
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="provincia" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione" <?php
+                                if ($_SESSION["s15"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    provincia
+                                </label>
+                            </div>
+                        </div>
+                        <div class="checkbox-inline col-md-3">
+                            <div class="form-group">
+                                <input name="email"  class="form-check-input" type="checkbox" value="1"  <?php
+                                if ($_SESSION["s16"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    email
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="cellulare" class="form-check-input" type="checkbox" value="1" id="pdfprenotazione" <?php
+                                if ($_SESSION["s17"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    cellulare
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="telefono"  class="form-check-input" type="checkbox" value="1" id="pdfaica" <?php
+                                if ($_SESSION["s18"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    telefono
+                                </label>
+                            </div>   
+                            <div class="form-group">
+                                <input name="occupazione" class="form-check-input" type="checkbox" value="1" id="pdfupdate" <?php
+                                if ($_SESSION["s19"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    occupazione
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="titolo_studio" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard" <?php
+                                if ($_SESSION["s20"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    titolo_studio
+                                </label>
+                            </div>                            
+                            <div class="form-group">
+                                <input name="pagato" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione" <?php
+                                if ($_SESSION["s21"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    pagato                                    
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input name="tipo" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione" <?php
+                                if ($_SESSION["s22"] != "a") {
+                                    echo "checked";
+                                }
+                                ?> >
+                                <label  class="form-check-label" for="defaultCheck7"  >
+                                    tipo                                    
+                                </label>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <input name="ok" type="submit" value="conferma" class="btn btn-info" style="background-color:Dodgerblue;">
                         </div>
-                </form>
+                
             </div>
 
         </div>
@@ -900,11 +907,8 @@
                     </thead>
                 </table>
 
-
                 <div id="sesione"  > 
                     <button  type="button" onclick="printInsert()" class="btn btn-info col-md-12 btn-lg" style="background-color:Dodgerblue;">Nuova Sessione</button>
-
-
                 </div>
             </div>
         </div>

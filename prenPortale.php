@@ -34,6 +34,16 @@
         #bar{
             color:white;
         }
+        .testimonial-group > .row {
+            overflow-x: auto;
+            margin-left:0.2%;
+            width:20%;
+            min-width:100%;
+        }
+        .testimonial-group > .row {
+            overflow-y: auto;
+            height:94.3%;
+        }
     </style>
     <body>
         <div class="jumbotron text-center">
@@ -75,155 +85,155 @@
                 <div class="panel">
                     <h3 align='center'>Utenti vari</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body testimonial-group">
+                    <div class="row text-center col-md-12">
+                        <?php
+                        require_once('ConnessioneDb.php');
+                        $db = new ConnessioneDb();
 
-                    <?php
-                    require_once('ConnessioneDb.php');
-                    $db = new ConnessioneDb();
-
-                    if (isset($_REQUEST["tartaruga"]) || (!isset($_SESSION["cerca"]) && !isset($_SESSION["cosa"]))) {
-                        $_SESSION["cerca"] = "ID";
-                        $_SESSION["cosa"] = "%";
-                    }
-
-                    if (isset($_REQUEST['salva'])) {
-                        $query = "UPDATE `prenotazione` SET ";
-
-                        if (isset($_REQUEST["ID"])) {
-                            $query .= 'ID = "' . $_REQUEST['ID'] . '", ';
-                        }
-                        if (isset($_REQUEST["ID_codice_fiscale"])) {
-                            $query .= 'ID_codice_fiscale = "' . $_REQUEST['ID_codice_fiscale'] . '", ';
-                        }
-                        if (isset($_REQUEST["esami"])) {
-                            $query .= 'esami = "' . $_REQUEST['esami'] . '", ';
-                        }
-                        if (isset($_REQUEST["ID_sessione"])) {
-                            $query .= 'ID_sessione = "' . $_REQUEST['ID_sessione'] . '", ';
-                        }
-
-
-                        $query = substr($query, 0, -2);
-
-                        $query .= " WHERE ID = '{$_REQUEST['salva']}'";
-                        $ris = $db->query($query);
-                    }
-
-
-
-
-
-                    if (isset($_REQUEST['colonna']) && isset($_REQUEST['cerca'])) {
-                        $_SESSION["cerca"] = $_REQUEST['colonna'];
-                        $_SESSION["cosa"] = $_REQUEST['cerca'];
-                    } else {
-                        if ($_SESSION["cerca"] == "ID" && $_SESSION["cosa"] == "%" && !isset($_REQUEST["ordina"])) {
+                        if (isset($_REQUEST["tartaruga"]) || (!isset($_SESSION["cerca"]) && !isset($_SESSION["cosa"]))) {
                             $_SESSION["cerca"] = "ID";
                             $_SESSION["cosa"] = "%";
                         }
-                    }
 
-                    if (isset($_REQUEST["ordina"])) {
+                        if (isset($_REQUEST['salva'])) {
+                            $query = "UPDATE `prenotazione` SET ";
 
-                        if ($_REQUEST["ordina"] == "tipo" || $_REQUEST["ordina"] == "ok") {
-                            $_SESSION["ordina"] = "file." . $_REQUEST["ordina"];
+                            if (isset($_REQUEST["ID"])) {
+                                $query .= 'ID = "' . $_REQUEST['ID'] . '", ';
+                            }
+                            if (isset($_REQUEST["ID_codice_fiscale"])) {
+                                $query .= 'ID_codice_fiscale = "' . $_REQUEST['ID_codice_fiscale'] . '", ';
+                            }
+                            if (isset($_REQUEST["esami"])) {
+                                $query .= 'esami = "' . $_REQUEST['esami'] . '", ';
+                            }
+                            if (isset($_REQUEST["ID_sessione"])) {
+                                $query .= 'ID_sessione = "' . $_REQUEST['ID_sessione'] . '", ';
+                            }
+
+
+                            $query = substr($query, 0, -2);
+
+                            $query .= " WHERE ID = '{$_REQUEST['salva']}'";
+                            $ris = $db->query($query);
+                        }
+
+
+
+
+
+                        if (isset($_REQUEST['colonna']) && isset($_REQUEST['cerca'])) {
+                            $_SESSION["cerca"] = $_REQUEST['colonna'];
+                            $_SESSION["cosa"] = $_REQUEST['cerca'];
                         } else {
-                            $_SESSION["ordina"] = "prenotazione." . $_REQUEST["ordina"];
+                            if ($_SESSION["cerca"] == "ID" && $_SESSION["cosa"] == "%" && !isset($_REQUEST["ordina"])) {
+                                $_SESSION["cerca"] = "ID";
+                                $_SESSION["cosa"] = "%";
+                            }
                         }
-                    } else {
-                        if (!isset($_REQUEST["modifica"])) {
-                            $_SESSION['ordina'] = "prenotazione.ID";
-                        }
-                    }
 
-                    //SELECT prenotazione.*, file.tipo, file.ok FROM `prenotazione` JOIN file ON file.ID_prenotazione = prenotazione.ID WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '%' AND prenotazione.`ID` LIKE '%%%' GROUP BY file.ID ORDER BY prenotazione.ID
-                    if (isset($_REQUEST["pren"])) {
-                        $idpren = $_REQUEST["pren"];
-                    } else {
-                        $idpren = "%";
-                    }
+                        if (isset($_REQUEST["ordina"])) {
 
-                    //echo $_SESSION["query"] = "SELECT prenotazione.*, file.tipo, file.ok FROM `prenotazione` JOIN file ON file.ID_prenotazione = prenotazione.ID  WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '{$idpren}' AND prenotazione.`{$_SESSION['cerca']}` LIKE '%{$_SESSION['cosa']}%' GROUP BY file.ID ORDER BY {$_SESSION["ordina"]}";
-
-                    echo $_SESSION["query"] = "SELECT prenotazione.* FROM `prenotazione` WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '{$idpren}' AND prenotazione.`{$_SESSION['cerca']}` LIKE '%{$_SESSION['cosa']}%' GROUP BY prenotazione.ID ORDER BY {$_SESSION["ordina"]}";
-
-                    $ris = $db->query($_SESSION["query"]);
-                    $righe = mysqli_num_rows($ris);
-                    if ($righe > 0) {
-                        echo '<table class=" table table-bordered"> <tr>';
-
-                        if (explode(".", $_SESSION["ordina"])[1] == "ID") {
-                            echo '<th><form method="post" action="prenPortale.php"> <input value="ID" type="hidden" name="ordina"> <input type="submit" value="ID" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
+                            if ($_REQUEST["ordina"] == "tipo" || $_REQUEST["ordina"] == "ok") {
+                                $_SESSION["ordina"] = "file." . $_REQUEST["ordina"];
+                            } else {
+                                $_SESSION["ordina"] = "prenotazione." . $_REQUEST["ordina"];
+                            }
                         } else {
-                            echo '<th><form method="post" action="prenPortale.php"> <input value="ID" type="hidden" name="ordina"> <input type="submit" value="ID" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                            if (!isset($_REQUEST["modifica"])) {
+                                $_SESSION['ordina'] = "prenotazione.ID";
+                            }
                         }
-                        if (explode(".", $_SESSION["ordina"])[1] == "ID_codice_fiscale") {
-                            echo '<th><form method="post" action="prenPortale.php"> <input value="ID_codice_fiscale" type="hidden" name="ordina"> <input type="submit" value="ID_codice_fiscale" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
+
+                        //SELECT prenotazione.*, file.tipo, file.ok FROM `prenotazione` JOIN file ON file.ID_prenotazione = prenotazione.ID WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '%' AND prenotazione.`ID` LIKE '%%%' GROUP BY file.ID ORDER BY prenotazione.ID
+                        if (isset($_REQUEST["pren"])) {
+                            $idpren = $_REQUEST["pren"];
                         } else {
-                            echo '<th><form method="post" action="prenPortale.php"> <input value="ID_codice_fiscale" type="hidden" name="ordina"> <input type="submit" value="ID_codice_fiscale" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                            $idpren = "%";
                         }
-                        if (explode(".", $_SESSION["ordina"])[1] == "esami") {
-                            echo '<th><form method="post" action="prenPortale.php"> <input value="esami" type="hidden" name="ordina"> <input type="submit" value="esami" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
+
+                        //echo $_SESSION["query"] = "SELECT prenotazione.*, file.tipo, file.ok FROM `prenotazione` JOIN file ON file.ID_prenotazione = prenotazione.ID  WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '{$idpren}' AND prenotazione.`{$_SESSION['cerca']}` LIKE '%{$_SESSION['cosa']}%' GROUP BY file.ID ORDER BY {$_SESSION["ordina"]}";
+
+                        echo $_SESSION["query"] = "SELECT prenotazione.* FROM `prenotazione` WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '{$idpren}' AND prenotazione.`{$_SESSION['cerca']}` LIKE '%{$_SESSION['cosa']}%' GROUP BY prenotazione.ID ORDER BY {$_SESSION["ordina"]}";
+
+                        $ris = $db->query($_SESSION["query"]);
+                        $righe = mysqli_num_rows($ris);
+                        if ($righe > 0) {
+                            echo '<table class=" table table-bordered"> <tr>';
+
+                            if (explode(".", $_SESSION["ordina"])[1] == "ID") {
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID" type="hidden" name="ordina"> <input type="submit" value="ID" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
+                            } else {
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID" type="hidden" name="ordina"> <input type="submit" value="ID" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                            }
+                            if (explode(".", $_SESSION["ordina"])[1] == "ID_codice_fiscale") {
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID_codice_fiscale" type="hidden" name="ordina"> <input type="submit" value="ID_codice_fiscale" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
+                            } else {
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID_codice_fiscale" type="hidden" name="ordina"> <input type="submit" value="ID_codice_fiscale" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                            }
+                            if (explode(".", $_SESSION["ordina"])[1] == "esami") {
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="esami" type="hidden" name="ordina"> <input type="submit" value="esami" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
+                            } else {
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="esami" type="hidden" name="ordina"> <input type="submit" value="esami" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                            }
+                            if (explode(".", $_SESSION["ordina"])[1] == "ID_sessione") {
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID_sessione" type="hidden" name="ordina"> <input type="submit" value="ID_sessione" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
+                            } else {
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID_sessione" type="hidden" name="ordina"> <input type="submit" value="ID_sessione" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                            }
+
+                            echo '<th> <div class="" style="background-color:lightblue;">bollettino</div></th>';
+
+
+                            echo '<th> <div class="" style="background-color:lightblue;">pdf</div></th>';
+
+
+
+                            echo "<th>Righe totali : {$righe} </th>";
+                            echo "</tr>";
                         } else {
-                            echo '<th><form method="post" action="prenPortale.php"> <input value="esami" type="hidden" name="ordina"> <input type="submit" value="esami" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                            echo 'la ricerca non ha restituito nessun risultato';
                         }
-                        if (explode(".", $_SESSION["ordina"])[1] == "ID_sessione") {
-                            echo '<th><form method="post" action="prenPortale.php"> <input value="ID_sessione" type="hidden" name="ordina"> <input type="submit" value="ID_sessione" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
-                        } else {
-                            echo '<th><form method="post" action="prenPortale.php"> <input value="ID_sessione" type="hidden" name="ordina"> <input type="submit" value="ID_sessione" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
-                        }
-
-                        echo '<th> <div class="" style="background-color:lightblue;">bollettino</div></th>';
-
-
-                        echo '<th> <div class="" style="background-color:lightblue;">pdf</div></th>';
-
-
-
-                        echo "<th>Righe totali : {$righe} </th>";
-                        echo "</tr>";
-                    } else {
-                        echo 'la ricerca non ha restituito nessun risultato';
-                    }
-                    while ($riga = $ris->fetch_array()) {
-                        if (isset($_REQUEST['modifica'])) {
-                            if ($_REQUEST['modifica'] == $riga['ID']) {
-                                $modifica = true;
-                                echo '<form method="post" action="prenPortale.php">';
+                        while ($riga = $ris->fetch_array()) {
+                            if (isset($_REQUEST['modifica'])) {
+                                if ($_REQUEST['modifica'] == $riga['ID']) {
+                                    $modifica = true;
+                                    echo '<form method="post" action="prenPortale.php">';
+                                } else {
+                                    $modifica = false;
+                                }
                             } else {
                                 $modifica = false;
                             }
-                        } else {
-                            $modifica = false;
-                        }
 
 
 
 
 
-                        if ($modifica == true) {
-                            echo "<tr><td> <input name='ID' type='text' value='" . $riga['ID'] . "' ></td>";
-                        } else {
-                            echo "<tr><td> " . $riga['ID'] . "</td>";
-                        }
+                            if ($modifica == true) {
+                                echo "<tr><td> <input name='ID' type='text' value='" . $riga['ID'] . "' ></td>";
+                            } else {
+                                echo "<tr><td> " . $riga['ID'] . "</td>";
+                            }
 
-                        if ($modifica == true) {
-                            echo "<td><input name='ID_codice_fiscale' type='text' value='" . $riga['ID_codice_fiscale'] . "'></td>";
-                        } else {
-                            echo "<td>" . $riga['ID_codice_fiscale'] . "</td>";
-                        }
+                            if ($modifica == true) {
+                                echo "<td><input name='ID_codice_fiscale' type='text' value='" . $riga['ID_codice_fiscale'] . "'></td>";
+                            } else {
+                                echo "<td>" . $riga['ID_codice_fiscale'] . "</td>";
+                            }
 
-                        if ($modifica == true) {
-                            echo "<td> <input name='esami' type='text' value='" . $riga['esami'] . "'></td>";
-                        } else {
-                            echo "<td>" . $riga['esami'] . "</td>";
-                        }
+                            if ($modifica == true) {
+                                echo "<td> <input name='esami' type='text' value='" . $riga['esami'] . "'></td>";
+                            } else {
+                                echo "<td>" . $riga['esami'] . "</td>";
+                            }
 
-                        if ($modifica == true) {
-                            echo "<td> <input name='ID_sessione' type='text' value='" . $riga['ID_sessione'] . "'></td>";
-                        } else {
-                            echo "<td>" . $riga['ID_sessione'] . "</td>";
-                        }
+                            if ($modifica == true) {
+                                echo "<td> <input name='ID_sessione' type='text' value='" . $riga['ID_sessione'] . "'></td>";
+                            } else {
+                                echo "<td>" . $riga['ID_sessione'] . "</td>";
+                            }
 //
 //                        if ($modifica == true) {
 //                            echo "<td> <input name='tipo' type='text' value='" . $riga['tipo'] . "'></td>";
@@ -238,16 +248,16 @@
 //                        }
 
 
-                        $query2 = "SELECT id, tipo, ok, ID_prenotazione FROM `file` WHERE `ID_prenotazione` = {$riga['ID']}";
-                        $ris2 = $db->query($query2);
+                            $query2 = "SELECT id, tipo, ok, ID_prenotazione FROM `file` WHERE `ID_prenotazione` = {$riga['ID']}";
+                            $ris2 = $db->query($query2);
 
-                        $pren = 0;
-                        $boll = 0;
-                        for ($o = 0; $o < 2; $o++) {
-                            $riga2 = $ris2->fetch_array();
-                            $tipi = explode(", ", $riga2['tipo']);
-                            for ($p = 0; $p < 2; $p++) {
-                                if (isset($tipi[$p])) {
+                            $pren = 0;
+                            $boll = 0;
+                            for ($o = 0; $o < 2; $o++) {
+                                $riga2 = $ris2->fetch_array();
+                                $tipi = explode(", ", $riga2['tipo']);
+                                for ($p = 0; $p < 2; $p++) {
+                                    if (isset($tipi[$p])) {
 
                                     if ($tipi[$p] == "bollettinoprenotazione") {
                                         $id = $riga2['id'];
@@ -263,6 +273,7 @@
                                             $pren = 2;
                                         } else {
                                             $pren = 1;
+
                                         }
                                     }
                                 }
@@ -285,21 +296,23 @@
                         }
 
 
-                        if ($modifica == true) {
-                            echo '<td><input value="' . $riga['ID'] . '" type="hidden" name="salva"> <input type="submit" value="SALVA " class="btn btn-info btn-lg" style="color:red;"></form></td>';
-                        } else {
-                            echo '<td><form method="post" action="prenPortale.php"> <input  value="' . $riga['ID'] . '" type="hidden" name="modifica"> <input type="submit" value="Modifica" class="btn btn-info btn-lg" style=" color:red;"></form></td>';
-                        }
+ 
 
-                        echo "</tr> ";
-                        if ($modifica) {
-                            echo '</form>';
-                            $modifica = false;
-                        }
-                    }
-                    echo '</table>';
-                    ?>
+                            if ($modifica == true) {
+                                echo '<td><input value="' . $riga['ID'] . '" type="hidden" name="salva"> <input type="submit" value="SALVA " class="btn btn-info btn-lg" style="color:white;"> </form></td>';
+                            } else {
+                                echo '<td><form method="post" action="prenPortale.php"> <input  value="' . $riga['ID'] . '" type="hidden" name="modifica"> <input type="submit" value="Modifica" class="btn btn-info btn-lg" style=" color:white;"> </form></td>';
+                            }
 
+                            echo "</tr> ";
+                            if ($modifica) {
+                                echo '</form>';
+                                $modifica = false;
+                            }
+                        }
+                        echo '</table>';
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
