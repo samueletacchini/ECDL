@@ -77,7 +77,7 @@
                 </form>
                 <form method='post' action='prenPortale.php'>
                     <input name='tartaruga' type='hidden' value='1'>
-                    <input type='submit' value='Reset' class='btn btn-default'>
+                    <input type='submit' value='Reset' class='btn btn-default col-md-3'>
                 </form>
             </div>
 
@@ -155,7 +155,7 @@
 
                         //echo $_SESSION["query"] = "SELECT prenotazione.*, file.tipo, file.ok FROM `prenotazione` JOIN file ON file.ID_prenotazione = prenotazione.ID  WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '{$idpren}' AND prenotazione.`{$_SESSION['cerca']}` LIKE '%{$_SESSION['cosa']}%' GROUP BY file.ID ORDER BY {$_SESSION["ordina"]}";
 
-                        echo $_SESSION["query"] = "SELECT prenotazione.* FROM `prenotazione` WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '{$idpren}' AND prenotazione.`{$_SESSION['cerca']}` LIKE '%{$_SESSION['cosa']}%' GROUP BY prenotazione.ID ORDER BY {$_SESSION["ordina"]}";
+                        $_SESSION["query"] = "SELECT prenotazione.* FROM `prenotazione` WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '{$idpren}' AND prenotazione.`{$_SESSION['cerca']}` LIKE '%{$_SESSION['cosa']}%' GROUP BY prenotazione.ID ORDER BY {$_SESSION["ordina"]}";
 
                         $ris = $db->query($_SESSION["query"]);
                         $righe = mysqli_num_rows($ris);
@@ -163,30 +163,30 @@
                             echo '<table class=" table table-bordered"> <tr>';
 
                             if (explode(".", $_SESSION["ordina"])[1] == "ID") {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID" type="hidden" name="ordina"> <input type="submit" value="ID" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
-                            } else {
                                 echo '<th><form method="post" action="prenPortale.php"> <input value="ID" type="hidden" name="ordina"> <input type="submit" value="ID" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                            } else {
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID" type="hidden" name="ordina"> <input type="submit" value="ID" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
                             }
                             if (explode(".", $_SESSION["ordina"])[1] == "ID_codice_fiscale") {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID_codice_fiscale" type="hidden" name="ordina"> <input type="submit" value="ID_codice_fiscale" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
-                            } else {
                                 echo '<th><form method="post" action="prenPortale.php"> <input value="ID_codice_fiscale" type="hidden" name="ordina"> <input type="submit" value="ID_codice_fiscale" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                            } else {
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID_codice_fiscale" type="hidden" name="ordina"> <input type="submit" value="ID_codice_fiscale" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
                             }
                             if (explode(".", $_SESSION["ordina"])[1] == "esami") {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="esami" type="hidden" name="ordina"> <input type="submit" value="esami" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
-                            } else {
                                 echo '<th><form method="post" action="prenPortale.php"> <input value="esami" type="hidden" name="ordina"> <input type="submit" value="esami" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                            } else {
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="esami" type="hidden" name="ordina"> <input type="submit" value="esami" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
                             }
                             if (explode(".", $_SESSION["ordina"])[1] == "ID_sessione") {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID_sessione" type="hidden" name="ordina"> <input type="submit" value="ID_sessione" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
-                            } else {
                                 echo '<th><form method="post" action="prenPortale.php"> <input value="ID_sessione" type="hidden" name="ordina"> <input type="submit" value="ID_sessione" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                            } else {
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID_sessione" type="hidden" name="ordina"> <input type="submit" value="ID_sessione" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
                             }
 
-                            echo '<th> <div class="" style="background-color:lightblue;">bollettino</div></th>';
+                            echo '<th> <div class="btn btn-info btn-lg disabled" style="background-color:Dodgerblue;">bollettino</div></th>';
 
 
-                            echo '<th> <div class="" style="background-color:lightblue;">pdf</div></th>';
+                            echo '<th> <div class="btn btn-info btn-lg disabled" style="background-color:Dodgerblue;">pdf</div></th>';
 
 
 
@@ -212,25 +212,25 @@
 
 
                             if ($modifica == true) {
-                                echo "<tr><td> <input name='ID' type='text' value='" . $riga['ID'] . "' ></td>";
+                                echo "<tr><td> <input class='form-control' name='ID' type='text' value='" . $riga['ID'] . "' ></td>";
                             } else {
                                 echo "<tr><td> " . $riga['ID'] . "</td>";
                             }
 
                             if ($modifica == true) {
-                                echo "<td><input name='ID_codice_fiscale' type='text' value='" . $riga['ID_codice_fiscale'] . "'></td>";
+                                echo "<td><input class='form-control' name='ID_codice_fiscale' type='text' value='" . $riga['ID_codice_fiscale'] . "'></td>";
                             } else {
                                 echo "<td>" . $riga['ID_codice_fiscale'] . "</td>";
                             }
 
                             if ($modifica == true) {
-                                echo "<td> <input name='esami' type='text' value='" . $riga['esami'] . "'></td>";
+                                echo "<td> <input class='form-control' name='esami' type='text' value='" . $riga['esami'] . "'></td>";
                             } else {
                                 echo "<td>" . $riga['esami'] . "</td>";
                             }
 
                             if ($modifica == true) {
-                                echo "<td> <input name='ID_sessione' type='text' value='" . $riga['ID_sessione'] . "'></td>";
+                                echo "<td> <input class='form-control' name='ID_sessione' type='text' value='" . $riga['ID_sessione'] . "'></td>";
                             } else {
                                 echo "<td>" . $riga['ID_sessione'] . "</td>";
                             }
@@ -259,44 +259,43 @@
                                 for ($p = 0; $p < 2; $p++) {
                                     if (isset($tipi[$p])) {
 
-                                    if ($tipi[$p] == "bollettinoprenotazione") {
-                                        $id = $riga2['id'];
-                                        if ($riga2['ok'] == 1) {
-                                            $boll = 2;
-                                        } else {
-                                            $boll = 1;
+                                        if ($tipi[$p] == "bollettinoprenotazione") {
+                                            $id = $riga2['id'];
+                                            if ($riga2['ok'] == 1) {
+                                                $boll = 2;
+                                            } else {
+                                                $boll = 1;
+                                            }
                                         }
-                                    }
-                                    if ($tipi[$p] == "pdfprenotazione") {
-                                        $id = $riga2['id'];
-                                        if ($riga2['ok'] == 1) {
-                                            $pren = 2;
-                                        } else {
-                                            $pren = 1;
-
+                                        if ($tipi[$p] == "pdfprenotazione") {
+                                            $id = $riga2['id'];
+                                            if ($riga2['ok'] == 1) {
+                                                $pren = 2;
+                                            } else {
+                                                $pren = 1;
+                                            }
                                         }
                                     }
                                 }
                             }
-                        }
-                        if ($boll == 1) {
-                            echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='da approvare'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='scarica' ></span></a></td>";
-                        } else if ($boll == 2) {
-                            echo "<td><span style='color:#33cc33' class='glyphicon glyphicon-ok-sign' title='OK'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='scarica' ></span></a></span></td>";
-                        } else {
-                            echo "<td><span style='color:#ff0000' class='glyphicon glyphicon-remove-sign' title='NADA'></span></td>";
-                        }
-                        //glyphicon glyphicon-remove-sign
-                        if ($pren == 1) {
-                            echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='da approvare'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='scarica' ></span></a></td>";
-                        } else if ($pren == 2) {
-                            echo "<td><span style='color:#33cc33' class='glyphicon glyphicon-ok-sign' title='OK'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='scarica' ></span></a></td>";
-                        } else {
-                            echo "<td><span style='color:#ff0000' class='glyphicon glyphicon-remove-sign' title='OK'></span></td>";
-                        }
+                            if ($boll == 1) {
+                                echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='Da approvare'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a></td>";
+                            } else if ($boll == 2) {
+                                echo "<td><span style='color:#33cc33' class='glyphicon glyphicon-ok-sign' title='Completo'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a></span></td>";
+                            } else {
+                                echo "<td><span style='color:#ff0000' class='glyphicon glyphicon-remove-sign' title='Vuoto'></span></td>";
+                            }
+                            //glyphicon glyphicon-remove-sign
+                            if ($pren == 1) {
+                                echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='Da approvare'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a></td>";
+                            } else if ($pren == 2) {
+                                echo "<td><span style='color:#33cc33' class='glyphicon glyphicon-ok-sign' title='Completo'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a></td>";
+                            } else {
+                                echo "<td><span style='color:#ff0000' class='glyphicon glyphicon-remove-sign' title='Vuoto'></span></td>";
+                            }
 
 
- 
+
 
                             if ($modifica == true) {
                                 echo '<td><input value="' . $riga['ID'] . '" type="hidden" name="salva"> <input type="submit" value="SALVA " class="btn btn-info btn-lg" style="color:white;"> </form></td>';
@@ -360,7 +359,7 @@
         <script>
 
             function printInsert() {
-                var html = '<form action="inserisciSessione.php" method="post"><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  >Data </label><input type="text" name="data" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Dalle </label><input type="text" name="ora_da" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Alle </label><div class="form-row"><input type="text" name="ora_a" value="" class="form-control" required></div><div class="form-group"><input type="submit" value="Inserisci" class="btn btn-info col-md-12" style="background-color:Dodgerblue;"></div></form>';
+                var html = '<form action="inserisciSessione.php" method="post"><div class="col-md-12"><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  >Data </label><input type="text" name="data" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Dalle </label><input type="text" name="ora_da" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Alle </label><div class="form-row"><input type="text" name="ora_a" value="" class="form-control" required></div></div><div class="form-group col-md-12"></div><div class="form-row col-md-12"><input type="submit" value="Inserisci" class="btn btn-info col-md-12" style="background-color:Dodgerblue;"></div></form>';
 
                 document.getElementById("sesione").innerHTML = html;
             }
