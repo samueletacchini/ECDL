@@ -623,10 +623,8 @@
                 </div>
                 <form name=”visualizza” method="post" class="was-validated" action="portale.php">
                     <input name="quali"  type="hidden" value="1" >
-
-                    <div class="panel-body">
                         <input value="1" type="hidden" name="tipi">
-                        <div class="col-md-12">
+                        <div class="panel-body">
                             <div class="checkbox-inline col-md-4">
                                 <div class="form-group">
                                     <input name="skill_card"  class="form-check-input" type="checkbox" value="1"  <?php
@@ -710,7 +708,7 @@
                                 </div>
                                 </form>
                             </div>
-                            <div class="checkbox-inline col-md-3">
+                            <div class="checkbox-inline col-md-4">
                                 <div class="form-group">
                                     <input name="provincia_nascita"  class="form-check-input" type="checkbox" value="1"  <?php
                                     if ($_SESSION["s8"] != "a") {
@@ -792,7 +790,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="checkbox-inline col-md-4">
+                            <div class="checkbox-inline col-md-3">
                                 <div class="form-group">
                                     <input name="email"  class="form-check-input" type="checkbox" value="1"  <?php
                                     if ($_SESSION["s16"] != "a") {
@@ -864,7 +862,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        
                         <div class="form-group">
                             <input name="ok" type="submit" value="conferma" class="btn btn-info" style="background-color:Dodgerblue;">
                         </div>
