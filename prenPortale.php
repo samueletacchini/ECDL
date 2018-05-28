@@ -176,9 +176,9 @@
                                 echo '<th><form method="post" action="prenPortale.php"> <input value="ID_codice_fiscale" type="hidden" name="ordina"> <input type="submit" value="ID_codice_fiscale" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
                             }
                             if (explode(".", $_SESSION["ordina"])[1] == "esami") {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="esami" type="hidden" name="ordina"> <input type="submit" value="esami" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="esami" type="hidden" name="ordina"> <input type="submit" value="moduli" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
                             } else {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="esami" type="hidden" name="ordina"> <input type="submit" value="esami" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="esami" type="hidden" name="ordina"> <input type="submit" value="moduli" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
                             }
                             if (explode(".", $_SESSION["ordina"])[1] == "ID_sessione") {
                                 echo '<th><form method="post" action="prenPortale.php"> <input value="ID_sessione" type="hidden" name="ordina"> <input type="submit" value="ID_sessione" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
@@ -210,7 +210,7 @@
                             echo "<tr>";
                             if ($modifica == true) {
 
-                                echo "<tr><td> <input class='form-control' name='ID' type='text' value='" . $riga['ID'] . "' ></td>";
+                                echo "<tr><td> <input type='submit' value='Salva' class='btn btn-info btn-lg' style='color:white;'></td>";
                             } else {
                                 echo '<td><form method="post" action="prenPortale.php"> <input  value="' . $riga['ID'] . '" type="hidden" name="modifica"> <input type="submit" value="Modifica" class="btn btn-info btn-lg" style=" color:white;"> </td>';
                             }
@@ -286,15 +286,15 @@
                             }
                             if ($boll == 1) {
 
-                                echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='Da approvare'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a></td>";
+                                echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='Da approvare'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a> <a href='setok.php?pid=" . $id . "'><span style='color:#33cc33'   class='glyphicon glyphicon-thumbs-up'></span></a></td>";
                             } else if ($boll == 2) {
                                 echo "<td><span style='color:#33cc33' class='glyphicon glyphicon-ok-sign' title='Completo'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a></span></td>";
                             } else {
-                                echo "<td><span style='color:#ff0000' class='glyphicon glyphicon-remove-sign' title='Vuoto'></span></td>";
+                                echo '<td><span style="color:#ff0000" class="glyphicon glyphicon-remove-sign" title="Vuoto"></span> </td>';
                             }
                             //glyphicon glyphicon-remove-sign
                             if ($pren == 1) {
-                                echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='Da approvare'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a></td>";
+                                echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='Da approvare'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a><a href='setok.php?pid=" . $id . "'><span style='color:#33cc33'   class='glyphicon glyphicon-thumbs-up'></span></a></td>";
                             } else if ($pren == 2) {
                                 echo "<td><span style='color:#33cc33' class='glyphicon glyphicon-ok-sign' title='Completo'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a></td>";
                             } else {
@@ -324,7 +324,8 @@
                 </div>
                 <div class="panel-body" >
                     <table class="table table-bordered">
-                        <thead>
+                        <tr><td>Data</td><td>Dalle</td><td>Alle</td><td>Elimina</td><td>Alle</td></tr>
+
                             <?php
                             $eh = "SELECT * FROM `sessioni`";
                             $ris = $db->query($eh);
@@ -345,7 +346,6 @@
                             }
                             echo "</table>";
                             ?>
-                        </thead>
                     </table>
 
 

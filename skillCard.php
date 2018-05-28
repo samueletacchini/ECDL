@@ -233,16 +233,21 @@
                                 <label for="mail">Indirizzo E-Mail</label>
                                 <input name="mail" type="text" class="form-control" id="mail" placeholder="E-Mail" required>
                             </div>
-                            <div class="form-group col-md-3">
-                                <label for="inputPassword" class="control-label">Password</label>       
-                                <input name="password" type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>                               
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="inputPassword" class="control-label">Conferma Password</label>       
-                                <input name="password2" type="password" data-minlength="6" class="form-control" id="inputPassword2" placeholder="Password" required>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword" class="control-label">Password</label>       
+                                    <input onchange='check_pass();' name="password" type="password" data-minlength="6" class="form-control" id="password" placeholder="Password" required>                               
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label  for="inputPassword" class="control-label">Conferma Password</label>       
+                                    <input onchange='check_pass();' name="password2" type="password" data-minlength="6" class="form-control" id="password2" placeholder="Password" required>
+                                </div>
+                                <center  id='message'></center>
+
                             </div>
                         </div>
                     </div>
+
 
 
                     <h3 align="center">TIPOLOGIE DI CANDIDATI:</h3>
@@ -257,27 +262,57 @@
                         <div class="form-group">
                             <label><input value="studenti" onclick="myFunction()"  type="radio" name="optradio" id="radioStudente"> Studente sup. :
                                 <p id="clicco"></p>
+                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
                                 <script>
-                                    var html = "<br><div class='form-row'>" +
-                                            " <div class='col-md-4'>" +
-                                            " <label for='scuola'>Scuola</label>" +
-                                            " <input name='scuola' type='text' class='form-control' id='scuola'>" +
-                                            "</div>" +
-                                            "<div class='col-md-2'>" +
-                                            " <label for='classe'>Classe</label>" +
-                                            " <input name='classe' type='text' class='form-control' id='classe'>" +
-                                            "</div>" +
-                                            "<div class='col-md-6'>" +
-                                            "<label for='specializzazione'>Specializzazione</label>" +
-                                            "<input name='specializzazione' type='text' class='form-control' id='specializzazione'>" +
-                                            "</div>" +
-                                            "</div>";
-                                    function myFunction() {
-                                        document.getElementById("clicco").innerHTML = html;
+
+                                function check_pass() {
+                                    if (document.getElementById('password').value == document.getElementById('password2').value) {
+                                        document.getElementById('submit').disabled = false;
+                                    } else {
+                                        document.getElementById('submit').disabled = true;
                                     }
-                                    function cancella() {
-                                        document.getElementById("clicco").innerHTML = "";
+                                }
+
+                                $('#password, #password2').on('keyup', function () {
+                                    if ($('#password').val() != "") {
+                                        if ($('#password').val() == $('#password2').val()) {
+
+                                            document.getElementById('submit').disabled = false;
+
+
+                                            $('#message').html('').css('color', 'green');
+
+
+                                        } else {
+                                            $('#message').html('Le password non corrispondono').css('color', 'red');
+                                            document.getElementById('submit').disabled = true;
+
+                                        }
                                     }
+                                });
+
+
+                                var html = "<br><div class='form-row'>" +
+                                        " <div class='col-md-4'>" +
+                                        " <label for='scuola'>Scuola</label>" +
+                                        " <input name='scuola' type='text' class='form-control' id='scuola'>" +
+                                        "</div>" +
+                                        "<div class='col-md-2'>" +
+                                        " <label for='classe'>Classe</label>" +
+                                        " <input name='classe' type='text' class='form-control' id='classe'>" +
+                                        "</div>" +
+                                        "<div class='col-md-6'>" +
+                                        "<label for='specializzazione'>Specializzazione</label>" +
+                                        "<input name='specializzazione' type='text' class='form-control' id='specializzazione'>" +
+                                        "</div>" +
+                                        "</div>";
+                                function myFunction() {
+                                    document.getElementById("clicco").innerHTML = html;
+                                }
+                                function cancella() {
+                                    document.getElementById("clicco").innerHTML = "";
+                                }
 
                                 </script>
                         </div>
@@ -289,7 +324,7 @@
                         <label>1) Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.</label>
                         <label>2) Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione.</label>
 
-                        <br><br><center><input onclick="controlla()" type="submit" value="registrati" class="btn btn-info btn-lg"></center>
+                        <br><br><center><input type="submit"  id="submit" value="registrati" class="btn btn-info btn-lg"></center>
 
                 </form>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
