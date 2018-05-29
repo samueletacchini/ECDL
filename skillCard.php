@@ -173,7 +173,7 @@
                                 <label for="cap">CAP</label>
                                 <input name="cap" type="number" class="form-control" id="cap" placeholder="CAP" required>
                             </div>
-                            <div class="form-group col-md-2">
+                            <div class="form-group col-md-3">
                                 <label for="$pnascita">Provincia</label>
                                 <input name="provincia" type="text" class="form-control" id="provincia" placeholder="Provincia" required>
                             </div>
@@ -182,8 +182,8 @@
                                 <input name="stato" type="text" class="form-control" id="city" placeholder="Stato" required>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="pnascita">provincia di nascita</label>
-                                <input name="pnascita" type="text" class="form-control" id="pnascita" placeholder="provincia nascita" required>
+                                <label for="pnascita">Provincia di nascita</label>
+                                <input name="pnascita" type="text" class="form-control" id="pnascita" placeholder="Provincia nascita" required>
                             </div>
                         </div>
                     </div>
@@ -239,7 +239,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="inputPassword" class="control-label">Conferma Password</label>       
-                                <input name="password2" type="password" data-minlength="6" class="form-control" id="inputPassword2" placeholder="Password" required>
+                                <input name="password2" type="password" data-minlength="6" class="form-control" id="inputPassword2" placeholder="Conferma Password" required>
                             </div>
                         </div>
                     </div>
@@ -261,15 +261,15 @@
                                     var html = "<br><div class='form-row'>" +
                                             " <div class='col-md-4'>" +
                                             " <label for='scuola'>Scuola</label>" +
-                                            " <input name='scuola' type='text' class='form-control' id='scuola'>" +
+                                            " <input name='scuola' type='text' class='form-control' id='scuola' placeholder='Scuola'>" +
                                             "</div>" +
                                             "<div class='col-md-2'>" +
                                             " <label for='classe'>Classe</label>" +
-                                            " <input name='classe' type='text' class='form-control' id='classe'>" +
+                                            " <input name='classe' type='text' class='form-control' id='classe' placeholder='Classe'>" +
                                             "</div>" +
                                             "<div class='col-md-6'>" +
                                             "<label for='specializzazione'>Specializzazione</label>" +
-                                            "<input name='specializzazione' type='text' class='form-control' id='specializzazione'>" +
+                                            "<input name='specializzazione' type='text' class='form-control' id='specializzazione'  placeholder='Specializzazione'>" +
                                             "</div>" +
                                             "</div>";
                                     function myFunction() {
