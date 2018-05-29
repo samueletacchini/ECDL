@@ -173,7 +173,7 @@
                                 <label for="cap">CAP</label>
                                 <input name="cap" type="number" class="form-control" id="cap" placeholder="CAP" required>
                             </div>
-                            <div class="form-group col-md-2">
+                            <div class="form-group col-md-3">
                                 <label for="$pnascita">Provincia</label>
                                 <input name="provincia" type="text" class="form-control" id="provincia" placeholder="Provincia" required>
                             </div>
@@ -182,8 +182,8 @@
                                 <input name="stato" type="text" class="form-control" id="city" placeholder="Stato" required>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="pnascita">provincia di nascita</label>
-                                <input name="pnascita" type="text" class="form-control" id="pnascita" placeholder="provincia nascita" required>
+                                <label for="pnascita">Provincia di nascita</label>
+                                <input name="pnascita" type="text" class="form-control" id="pnascita" placeholder="Provincia nascita" required>
                             </div>
                         </div>
                     </div>
@@ -244,6 +244,7 @@
                                 </div>
                                 <center  id='message'></center>
 
+
                             </div>
                         </div>
                     </div>
@@ -264,7 +265,8 @@
                                 <p id="clicco"></p>
                                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-                                <script>
+                                
+          <script>
 
                                 function check_pass() {
                                     if (document.getElementById('password').value == document.getElementById('password2').value) {

@@ -70,7 +70,7 @@
                         <input name="cerca" type="text" class="form-control" placeholder="cerca">
                     </div>
                     <div class="form-group col-md-3" style="margin-top:1.7%;">
-                        <button type="submit" class="btn btn-default">cerca</button>
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                     </div>
 
 
