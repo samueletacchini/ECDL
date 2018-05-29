@@ -112,6 +112,7 @@
                         require_once('ConnessioneDb.php');
                         $db = new ConnessioneDb();
 
+                       
                         if (isset($_REQUEST["tartaruga"]) || (!isset($_SESSION["cerca"]) && !isset($_SESSION["cosa"]))) {
                             $_SESSION["cerca"] = "codice_fiscale";
                             $_SESSION["cosa"] = "%";
@@ -873,65 +874,65 @@
                         <div class="form-group">
                             <input name="ok" type="submit" value="conferma" class="btn btn-info" style="background-color:Dodgerblue;">
                         </div>
-                
+
+                    </div>
+
             </div>
+            <div class="panel panel-default"  id="link">
+                <div class="panel">
+                    <h3 align='center'>Prossime date Esami</h3>
+                </div>
+                <div class="panel-body" >
+                    <table class="table table-bordered">
+                        <thead>
+                            <?php
+                            $eh = "SELECT * FROM `sessioni`";
+                            $ris = $db->query($eh);
+                            $datenow = date("Y-m-d");
+                            while ($riga = $ris->fetch_array()) {
+                                if ($riga["data"] > $datenow) {
+                                    echo "<tr><td>{$riga["data"]}</td>";
+                                    echo "<td>{$riga["ora_da"]}</td>";
+                                    echo "<td>{$riga["ora_a"]}</td>";
 
-        </div>
-        <div class="panel panel-default"  id="link">
-            <div class="panel">
-                <h3 align='center'>Prossime date Esami</h3>
-            </div>
-            <div class="panel-body" >
-                <table class="table table-bordered">
-                    <thead>
-                        <?php
-                        $eh = "SELECT * FROM `sessioni`";
-                        $ris = $db->query($eh);
-                        $datenow = date("Y-m-d");
-                        while ($riga = $ris->fetch_array()) {
-                            if ($riga["data"] > $datenow) {
-                                echo "<tr><td>{$riga["data"]}</td>";
-                                echo "<td>{$riga["ora_da"]}</td>";
-                                echo "<td>{$riga["ora_a"]}</td>";
+                                    echo "<td><a href='inserisciSessione.php?elimina={$riga["ID"]}' id='modal' name='modal'><span   style='color:#737373' class='glyphicon glyphicon-trash'></span></td>";
 
-                                echo "<td><a href='inserisciSessione.php?elimina={$riga["ID"]}' id='modal' name='modal'><span   style='color:#737373' class='glyphicon glyphicon-trash'></span></td>";
-
-                                echo '<td> <form action="portale.php" method="post">';
-                                echo '<input type="hidden" name="pren" value="' . $riga["ID"] . '">';
-                                echo '<input type="submit" value="visualizza" class="btn btn-info" style="background-color:Dodgerblue;">';
-                                echo "</td> </form> </tr>";
+                                    echo '<td> <form action="portale.php" method="post">';
+                                    echo '<input type="hidden" name="pren" value="' . $riga["ID"] . '">';
+                                    echo '<input type="submit" value="visualizza" class="btn btn-info" style="background-color:Dodgerblue;">';
+                                    echo "</td> </form> </tr>";
+                                }
                             }
-                        }
-                        echo "</table>";
-                        ?>
-                    </thead>
-                </table>
+                            echo "</table>";
+                            ?>
+                        </thead>
+                    </table>
 
-                <div id="sesione"  > 
-                    <button  type="button" onclick="printInsert()" class="btn btn-info col-md-12 btn-lg" style="background-color:Dodgerblue;">Nuova Sessione</button>
+                    <div id="sesione"  > 
+                        <button  type="button" onclick="printInsert()" class="btn btn-info col-md-12 btn-lg" style="background-color:Dodgerblue;">Nuova Sessione</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script>
+        <script>
 
-        function printInsert() {
-            var html = '<form action="inserisciSessione.php" method="post"><div class="col-md-12"><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  >Data </label><input type="text" name="data" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Dalle </label><input type="text" name="ora_da" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Alle </label><div class="form-row"><input type="text" name="ora_a" value="" class="form-control" required></div></div><div class="form-group col-md-12"></div><div class="form-row col-md-12"><input type="submit" value="Inserisci" class="btn btn-info col-md-12" style="background-color:Dodgerblue;"></div></form>';
+            function printInsert() {
+                var html = '<form action="inserisciSessione.php" method="post"><div class="col-md-12"><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  >Data </label><input type="text" name="data" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Dalle </label><input type="text" name="ora_da" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Alle </label><div class="form-row"><input type="text" name="ora_a" value="" class="form-control" required></div></div><div class="form-group col-md-12"></div><div class="form-row col-md-12"><input type="submit" value="Inserisci" class="btn btn-info col-md-12" style="background-color:Dodgerblue;"></div></form>';
 
-            document.getElementById("sesione").innerHTML = html;
-        }
+                document.getElementById("sesione").innerHTML = html;
+            }
 
-    </script>
+        </script>
 
-    <div class="col-md-12">                                 
-        <footer class="container text-center" id="foot" >                                         
-            <p>                            
-                <br/><strong>IIS F.CORNI - LICEO E TECNICO</strong>                              
-                <br/>                    Sede centrale: L.go A. Moro 25 Tel 059/400700 Fax 059/243391                              
-                <br/>                        Succursale: Via Leonardo da Vinci 300 Tel 059/2917000 Fax 059/344709                              
-                <br/>                    ecdl@istitutocorni.it - http://www.istitutocorni.gov.it                                          
-            </p>                                 
-        </footer>     
-    </div>
-</body>
+        <div class="col-md-12">                                 
+            <footer class="container text-center" id="foot" >                                         
+                <p>                            
+                    <br/><strong>IIS F.CORNI - LICEO E TECNICO</strong>                              
+                    <br/>                    Sede centrale: L.go A. Moro 25 Tel 059/400700 Fax 059/243391                              
+                    <br/>                        Succursale: Via Leonardo da Vinci 300 Tel 059/2917000 Fax 059/344709                              
+                    <br/>                    ecdl@istitutocorni.it - http://www.istitutocorni.gov.it                                          
+                </p>                                 
+            </footer>     
+        </div>
+    </body>
 </html>

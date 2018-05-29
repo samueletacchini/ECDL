@@ -60,10 +60,10 @@
                 <form action="prenPortale.php" method="post">
                     <div class="form-group col-md-3" style="margin-top:1.5%;">
                         <select name="colonna" class="form-control" required>
-                            <option value="ID" selected> ID</option>    
-                            <option value="esami"> esami </option>
-                            <option value="ID_codice_fiscale"> codice_fiscale</option>
-                            <option value="ID_sessione"> ID sessione </option>
+                            <option value="nome" selected> nome</option>    
+                            <option value="cognome" > cognome</option>    
+                            <option value="esami"> moduli </option>
+                            <option value="data"> data sessione </option>
                         </select>
                     </div>
                     <div class="form-group col-md-3" style="margin-top:1.5%;">    
@@ -92,7 +92,7 @@
                         $db = new ConnessioneDb();
 
                         if (isset($_REQUEST["tartaruga"]) || (!isset($_SESSION["cerca"]) && !isset($_SESSION["cosa"]))) {
-                            $_SESSION["cerca"] = "ID";
+                            $_SESSION["cerca"] = "prenotazione.ID";
                             $_SESSION["cosa"] = "%";
                         }
 
@@ -154,10 +154,11 @@
                             $idpren = "%";
                         }
 
-                        $_SESSION["query"] = "SELECT prenotazione.ID, user.nome, user.cognome, prenotazione.esami, sessioni.data FROM `prenotazione`  JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale JOIN sessioni ON sessioni.ID = prenotazione.ID_sessione WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '{$idpren}' AND prenotazione.`{$_SESSION['cerca']}` LIKE '%{$_SESSION['cosa']}%' GROUP BY prenotazione.ID ORDER BY {$_SESSION["ordina"]}";
-
+                        $_SESSION["query"] = "SELECT prenotazione.ID, user.nome, user.cognome, prenotazione.esami, sessioni.data FROM `prenotazione`  JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale JOIN sessioni ON sessioni.ID = prenotazione.ID_sessione WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '{$idpren}' AND {$_SESSION['cerca']} LIKE '%{$_SESSION['cosa']}%' GROUP BY prenotazione.ID ORDER BY {$_SESSION["ordina"]}";
+                        echo "<br><br>";
                         $ris = $db->query($_SESSION["query"]);
                         $righe = mysqli_num_rows($ris);
+
                         if ($righe > 0) {
 
                             echo '<table class=" table table-bordered"> <tr>';
@@ -321,6 +322,13 @@
                             }
                         }
                         echo '</table>';
+
+                        echo '<a download href="exportPrenotazioni.php?query=' . $_SESSION["query"] . '"> <div class="btn btn-info" style="background-color:Dodgerblue;">export</div> </a>';
+//
+//                        echo ' <form action="exportPrenotazioni.php" method="post">';
+//                        echo '<input type="hidden" name="query" value="' . $_SESSION["query"] . '">';
+//                        echo '<input type="submit" value="export" class="btn btn-info" style="background-color:Dodgerblue;">';
+//                        echo "</form>";
                         ?>
                     </div>
                 </div>
