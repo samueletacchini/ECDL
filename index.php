@@ -347,7 +347,7 @@ session_start();
                                 <label> Password </label>
                                 <input name="password" type="password" id="password" class="form-control" required>
                             </div>';
-                            echo "<a href='recupera.php'><p align='right' style='color:grey'>Recupera Password</p></a>";
+                            echo "<p href='recupera.php'><p align='right' style='color:grey'>Recupera Password</p></p>";
                             if (isset($_SESSION['err']) && $_SESSION['err'] == '0') {
                                 $_SESSION['err'] = null;
                                 echo '<p style="color:#B40404" align="center"> E-mail o Password Errati</p>';
@@ -366,27 +366,26 @@ session_start();
                     </div>
                     <div class="panel-body">
                         <table class="table table-bordered">
-                            <thead>
-                                <?php
-                                require_once('ConnessioneDb.php');
-                                $db = new ConnessioneDb();
-                                $sql = "SELECT * FROM `sessioni`";
-                                $ris = $db->query($sql);
+                            <tr><td>Data</td><td>Dalle</td><td>Alle</td></tr>
+                            <?php
+                            require_once('ConnessioneDb.php');
+                            $db = new ConnessioneDb();
+                            $sql = "SELECT * FROM `sessioni`";
+                            $ris = $db->query($sql);
 
-                                $datenow = date("Y-m-d");
+                            $datenow = date("Y-m-d");
 
-                                while ($riga = $ris->fetch_array()) {
-                                    if ($riga["data"] > $datenow) {
-                                        echo "<tr><td>{$riga["data"]}</td>";
-                                        echo "<td>{$riga["ora_da"]}</td>";
-                                        echo "<td>{$riga["ora_a"]}</td>";
-                                        // echo "<td>  prenota </td>";
-                                        echo "</tr>";
-                                    }
+                            while ($riga = $ris->fetch_array()) {
+                                if ($riga["data"] > $datenow) {
+                                    echo "<tr><td>{$riga["data"]}</td>";
+                                    echo "<td>{$riga["ora_da"]}</td>";
+                                    echo "<td>{$riga["ora_a"]}</td>";
+                                    // echo "<td>  prenota </td>";
+                                    echo "</tr>";
                                 }
-                                echo "</table>";
-                                ?>
-                            </thead>
+                            }
+                            echo "</table>";
+                            ?>
                         </table>
 
                         <form action="prenotazione.php" method="post">
@@ -510,7 +509,7 @@ session_start();
     ?>
 
     <script>
-        var html = '<br><div class="form-row"><div class="col-md-10"><label for="scuola">Selezione per quale prenotazione</label><select name="prenotazioni" class="form-control" id="prenotazioni"> ' + '<?php echo $reggia; ?>' + '</select></div></div>';
+        var html = '<br><div class="form-row"><div class="col-md-10"><label for="scuola">Seleziona per quale prenotazione</label><select name="prenotazioni" class="form-control" id="prenotazioni"> ' + '<?php echo $reggia; ?>' + '</select></div></div>';
         function myFunction() {
             document.getElementById("clicco").innerHTML = html;
         }

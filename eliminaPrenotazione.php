@@ -29,7 +29,7 @@ if (isset($_REQUEST['elimina'])) {
 
     require_once('ConnessioneDb.php');
     $db = new ConnessioneDb();
-    $sql = "INSERT INTO `prenotazione`(`ID_codice_fiscale`, `esami`, `ID_sessione`, `pagato`) VALUES ('$codicefiscale','$esami' ,'$sessione',0)";
+    $sql = "INSERT INTO `prenotazione`(`ID_codice_fiscale`, `esami`, `ID_sessione`) VALUES ('$codicefiscale','$esami' ,'$sessione')";
     $ris = $db->query($sql);
 }
 
