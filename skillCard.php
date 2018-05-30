@@ -234,7 +234,7 @@
                                 <input name="mail" type="text" class="form-control" id="mail" placeholder="E-Mail" required>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-6 ">
                                     <label for="inputPassword" class="control-label">Password</label>       
                                     <input onchange='check_pass();' name="password" type="password" data-minlength="6" class="form-control" id="password" placeholder="Password" required>                               
                                 </div>
@@ -243,8 +243,6 @@
                                     <input onchange='check_pass();' name="password2" type="password" data-minlength="6" class="form-control" id="password2" placeholder="Password" required>
                                 </div>
                                 <center  id='message'></center>
-
-
                             </div>
                         </div>
                     </div>

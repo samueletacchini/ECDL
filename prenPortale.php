@@ -162,7 +162,8 @@
                         if ($righe > 0) {
 
                             echo '<table class=" table table-bordered"> <tr>';
-                            echo "<th>Righe totali : {$righe} </th>";
+                            echo '<th></th>';
+//                            echo "<th>Righe totali : {$righe} </th>";
 
 //                            if (explode(".", $_SESSION["ordina"])[1] == "ID") {
 //                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID" type="hidden" name="ordina"> <input type="submit" value="ID" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
@@ -171,30 +172,30 @@
 //                            } 
 
                             if (explode(".", $_SESSION["ordina"])[1] == "nome") {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="nome" type="hidden" name="ordina"> <input type="submit" value="nome" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="nome" type="hidden" name="ordina"> <input type="submit" value="Nome" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
                             } else {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="nome" type="hidden" name="ordina"> <input type="submit" value="nome" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="nome" type="hidden" name="ordina"> <input type="submit" value="Nome" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
                             }
                             if (explode(".", $_SESSION["ordina"])[1] == "cognome") {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="cognome" type="hidden" name="ordina"> <input type="submit" value="cognome" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="cognome" type="hidden" name="ordina"> <input type="submit" value="Cognome" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
                             } else {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="cognome" type="hidden" name="ordina"> <input type="submit" value="cognome" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="cognome" type="hidden" name="ordina"> <input type="submit" value="Cognome" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
                             }
                             if (explode(".", $_SESSION["ordina"])[1] == "esami") {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="esami" type="hidden" name="ordina"> <input type="submit" value="moduli" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="esami" type="hidden" name="ordina"> <input type="submit" value="Moduli" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
                             } else {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="esami" type="hidden" name="ordina"> <input type="submit" value="moduli" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="esami" type="hidden" name="ordina"> <input type="submit" value="Moduli" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
                             }
                             if (explode(".", $_SESSION["ordina"])[1] == "data") {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="data" type="hidden" name="ordina"> <input type="submit" value="Data sessione" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="data" type="hidden" name="ordina"> <input type="submit" value="Data" class="btn btn-info btn-lg" style="background-color:blue;"> </form></th>';
                             } else {
-                                echo '<th><form method="post" action="prenPortale.php"> <input value="data" type="hidden" name="ordina"> <input type="submit" value="Data sessione" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
+                                echo '<th><form method="post" action="prenPortale.php"> <input value="data" type="hidden" name="ordina"> <input type="submit" value="Data" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"> </form></th>';
                             }
 
-                            echo '<th> <div class="btn btn-info btn-lg disabled" style="background-color:Dodgerblue;">bollettino</div></th>';
+                            echo '<th> <div class="btn btn-info btn-lg disabled" style="background-color:Dodgerblue;">Bollettino</div></th>';
 
 
-                            echo '<th> <div class="btn btn-info btn-lg disabled" style="background-color:Dodgerblue;">pdf</div></th>';
+                            echo '<th> <div class="btn btn-info btn-lg disabled" style="background-color:Dodgerblue;">Pdf</div></th>';
 
                             echo "</tr>";
                         } else {
@@ -217,7 +218,7 @@
 
                                 echo "<tr><td> <input type='submit' value='Salva' class='btn btn-info btn-lg' style='color:white;'></td>";
                             } else {
-                                echo '<td><form method="post" action="prenPortale.php"> <input  value="' . $riga['ID'] . '" type="hidden" name="modifica"> <input type="submit" value="Modifica" class="btn btn-info btn-lg" style=" color:white;"> </td>';
+                                echo '<td><form method="post" action="prenPortale.php"> <input  value="' . $riga['ID'] . '" type="hidden" name="modifica"> <input type="submit" value="Modifica" class="btn btn-info" style=" color:white;"> </td>';
                             }
 
 
@@ -297,19 +298,19 @@
 
                             if ($boll == 1) {
 
-                                echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='Da approvare'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a> <a href='setok.php?pid=" . $id . "'><span style='color:#33cc33'   class='glyphicon glyphicon-thumbs-up'></span></a></td>";
+                                echo "<td><span style='color:#ffcc00; font-size:150%;' class='glyphicon glyphicon-exclamation-sign' title='Da approvare'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a> <a href='setok.php?pid=" . $id . "'><span style='color:#33cc33; font-size:150%;'   class='glyphicon glyphicon-thumbs-up'></span></a></td>";
                             } else if ($boll == 2) {
-                                echo "<td><span style='color:#33cc33' class='glyphicon glyphicon-ok-sign' title='Completo'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a></span> <a href='setok.php?rid=" . $id . "'><span style='color:#c60101'   class='glyphicon glyphicon-thumbs-down'></span></a> </td>";
+                                echo "<td><span style='color:#33cc33; font-size:120%;' class='glyphicon glyphicon-ok-sign' title='Completo'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a></span> <a href='setok.php?rid=" . $id . "'><span style='color:#c60101; font-size:150%;'   class='glyphicon glyphicon-thumbs-down'></span></a> </td>";
                             } else {
-                                echo '<td><span style="color:#ff0000" class="glyphicon glyphicon-remove-sign" title="Vuoto"></span>  </td>';
+                                echo '<td><span style="color:#ff0000; font-size:150%;" class="glyphicon glyphicon-remove-sign" title="Vuoto"></span>  </td>';
                             }
                             //glyphicon glyphicon-remove-sign
                             if ($pren == 1) {
-                                echo "<td><span style='color:#ffcc00' class='glyphicon glyphicon-exclamation-sign' title='Da approvare'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a><a href='setok.php?pid=" . $id . "'><span style='color:#33cc33'   class='glyphicon glyphicon-thumbs-up'></span></a></td>";
+                                echo "<td><span style='color:#ffcc00; font-size:150%;' class='glyphicon glyphicon-exclamation-sign' title='Da approvare'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a><a href='setok.php?pid=" . $id . "'><span style='color:#33cc33; font-size:150%;'   class='glyphicon glyphicon-thumbs-up'></span></a></td>";
                             } else if ($pren == 2) {
-                                echo "<td><span style='color:#33cc33' class='glyphicon glyphicon-ok-sign' title='Completo'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a> <a href='setok.php?rid=" . $id . "'><span style='color:#c60101'   class='glyphicon glyphicon-thumbs-down'></span></a></td>";
+                                echo "<td><span style='color:#33cc33; font-size:150%;' class='glyphicon glyphicon-ok-sign' title='Completo'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a> <a href='setok.php?rid=" . $id . "'><span style='color:#c60101; font-size:150%;'   class='glyphicon glyphicon-thumbs-down'></span></a></td>";
                             } else {
-                                echo "<td><span style='color:#ff0000' class='glyphicon glyphicon-remove-sign' title='Vuoto'></span> <a href='setok.php?rid='" . $id . "'> <span style='color:#ff6600'   class='glyphicon glyphicon-thumbs-down'></span></a></td>";
+                                echo "<td><span style='color:#ff0000; font-size:150%;' class='glyphicon glyphicon-remove-sign' title='Vuoto'></span> <a href='setok.php?rid='" . $id . "'> <span style='color:#ff6600; font-size:150%;'   class='glyphicon glyphicon-thumbs-down'></span></a></td>";
                             }
 
 
@@ -323,7 +324,7 @@
                         }
                         echo '</table>';
 
-                        echo '<a download href="exportPrenotazioni.php?query=' . $_SESSION["query"] . '"> <div class="btn btn-info" style="background-color:Dodgerblue;">export</div> </a>';
+                        echo '<a download href="exportPrenotazioni.php?query=' . $_SESSION["query"] . '"> <div class="btn btn-info btn-lg" style="background-color:Dodgerblue;">Esporta</div> </a>';
 //
 //                        echo ' <form action="exportPrenotazioni.php" method="post">';
 //                        echo '<input type="hidden" name="query" value="' . $_SESSION["query"] . '">';
