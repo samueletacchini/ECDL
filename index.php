@@ -455,7 +455,7 @@ session_start();
                         
                         
                         <p align="center">Seleziona i file da caricare:</p>
-                        <input name="pdfs" type="file" class="custom-file-input" required>
+                        <input accept="image/*" name="pdfs" type="file" class="custom-file-input" required>
                         <br>
                         <input type="submit" name="carica" value="Carica" class="btn btn-info btn-lg">
                         <div id="clicco"></div>
