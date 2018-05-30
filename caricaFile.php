@@ -57,6 +57,7 @@ if (isset($_REQUEST['carica'])) {
 // if the mime type is anything other than what we specify below, kill it     
     if (!(
             $type == 'image/jpeg' ||
+            $type == 'image/jpg' ||
             $type == 'image/png' ||
             $type == 'image/gif' ||
             $type == 'application/pdf'
