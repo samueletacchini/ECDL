@@ -396,26 +396,18 @@
                         ?>
                     </table>
 
-
-                    <div id="sesione"  > 
+                    <div id="sesione" class="panel panel-default col-md-12"> 
                         <button  type="button" onclick="printInsert()" class="btn btn-info col-md-12 btn-lg" style="background-color:Dodgerblue;">Nuova Sessione</button>
-
-
                     </div>
                     <br>
-
-                    <div class="panel panel-default"  id="upload" > 
+                    <div class="panel panel-default col-md-12"  id="upload" > 
                         <button  type="button" onclick="uploadsomething()" class="btn btn-info col-md-12 btn-lg" style="background-color:Dodgerblue;">Carica qualcosa</button>
-
-
                         <?php
                         if (isset($_REQUEST["sessioni"])) {
                             echo $_REQUEST["sessioni"];
                         }
                         ?>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -427,7 +419,7 @@
                 document.getElementById("sesione").innerHTML = html;
             }
             function uploadsomething() {
-                var html = '<form name="carica" action="readxls.php" method="post" enctype="multipart/form-data"><p align="center">Carica qualcosa</p><input accept=".xls" name="xls" type="file" class="custom-file-input" required><br><input type="submit" name="carica" value="Carica" class="btn btn-info btn-lg"></form>';
+                var html = '<form name="carica" action="readxls.php" method="post" enctype="multipart/form-data"><p align="center">Carica qualcosa</p><input accept=".xls" name="xls" type="file" class="custom-file-input" required><br><input type="submit" name="carica" value="Carica" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"></form>';
 
                 document.getElementById("upload").innerHTML = html;
             }
