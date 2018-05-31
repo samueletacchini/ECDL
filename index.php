@@ -206,7 +206,54 @@ session_start();
                 </div>
             </div>
             <?php
-            if (!isset($_SESSION['user']))
+
+            if (isset($_SESSION['user'])) {
+                echo'<div class = "panel panel-default col-md-12">
+                <div class = "panel">
+                <h3 align = "center"> Lorem Ipsum </h3>
+                </div>
+                <div class = "panel-body">';
+                require_once('ConnessioneDb.php');
+                $db = new ConnessioneDb();
+                $sql = "SELECT user.email,sessioni.data FROM `sessioni` 
+                    JOIN prenotazione on sessioni.ID = prenotazione.ID_sessione
+                    JOIN user on prenotazione.ID_codice_fiscale = user.codice_fiscale
+                    WHERE user.email = '{$_SESSION['user']}'";
+                $result = $db->query($sql);
+                
+                while ($riga = $result->fetch_array()) {
+                    echo '<table class="table table-bordered">';
+                    echo '<tr><td>';
+                    echo "email:" . $riga["email"] . "<br>";
+                    echo '</td></tr>';
+                    echo '<tr><td>';
+                    echo "data: " . $riga["data"] . "<br>";
+                    echo '</td></tr>';
+                    echo '</table>';
+
+                    echo "Today is " . date("Y/m/d") . "<br>";
+                }
+
+
+                echo '</div></div>';
+                echo '<div class = "panel panel-default col-md-12">
+                <div class = "panel">
+                <h3 align = "center">Lorem Ipsum</h3>
+                </div>
+                <div class = "panel-body" >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ante felis, imperdiet ac placerat at, tincidunt ac nibh. Aliquam erat volutpat. Phasellus venenatis gravida justo, ac accumsan nibh pretium ac. In blandit dictum libero, non faucibus lectus malesuada sit amet. Sed ultrices est nec euismod vehicula. Fusce scelerisque molestie felis, in suscipit risus viverra in. Duis eget porttitor lorem. Donec imperdiet magna sit amet enim vehicula efficitur.
+                <br><br>
+                Fusce et vehicula nisl. Curabitur ut vehicula ante, at imperdiet quam. Nam quis dolor neque. Proin metus lorem, finibus a odio sed, viverra lobortis quam. Phasellus quis hendrerit dui. Maecenas rhoncus accumsan ligula, posuere sagittis enim dignissim vel. In iaculis laoreet justo et placerat. Morbi vitae pretium mi. Maecenas cursus, neque viverra placerat pulvinar, ante arcu pretium nisi, vestibulum pretium erat odio eget leo. Nam placerat molestie elit ac elementum. Suspendisse molestie id eros non malesuada. Donec lobortis viverra velit eu sodales. Phasellus hendrerit malesuada sapien sit amet tincidunt. Ut tempor bibendum rutrum. Proin in ultrices nunc.
+                <br><br>
+                Praesent aliquet laoreet nisl aliquam faucibus. Quisque rutrum luctus tortor, quis facilisis leo egestas ut. Nam varius nisi ac cursus tempor. Ut eget rhoncus justo. Morbi non libero ut lectus molestie volutpat. Nunc id metus et lorem mollis vestibulum. Ut id posuere nisi, a pretium ex. Maecenas egestas ipsum nec massa cursus rutrum. Donec ligula ante, dictum ut dictum nec, semper non metus. Aliquam ut sem quis ex finibus posuere. Mauris scelerisque nec metus ac mattis. Nam auctor, felis ut consequat cursus, est metus faucibus risus, non tincidunt purus diam vitae lorem.
+                <br><br>
+                Phasellus ac fringilla nibh, ac porttitor tortor. Sed tellus lectus, sodales a bibendum ac, aliquet nec elit. In molestie sollicitudin est, a finibus quam porttitor volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dui sapien, accumsan a sapien quis, feugiat tempor tortor. Vivamus tristique enim ac lorem ultricies consequat. Mauris imperdiet sollicitudin sem, nec pulvinar elit sagittis quis. Duis eu ligula eu est pharetra mollis. Maecenas porttitor mauris at ipsum tempus posuere. Phasellus porttitor ornare volutpat. Proin vel tristique ligula.
+                <br><br>
+                <br><br>
+                </div>
+                </div>';
+            }else 
+                {
                 echo '<div class="panel panel-default col-md-12">
                 <div class="panel">
                     <h3 align="center">Lorem Ipsum</h3>
@@ -223,49 +270,6 @@ session_start();
                     <br><br>
                 </div>
             </div>';
-
-            else {
-                echo'<div class = "panel panel-default col-md-6">
-                <div class = "panel">
-                <h3 align = "center">Lorem Ipsum</h3>
-                </div>
-                <div class = "panel-body" >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ante felis, imperdiet ac placerat at, tincidunt ac nibh. Aliquam erat volutpat. Phasellus venenatis gravida justo, ac accumsan nibh pretium ac. In blandit dictum libero, non faucibus lectus malesuada sit amet. Sed ultrices est nec euismod vehicula. Fusce scelerisque molestie felis, in suscipit risus viverra in. Duis eget porttitor lorem. Donec imperdiet magna sit amet enim vehicula efficitur.
-                <br><br>
-                Fusce et vehicula nisl. Curabitur ut vehicula ante, at imperdiet quam. Nam quis dolor neque. Proin metus lorem, finibus a odio sed, viverra lobortis quam. Phasellus quis hendrerit dui. Maecenas rhoncus accumsan ligula, posuere sagittis enim dignissim vel. In iaculis laoreet justo et placerat. Morbi vitae pretium mi. Maecenas cursus, neque viverra placerat pulvinar, ante arcu pretium nisi, vestibulum pretium erat odio eget leo. Nam placerat molestie elit ac elementum. Suspendisse molestie id eros non malesuada. Donec lobortis viverra velit eu sodales. Phasellus hendrerit malesuada sapien sit amet tincidunt. Ut tempor bibendum rutrum. Proin in ultrices nunc.
-                <br><br>
-                Praesent aliquet laoreet nisl aliquam faucibus. Quisque rutrum luctus tortor, quis facilisis leo egestas ut. Nam varius nisi ac cursus tempor. Ut eget rhoncus justo. Morbi non libero ut lectus molestie volutpat. Nunc id metus et lorem mollis vestibulum. Ut id posuere nisi, a pretium ex. Maecenas egestas ipsum nec massa cursus rutrum. Donec ligula ante, dictum ut dictum nec, semper non metus. Aliquam ut sem quis ex finibus posuere. Mauris scelerisque nec metus ac mattis. Nam auctor, felis ut consequat cursus, est metus faucibus risus, non tincidunt purus diam vitae lorem.
-                <br><br>
-                Phasellus ac fringilla nibh, ac porttitor tortor. Sed tellus lectus, sodales a bibendum ac, aliquet nec elit. In molestie sollicitudin est, a finibus quam porttitor volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dui sapien, accumsan a sapien quis, feugiat tempor tortor. Vivamus tristique enim ac lorem ultricies consequat. Mauris imperdiet sollicitudin sem, nec pulvinar elit sagittis quis. Duis eu ligula eu est pharetra mollis. Maecenas porttitor mauris at ipsum tempus posuere. Phasellus porttitor ornare volutpat. Proin vel tristique ligula.
-                <br><br>
-                <br><br>
-                </div>
-                </div>
-                <div class = "panel panel-default col-md-6">
-                <div class = "panel">
-                <h3 align = "center"> Lorem Ipsum </h3>
-                </div>
-                <div class = "panel-body">';
-                require_once('ConnessioneDb.php');
-                $db = new ConnessioneDb();
-                $sql = "SELECT user.email,sessioni.data FROM `sessioni` 
-                    JOIN prenotazione on sessioni.ID = prenotazione.ID_sessione
-                    JOIN user on prenotazione.ID_codice_fiscale = user.codice_fiscale
-                    WHERE user.email = '{$_SESSION['user']}'";
-                $result = $db->query($sql);
-                while ($riga = $result->fetch_array()) {
-                    echo '<table class="table table-bordered">';
-                    echo '<tr><td>';
-                    echo "email:" . $riga["email"] . "<br>";
-                    echo '</td></tr>';
-                    echo '<tr><td>';
-                    echo "data: " . $riga["data"] . "<br>";
-                    echo '</td></tr>';
-                    echo '</table>';
-                }
-
-
-                echo '</div></div>';
             }
             ?>
         </div>
@@ -551,6 +555,8 @@ session_start();
             } else {
                 document.getElementById("clicco").innerHTML = html;
             }
+
+          
         }
         function cancella() {
             document.getElementById("clicco").innerHTML = "";
