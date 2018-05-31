@@ -193,7 +193,6 @@
                             echo '<table class=" table table-bordered"> <tr>';
                             echo '<th></th>';
 //                            echo "<th>Righe totali : {$righe} </th>";
-
 //                            if (explode(".", $_SESSION["ordina"])[1] == "ID") {
 //                                echo '<th><form method="post" action="prenPortale.php"> <input value="ID" type="hidden" name="ordina"> <input type="submit" value="ID" class="btn btn-info btn-lg" style="background-color:lightblue;"> </form></th>';
 //                            } else {
@@ -339,7 +338,7 @@
                             } else if ($pren == 2) {
                                 echo "<td><span style='color:#33cc33; font-size:150%;' class='glyphicon glyphicon-ok-sign' title='Completo'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a> <a href='setok.php?rid=" . $id . "'><span style='color:#c60101; font-size:150%;'   class='glyphicon glyphicon-thumbs-down'></span></a></td>";
                             } else {
-                                echo "<td><span style='color:#ff0000; font-size:150%;' class='glyphicon glyphicon-remove-sign' title='Vuoto'></span> <a href='setok.php?rid='" . $id . "'> <span style='color:#ff6600; font-size:150%;'   class='glyphicon glyphicon-thumbs-down'></span></a></td>";
+                                echo "<td><span style='color:#ff0000; font-size:150%;' class='glyphicon glyphicon-remove-sign' title='Vuoto'></span> </td>";
                             }
 
 
