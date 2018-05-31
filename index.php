@@ -206,6 +206,7 @@ session_start();
                 </div>
             </div>
             <?php
+
             if (isset($_SESSION['user'])) {
                 echo'<div class = "panel panel-default col-md-12">
                 <div class = "panel">
@@ -295,91 +296,82 @@ session_start();
                         if (isset($_SESSION['user'])) {
                             require_once('ConnessioneDb.php');
                             $db = new ConnessioneDb();
-                            $sql = "select * from user where email = '" . $_SESSION['user'] . "'";
-                            $result = $db->query($sql);
-                            $user = $result->fetch_array();
-                            $sql = "SELECT prenotazione.ID as PID, sessioni.*, prenotazione.esami FROM sessioni JOIN `prenotazione` ON prenotazione.ID_sessione = sessioni.ID JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale WHERE user.email = '" . $_SESSION['user'] . "'";
-                            $ris2 = $db->query($sql);
-                            $sql3 = "SELECT prenotazione.ID AS pid, file.tipo FROM `file` JOIN prenotazione ON prenotazione.ID = file.ID_prenotazione WHERE `ID_user` = (SELECT user.codice_fiscale FROM user WHERE user.email = '{$_SESSION['user']}')";
-                            $ris3 = $db->query($sql3);
-                            $l = 0;
-                            if (mysqli_num_rows($ris3) > 0) {
-                                while ($riga3 = $ris3->fetch_array()) {
-                                    $pids[$l] = $riga3['pid'];
-                                    $tipi[$l] = $riga3['tipo'];
-                                    $tipi[$l] = explode(", ", $tipi[$l]);
-                                    $l++;
-                                }
+
+                            $query = "SELECT prenotazione.ID, user.nome, user.cognome, prenotazione.esami, sessioni.data FROM `prenotazione` JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale JOIN sessioni ON sessioni.ID = prenotazione.ID_sessione WHERE user.email = '{$_SESSION['user']}' GROUP BY prenotazione.ID ORDER BY prenotazione.ID";
+                            echo "<br><br>";
+                            $ris = $db->query($query);
+                            $righe = mysqli_num_rows($ris);
+
+                            if ($righe > 0) {
+
+                                echo '<table class=" table table-bordered"> <tr>';
+
+                                echo '<th><div class="btn btn-info btn-lg">Data</div></th>';
+                                echo '<th><div class="btn btn-info btn-lg">Moduli</div></th>';
+                                echo '<th><div class="btn btn-info btn-lg ">Bollettino</div></th>';
+                                echo '<th><div class="btn btn-info btn-lg ">Pdf</div></th>';
+
+
+                                echo "</tr>";
                             } else {
-                                $pids[0] = 0;
-                                $tipi[0] = "";
+                                echo 'la ricerca non ha restituito nessun risultato';
                             }
-//                            for ($n = 0; $n < count($tipi); $n++) {
-//                                echo "r: $n ";
-//                                for ($m = 0; $m < count($tipi[$n]); $m++) {
-//                                    echo " c: $m {$tipi[$n][$m]}";
-//                                }
-//                                echo '<br>';
-//                            }
-                            if (mysqli_num_rows($ris2) > 0) {
-                                echo "<b><font color = '#585858'>Esami prenotati:</font></b>";
-                                echo "<table class = 'table table-bordered'><thead><tr><th>DATA</th><th>Dalle</th><th>alle</th><th>Moduli</th><tr>";
-                                while ($riga2 = $ris2->fetch_array()) {
-                                    $tipis = "";
-                                    for ($i = 0; $i < count($pids); $i++) {
-                                        //echo $pids[$i] . " oo " . $riga2['PID'];
-                                        if ($pids[$i] == $riga2["PID"]) {
-                                            for ($m = 0; $m < count($tipi[$i]); $m++) {
-                                                if ($tipi[$i][$m] == "pdfprenotazione") {
-                                                    $tipis .= "p";
-                                                    //echo "<tr bgcolor = '#6666ff'><td>{$riga2["data"]}</td>";
-                                                } elseif ($tipi[$i][$m] == "bollettinoprenotazione") {
-                                                    $tipis .= "b";
-                                                    //echo "<tr bgcolor = '#ff4d4d'><td>{$riga2["data"]}</td>";
+                            while ($riga = $ris->fetch_array()) {
+                                echo "<td>" . $riga['data'] . "</td>";
+                                echo "<td>" . $riga['esami'] . "</td>";
+
+
+                                $query2 = "SELECT id, tipo, ok, ID_prenotazione FROM `file` WHERE `ID_prenotazione` = {$riga['ID']}";
+                                $ris2 = $db->query($query2);
+
+                                $pren = 0;
+                                $boll = 0;
+                                for ($o = 0; $o < 2; $o++) {
+                                    $riga2 = $ris2->fetch_array();
+                                    $tipi = explode(", ", $riga2['tipo']);
+                                    for ($p = 0; $p < 2; $p++) {
+                                        if (isset($tipi[$p])) {
+
+                                            if ($tipi[$p] == "bollettinoprenotazione") {
+                                                $id = $riga2['id'];
+                                                if ($riga2['ok'] == 1) {
+                                                    $boll = 2;
+                                                } else {
+                                                    $boll = 1;
                                                 }
                                             }
-                                            //ha il file 
+                                            if ($tipi[$p] == "pdfprenotazione") {
+                                                $id = $riga2['id'];
+                                                if ($riga2['ok'] == 1) {
+                                                    $pren = 2;
+                                                } else {
+                                                    $pren = 1;
+                                                }
+                                            }
                                         }
                                     }
-
-                                    //style='color:#80ff80'
-                                    echo "<tr><td>{$riga2["data"]}</td>";
-                                    echo "<td>{$riga2["ora_da"]}</td>";
-                                    echo "<td>{$riga2["ora_a"]}</td> <td> ";
-                                    for ($i = 0; $i < strlen($riga2["esami"]); $i++) {
-                                        echo" " . $riga2["esami"][$i] . " ";
-                                    }
-                                    //echo "<td>{$riga2["PID"]}</td>";
-                                    $p = false;
-                                    $b = false;
-                                    for ($h = 0; $h < strlen($tipis); $h++) {
-                                        if ($tipis[$h] == "p") {
-                                            $p = true;
-                                        } elseif ($tipis[$h] == "b") {
-                                            $b = true;
-                                        }
-                                    }
-
-
-                                    if ($b == true && $p == true) {
-                                        echo "<td><span style = 'color:#33cc33' class = 'glyphicon glyphicon-ok-sign' title = 'completo'></span></td>";
-                                    } elseif ($b == true) {
-                                        echo "<td><span style = 'color:#ffcc00' class = 'glyphicon glyphicon-exclamation-sign' title = 'prenotazione mancante'></span></td>";
-                                    } elseif ($p == true) {
-                                        echo "<td><span style = 'color:#ffcc00' class = 'glyphicon glyphicon-exclamation-sign' title = 'bollettino mancante'></span></td>";
-                                    } elseif ($tipis == "") {
-                                        echo "<td><span style = 'color:#e60000' class = 'glyphicon glyphicon-remove-sign' title = 'nessun file'></span></td>";
-                                    }
-
-                                    echo "<td><a href = 'eliminaPrenotazione.php?elimina={$riga2["PID"]}' id = 'modal' name = 'modal'><span style = 'color:#737373' class = 'glyphicon glyphicon-trash'></span></td>";
-                                    echo "</td></tr>";
                                 }
-                                echo "</table>";
-                            } else {
 
-                                echo "<p align = 'center'>Non hai prenotazioni!</p>";
-                                echo "<p align = 'center'><a href = 'prenotazione.php'>Prenota Subito Un Esame</a></p>";
+                                if ($boll == 1) {
+                                    echo "<td><span style='color:#ffcc00; font-size:150%;' class='glyphicon glyphicon-exclamation-sign' title='Da approvare'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a> <a href='eliminafile.php?ID={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-trash' title='Elimina' ></span></a> </td>";
+                                } else if ($boll == 2) {
+                                    echo "<td><span style='color:#33cc33; font-size:150%;' class='glyphicon glyphicon-ok-sign' title='Completo'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a></span> <a href='eliminafile.php?ID={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-trash' title='Elimina' ></span></a> </td>";
+                                } else {
+                                    echo '<td><span style="color:#ff0000; font-size:150%;" class="glyphicon glyphicon-remove-sign" title="nessun file"></span>  </td>';
+                                }
+                                if ($pren == 1) {
+                                    echo "<td><span style='color:#ffcc00; font-size:150%;' class='glyphicon glyphicon-exclamation-sign' title='Da approvare'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a> <a href='eliminafile.php?ID={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-trash' title='Elimina' ></span></a> </td>";
+                                } else if ($pren == 2) {
+                                    echo "<td><span style='color:#33cc33; font-size:150%;' class='glyphicon glyphicon-ok-sign' title='Completo'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a> <a href='eliminafile.php?ID={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-trash' title='Elimina' ></span></a> </td>";
+                                } else {
+                                    echo "<td><span style='color:#ff0000; font-size:150%;' class='glyphicon glyphicon-remove-sign' title='nessun file'></span> </td>";
+                                }
+
+
+                                echo " </form></tr> ";
                             }
+                            echo '</table>';
+
                             echo '<form action="login.php" method="post">
                                      <input type="hidden" name="exit" value="1">
                                      <input type="submit" value="Logout" class="btn btn-info btn-lg">
@@ -468,7 +460,7 @@ session_start();
                             </label>
                         </div>                            
                         <div class="form-group">
-                            <input name="pdfprenotazione" onclick="myFunction()" class="form-check-input" type="checkbox" value="1" id="pdfprenotazione">
+                            <input name="pdfprenotazione" onchange="myFunction()" class="form-check-input" type="checkbox" value="1" id="pdfprenotazione">
                             <label  class="form-check-label" for="defaultCheck7">
                                 Pdf prenotazione
                             </label>
@@ -480,7 +472,7 @@ session_start();
                             </label>
                         </div>   
                         <div class="form-group">
-                            <input name="pdfupdate" onclick="myFunction()" class="form-check-input" type="checkbox" value="1" id="pdfupdate">
+                            <input name="pdfupdate" onchange="myFunction()" class="form-check-input" type="checkbox" value="1" id="pdfupdate">
                             <label  class="form-check-label" for="defaultCheck7">
                                 Pdf update 
                             </label>
@@ -492,7 +484,7 @@ session_start();
                             </label>
                         </div>                            
                         <div class="form-group">
-                            <input name="bollettinoprenotazione" onclick="myFunction()" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                            <input name="bollettinoprenotazione" onchange="myFunction()" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
                             <label  class="form-check-label" for="defaultCheck7">
                                 Bollettino prenotazione 
                             </label>
@@ -558,7 +550,13 @@ session_start();
     <script>
         var html = '<br><div class="form-row"><div class="col-md-10"><label for="scuola">Seleziona per quale prenotazione</label><select name="prenotazioni" class="form-control" id="prenotazioni"> ' + '<?php echo $reggia; ?>' + '</select></div></div>';
         function myFunction() {
-            document.getElementById("clicco").innerHTML = html;
+            if (document.getElementById("pdfprenotazione").checked == false && document.getElementById("pdfupdate").checked == false && document.getElementById("bollettinoprenotazione").checked == false) {
+                document.getElementById("clicco").innerHTML = "";
+            } else {
+                document.getElementById("clicco").innerHTML = html;
+            }
+
+          
         }
         function cancella() {
             document.getElementById("clicco").innerHTML = "";

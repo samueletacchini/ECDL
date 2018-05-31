@@ -1,7 +1,6 @@
 <?php
 
 if (isset($_REQUEST['elimina'])) {
-    echo 'va';
     require_once('ConnessioneDb.php');
 
     $pid = $_REQUEST['elimina'];
@@ -15,7 +14,6 @@ if (isset($_REQUEST['elimina'])) {
 
 
 
-    echo "eheh<br><br>";
     $sessione = $_REQUEST['sessione'];
     $esami = "";
     $a = 0;
