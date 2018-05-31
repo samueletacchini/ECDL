@@ -136,13 +136,13 @@ session_start();
                         <?php
                         //sono loggato
                         if (isset($_SESSION['user'])) {
-                        require_once('ConnessioneDb.php');
-                        $db = new ConnessioneDb();
-                        $sql = 'SELECT ID FROM `prenotazione` WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = "' . $_SESSION['user'] . '")';
-                        $result = $db->query($sql);
-                        $gigi = $result->fetch_array();
-                        $idpren = $gigi['ID'];
-                        echo '<form method="post" action="pdfUpdate.php">
+                            require_once('ConnessioneDb.php');
+                            $db = new ConnessioneDb();
+                            $sql = 'SELECT ID FROM `prenotazione` WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = "' . $_SESSION['user'] . '")';
+                            $result = $db->query($sql);
+                            $gigi = $result->fetch_array();
+                            $idpren = $gigi['ID'];
+                            echo '<form method="post" action="pdfUpdate.php">
                                         <input value="' . $_SESSION['user'] . '"  type="hidden" name="id">
                                         <input value="' . $idpren . '" type="hidden" name="idprenota">
                                         <input type="submit" value="PDF Update" class="btn btn-info btn-lg">
@@ -156,19 +156,19 @@ session_start();
                         <?php
 //sono loggato
                         if (isset($_SESSION['user'])) {
-                        require_once('ConnessioneDb.php');
-                        $db = new ConnessioneDb();
-                        $sql = 'SELECT ID FROM `prenotazione` WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = "' . $_SESSION['user'] . '")';
-                        $result = $db->query($sql);
-                        $gigi = $result->fetch_array();
-                        $idpren = $gigi['ID'];
-                        echo '<form method="post" action="pdfPrenotazione.php">
+                            require_once('ConnessioneDb.php');
+                            $db = new ConnessioneDb();
+                            $sql = 'SELECT ID FROM `prenotazione` WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = "' . $_SESSION['user'] . '")';
+                            $result = $db->query($sql);
+                            $gigi = $result->fetch_array();
+                            $idpren = $gigi['ID'];
+                            echo '<form method="post" action="pdfPrenotazione.php">
                                         <input value="' . $_SESSION['user'] . '"  type="hidden" name="id">
                                         <input value="' . $idpren . '" type="hidden" name="idprenota">
                                         <input type="submit" value="PDF prenotazione" class="btn btn-info btn-lg">
                                     </form>';
                         } else {
-                        echo '
+                            echo '
                                     <form action="skillCard.php" method="post">
                                 <input type="hidden" name="a" value="1">
                                 <input type="submit" value="Registrati" class="btn btn-info btn-lg">
@@ -180,12 +180,12 @@ session_start();
                     <div class="form-group col-md-3" id="prenota">
                         <?php
                         if (isset($_SESSION['user'])) {
-                        echo '<form action="pdfSkillcard.php" method="post">
+                            echo '<form action="pdfSkillcard.php" method="post">
                                       <input type="hidden" name="id" value="' . $_SESSION['user'] . '">
                                       <input type="submit" value="PDF Skillcard" class="btn btn-info btn-lg">
                                       </form>';
                         } else {
-                        echo '<form action="skillCard.php" method="post">
+                            echo '<form action="skillCard.php" method="post">
                                 <input type="hidden" name="a" value="0">
                                 <input type="submit" value="Nuova Skillcard" class="btn btn-info btn-lg">
                             </form>';
@@ -196,7 +196,7 @@ session_start();
                     <div class="form-group col-md-3">
                         <?php
                         if (isset($_SESSION['user'])) {
-                        echo '<form action="pdfAica.php" method="post">
+                            echo '<form action="pdfAica.php" method="post">
                                       <input type="hidden" name="id" value="' . $_SESSION['user'] . '">
                                       <input type="submit" value="PDF AICA" class="btn btn-info btn-lg">
                                       </form>';
@@ -206,8 +206,54 @@ session_start();
                 </div>
             </div>
             <?php
-            if (!isset($_SESSION['user']))
-            echo '<div class="panel panel-default col-md-12">
+            if (isset($_SESSION['user'])) {
+                echo'<div class = "panel panel-default col-md-12">
+                <div class = "panel">
+                <h3 align = "center"> Lorem Ipsum </h3>
+                </div>
+                <div class = "panel-body">';
+                require_once('ConnessioneDb.php');
+                $db = new ConnessioneDb();
+                $sql = "SELECT user.email,sessioni.data FROM `sessioni` 
+                    JOIN prenotazione on sessioni.ID = prenotazione.ID_sessione
+                    JOIN user on prenotazione.ID_codice_fiscale = user.codice_fiscale
+                    WHERE user.email = '{$_SESSION['user']}'";
+                $result = $db->query($sql);
+                
+                while ($riga = $result->fetch_array()) {
+                    echo '<table class="table table-bordered">';
+                    echo '<tr><td>';
+                    echo "email:" . $riga["email"] . "<br>";
+                    echo '</td></tr>';
+                    echo '<tr><td>';
+                    echo "data: " . $riga["data"] . "<br>";
+                    echo '</td></tr>';
+                    echo '</table>';
+
+                    echo "Today is " . date("Y/m/d") . "<br>";
+                }
+
+
+                echo '</div></div>';
+                echo '<div class = "panel panel-default col-md-12">
+                <div class = "panel">
+                <h3 align = "center">Lorem Ipsum</h3>
+                </div>
+                <div class = "panel-body" >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ante felis, imperdiet ac placerat at, tincidunt ac nibh. Aliquam erat volutpat. Phasellus venenatis gravida justo, ac accumsan nibh pretium ac. In blandit dictum libero, non faucibus lectus malesuada sit amet. Sed ultrices est nec euismod vehicula. Fusce scelerisque molestie felis, in suscipit risus viverra in. Duis eget porttitor lorem. Donec imperdiet magna sit amet enim vehicula efficitur.
+                <br><br>
+                Fusce et vehicula nisl. Curabitur ut vehicula ante, at imperdiet quam. Nam quis dolor neque. Proin metus lorem, finibus a odio sed, viverra lobortis quam. Phasellus quis hendrerit dui. Maecenas rhoncus accumsan ligula, posuere sagittis enim dignissim vel. In iaculis laoreet justo et placerat. Morbi vitae pretium mi. Maecenas cursus, neque viverra placerat pulvinar, ante arcu pretium nisi, vestibulum pretium erat odio eget leo. Nam placerat molestie elit ac elementum. Suspendisse molestie id eros non malesuada. Donec lobortis viverra velit eu sodales. Phasellus hendrerit malesuada sapien sit amet tincidunt. Ut tempor bibendum rutrum. Proin in ultrices nunc.
+                <br><br>
+                Praesent aliquet laoreet nisl aliquam faucibus. Quisque rutrum luctus tortor, quis facilisis leo egestas ut. Nam varius nisi ac cursus tempor. Ut eget rhoncus justo. Morbi non libero ut lectus molestie volutpat. Nunc id metus et lorem mollis vestibulum. Ut id posuere nisi, a pretium ex. Maecenas egestas ipsum nec massa cursus rutrum. Donec ligula ante, dictum ut dictum nec, semper non metus. Aliquam ut sem quis ex finibus posuere. Mauris scelerisque nec metus ac mattis. Nam auctor, felis ut consequat cursus, est metus faucibus risus, non tincidunt purus diam vitae lorem.
+                <br><br>
+                Phasellus ac fringilla nibh, ac porttitor tortor. Sed tellus lectus, sodales a bibendum ac, aliquet nec elit. In molestie sollicitudin est, a finibus quam porttitor volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dui sapien, accumsan a sapien quis, feugiat tempor tortor. Vivamus tristique enim ac lorem ultricies consequat. Mauris imperdiet sollicitudin sem, nec pulvinar elit sagittis quis. Duis eu ligula eu est pharetra mollis. Maecenas porttitor mauris at ipsum tempus posuere. Phasellus porttitor ornare volutpat. Proin vel tristique ligula.
+                <br><br>
+                <br><br>
+                </div>
+                </div>';
+            }else 
+                {
+                echo '<div class="panel panel-default col-md-12">
                 <div class="panel">
                     <h3 align="center">Lorem Ipsum</h3>
                 </div>
@@ -223,49 +269,6 @@ session_start();
                     <br><br>
                 </div>
             </div>';
-
-            else {
-            echo'<div class = "panel panel-default col-md-6">
-                <div class = "panel">
-                <h3 align = "center">Lorem Ipsum</h3>
-                </div>
-                <div class = "panel-body" >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ante felis, imperdiet ac placerat at, tincidunt ac nibh. Aliquam erat volutpat. Phasellus venenatis gravida justo, ac accumsan nibh pretium ac. In blandit dictum libero, non faucibus lectus malesuada sit amet. Sed ultrices est nec euismod vehicula. Fusce scelerisque molestie felis, in suscipit risus viverra in. Duis eget porttitor lorem. Donec imperdiet magna sit amet enim vehicula efficitur.
-                <br><br>
-                Fusce et vehicula nisl. Curabitur ut vehicula ante, at imperdiet quam. Nam quis dolor neque. Proin metus lorem, finibus a odio sed, viverra lobortis quam. Phasellus quis hendrerit dui. Maecenas rhoncus accumsan ligula, posuere sagittis enim dignissim vel. In iaculis laoreet justo et placerat. Morbi vitae pretium mi. Maecenas cursus, neque viverra placerat pulvinar, ante arcu pretium nisi, vestibulum pretium erat odio eget leo. Nam placerat molestie elit ac elementum. Suspendisse molestie id eros non malesuada. Donec lobortis viverra velit eu sodales. Phasellus hendrerit malesuada sapien sit amet tincidunt. Ut tempor bibendum rutrum. Proin in ultrices nunc.
-                <br><br>
-                Praesent aliquet laoreet nisl aliquam faucibus. Quisque rutrum luctus tortor, quis facilisis leo egestas ut. Nam varius nisi ac cursus tempor. Ut eget rhoncus justo. Morbi non libero ut lectus molestie volutpat. Nunc id metus et lorem mollis vestibulum. Ut id posuere nisi, a pretium ex. Maecenas egestas ipsum nec massa cursus rutrum. Donec ligula ante, dictum ut dictum nec, semper non metus. Aliquam ut sem quis ex finibus posuere. Mauris scelerisque nec metus ac mattis. Nam auctor, felis ut consequat cursus, est metus faucibus risus, non tincidunt purus diam vitae lorem.
-                <br><br>
-                Phasellus ac fringilla nibh, ac porttitor tortor. Sed tellus lectus, sodales a bibendum ac, aliquet nec elit. In molestie sollicitudin est, a finibus quam porttitor volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dui sapien, accumsan a sapien quis, feugiat tempor tortor. Vivamus tristique enim ac lorem ultricies consequat. Mauris imperdiet sollicitudin sem, nec pulvinar elit sagittis quis. Duis eu ligula eu est pharetra mollis. Maecenas porttitor mauris at ipsum tempus posuere. Phasellus porttitor ornare volutpat. Proin vel tristique ligula.
-                <br><br>
-                <br><br>
-                </div>
-                </div>
-                <div class = "panel panel-default col-md-6">
-                <div class = "panel">
-                <h3 align = "center"> Lorem Ipsum </h3>
-                </div>
-                <div class = "panel-body">';
-            require_once('ConnessioneDb.php');
-            $db = new ConnessioneDb();
-            $sql = "SELECT user.email,sessioni.data FROM `sessioni` 
-                    JOIN prenotazione on sessioni.ID = prenotazione.ID_sessione
-                    JOIN user on prenotazione.ID_codice_fiscale = user.codice_fiscale
-                    WHERE user.email = '{$_SESSION['user']}'";
-                $result = $db->query($sql);
-                while ($riga = $result->fetch_array()) {
-                    echo '<table class="table table-bordered">';
-                    echo '<tr><td>';
-                    echo "email:" . $riga["email"]."<br>";
-                    echo '</td></tr>';
-                    echo '<tr><td>';
-                    echo "data: " . $riga["data"]."<br>";
-                    echo '</td></tr>';
-                    echo '</table>';
-                }
-
-
-                echo '</div></div>';
             }
             ?>
         </div>
@@ -395,62 +398,62 @@ session_start();
                             if (isset($_SESSION['err']) && $_SESSION['err'] == '0') {
                                 $_SESSION['err'] = null;
                                 echo '<p style="color:#B40404" align="center"> E-mail o Password Errati</p>';
-            }
-            echo '<center><br><button type="submit" class="btn btn-info btn-lg" value="accedi" data-toggle="modal" data-target="#myModal"> Accedi </button></center>';
+                            }
+                            echo '<center><br><button type="submit" class="btn btn-info btn-lg" value="accedi" data-toggle="modal" data-target="#myModal"> Accedi </button></center>';
+                        }
+                        ?>
+
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="panel panel-default"  id="link">
+                    <div class="panel">
+                        <h3 align='center'>Prossime date Esami</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-bordered">
+                            <tr><td>Data</td><td>Dalle</td><td>Alle</td></tr>
+                            <?php
+                            require_once('ConnessioneDb.php');
+                            $db = new ConnessioneDb();
+                            $sql = "SELECT * FROM `sessioni`";
+                            $ris = $db->query($sql);
+
+                            $datenow = date("Y-m-d");
+
+                            while ($riga = $ris->fetch_array()) {
+                                if ($riga["data"] > $datenow) {
+                                    echo "<tr><td>{$riga["data"]}</td>";
+                                    echo "<td>{$riga["ora_da"]}</td>";
+                                    echo "<td>{$riga["ora_a"]}</td>";
+                                    // echo "<td>  prenota </td>";
+                                    echo "</tr>";
+                                }
+                            }
+                            echo "</table>";
+                            ?>
+                        </table>
+
+                        <form action="prenotazione.php" method="post">
+                            <?php
+                            if (isset($_SESSION['user'])) {
+                                echo '<input type="hidden" name="id" value="' . $_SESSION['user'] . '">';
+                                echo '<input type="submit" value="Prenota esame" class="btn btn-info btn-lg">';
+                            }
+                            ?>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <?php
+            if (!isset($_SESSION['user'])) {
+                echo '<div class="panel panel-default" style="height:20% width:5%;"><iframe style="max-width:100%;min-width:100%;" height="400" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2838.5097460187676!2d10.88803611520416!3d44.64793607909977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477fef95e7474705%3A0xe65e79e7b059ecb4!2sIstituto+di+Istruzione+Superiore+F.Corni%2C+sede+Vinci!5e0!3m2!1sit!2sit!4v1525778801134" frameborder="0" style="border:0" allowfullscreen></iframe></div>';
             }
             ?>
-
-        </div>
-    </div>
-</div>
-<div>
-    <div class="panel panel-default"  id="link">
-        <div class="panel">
-            <h3 align='center'>Prossime date Esami</h3>
-        </div>
-        <div class="panel-body">
-            <table class="table table-bordered">
-                <tr><td>Data</td><td>Dalle</td><td>Alle</td></tr>
-                <?php
-                require_once('ConnessioneDb.php');
-                $db = new ConnessioneDb();
-                $sql = "SELECT * FROM `sessioni`";
-                $ris = $db->query($sql);
-
-                $datenow = date("Y-m-d");
-
-                while ($riga = $ris->fetch_array()) {
-                if ($riga["data"] > $datenow) {
-                echo "<tr><td>{$riga["data"]}</td>";
-                echo "<td>{$riga["ora_da"]}</td>";
-                echo "<td>{$riga["ora_a"]}</td>";
-                // echo "<td>  prenota </td>";
-                echo "</tr>";
-                }
-                }
-                echo "</table>";
-                ?>
-            </table>
-
-            <form action="prenotazione.php" method="post">
-                <?php
-                if (isset($_SESSION['user'])) {
-                echo '<input type="hidden" name="id" value="' . $_SESSION['user'] . '">';
-                echo '<input type="submit" value="Prenota esame" class="btn btn-info btn-lg">';
-                }
-                ?>
-            </form>
-        </div>
-    </div>
-</div>
-<?php
-if (!isset($_SESSION['user'])) {
-echo '<div class="panel panel-default" style="height:20% width:5%;"><iframe style="max-width:100%;min-width:100%;" height="400" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2838.5097460187676!2d10.88803611520416!3d44.64793607909977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477fef95e7474705%3A0xe65e79e7b059ecb4!2sIstituto+di+Istruzione+Superiore+F.Corni%2C+sede+Vinci!5e0!3m2!1sit!2sit!4v1525778801134" frameborder="0" style="border:0" allowfullscreen></iframe></div>';
-}
-?>
-<?php
-if (isset($_SESSION['user'])) {
-echo '<div class="panel panel-default"  id="link2">
+            <?php
+            if (isset($_SESSION['user'])) {
+                echo '<div class="panel panel-default"  id="link2">
                 <div class="panel">
                     <h3 align="center">Carica File</h3>
                 </div>
@@ -512,66 +515,64 @@ echo '<div class="panel panel-default"  id="link2">
                         
                         </div>
                         ';
-}
-?>
-</div>
-</div>
-<script>
-    function updateDiv()
-    {
-        document.getElementById("buttons").innerHTML = document.getElementById("buttons").innerHTML;
-        document.getElementById("login").innerHTML = document.getElementById("login").innerHTML;
-    }
-    src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-    src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    type = "text/javascript" src = "bootstrap-table.js"
-</script>
-<script>
-            document.getElementById('get_file').onclick = function () {
-        document.getElementById('my_file').click();
-    };
-    $('input[type=file]').change(function (e) {
-        $('#customfileupload').html($(this).val());
-    });
-</script>
+            }
+            ?>
+        </div>
+    </div>
+    <script>
+        function updateDiv()
+        {
+            document.getElementById("buttons").innerHTML = document.getElementById("buttons").innerHTML;
+            document.getElementById("login").innerHTML = document.getElementById("login").innerHTML;
+        }
+        src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+        src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        type = "text/javascript" src = "bootstrap-table.js"
+    </script>
+    <script>
+                document.getElementById('get_file').onclick = function () {
+            document.getElementById('my_file').click();
+        };
+        $('input[type=file]').change(function (e) {
+            $('#customfileupload').html($(this).val());
+        });
+    </script>
 
-<?php
-if (isset($_SESSION['user'])) {
-require_once('ConnessioneDb.php');
-$db = new ConnessioneDb();
-$sql = "SELECT *, prenotazione.ID AS 'ip'  FROM `prenotazione`  JOIN sessioni ON sessioni.ID = prenotazione.ID_sessione WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = '{$_SESSION['user']}')";
-$ris = $db->query($sql);
-$reggia = "";
-while ($riga = $ris->fetch_array()) {
-$esami = "";
-for ($i = 0;
-$i < strlen($riga["esami"]);
-$i++) {
-$esami .= ' ' . $riga["esami"][$i] . ' ';
-}
-$reggia .= '<option value="' . $riga["ip"] . '">' . $riga["data"] . ' dalle ' . $riga["ora_da"] . ' alle ' . $riga["ora_a"] . ' Moduli prenotati: ' . $esami . '</option>';
-}
-}
-?>
+    <?php
+    if (isset($_SESSION['user'])) {
+        require_once('ConnessioneDb.php');
+        $db = new ConnessioneDb();
+        $sql = "SELECT *, prenotazione.ID AS 'ip'  FROM `prenotazione`  JOIN sessioni ON sessioni.ID = prenotazione.ID_sessione WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = '{$_SESSION['user']}')";
+        $ris = $db->query($sql);
+        $reggia = "";
+        while ($riga = $ris->fetch_array()) {
+            $esami = "";
+            for ($i = 0; $i < strlen($riga["esami"]); $i++) {
+                $esami .= ' ' . $riga["esami"][$i] . ' ';
+            }
+            $reggia .= '<option value="' . $riga["ip"] . '">' . $riga["data"] . ' dalle ' . $riga["ora_da"] . ' alle ' . $riga["ora_a"] . ' Moduli prenotati: ' . $esami . '</option>';
+        }
+    }
+    ?>
 
-<script>
-    var html = '<br><div class="form-row"><div class="col-md-10"><label for="scuola">Seleziona per quale prenotazione</label><select name="prenotazioni" class="form-control" id="prenotazioni"> ' + '<?php echo $reggia; ?>' + '</select></div></div>';
-    function myFunction() {
-        document.getElementById("clicco").innerHTML = html;
-    }
-    function cancella() {
-        document.getElementById("clicco").innerHTML = "";
-    }
-</script>
-<div class="col-md-12">                                 
-    <footer class="container text-center" id="foot" >                                         
-        <p>                            
-            <br/><strong>IIS F.CORNI - LICEO E TECNICO</strong>                              
-            <br/>                    Sede centrale: L.go A. Moro 25 Tel 059/400700 Fax 059/243391                              
-            <br/>                        Succursale: Via Leonardo da Vinci 300 Tel 059/2917000 Fax 059/344709                              
-            <br/>                    ecdl@istitutocorni.it - http://www.istitutocorni.gov.it                                          
-        </p>                                 
-    </footer>     
-</div>
+    <script>
+        var html = '<br><div class="form-row"><div class="col-md-10"><label for="scuola">Seleziona per quale prenotazione</label><select name="prenotazioni" class="form-control" id="prenotazioni"> ' + '<?php echo $reggia; ?>' + '</select></div></div>';
+        function myFunction() {
+            document.getElementById("clicco").innerHTML = html;
+        }
+        function cancella() {
+            document.getElementById("clicco").innerHTML = "";
+        }
+    </script>
+    <div class="col-md-12">                                 
+        <footer class="container text-center" id="foot" >                                         
+            <p>                            
+                <br/><strong>IIS F.CORNI - LICEO E TECNICO</strong>                              
+                <br/>                    Sede centrale: L.go A. Moro 25 Tel 059/400700 Fax 059/243391                              
+                <br/>                        Succursale: Via Leonardo da Vinci 300 Tel 059/2917000 Fax 059/344709                              
+                <br/>                    ecdl@istitutocorni.it - http://www.istitutocorni.gov.it                                          
+            </p>                                 
+        </footer>     
+    </div>
 </body>
 </html>
