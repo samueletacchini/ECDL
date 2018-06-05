@@ -53,25 +53,25 @@
                                 if ($a == "0") {
                                     //NUOVA SKILLCARD
                                     echo '<div class="form-group col-md-6">
-                        <label for="codeFiscale">Codice Fiscale</label>
-                        <input name="codiceFiscale" type="text" class="form-control" id="codeFiscale" placeholder="Codice Fiscale" required>
+                        <label  for="codeFiscale">Codice Fiscale <b id="cf"></b></label>
+                        <input name="codiceFiscale" type="text" class="form-control" id="codiceFiscale" placeholder="Codice Fiscale" required>
                     </div>';
                                 } else {
                                     //SKILLCARD ESISTENTE
                                     echo '<div class="form-group col-md-3">
                         <label for="card">Skill Card N.</label>
-                        <input name="nskill" type="number" class="form-control" id="codeFiscale" placeholder="Numero SkillCard" required>
+                        <input name="nskill" type="number" class="form-control" id="skillCard" placeholder="Numero SkillCard" required>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="codeFiscale">Codice Fiscale</label>
-                        <input name="codiceFiscale" type="text" class="form-control" id="codeFiscale" placeholder="Codice Fiscale" required>
+                        <label for="codeFiscale">Codice Fiscale<b id="cf"></b></label>
+                        <input name="codiceFiscale" type="text" class="form-control" id="codiceFiscale" placeholder="Codice Fiscale" required>
                     </div>';
                                 }
                             } else {
                                 //NUOVA SKILLCARD
                                 echo '<div class="form-group col-md-6">
-                        <label for="codeFiscale">Codice Fiscale</label>
-                        <input name="codiceFiscale" type="text" class="form-control" id="codeFiscale" placeholder="Codice Fiscale" required>
+                        <label  for="codeFiscale">Codice Fiscale<b id="cf"></b></label>
+                        <input onchange="controllaCF()" name="codiceFiscale" type="text" class="form-control" id="codiceFiscale" placeholder="Codice Fiscale" required>
                     </div>';
                             }
                             ?>
@@ -236,11 +236,11 @@
                             <div class="col-md-6">
                                 <div class="form-group col-md-6 ">
                                     <label for="inputPassword" class="control-label">Password</label>       
-                                    <input onchange='check_pass();' name="password" type="password" data-minlength="6" class="form-control" id="password" placeholder="Password" required>                               
+                                    <input  name="password" type="password" data-minlength="6" class="form-control" id="password" placeholder="Password" required>                               
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label  for="inputPassword" class="control-label">Conferma Password</label>       
-                                    <input onchange='check_pass();' name="password2" type="password" data-minlength="6" class="form-control" id="password2" placeholder="Password" required>
+                                    <input  name="password2" type="password" data-minlength="6" class="form-control" id="password2" placeholder="Password" required>
                                 </div>
                                 <center  id='message'></center>
                             </div>
@@ -266,13 +266,36 @@
 
                                 <script>
 
-                                function check_pass() {
-                                    if (document.getElementById('password').value == document.getElementById('password2').value) {
+                                $('#codiceFiscale').on('keyup', function () {
+
+                                    // Definisco un pattern per il confronto
+                                    var pattern = /^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$/;
+
+                                    // creo una variabile per richiamare con facilità il nostro campo di input
+                                    var CodiceFiscale = $('#codiceFiscale').val()
+                                    // var CodiceFiscale = document.getElementById("codiceFiscale");
+
+                                    // utilizzo il metodo search per verificare che il valore inserito nel campo
+                                    // di input rispetti la stringa di verifica (pattern)
+                                    if (CodiceFiscale.search(pattern) == -1)
+                                    {
+                                        // In caso di errore stampo un avviso e pulisco il campo...
+                                        //alert("Il valore inserito non è un codice fiscale!");
                                         document.getElementById('submit').disabled = false;
+                                        $('#cf').html('<span class="glyphicon glyphicon-remove"></span>').css('color', 'red');
+                                        //CodiceFiscale.value = "";
+                                        CodiceFiscale.focus();
                                     } else {
+                                        // ...in caso contrario stampo un avviso di successo!
+                                        // alert("Il codice fiscale è corretto!");
+                                        $('#cf').html('<span class="glyphicon glyphicon-ok"></span> ').css('color', 'green');
+
                                         document.getElementById('submit').disabled = true;
                                     }
-                                }
+                                });
+
+
+
 
                                 $('#password, #password2').on('keyup', function () {
                                     if ($('#password').val() != "") {
@@ -324,7 +347,7 @@
                         <label>1) Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.</label>
                         <label>2) Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione.</label>
 
-                        <br><br><center><input type="submit"  id="submit" value="registrati" class="btn btn-info btn-lg"></center>
+                        <br><br><center><input type="submit"   id="submit" value="registrati" class="btn btn-info btn-lg"></center>
 
                 </form>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

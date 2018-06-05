@@ -155,19 +155,7 @@ session_start();
 
                         <?php
 //sono loggato
-                        if (isset($_SESSION['user'])) {
-                            require_once('ConnessioneDb.php');
-                            $db = new ConnessioneDb();
-                            $sql = 'SELECT ID FROM `prenotazione` WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = "' . $_SESSION['user'] . '")';
-                            $result = $db->query($sql);
-                            $gigi = $result->fetch_array();
-                            $idpren = $gigi['ID'];
-                            echo '<form method="post" action="pdfPrenotazione.php">
-                                        <input value="' . $_SESSION['user'] . '"  type="hidden" name="id">
-                                        <input value="' . $idpren . '" type="hidden" name="idprenota">
-                                        <input type="submit" value="PDF prenotazione" class="btn btn-info btn-lg">
-                                    </form>';
-                        } else {
+                        if (!isset($_SESSION['user'])) {
                             echo '
                                     <form action="skillCard.php" method="post">
                                 <input type="hidden" name="a" value="1">
@@ -206,7 +194,6 @@ session_start();
                 </div>
             </div>
             <?php
-
             if (isset($_SESSION['user'])) {
                 echo'<div class = "panel panel-default col-md-12">
                 <div class = "panel">
@@ -220,7 +207,7 @@ session_start();
                     JOIN user on prenotazione.ID_codice_fiscale = user.codice_fiscale
                     WHERE user.email = '{$_SESSION['user']}'";
                 $result = $db->query($sql);
-                
+
                 while ($riga = $result->fetch_array()) {
                     echo '<table class="table table-bordered">';
                     echo '<tr><td>';
@@ -252,8 +239,7 @@ session_start();
                 <br><br>
                 </div>
                 </div>';
-            }else 
-                {
+            } else {
                 echo '<div class="panel panel-default col-md-12">
                 <div class="panel">
                     <h3 align="center">Lorem Ipsum</h3>
@@ -353,18 +339,23 @@ session_start();
                                 }
 
                                 if ($boll == 1) {
-                                    echo "<td><span style='color:#ffcc00; font-size:150%;' class='glyphicon glyphicon-exclamation-sign' title='Da approvare'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a> <a href='eliminafile.php?ID={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-trash' title='Elimina' ></span></a> </td>";
+                                    echo "<td><span style='color:#ffcc00; font-size:150%;' class='glyphicon glyphicon-exclamation-sign' title='Da approvare'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a> </td>";
                                 } else if ($boll == 2) {
-                                    echo "<td><span style='color:#33cc33; font-size:150%;' class='glyphicon glyphicon-ok-sign' title='Completo'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a></span> <a href='eliminafile.php?ID={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-trash' title='Elimina' ></span></a> </td>";
+                                    echo "<td><span style='color:#33cc33; font-size:150%;' class='glyphicon glyphicon-ok-sign' title='Completo'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a></span>></td>";
                                 } else {
-                                    echo '<td><span style="color:#ff0000; font-size:150%;" class="glyphicon glyphicon-remove-sign" title="nessun file"></span>  </td>';
+                                    $form = '<form method="post" action="pdfPrenotazione.php">
+                                        <input value="' . $_SESSION['user'] . '"  type="hidden" name="id">
+                                        <input value="' . $riga['ID'] . '" type="hidden" name="idprenota">
+                                        <input type="submit" value="scarica" class="glyphicon glyphicon-save">
+                                    </form>';
+                                    echo "<td><span style='color:#ff0000; font-size:150%;' class='glyphicon glyphicon-remove-sign' title='nessun file'></span> </td>";
                                 }
                                 if ($pren == 1) {
-                                    echo "<td><span style='color:#ffcc00; font-size:150%;' class='glyphicon glyphicon-exclamation-sign' title='Da approvare'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a> <a href='eliminafile.php?ID={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-trash' title='Elimina' ></span></a> </td>";
+                                    echo "<td><span style='color:#ffcc00; font-size:150%;' class='glyphicon glyphicon-exclamation-sign' title='Da approvare'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a> </td>";
                                 } else if ($pren == 2) {
-                                    echo "<td><span style='color:#33cc33; font-size:150%;' class='glyphicon glyphicon-ok-sign' title='Completo'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a> <a href='eliminafile.php?ID={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-trash' title='Elimina' ></span></a> </td>";
+                                    echo "<td><span style='color:#33cc33; font-size:150%;' class='glyphicon glyphicon-ok-sign' title='Completo'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a> <a href='eliminafile.php?ID={$id}'></td>";
                                 } else {
-                                    echo "<td><span style='color:#ff0000; font-size:150%;' class='glyphicon glyphicon-remove-sign' title='nessun file'></span> </td>";
+                                    echo "<td><span style='color:#ff0000; font-size:150%;' class='glyphicon glyphicon-remove-sign' title='nessun file'></span> $form</td>";
                                 }
 
 
@@ -459,12 +450,7 @@ session_start();
                                 Pdf skillcard
                             </label>
                         </div>                            
-                        <div class="form-group">
-                            <input name="pdfprenotazione" onchange="myFunction()" class="form-check-input" type="checkbox" value="1" id="pdfprenotazione">
-                            <label  class="form-check-label" for="defaultCheck7">
-                                Pdf prenotazione
-                            </label>
-                        </div>                            
+                                                    
                         <div class="form-group">
                             <input name="pdfaica"  class="form-check-input" type="checkbox" value="1" id="pdfaica">
                             <label  class="form-check-label" for="defaultCheck7">
@@ -556,7 +542,7 @@ session_start();
                 document.getElementById("clicco").innerHTML = html;
             }
 
-          
+
         }
         function cancella() {
             document.getElementById("clicco").innerHTML = "";
