@@ -1,4 +1,4 @@
-<html>
+    <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
         <link rel="stylesheet" href="css/PrenotazioneRegistrazione.css">
@@ -347,8 +347,24 @@
                         <label>1) Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.</label>
                         <label>2) Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione.</label>
 
-                        <br><br><center><input type="submit"   id="submit" value="registrati" class="btn btn-info btn-lg"></center>
 
+                        
+                        
+                        <br><br><center><button type="submit"  id="btnSubmit" value="registrati" class="btn btn-info btn-lg">Registrati</button></center>
+                        
+                        <div id="myAlert" class="alert alert-success collapse">
+                            <a href="#"  data-dismiss="alert">&times;</a>
+                            <strong>Success!</strong>Registrazione avvenuta con successo
+                        </div>
+                            
+                        <script>
+                            $(document).ready(function(){
+                                $('#btnSubmit').click.(function(){
+                                    $('#myAlert').show.('fade');
+                                });
+                            });
+                        </script>
+                                       
                 </form>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

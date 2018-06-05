@@ -395,11 +395,11 @@
                         ?>
                     </table>
 
-                    <div id="sesione" class="panel panel-default col-md-12"> 
+                    <div id="sesione" class="form-group col-md-12"> 
                         <button  type="button" onclick="printInsert()" class="btn btn-info col-md-12 btn-lg" style="background-color:Dodgerblue;">Nuova Sessione</button>
                     </div>
                     <br>
-                    <div class="panel panel-default col-md-12"  id="upload" > 
+                    <div class="form-group col-md-12"  id="upload" > 
                         <button  type="button" onclick="uploadsomething()" class="btn btn-info col-md-12 btn-lg" style="background-color:Dodgerblue;">Carica qualcosa</button>
                         <?php
                         if (isset($_REQUEST["sessioni"])) {
@@ -413,12 +413,12 @@
         <script>
 
             function printInsert() {
-                var html = '<form action="inserisciSessione.php" method="post"><div class="col-md-12"><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  >Data </label><input type="text" name="data" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Dalle </label><input type="text" name="ora_da" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Alle </label><div class="form-row"><input type="text" name="ora_a" value="" class="form-control" required></div></div><div class="form-group col-md-12"></div><div class="form-row col-md-12"><input type="submit" value="Inserisci" class="btn btn-info col-md-12" style="background-color:Dodgerblue;"></div></form>';
+                var html = '<form action="inserisciSessione.php" method="post"><div class="panel panel-default col-md-12"><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  >Data </label><input type="text" name="data" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Dalle </label><input type="text" name="ora_da" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Alle </label><div class="form-row"><input type="text" name="ora_a" value="" class="form-control" required></div></div><div class="form-group col-md-12"></div><div class="form-row col-md-12"><input type="submit" value="Inserisci" class="btn btn-info col-md-12" style="background-color:Dodgerblue;"><div class="form-group col-md-12"></div></div></form>';
 
                 document.getElementById("sesione").innerHTML = html;
             }
             function uploadsomething() {
-                var html = '<form name="carica" action="readxls.php" method="post" enctype="multipart/form-data"><p align="center">Carica qualcosa</p><input accept=".xls" name="xls" type="file" class="custom-file-input" required><br><input type="submit" name="carica" value="Carica" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"></form>';
+                var html = '<form name="carica" action="readxls.php" method="post" enctype="multipart/form-data"><div class="panel panel-default col-md-12"><p align="center">Carica qualcosa</p><input accept=".xls" name="xls" type="file" class="custom-file-input" required><br><input type="submit" name="carica" value="Carica" class="btn btn-info btn-lg" style="background-color:Dodgerblue;"><div class="form-group col-md-12></div></div></form>';
 
                 document.getElementById("upload").innerHTML = html;
             }
