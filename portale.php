@@ -112,7 +112,7 @@
                         require_once('ConnessioneDb.php');
                         $db = new ConnessioneDb();
 
-                       
+
                         if (isset($_REQUEST["tartaruga"]) || (!isset($_SESSION["cerca"]) && !isset($_SESSION["cosa"]))) {
                             $_SESSION["cerca"] = "codice_fiscale";
                             $_SESSION["cosa"] = "%";
@@ -239,10 +239,10 @@
 
                         if (isset($_REQUEST["pren"])) {
                             $idpren = $_REQUEST["pren"];
-                            $_SESSION["query"] = "SELECT `user`.* FROM `user` inner JOIN prenotazione ON prenotazione.ID_codice_fiscale = user.codice_fiscale WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '{$idpren}' AND `{$_SESSION['cerca']}` LIKE '%{$_SESSION['cosa']}%' GROUP BY user.codice_fiscale ORDER BY {$_SESSION["ordina"]}";
+                            $_SESSION["query"] = "SELECT `user`.* FROM `user` inner JOIN prenotazione ON prenotazione.ID_codice_fiscale = user.codice_fiscale WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '{$idpren}' AND {$_SESSION['cerca']} LIKE '%{$_SESSION['cosa']}%' GROUP BY user.codice_fiscale ORDER BY {$_SESSION["ordina"]}";
                         } else {
                             $idpren = "%";
-                            $_SESSION["query"] = "SELECT `user`.* FROM `user` inner JOIN prenotazione WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '{$idpren}' AND `{$_SESSION['cerca']}` LIKE '%{$_SESSION['cosa']}%' GROUP BY user.codice_fiscale ORDER BY {$_SESSION["ordina"]}";
+                            $_SESSION["query"] = "SELECT `user`.* FROM `user` inner JOIN prenotazione WHERE cast(prenotazione.ID_sessione as char(15)) LIKE '{$idpren}' AND {$_SESSION['cerca']} LIKE '%{$_SESSION['cosa']}%' GROUP BY user.codice_fiscale ORDER BY {$_SESSION["ordina"]}";
                         }
 
 
@@ -250,8 +250,13 @@
 
                         if (!isset($_SESSION["s0"])) {
                             for ($i = 0; $i <= 22; $i++) {
+                                
+                                echo "awidl";
                                 $_SESSION["s$i"] = "a";
                             }
+                            $_SESSION["s0"] = "skill_card";
+                            $_SESSION["s4"] = "cognome";
+                            $_SESSION["s5"] = "nome";
                         }
 
                         if (isset($_REQUEST["quali"]) || isset($_REQUEST["seleziona"])) {
