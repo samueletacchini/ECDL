@@ -374,7 +374,7 @@
                         <tr><td>Data</td><td>Dalle</td><td>Alle</td><td>Elimina</td><td>Alle</td></tr>
 
                         <?php
-                        $eh = "SELECT * FROM `sessioni`";
+                        $eh = "SELECT * FROM `sessioni` ORDER BY `data`";
                         $ris = $db->query($eh);
                         $datenow = date("Y-m-d");
                         while ($riga = $ris->fetch_array()) {

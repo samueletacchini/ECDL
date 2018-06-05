@@ -38,28 +38,7 @@
             </p>
         </div>
 
-        <script>
-            function myFunction() {
-                var html = "<br><div class='form-row'>" +
-                        " <div class='col-md-4'>" +
-                        " <label for='scuola'>Scuola</label>" +
-                        " <input name='scuola' type='text' class='form-control' id='scuola'>" +
-                        "</div>" +
-                        "<div class='col-md-2'>" +
-                        " <label for='classe'>Classe</label>" +
-                        " <input name='classe' type='text' class='form-control' id='classe'>" +
-                        "</div>" +
-                        "<div class='col-md-6'>" +
-                        "<label for='specializzazione'>Specializzazione</label>" +
-                        "<input name='specializzazione' type='text' class='form-control' id='specializzazione'>" +
-                        "</div>" +
-                        "</div>";
-                document.getElementById("clicco").innerHTML = html;
-            }
-            function cancella() {
-                document.getElementById("clicco").innerHTML = "";
-            }
-        </script>
+        
 
         <?php
         require_once("ConnessioneDb.php");
@@ -126,20 +105,7 @@
                     }
                     ?> ">
                     <h2 align="center"> Modulo Di Prenotazione</h2>
-                    <div class="form-row">
-                        <div class="col-md-12">
-                            <div class="form-group col-md-3">
-                                <label for="card">Skill Card N.</label>
-                                <input 
-                                <?php
-                                if ($pre) {
-                                    echo "value='$skillcard'";
-                                }
-                                ?> name="nskill" type="text" class="form-control" id="card" placeholder="Numero SkillCard" required>
-                            </div>
-                            <div class="col-md-9"></div>
-                        </div>
-                    </div>
+                    
 
                     <div class="form-row">
                         <div class="col-md-6">
@@ -149,7 +115,7 @@
                                 if ($pre) {
                                     echo "value='$cognome'";
                                 }
-                                ?>  name="cognome" type="text" class="form-control" id="cognome" placeholder="Cognome" required>                      
+                                ?>  name="cognome" disabled type="text" class="form-control" id="cognome" placeholder="Cognome" required>                      
                             </div>         
                             <div class="form-group col-md-6">                   
                                 <label for="nome">Nome</label>
@@ -157,13 +123,13 @@
                                 if ($pre) {
                                     echo "value='$nome'";
                                 }
-                                ?>  name="nome" type="text" class="form-control" id="nome" placeholder="Nome" required>
+                                ?>  name="nome" disabled type="text" class="form-control" id="nome" placeholder="Nome" required>
                             </div>
                         </div>
                         <div class="col-md-6"> 
                             <label for="data" class="col-md-12">Data Di Nascita</label>
                             <div class="form-group col-md-3">
-                                <select name="giorno" class="form-control" id="day" >
+                                <select disabled name="giorno" class="form-control" id="day" >
                                     <option disabled selected>GG</option>
                                     <?php
                                     for ($day = 1; $day <= 31; $day++) {
@@ -177,7 +143,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-5">
-                                <select name='mese' class="form-control" id="mounth">
+                                <select disabled name='mese' class="form-control" id="mounth">
                                     <option  value='' disabled selected>MM</option>
                                     <option <?php
                                     if ($pre == true) {
@@ -266,7 +232,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
-                                <select name='anno' class="form-control" id="year">
+                                <select disabled name='anno' class="form-control" id="year">
                                     <option disabled selected>YY</option>
                                     <?php
                                     for ($year = Date('Y'); $year >= 1900; $year--) {
@@ -290,7 +256,7 @@
                                 if ($pre) {
                                     echo "value='$lnascita'";
                                 }
-                                ?>  name="lnascita" type="text" class="form-control" id="luogo" placeholder="Luogo" required>
+                                ?>  name="lnascita" disabled type="text" class="form-control" id="luogo" placeholder="Luogo" required>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="city">Comune Di Residenza</label>
@@ -298,7 +264,7 @@
                                 if ($pre) {
                                     echo "value='$citta'";
                                 }
-                                ?>  name="citta" type="text" class="form-control" id="city" placeholder="Comune Di Residenza" required>
+                                ?>  name="citta" disabled type="text" class="form-control" id="city" placeholder="Comune Di Residenza" required>
                             </div>
                             <div class="form-group col-md-4">                   
                                 <label for="card">Indirizzo</label>
@@ -306,7 +272,7 @@
                                 if ($pre) {
                                     echo "value='$indirizzo'";
                                 }
-                                ?> name="indirizzo" type="text" class="form-control" id="indirizzo" placeholder="Indirizzo" required>                 
+                                ?> name="indirizzo" disabled type="text" class="form-control" id="indirizzo" placeholder="Indirizzo" required>                 
                             </div>
                             <div class="form-group col-md-2">                   
                                 <label for="nCivico">N.Civico</label>
@@ -314,7 +280,7 @@
                                 if ($pre) {
                                     echo "value='$civico'";
                                 }
-                                ?> name="civico" type="text" class="form-control" id="nCivico" placeholder="N.Civico" required>                 
+                                ?> name="civico" disabled type="text" class="form-control" id="nCivico" placeholder="N.Civico" required>                 
                             </div>
                         </div>
                     </div>
@@ -326,7 +292,7 @@
                                 if ($pre) {
                                     echo "value='$provincia'";
                                 }
-                                ?>  name="provincia" type="text" class="form-control" id="provincia" placeholder="Provincia" required>
+                                ?>  name="provincia" disabled type="text" class="form-control" id="provincia" placeholder="Provincia" required>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="telefono">Telefono</label>
@@ -334,7 +300,7 @@
                                 if ($pre) {
                                     echo "value='$telefono'";
                                 }
-                                ?>  name="telefono" type="number" class="form-control" id="telefono" placeholder="Telefono" required>                      
+                                ?>  name="telefono" disabled type="number" class="form-control" id="telefono" placeholder="Telefono" required>                      
                             </div>         
                             <div class="form-group col-md-5">                   
                                 <label for="mail">Indirizzo E-Mail</label>
@@ -342,7 +308,7 @@
                                 if ($pre) {
                                     echo "value='$mail'";
                                 }
-                                ?>  name="mail" type="text" class="form-control" id="mail" placeholder="E-Mail" required>
+                                ?>  name="mail" disabled type="text" class="form-control" id="mail" placeholder="E-Mail" required>
                             </div>
                         </div>
                     </div>
@@ -356,7 +322,7 @@
                                         echo " checked ";
                                     }
                                 }
-                                ?> onclick="cancella()" type="radio" name="optradio" id="radioDocenti"> Docenti ATA: </label>
+                                ?> onclick="cancella()" disabled type="radio" name="optradio" id="radioDocenti"> Docenti ATA: </label>
                         </div>
                         <div class="form-group">
                             <label><input <?php
@@ -365,7 +331,7 @@
                                         echo " checked ";
                                     }
                                 }
-                                ?> onclick="cancella()" type="radio" name="optradio" id="radioPersonale"> Personale Corpi Militari ed Enti Ministeriali convenzionati: </label>
+                                ?> onclick="cancella()" disabled type="radio" name="optradio" id="radioPersonale"> Personale Corpi Militari ed Enti Ministeriali convenzionati: </label>
                         </div>
                         <div class="form-group">
                             <label><input <?php
@@ -374,11 +340,11 @@
                                         echo " checked ";
                                     }
                                 }
-                                ?> onclick="myFunction()"  type="radio" name="optradio" id="radioStudente"> Studente sup. :
+                                ?> onclick="myFunction()" disabled type="radio" name="optradio" id="radioStudente"> Studente sup. :
                                 <div id="clicco"><?php
                                     if ($pre == true) {
                                         if ($tipo == "studente") {
-                                            echo " <br><div class='form-row'> <div class='col-md-4'> <label for='scuola'>Scuola</label> <input value='$scuola' name='scuola' type='text' class='form-control' id='scuola'> </div> <div class='col-md-2'> <label for='classe'>Classe</label> <input value='$classe' name='classe' type='text' class='form-control' id='classe'> </div> <div class='col-md-6'> <label for='specializzazione'>Specializzazione</label> <input value='$specializzazione' name='specializzazione' type='text' class='form-control' id='specializzazione'> </div> </div>";
+                                            echo " <br><div class='form-row'> <div class='col-md-4'> <label for='scuola'>Scuola</label> <input disabled value='$scuola' name='scuola' type='text' class='form-control' id='scuola'> </div> <div class='col-md-2'> <label for='classe'>Classe</label> <input disabled  value='$classe' name='classe' type='text' class='form-control' id='classe'> </div> <div class='col-md-6'> <label for='specializzazione'>Specializzazione</label> <input disabled  value='$specializzazione' name='specializzazione' type='text' class='form-control' id='specializzazione'> </div> </div>";
                                         }
                                     }
                                     ?></div>
@@ -390,7 +356,7 @@
                                         echo " checked ";
                                     }
                                 }
-                                ?> onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
+                                ?> onclick="cancella()" disabled  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
                         </div>
                     </div>
 
@@ -451,7 +417,7 @@
                             <?php
                             require_once('ConnessioneDb.php');
                             $db = new ConnessioneDb();
-                            $sql = "SELECT * FROM `sessioni`";
+                            $sql = "SELECT * FROM `sessioni` ORDER BY `data`";
                             $ris = $db->query($sql);
                             $datenow = date("Y-m-d");
                             while ($riga = $ris->fetch_array()) {

@@ -400,7 +400,7 @@ session_start();
                             <?php
                             require_once('ConnessioneDb.php');
                             $db = new ConnessioneDb();
-                            $sql = "SELECT * FROM `sessioni`";
+                            $sql = "SELECT * FROM `sessioni` ORDER BY `data`";
                             $ris = $db->query($sql);
 
                             $datenow = date("Y-m-d");
