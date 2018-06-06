@@ -38,17 +38,25 @@
             </p>
         </div>
 
-        
+
 
         <?php
         require_once("ConnessioneDb.php");
         $db = new ConnessioneDb();
         $datenow = date("d/m/y");
         $pre = false;
-        if (isset($_REQUEST["id"])) {
+        $update = false;
+        if (isset($_REQUEST["id"]) || isset($_REQUEST["user"])) {
 
-            $pre = true;
-            $id = $_REQUEST["id"];
+            if (isset($_REQUEST["id"])) {
+                $id = $_REQUEST["id"];
+                $pre = true;
+            } elseif (isset($_REQUEST["user"])) {
+                $update = true;
+                $pre = true;
+
+                $id = $_REQUEST["user"];
+            }
             $query = "SELECT * FROM `user` WHERE `email` = '$id'";
             $ris = $db->query($query);
             $riga = $ris->fetch_array();
@@ -85,16 +93,10 @@
             } else {
                 echo "UTENTE NON TROVATO!";
             }
-        } else {
-            echo "";
         }
         ?>
         <div>
-            <?php
-            if (isset($_REQUEST["sid"])) {
-                echo "dlouishdfòosajdnfpoòsadjfnapoòdfjnaòdofjnaldjfn";
-            }
-            ?>
+
             <div class="col-md-2"></div>
             <div class="container-fluid bg-grey col-md-8">
                 <form name="casellaTesto" method="post" class="was-validated" action="eliminaPrenotazione.php">
@@ -105,7 +107,7 @@
                     }
                     ?> ">
                     <h2 align="center"> Modulo Di Prenotazione</h2>
-                    
+
 
                     <div class="form-row">
                         <div class="col-md-6">
@@ -360,53 +362,66 @@
                         </div>
                     </div>
 
-
-                    <br><h3 align="center">Barrare con una SPUNTA uno o più moduli per i quali si vuole sostenere l'esame:</h3>
-
-                    <br><div class="checkbox-inline col-md-offset-5">
+                    <?php
+                    if ($pre && !$update) {
+                        echo '<br><h3 align="center">Barrare con una SPUNTA uno o più moduli per i quali si vuole sostenere l’esame:</h3><br>
+                    <div class="checkbox-inline col-md-offset-5">
                         <div class="form-group">
-                            <input name='1' class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
+                            <input name="1" class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
                             <label  class="form-check-label" for="defaultCheck1">
                                 Modulo 1: Computer Essentials
                             </label>
                         </div>
                         <div class="form-group">
-                            <input name='2'  class="form-check-input" type="checkbox" value="1" id="defaultCheck2">
+                            <input name="2"  class="form-check-input" type="checkbox" value="1" id="defaultCheck2">
                             <label  class="form-check-label" for="defaultCheck2">
                                 Modulo 2: Online Essentials
                             </label>
                         </div>
                         <div class="form-group">
-                            <input  name='3'  class="form-check-input" type="checkbox" value="1" id="defaultCheck3">
+                            <input  name="3"  class="form-check-input" type="checkbox" value="1" id="defaultCheck3">
                             <label  class="form-check-label" for="defaultCheck3">
                                 Modulo 3: Word Processing
                             </label>
                         </div>
                         <div class="form-group">
-                            <input name='4'  class="form-check-input" type="checkbox" value="1" id="defaultCheck4">
+                            <input name="4"  class="form-check-input" type="checkbox" value="1" id="defaultCheck4">
                             <label  class="form-check-label" for="defaultCheck4">
                                 Modulo 4: Spreadsheets
                             </label>
                         </div>
                         <div class="form-group">
-                            <input name='5'  class="form-check-input" type="checkbox" value="1" id="defaultCheck5">
+                            <input name="5"  class="form-check-input" type="checkbox" value="1" id="defaultCheck5">
                             <label  class="form-check-label" for="defaultCheck5">
                                 Modulo 5: IT Security
                             </label>
                         </div>
                         <div class="form-group">
-                            <input name='6'  class="form-check-input" type="checkbox" value="1" id="defaultCheck6">
+                            <input name="6"  class="form-check-input" type="checkbox" value="1" id="defaultCheck6">
                             <label  class="form-check-label" for="defaultCheck6">
                                 Modulo 6: Presentation
                             </label>
                         </div>
                         <div class="form-group">
-                            <input name='7'  class="form-check-input" type="checkbox" value="1" id="defaultCheck7">
+                            <input name="7"  class="form-check-input" type="checkbox" value="1" id="defaultCheck7">
                             <label  class="form-check-label" for="defaultCheck7">
                                 Modulo 7: Online Collaboration
                             </label>
                         </div>
-                    </div>
+                    </div>';
+                    } elseif ($update) {
+                        echo '<br><h3 align="center">Esame ECDL Update</h3><br>';
+
+                        echo '<div align="center" class = "form-group">
+                        <input checked disabled name="lol" class = "form-check-input" type = "checkbox" id = "defaultCheck1">
+                        <input   name="update" type = "hidden" value="update">
+                        <class = "form-check-label" for = "defaultCheck1">
+                        ECDL Update
+                        </label>
+                        </div>';
+                    }
+                    ?>
+
 
                     <br><h3 align="center">Data Prenotazione Esame:</h3>
 
@@ -422,7 +437,7 @@
                             $datenow = date("Y-m-d");
                             while ($riga = $ris->fetch_array()) {
                                 if ($riga["data"] > $datenow) {
-                                    echo '<tr><td><input type="radio" required  name="sessione" class="form-check-input" value="' . $riga["ID"] . '"/> ' . $riga["data"] . '</td><td> ' . $riga["ora_da"] . ' - ' . $riga["ora_a"] . ' </td></tr>';
+                                    echo '<tr><td><input type = "radio" required name = "sessione" class = "form-check-input" value = "' . $riga["ID"] . '"/> ' . $riga["data"] . ' </td><td> ' . $riga["ora_da"] . ' - ' . $riga["ora_a"] . ' </td></tr>';
                                 }
                             }
                             echo "</table>";
