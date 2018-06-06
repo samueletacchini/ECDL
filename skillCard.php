@@ -1,10 +1,11 @@
-    <html>
+<html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
         <link rel="stylesheet" href="css/PrenotazioneRegistrazione.css">
         <link rel="stylesheet" href="file.js">
     </head>
     <style>
+
         .container-fluid{ 
             border-style:solid; 
             border-color:#CCCCCC; 
@@ -60,7 +61,7 @@
                                     //SKILLCARD ESISTENTE
                                     echo '<div class="form-group col-md-3">
                         <label for="card">Skill Card N.</label>
-                        <input name="nskill" type="number" class="form-control" id="skillCard" placeholder="Numero SkillCard" required>
+                        <input name="nskill" type="numero" class="form-control" id="skillCard" placeholder="Numero SkillCard" required>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="codeFiscale">Codice Fiscale<b id="cf"></b></label>
@@ -171,7 +172,7 @@
                         <div class="col-md-12">
                             <div class="form-group col-md-3">
                                 <label for="cap">CAP</label>
-                                <input name="cap" type="number" class="form-control" id="cap" placeholder="CAP" required>
+                                <input name="cap" type="numero" class="form-control" id="cap" placeholder="CAP" required>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="$pnascita">Provincia</label>
@@ -192,11 +193,11 @@
                         <div class="col-md-12">
                             <div class="form-group col-md-3">
                                 <label for="telefonoCasa">Telefono</label>
-                                <input name="telefonoCasa" type="number" class="form-control" id="telefono" placeholder="Telefono" required>                      
+                                <input name="telefonoCasa" type="numero" class="form-control" id="telefono" placeholder="Telefono" required>                      
                             </div>        
                             <div class="form-group col-md-3">
                                 <label for="cellulare">Cellulare</label>
-                                <input name="cellulare" type="number" class="form-control" id="telefono" placeholder="Cellulare" required>                      
+                                <input name="cellulare" type="numero" class="form-control" id="telefono" placeholder="Cellulare" required>                      
                             </div> 
                             <div class="form-group col-md-3">
                                 <label for="scolaro">Titolo Di Studio</label>
@@ -230,19 +231,27 @@
                     <div class="form-row">
                         <div class="col-md-12">
                             <div class="form-group col-md-6">                   
-                                <label for="mail">Indirizzo E-Mail</label>
+                                <label for="mail">Indirizzo E-Mail <b id="em"></b></label>
                                 <input name="mail" type="text" class="form-control" id="mail" placeholder="E-Mail" required>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group col-md-6 ">
                                     <label for="inputPassword" class="control-label">Password</label>       
-                                    <input  name="password" type="password" data-minlength="6" class="form-control" id="password" placeholder="Password" required>                               
+                                    <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  name="password" type="password" data-minlength="6" class="form-control" id="password" placeholder="Password" required>                               
                                 </div>
+
                                 <div class="form-group col-md-6">
                                     <label  for="inputPassword" class="control-label">Conferma Password</label>       
-                                    <input  name="password2" type="password" data-minlength="6" class="form-control" id="password2" placeholder="Password" required>
+                                    <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  name="password2" type="password" data-minlength="6" class="form-control" id="password2" placeholder="Password" required>
                                 </div>
                                 <center  id='message'></center>
+                                <div>
+                                    <p style="color:black;">La password deve contenere:</p>
+                                    <p style="color:red;" id="lettera">una lettera <b>minuscola </b> <b  ><span  class="glyphicon glyphicon-remove"></span></b></p>
+                                    <p style="color:red;" id="maiuscola">una lettera <b>maiuscola</b> <b><span class="glyphicon glyphicon-remove"></span></b></p>
+                                    <p style="color:red;" id="numero">un <b>numero </b> <b><span class="glyphicon glyphicon-remove"></span></b></p>
+                                    <p style="color:red;" id="caratteri">almeno <b>8 caratteri </b> <b><span class="glyphicon glyphicon-remove"></span></b></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -266,11 +275,110 @@
 
                                 <script>
 
+
+
+                                $('#password').on('keyup', function () {
+                                    var lowerCaseLetters = /[a-z]/g;
+                                    var x = $('#password').val()
+
+                                    if (x.search(lowerCaseLetters) == -1) {
+                                        //nun va bene
+                                        $('#lettera').html('una lettera <b>minuscola </b> <b><span class="glyphicon glyphicon-remove"></span></b>').css('color', 'red');
+                                        document.getElementById('submit').disabled = true;
+
+                                    } else {
+                                        //va bene
+                                        $('#lettera').html('una lettera <b>minuscola </b> <b  ><span  class="glyphicon glyphicon-ok"></span></b>').css('color', 'green');
+                                        document.getElementById('submit').disabled = false;
+
+                                    }
+                                });
+
+                                $('#password').on('keyup', function () {
+                                    var upperCaseLetters = /[A-Z]/g;
+                                    var x = $('#password').val()
+
+                                    if (x.search(upperCaseLetters) == -1) {
+                                        //nun va bene
+                                        $('#maiuscola').html('una lettera <b>maiuscola </b> <b><span class="glyphicon glyphicon-remove"></span></b>').css('color', 'red');
+                                        document.getElementById('submit').disabled = true;
+
+                                    } else {
+                                        //va bene
+                                        $('#maiuscola').html('una lettera <b>maiuscola </b> <b  ><span  class="glyphicon glyphicon-ok"></span></b>').css('color', 'green');
+                                        document.getElementById('submit').disabled = false;
+
+                                    }
+
+                                });
+
+                                $('#password').on('keyup', function () {
+                                    var numeri = /[0-9]/g;
+                                    var x = $('#password').val()
+
+                                    if (x.search(numeri) == -1) {
+                                        //nun va bene
+                                        $('#numero').html('un <b>numero </b> <b><span class="glyphicon glyphicon-remove"></span></b>').css('color', 'red');
+                                        document.getElementById('submit').disabled = true;
+
+                                    } else {
+                                        //va bene
+                                        $('#numero').html('un <b>numero </b> <b><span class="glyphicon glyphicon-ok"></span></b>').css('color', 'green');
+                                        document.getElementById('submit').disabled = false;
+
+                                    }
+
+                                });
+
+
+                                $('#password').on('keyup', function () {
+                                    var x = $('#password').val()
+
+                                    if (x.length >= 8) {
+                                        //nun va bene
+                                        $('#caratteri').html('almeno <b>8 caratteri </b> <b><span class="glyphicon glyphicon-ok"></span></b>').css('color', 'green');
+                                        document.getElementById('submit').disabled = true;
+
+                                    } else {
+                                        //va bene
+                                        $('#caratteri').html('almeno <b>8 caratteri </b> <b><span class="glyphicon glyphicon-remove"></span></b>').css('color', 'red');
+                                        document.getElementById('submit').disabled = false;
+
+                                    }
+
+                                });
+
+
+                                $('#mail').on('keyup', function () {
+
+                                    // Definisco un pattern per il confronto
+                                    var emailpattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
+                                    // creo una variabile per richiamare con facilità il nostro campo di input
+                                    var mail = $('#mail').val()
+                                    // var CodiceFiscale = document.getElementById("codiceFiscale");
+
+                                    // utilizzo il metodo search per verificare che il valore inserito nel campo
+                                    // di input rispetti la stringa di verifica (pattern)
+                                    if (mail.search(emailpattern) == -1)
+                                    {
+                                        // In caso di errore stampo un avviso e pulisco il campo...
+                                        //alert("Il valore inserito non è un codice fiscale!");
+                                        document.getElementById('submit').disabled = true;
+                                        $('#em').html('<span class="glyphicon glyphicon-remove"></span>').css('color', 'red');
+                                        //CodiceFiscale.value = "";
+                                        mail.focus();
+                                    } else {
+                                        // ...in caso contrario stampo un avviso di successo!
+                                        // alert("Il codice fiscale è corretto!");
+                                        $('#em').html('<span class="glyphicon glyphicon-ok"></span> ').css('color', 'green');
+                                        document.getElementById('submit').disabled = false;
+                                    }
+                                });
+
                                 $('#codiceFiscale').on('keyup', function () {
 
                                     // Definisco un pattern per il confronto
                                     var pattern = /^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$/;
-
                                     // creo una variabile per richiamare con facilità il nostro campo di input
                                     var CodiceFiscale = $('#codiceFiscale').val()
                                     // var CodiceFiscale = document.getElementById("codiceFiscale");
@@ -281,7 +389,7 @@
                                     {
                                         // In caso di errore stampo un avviso e pulisco il campo...
                                         //alert("Il valore inserito non è un codice fiscale!");
-                                        document.getElementById('submit').disabled = false;
+                                        document.getElementById('submit').disabled = true;
                                         $('#cf').html('<span class="glyphicon glyphicon-remove"></span>').css('color', 'red');
                                         //CodiceFiscale.value = "";
                                         CodiceFiscale.focus();
@@ -289,33 +397,22 @@
                                         // ...in caso contrario stampo un avviso di successo!
                                         // alert("Il codice fiscale è corretto!");
                                         $('#cf').html('<span class="glyphicon glyphicon-ok"></span> ').css('color', 'green');
-
-                                        document.getElementById('submit').disabled = true;
+                                        document.getElementById('submit').disabled = false;
                                     }
                                 });
-
-
-
 
                                 $('#password, #password2').on('keyup', function () {
                                     if ($('#password').val() != "") {
                                         if ($('#password').val() == $('#password2').val()) {
 
                                             document.getElementById('submit').disabled = false;
-
-
                                             $('#message').html('').css('color', 'green');
-
-
                                         } else {
                                             $('#message').html('Le password non corrispondono').css('color', 'red');
                                             document.getElementById('submit').disabled = true;
-
                                         }
                                     }
                                 });
-
-
                                 var html = "<br><div class='form-row'>" +
                                         " <div class='col-md-4'>" +
                                         " <label for='scuola'>Scuola</label>" +
@@ -347,9 +444,7 @@
                         <label>1) Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.</label>
                         <label>2) Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione.</label>
 
-
-                        
-                        
+            
                         <br><br><input type="submit"  id="btnSubmit" value="Registrati" class="btn btn-info btn-lg">
                         
                         <div id="myAlert" class="alert alert-success collapse">
@@ -383,4 +478,3 @@
         </div>
     </body>
 </html>
-

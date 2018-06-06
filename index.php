@@ -198,34 +198,41 @@ session_start();
             </div>
             <?php
             if (isset($_SESSION['user'])) {
-                echo'<div class = "panel panel-default col-md-12">
-                <div class = "panel">
-                <h3 align = "center"> Lorem Ipsum </h3>
-                </div>
-                <div class = "panel-body">';
+
                 require_once('ConnessioneDb.php');
                 $db = new ConnessioneDb();
-                $sql = "SELECT user.email,sessioni.data FROM `sessioni` 
-                    JOIN prenotazione on sessioni.ID = prenotazione.ID_sessione
-                    JOIN user on prenotazione.ID_codice_fiscale = user.codice_fiscale
-                    WHERE user.email = '{$_SESSION['user']}'";
-                $result = $db->query($sql);
+                $sql = "SELECT file.tipo FROM `file` JOIN user ON user.codice_fiscale = file.ID_user WHERE user.email = '{$_SESSION["user"]}'";
+                $ris = $db->query($sql);
+                $pdf = false;
+                $boll = false;
+                while ($riga = $ris->fetch_array()) {
+                    echo $tipi = explode(", ", $riga["tipo"]);
+                    for ($i = 0; $i < count($tipi); $i++) {
+                        if ($tipi[$i] == "pdfskillcard") {
+                            $pdf = true;
+                        }
+                        if ($tipi[$i] == "bollettinoskillcard") {
+                            $boll = true;
+                        }
+                    }
+                }
+                if ($boll == false || $pdf == false) {
 
-                while ($riga = $result->fetch_array()) {
-                    echo '<table class="table table-bordered">';
-                    echo '<tr><td>';
-                    echo "email:" . $riga["email"] . "<br>";
-                    echo '</td></tr>';
-                    echo '<tr><td>';
-                    echo "data: " . $riga["data"] . "<br>";
-                    echo '</td></tr>';
-                    echo '</table>';
-
-                    echo "Today is " . date("Y/m/d") . "<br>";
+                    echo'<div class = "panel panel-default col-md-12">
+                <div class = "panel">
+                <h3 align = "center"> Ricorda! </h3>
+                </div>
+                <div class = "panel-body">';
+                    if (!$boll) {
+                        echo"<b style='color:red;'> DEVI CARICARE IL BOLELTTINO!!</b><br><br>";
+                    }
+                    if (!$pdf) {
+                        echo" <b style='color:red;'>DEVI CARICARE IL PDFFFF!!</b><br><br>";
+                    }
+                    echo '</div></div>';
                 }
 
 
-                echo '</div></div>';
                 echo '<div class = "panel panel-default col-md-12">
                 <div class = "panel">
                 <h3 align = "center">Lorem Ipsum</h3>
@@ -398,7 +405,7 @@ session_start();
                             <?php
                             require_once('ConnessioneDb.php');
                             $db = new ConnessioneDb();
-                            $sql = "SELECT * FROM `sessioni`";
+                            $sql = "SELECT * FROM `sessioni` ORDER BY `data`";
                             $ris = $db->query($sql);
 
                             $datenow = date("Y-m-d");

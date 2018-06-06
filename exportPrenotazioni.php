@@ -8,8 +8,15 @@ header('Content-type: text/xml');
 
 header("Content-Type: application/vnd.ms-excel");
 header("Content-Disposition: inline; filename=export.xls");
-    
+
 echo"<table border='1'>";
+echo '<tr>';
+echo"<td>ID</td>";
+echo"<td>nome</td>";
+echo"<td>cognome</td>";
+echo"<td>moduli</td>";
+echo"<td>data</td>";
+echo '</tr>';
 while ($row = $ris->fetch_array()) {
     echo"<tr>";
 
