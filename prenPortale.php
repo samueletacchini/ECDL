@@ -111,7 +111,7 @@
             </div>
 
             <div class="panel panel-default">
-                <div class="panel">
+                <div class="form-group">
                     <h3 align='center'>Utenti vari</h3>
                 </div>
                 <div class="panel-body testimonial-group">
@@ -366,12 +366,12 @@
         <div class='col-md-4'>
 
             <div class="panel panel-default"  id="link">
-                <div class="panel">
+                <div class="form-group">
                     <h3 align='center'>Prossime date Esami</h3>
                 </div>
                 <div class="panel-body" >
                     <table class="table table-bordered">
-                        <tr><td>Data</td><td>Dalle</td><td>Alle</td><td>Elimina</td><td>Alle</td></tr>
+                        <tr><td style="color:gray">Data</td><td style="color:gray">Dalle</td><td style="color:gray">Alle</td><td style="color:gray">Elimina</td><td style="color:gray"  >Alle</td></tr>
 
                         <?php
                         $eh = "SELECT * FROM `sessioni` ORDER BY `data`";
@@ -413,7 +413,7 @@
         <script>
 
             function printInsert() {
-                var html = '<form action="inserisciSessione.php" method="post"><div class="panel panel-default col-md-12"><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  >Data </label><input type="text" name="data" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Dalle </label><input type="text" name="ora_da" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7"  > Alle </label><div class="form-row"><input type="text" name="ora_a" value="" class="form-control" required></div></div><div class="form-group col-md-12"></div><div class="form-row col-md-12"><input type="submit" value="Inserisci" class="btn btn-info col-md-12" style="background-color:Dodgerblue;"><div class="form-group col-md-12"></div></div></form>';
+                var html = '<form action="inserisciSessione.php" method="post"><div class="panel panel-default col-md-12"><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7" style="color:gray">Data </label><input type="text" name="data" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7" style="color:gray"> Dalle </label><input type="text" name="ora_da" value="" class="form-control" required></div><div class="form-row col-md-4"><label  class="form-check-label" for="defaultCheck7" style="color:gray"> Alle </label><div class="form-row"><input type="text" name="ora_a" value="" class="form-control" required></div></div><div class="form-group col-md-12"></div><div class="form-row col-md-12"><input type="submit" value="Inserisci" class="btn btn-info col-md-12" style="background-color:Dodgerblue;"><div class="form-group col-md-12"></div></div></form>';
 
                 document.getElementById("sesione").innerHTML = html;
             }

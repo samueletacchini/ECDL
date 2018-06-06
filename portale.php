@@ -102,7 +102,7 @@
             </div>
 
             <div class="panel panel-default">
-                <div class="panel">
+                <div class="form-group">
                     <h3 align='center'>Utenti vari</h3>
                 </div>
                 <div class="panel-body testimonial-group">
@@ -884,7 +884,7 @@
 
             </div>
             <div class="panel panel-default"  id="link">
-                <div class="panel">
+                <div class="from-group">
                     <h3 align='center'>Prossime date Esami</h3>
                 </div>
                 <div class="panel-body" >

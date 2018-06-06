@@ -126,64 +126,63 @@ session_start();
         <div class="col-md-8">
 
             <div class="panel panel-default">
-                <div class="panel">
+                <div class="form-group">
                     <h3 align='center'>PDF</h3>
                 </div>
                 <div id="buttons" class="panel-body">
 
-                    
 
-                        <?php
-                        //sono loggato
-                        if (isset($_SESSION['user'])) {
-                            require_once('ConnessioneDb.php');
-                            $db = new ConnessioneDb();
-                            $sql = 'SELECT ID FROM `prenotazione` WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = "' . $_SESSION['user'] . '")';
-                            $result = $db->query($sql);
-                            $gigi = $result->fetch_array();
-                            $idpren = $gigi['ID'];
-                            echo '<div class="form-group col-md-4" id="prenota"><form method="post" action="pdfUpdate.php">
+
+                    <?php
+                    //sono loggato
+                    if (isset($_SESSION['user'])) {
+                        require_once('ConnessioneDb.php');
+                        $db = new ConnessioneDb();
+                        $sql = 'SELECT ID FROM `prenotazione` WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = "' . $_SESSION['user'] . '")';
+                        $result = $db->query($sql);
+                        $gigi = $result->fetch_array();
+                        $idpren = $gigi['ID'];
+                        echo '<div class="form-group col-md-4" id="prenota"><form method="post" action="pdfUpdate.php">
                                         <input value="' . $_SESSION['user'] . '"  type="hidden" name="id">
                                         <input value="' . $idpren . '" type="hidden" name="idprenota">
                                         <input type="submit" value="PDF Update" class="btn btn-info btn-lg">
                                     </form></div>';
-                        }else
-                        {
-                            echo '<div class="col-md-3"></div>';
-                        }
-                        ?>
+                    } else {
+                        echo '<div class="col-md-3"></div>';
+                    }
+                    ?>
 
-                    
-                    
 
-                        <?php
+
+
+                    <?php
 //sono loggato
-                        if (!isset($_SESSION['user'])) {
-                            echo '
+                    if (!isset($_SESSION['user'])) {
+                        echo '
                                     <div class="form-group col-md-3"><form action="skillCard.php" method="post">
                                 <input type="hidden" name="a" value="1">
-                                <input type="submit" value="Registrati" class="btn btn-info btn-lg">
+                                <input type="submit" value="Registrazione" class="btn btn-info btn-lg">
                             </form></div>';
-                        }
-                        ?>
+                    }
+                    ?>
 
-                    
-                    
-                        <?php
-                        if (isset($_SESSION['user'])) {
-                            echo '<div class="form-group col-md-4" id="prenota"><form action="pdfSkillcard.php" method="post">
+
+
+                    <?php
+                    if (isset($_SESSION['user'])) {
+                        echo '<div class="form-group col-md-4" id="prenota"><form action="pdfSkillcard.php" method="post">
                                       <input type="hidden" name="id" value="' . $_SESSION['user'] . '">
                                       <input type="submit" value="PDF Skillcard" class="btn btn-info btn-lg">
                                       </form></div>';
-                        } else {
-                            echo '<div class="col-md-3"><form action="skillCard.php" method="post">
+                    } else {
+                        echo '<div class="col-md-3"><form action="skillCard.php" method="post">
                                 <input type="hidden" name="a" value="0">
                                 <input type="submit" value="Nuova Skillcard" class="btn btn-info btn-lg">
                             </form></div>';
-                        }
-                        ?>
+                    }
+                    ?>
 
-                   
+
                     <div class="form-group col-md-4">
                         <?php
                         if (isset($_SESSION['user'])) {
@@ -206,7 +205,7 @@ session_start();
                 $pdf = false;
                 $boll = false;
                 while ($riga = $ris->fetch_array()) {
-                    echo $tipi = explode(", ", $riga["tipo"]);
+                    $tipi = explode(", ", $riga["tipo"]);
                     for ($i = 0; $i < count($tipi); $i++) {
                         if ($tipi[$i] == "pdfskillcard") {
                             $pdf = true;
@@ -219,45 +218,79 @@ session_start();
                 if ($boll == false || $pdf == false) {
 
                     echo'<div class = "panel panel-default col-md-12">
-                <div class = "panel">
-                <h3 align = "center"> Ricorda! </h3>
+                <div class = "form-group">
+                <h3 align = "center"> Avviso </h3>
                 </div>
                 <div class = "panel-body">';
                     if (!$boll) {
-                        echo"<b style='color:red;'> DEVI CARICARE IL BOLELTTINO!!</b><br><br>";
+                        echo "<span style='color:#ffcc00; font-size:150%;' class='glyphicon glyphicon-exclamation-sign'></span><b style='color:gray;'>  Devi caricare il BOLLETTINO.</b><br><br>";
                     }
                     if (!$pdf) {
-                        echo" <b style='color:red;'>DEVI CARICARE IL PDFFFF!!</b><br><br>";
+                        echo"<span style='color:#ffcc00; font-size:150%;' class='glyphicon glyphicon-exclamation-sign'></span><b style='color:gray;'>  Devi caricare il PDF.</b><br><br>";
                     }
                     echo '</div></div>';
                 }
 
 
                 echo '<div class = "panel panel-default col-md-12">
-                <div class = "panel">
-                <h3 align = "center">Lorem Ipsum</h3>
+                <div class = "form-group">
+                <h3 align = "center">Istruzioni</h3>
                 </div>
                 <div class = "panel-body" >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ante felis, imperdiet ac placerat at, tincidunt ac nibh. Aliquam erat volutpat. Phasellus venenatis gravida justo, ac accumsan nibh pretium ac. In blandit dictum libero, non faucibus lectus malesuada sit amet. Sed ultrices est nec euismod vehicula. Fusce scelerisque molestie felis, in suscipit risus viverra in. Duis eget porttitor lorem. Donec imperdiet magna sit amet enim vehicula efficitur.
-                <br><br>
-                Fusce et vehicula nisl. Curabitur ut vehicula ante, at imperdiet quam. Nam quis dolor neque. Proin metus lorem, finibus a odio sed, viverra lobortis quam. Phasellus quis hendrerit dui. Maecenas rhoncus accumsan ligula, posuere sagittis enim dignissim vel. In iaculis laoreet justo et placerat. Morbi vitae pretium mi. Maecenas cursus, neque viverra placerat pulvinar, ante arcu pretium nisi, vestibulum pretium erat odio eget leo. Nam placerat molestie elit ac elementum. Suspendisse molestie id eros non malesuada. Donec lobortis viverra velit eu sodales. Phasellus hendrerit malesuada sapien sit amet tincidunt. Ut tempor bibendum rutrum. Proin in ultrices nunc.
-                <br><br>
-                Praesent aliquet laoreet nisl aliquam faucibus. Quisque rutrum luctus tortor, quis facilisis leo egestas ut. Nam varius nisi ac cursus tempor. Ut eget rhoncus justo. Morbi non libero ut lectus molestie volutpat. Nunc id metus et lorem mollis vestibulum. Ut id posuere nisi, a pretium ex. Maecenas egestas ipsum nec massa cursus rutrum. Donec ligula ante, dictum ut dictum nec, semper non metus. Aliquam ut sem quis ex finibus posuere. Mauris scelerisque nec metus ac mattis. Nam auctor, felis ut consequat cursus, est metus faucibus risus, non tincidunt purus diam vitae lorem.
-                <br><br>
-                Phasellus ac fringilla nibh, ac porttitor tortor. Sed tellus lectus, sodales a bibendum ac, aliquet nec elit. In molestie sollicitudin est, a finibus quam porttitor volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dui sapien, accumsan a sapien quis, feugiat tempor tortor. Vivamus tristique enim ac lorem ultricies consequat. Mauris imperdiet sollicitudin sem, nec pulvinar elit sagittis quis. Duis eu ligula eu est pharetra mollis. Maecenas porttitor mauris at ipsum tempus posuere. Phasellus porttitor ornare volutpat. Proin vel tristique ligula.
-                <br><br>
-                <br><br>
+                  <div>
+                  <b style="color:gray; font-size:125%;"> PDF : </b>
+                   <p style="color:gray"> - PDF Update</p>
+                   <p style="color:gray"> - PDF SkillCard</p>
+                   <p style="color:gray"> - PDF Aica</p>
+                  </div>
+                  <div style="margin-top:5%">
+                   <b style="color:gray; font-size:125%;"> Tabella User : </b>
+                   <p style="color:gray"> - Tabella riassuntiva delle prenotazioni a gli esami.</p>
+                   <p style="color:gray"> - Nella voce "Bolletino" :</p>
+                   <ul>
+                   <li style="color:gray">
+                   <p style="color:gray">Se contrassegnato da <span style="color:#ff0000; font-size:150%;" class="glyphicon glyphicon-remove-sign"></span>  il PDF del <b>Bollettino</b> non è presente.</p>
+                   </li>
+                   <li style="color:gray">
+                   <p style="color:gray">Se contrassegnato da <span style="color:#ffcc00; font-size:150%;" class="glyphicon glyphicon-exclamation-sign"></span>  il PDF del <b>Bollettino</b> è presente, ma ancora da approvare.</p>
+                   </li>
+                   <li style="color:gray">
+                   <p style="color:gray">Se contrassegnato da <span style="color:#33cc33; font-size:150%;" class="glyphicon glyphicon-ok-sign"></span>  il PDF del <b>Bollettino</b> è stato approvato.</p>
+                   </li>
+                   </ul>
+                   <p style="color:gray"> - Nella voce "Pdf" :</p>
+                   <ul>
+                   <li style="color:gray">
+                   <p style="color:gray">Se contrassegnato da <span style="color:#ff0000; font-size:150%;" class="glyphicon glyphicon-remove-sign"></span>  il PDF della <b>Prenotazione</b> non è presente.</p>
+                   </li>
+                   <li style="color:gray">
+                   <p style="color:gray">Se contrassegnato da <span style="color:#ffcc00; font-size:150%;" class="glyphicon glyphicon-exclamation-sign"></span>  il PDF della <b>Prenotazione</b> è presente, ma ancora da approvare.</p>
+                   </li>
+                   <li style="color:gray">
+                   <p style="color:gray">Se contrassegnato da <span style="color:#33cc33; font-size:150%;" class="glyphicon glyphicon-ok-sign"></span>  il PDF della <b>Penotazione</b> è stato approvato.</p>
+                   </li>
+                   </ul>
+                  </div>
+                  
+                  <div style="margin-top:5%">
+                  <b style="color:gray; font-size:125%;"> Prossime date esami: </b>
+                   <p style="color:gray"> - Illustrazione delle eventuali date future disponibili per la prenotazione di un esame</l>.</p>
+                   </div>
+                  <div style="margin-top:5%">
+                  <b style="color:gray; font-size:125%;"> Carica file: </b>
+                   <p style="color:gray"> - Pannello destinato al caricamneto del PDF <b>"Bollettino"</b> e il PDF della <b>"Prenotazione"</b>.</p>
+                   </div>
                 </div>
                 </div>';
             } else {
                 echo '<div class="panel panel-default col-md-12">
-                <div class="panel">
+                <div class="form-group">
                     <h3 align="center">Istruzioni</h3>
                 </div>
                 <div class="panel-body" >
                 <ul>
-                    <p style="color:gray"> - Se non hai una SkillCard assegnata, richiedila subito cliccando su <l style="color:red">Nuova Skill Card</l>.</p>
-                    <p style="color:gray"> - Se hai una SkillCard assegnata, compila il modulo di <l style="color:red">Registrazione</l>.</p>
+                    <p style="color:gray"> - Se non hai una SkillCard assegnata, richiedila subito cliccando su <b style="color:red">Nuova Skill Card</b>.</p>
+                    <p style="color:gray"> - Se hai una SkillCard assegnata, compila il modulo di <b style="color:red">Registrazione</b>.</p>
                 </ul>
                 </div>
             </div>';
@@ -267,7 +300,7 @@ session_start();
         <div class="col-md-4">
             <div>
                 <div class="panel panel-default">
-                    <div class="panel">
+                    <div class="form-group">
                         <?php
                         require_once('ConnessioneDb.php');
                         $db = new ConnessioneDb();
@@ -297,10 +330,10 @@ session_start();
 
                                 echo '<table class=" table table-bordered"> <tr>';
 
-                                echo '<th><div class="btn btn-info btn-lg">Data</div></th>';
-                                echo '<th><div class="btn btn-info btn-lg">Moduli</div></th>';
-                                echo '<th><div class="btn btn-info btn-lg ">Bollettino</div></th>';
-                                echo '<th><div class="btn btn-info btn-lg ">Pdf</div></th>';
+                                echo '<th><div style="color:gray">Data</div></th>';
+                                echo '<th><div style="color:gray">Moduli</div></th>';
+                                echo '<th><div style="color:gray">Bollettino</div></th>';
+                                echo '<th><div style="color:gray">Pdf</div></th>';
 
 
                                 echo "</tr>";
@@ -396,12 +429,12 @@ session_start();
             </div>
             <div>
                 <div class="panel panel-default"  id="link">
-                    <div class="panel">
+                    <div class="form-group">
                         <h3 align='center'>Prossime date Esami</h3>
                     </div>
                     <div class="panel-body">
                         <table class="table table-bordered">
-                            <tr><td>Data</td><td>Dalle</td><td>Alle</td></tr>
+                            <tr><td style="color:gray">Data</td><td style="color:gray">Dalle</td><td style="color:gray">Alle</td></tr>
                             <?php
                             require_once('ConnessioneDb.php');
                             $db = new ConnessioneDb();
@@ -442,7 +475,7 @@ session_start();
             <?php
             if (isset($_SESSION['user'])) {
                 echo '<div class="panel panel-default"  id="link2">
-                <div class="panel">
+                <div class="form-group">
                     <h3 align="center">Carica File</h3>
                 </div>
                 <div class="panel-body">
