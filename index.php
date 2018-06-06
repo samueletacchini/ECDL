@@ -131,7 +131,7 @@ session_start();
                 </div>
                 <div id="buttons" class="panel-body">
 
-                    <div class="form-group col-md-3" id="prenota">
+                    
 
                         <?php
                         //sono loggato
@@ -142,46 +142,49 @@ session_start();
                             $result = $db->query($sql);
                             $gigi = $result->fetch_array();
                             $idpren = $gigi['ID'];
-                            echo '<form method="post" action="pdfUpdate.php">
+                            echo '<div class="form-group col-md-4" id="prenota"><form method="post" action="pdfUpdate.php">
                                         <input value="' . $_SESSION['user'] . '"  type="hidden" name="id">
                                         <input value="' . $idpren . '" type="hidden" name="idprenota">
                                         <input type="submit" value="PDF Update" class="btn btn-info btn-lg">
-                                    </form>';
+                                    </form></div>';
+                        }else
+                        {
+                            echo '<div class="col-md-3"></div>';
                         }
                         ?>
 
-                    </div>
-                    <div class="form-group col-md-3">
+                    
+                    
 
                         <?php
 //sono loggato
                         if (!isset($_SESSION['user'])) {
                             echo '
-                                    <form action="skillCard.php" method="post">
+                                    <div class="form-group col-md-3"><form action="skillCard.php" method="post">
                                 <input type="hidden" name="a" value="1">
                                 <input type="submit" value="Registrati" class="btn btn-info btn-lg">
-                            </form>';
+                            </form></div>';
                         }
                         ?>
 
-                    </div>
-                    <div class="form-group col-md-3" id="prenota">
+                    
+                    
                         <?php
                         if (isset($_SESSION['user'])) {
-                            echo '<form action="pdfSkillcard.php" method="post">
+                            echo '<div class="form-group col-md-4" id="prenota"><form action="pdfSkillcard.php" method="post">
                                       <input type="hidden" name="id" value="' . $_SESSION['user'] . '">
                                       <input type="submit" value="PDF Skillcard" class="btn btn-info btn-lg">
-                                      </form>';
+                                      </form></div>';
                         } else {
-                            echo '<form action="skillCard.php" method="post">
+                            echo '<div class="col-md-3"><form action="skillCard.php" method="post">
                                 <input type="hidden" name="a" value="0">
                                 <input type="submit" value="Nuova Skillcard" class="btn btn-info btn-lg">
-                            </form>';
+                            </form></div>';
                         }
                         ?>
 
-                    </div>
-                    <div class="form-group col-md-3">
+                   
+                    <div class="form-group col-md-4">
                         <?php
                         if (isset($_SESSION['user'])) {
                             echo '<form action="pdfAica.php" method="post">
@@ -249,18 +252,13 @@ session_start();
             } else {
                 echo '<div class="panel panel-default col-md-12">
                 <div class="panel">
-                    <h3 align="center">Lorem Ipsum</h3>
+                    <h3 align="center">Istruzioni</h3>
                 </div>
                 <div class="panel-body" >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ante felis, imperdiet ac placerat at, tincidunt ac nibh. Aliquam erat volutpat. Phasellus venenatis gravida justo, ac accumsan nibh pretium ac. In blandit dictum libero, non faucibus lectus malesuada sit amet. Sed ultrices est nec euismod vehicula. Fusce scelerisque molestie felis, in suscipit risus viverra in. Duis eget porttitor lorem. Donec imperdiet magna sit amet enim vehicula efficitur.
-                    <br><br>
-                    Fusce et vehicula nisl. Curabitur ut vehicula ante, at imperdiet quam. Nam quis dolor neque. Proin metus lorem, finibus a odio sed, viverra lobortis quam. Phasellus quis hendrerit dui. Maecenas rhoncus accumsan ligula, posuere sagittis enim dignissim vel. In iaculis laoreet justo et placerat. Morbi vitae pretium mi. Maecenas cursus, neque viverra placerat pulvinar, ante arcu pretium nisi, vestibulum pretium erat odio eget leo. Nam placerat molestie elit ac elementum. Suspendisse molestie id eros non malesuada. Donec lobortis viverra velit eu sodales. Phasellus hendrerit malesuada sapien sit amet tincidunt. Ut tempor bibendum rutrum. Proin in ultrices nunc.
-                    <br><br>
-                    Praesent aliquet laoreet nisl aliquam faucibus. Quisque rutrum luctus tortor, quis facilisis leo egestas ut. Nam varius nisi ac cursus tempor. Ut eget rhoncus justo. Morbi non libero ut lectus molestie volutpat. Nunc id metus et lorem mollis vestibulum. Ut id posuere nisi, a pretium ex. Maecenas egestas ipsum nec massa cursus rutrum. Donec ligula ante, dictum ut dictum nec, semper non metus. Aliquam ut sem quis ex finibus posuere. Mauris scelerisque nec metus ac mattis. Nam auctor, felis ut consequat cursus, est metus faucibus risus, non tincidunt purus diam vitae lorem.
-                    <br><br>
-                    Phasellus ac fringilla nibh, ac porttitor tortor. Sed tellus lectus, sodales a bibendum ac, aliquet nec elit. In molestie sollicitudin est, a finibus quam porttitor volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dui sapien, accumsan a sapien quis, feugiat tempor tortor. Vivamus tristique enim ac lorem ultricies consequat. Mauris imperdiet sollicitudin sem, nec pulvinar elit sagittis quis. Duis eu ligula eu est pharetra mollis. Maecenas porttitor mauris at ipsum tempus posuere. Phasellus porttitor ornare volutpat. Proin vel tristique ligula.
-                    <br><br>
-                    <br><br>
+                <ul>
+                    <p style="color:gray"> - Se non hai una SkillCard assegnata, richiedila subito cliccando su <l style="color:red">Nuova Skill Card</l>.</p>
+                    <p style="color:gray"> - Se hai una SkillCard assegnata, compila il modulo di <l style="color:red">Registrazione</l>.</p>
+                </ul>
                 </div>
             </div>';
             }

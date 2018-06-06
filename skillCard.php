@@ -43,7 +43,7 @@
         <div>
             <div class="col-md-2"></div>
             <div class="container-fluid bg-grey col-md-8">
-                <h2 align="center"> Modulo Di Acquisto Skill Card </h2>
+                <h2 align="center"> Modulo</h2>
                 <form name="casellaTesto" method="get" class="was-validated" role="form" action="/ecdl/registrazione.php">
                     <div class="form-row">
                         <div class="col-md-12">
@@ -444,8 +444,22 @@
                         <label>1) Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.</label>
                         <label>2) Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione.</label>
 
-                        <br><br><center><input type="submit"   id="submit" value="registrati" class="btn btn-info btn-lg"></center>
-
+            
+                        <br><br><input type="submit"  id="btnSubmit" value="Registrati" class="btn btn-info btn-lg">
+                        
+                        <div id="myAlert" class="alert alert-success collapse">
+                            <a href="#"  data-dismiss="alert">&times;</a>
+                            <strong>Success!</strong>Registrazione avvenuta con successo
+                        </div>
+                            
+                        <script>
+                            $(document).ready(function(){
+                                $('#btnSubmit').click.(function(){
+                                    $('#myAlert').show.('fade');
+                                });
+                            });
+                        </script>
+                                       
                 </form>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
