@@ -326,6 +326,7 @@ session_start();
 
                                 $pren = 0;
                                 $boll = 0;
+                                $update = 0;
                                 for ($o = 0; $o < 2; $o++) {
                                     $riga2 = $ris2->fetch_array();
                                     $tipi = explode(", ", $riga2['tipo']);
@@ -357,11 +358,6 @@ session_start();
                                 } else if ($boll == 2) {
                                     echo "<td><span style='color:#33cc33; font-size:150%;' class='glyphicon glyphicon-ok-sign' title='Completo'></span><a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a></span>></td>";
                                 } else {
-                                    $form = '<form method="post" action="pdfPrenotazione.php">
-                                        <input value="' . $_SESSION['user'] . '"  type="hidden" name="id">
-                                        <input value="' . $riga['ID'] . '" type="hidden" name="idprenota">
-                                        <input type="submit" value="scarica" class="glyphicon glyphicon-save">
-                                    </form>';
                                     echo "<td><span style='color:#ff0000; font-size:150%;' class='glyphicon glyphicon-remove-sign' title='nessun file'></span> </td>";
                                 }
                                 if ($pren == 1) {
@@ -369,6 +365,19 @@ session_start();
                                 } else if ($pren == 2) {
                                     echo "<td><span style='color:#33cc33; font-size:150%;' class='glyphicon glyphicon-ok-sign' title='Completo'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a> <a href='eliminafile.php?ID={$id}'></td>";
                                 } else {
+                                    if ($esami == "update") {
+                                        $form = '<form method="post" action="pdfUpdate.php">
+                                        <input value="' . $_SESSION['user'] . '"  type="hidden" name="id">
+                                        <input value="' . $riga['ID'] . '" type="hidden" name="idprenota">
+                                        <input type="submit" value="scarica update" class="glyphicon glyphicon-save">
+                                    </form>';
+                                    } else {
+                                        $form = '<form method="post" action="pdfPrenotazione.php">
+                                        <input value="' . $_SESSION['user'] . '"  type="hidden" name="id">
+                                        <input value="' . $riga['ID'] . '" type="hidden" name="idprenota">
+                                        <input type="submit" value="scarica" class="glyphicon glyphicon-save">
+                                    </form>';
+                                    }
                                     echo "<td><span style='color:#ff0000; font-size:150%;' class='glyphicon glyphicon-remove-sign' title='nessun file'></span> $form</td>";
                                 }
 
