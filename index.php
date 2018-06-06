@@ -131,59 +131,58 @@ session_start();
                 </div>
                 <div id="buttons" class="panel-body">
 
-                    
 
-                        <?php
-                        //sono loggato
-                        if (isset($_SESSION['user'])) {
-                            require_once('ConnessioneDb.php');
-                            $db = new ConnessioneDb();
-                            $sql = 'SELECT ID FROM `prenotazione` WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = "' . $_SESSION['user'] . '")';
-                            $result = $db->query($sql);
-                            $gigi = $result->fetch_array();
-                            $idpren = $gigi['ID'];
-                            echo '<div class="form-group col-md-4" id="prenota"><form method="post" action="pdfUpdate.php">
+
+                    <?php
+                    //sono loggato
+                    if (isset($_SESSION['user'])) {
+                        require_once('ConnessioneDb.php');
+                        $db = new ConnessioneDb();
+                        $sql = 'SELECT ID FROM `prenotazione` WHERE `ID_codice_fiscale` = (SELECT codice_fiscale FROM user WHERE email = "' . $_SESSION['user'] . '")';
+                        $result = $db->query($sql);
+                        $gigi = $result->fetch_array();
+                        $idpren = $gigi['ID'];
+                        echo '<div class="form-group col-md-4" id="prenota"><form method="post" action="pdfUpdate.php">
                                         <input value="' . $_SESSION['user'] . '"  type="hidden" name="id">
                                         <input value="' . $idpren . '" type="hidden" name="idprenota">
                                         <input type="submit" value="PDF Update" class="btn btn-info btn-lg">
                                     </form></div>';
-                        }else
-                        {
-                            echo '<div class="col-md-3"></div>';
-                        }
-                        ?>
+                    } else {
+                        echo '<div class="col-md-3"></div>';
+                    }
+                    ?>
 
-                    
-                    
 
-                        <?php
+
+
+                    <?php
 //sono loggato
-                        if (!isset($_SESSION['user'])) {
-                            echo '
+                    if (!isset($_SESSION['user'])) {
+                        echo '
                                     <div class="form-group col-md-3"><form action="skillCard.php" method="post">
                                 <input type="hidden" name="a" value="1">
                                 <input type="submit" value="Registrati" class="btn btn-info btn-lg">
                             </form></div>';
-                        }
-                        ?>
+                    }
+                    ?>
 
-                    
-                    
-                        <?php
-                        if (isset($_SESSION['user'])) {
-                            echo '<div class="form-group col-md-4" id="prenota"><form action="pdfSkillcard.php" method="post">
+
+
+                    <?php
+                    if (isset($_SESSION['user'])) {
+                        echo '<div class="form-group col-md-4" id="prenota"><form action="pdfSkillcard.php" method="post">
                                       <input type="hidden" name="id" value="' . $_SESSION['user'] . '">
                                       <input type="submit" value="PDF Skillcard" class="btn btn-info btn-lg">
                                       </form></div>';
-                        } else {
-                            echo '<div class="col-md-3"><form action="skillCard.php" method="post">
+                    } else {
+                        echo '<div class="col-md-3"><form action="skillCard.php" method="post">
                                 <input type="hidden" name="a" value="0">
                                 <input type="submit" value="Nuova Skillcard" class="btn btn-info btn-lg">
                             </form></div>';
-                        }
-                        ?>
+                    }
+                    ?>
 
-                   
+
                     <div class="form-group col-md-4">
                         <?php
                         if (isset($_SESSION['user'])) {
@@ -206,7 +205,7 @@ session_start();
                 $pdf = false;
                 $boll = false;
                 while ($riga = $ris->fetch_array()) {
-                    echo $tipi = explode(", ", $riga["tipo"]);
+                    $tipi = explode(", ", $riga["tipo"]);
                     for ($i = 0; $i < count($tipi); $i++) {
                         if ($tipi[$i] == "pdfskillcard") {
                             $pdf = true;
@@ -309,9 +308,19 @@ session_start();
                             }
                             while ($riga = $ris->fetch_array()) {
                                 echo "<td>" . $riga['data'] . "</td>";
-                                echo "<td>" . $riga['esami'] . "</td>";
+                                echo "<td>";
+                                $esami = "";
+                                if ($riga['esami'] != "update") {
+                                    for ($i = 0; $i < strlen($riga['esami']); $i++) {
+                                        $esami .= $riga['esami'][$i] . "-";
+                                    }
+                                    $esami = substr($esami, 0, -1);
+                                } else {
+                                    $esami = "update";
+                                }
+                                echo $esami;
 
-
+                                echo "</td>";
                                 $query2 = "SELECT id, tipo, ok, ID_prenotazione FROM `file` WHERE `ID_prenotazione` = {$riga['ID']}";
                                 $ris2 = $db->query($query2);
 
@@ -428,6 +437,10 @@ session_start();
                             if (isset($_SESSION['user'])) {
                                 echo '<input type="hidden" name="id" value="' . $_SESSION['user'] . '">';
                                 echo '<input type="submit" value="Prenota esame" class="btn btn-info btn-lg">';
+                                echo '</form><form action="prenotazione.php" method="post">';
+                                echo "<br><br>";
+                                echo '<input type="hidden" name="user" value="' . $_SESSION['user'] . '">';
+                                echo '<input type="submit" value="Prenota esame UPDATE" class="btn btn-info btn-lg">';
                             }
                             ?>
                         </form>

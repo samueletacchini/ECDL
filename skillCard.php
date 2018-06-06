@@ -180,7 +180,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="stato">Stato</label>
-                                <input name="stato" type="text" class="form-control" id="city" placeholder="Stato" required>
+                                <input name="stato" type="text" class="form-control" id="stato" placeholder="Stato" required>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="pnascita">Provincia di nascita</label>
@@ -197,7 +197,7 @@
                             </div>        
                             <div class="form-group col-md-3">
                                 <label for="cellulare">Cellulare</label>
-                                <input name="cellulare" type="numero" class="form-control" id="telefono" placeholder="Cellulare" required>                      
+                                <input name="cellulare" type="numero" class="form-control" id="cellulare" placeholder="Cellulare" required>                      
                             </div> 
                             <div class="form-group col-md-3">
                                 <label for="scolaro">Titolo Di Studio</label>
@@ -247,10 +247,10 @@
                                 <center  id='message'></center>
                                 <div>
                                     <p style="color:black;">La password deve contenere:</p>
-                                    <p style="color:red;" id="lettera">una lettera <b>minuscola </b> <b  ><span  class="glyphicon glyphicon-remove"></span></b></p>
-                                    <p style="color:red;" id="maiuscola">una lettera <b>maiuscola</b> <b><span class="glyphicon glyphicon-remove"></span></b></p>
-                                    <p style="color:red;" id="numero">un <b>numero </b> <b><span class="glyphicon glyphicon-remove"></span></b></p>
-                                    <p style="color:red;" id="caratteri">almeno <b>8 caratteri </b> <b><span class="glyphicon glyphicon-remove"></span></b></p>
+                                    <p style="color:red;" id="lettera">una lettera <b>minuscola <span  class="glyphicon glyphicon-remove"></span></b></p>
+                                    <p style="color:red;" id="maiuscola">una lettera <b>maiuscola <span class="glyphicon glyphicon-remove"></span></b></p>
+                                    <p style="color:red;" id="numero">un <b>numero <span class="glyphicon glyphicon-remove"></span></b></p>
+                                    <p style="color:red;" id="caratteri">almeno <b>8 caratteri <span class="glyphicon glyphicon-remove"></span></b></p>
                                 </div>
                             </div>
                         </div>
@@ -279,74 +279,66 @@
 
                                 $('#password').on('keyup', function () {
                                     var lowerCaseLetters = /[a-z]/g;
-                                    var x = $('#password').val()
+                                    var x = $('#password').val();
 
                                     if (x.search(lowerCaseLetters) == -1) {
                                         //nun va bene
-                                        $('#lettera').html('una lettera <b>minuscola </b> <b><span class="glyphicon glyphicon-remove"></span></b>').css('color', 'red');
+                                        $('#lettera').html('una lettera <b>minuscola <span class="glyphicon glyphicon-remove"></span></b>').css('color', 'red');
                                         document.getElementById('submit').disabled = true;
 
                                     } else {
                                         //va bene
-                                        $('#lettera').html('una lettera <b>minuscola </b> <b  ><span  class="glyphicon glyphicon-ok"></span></b>').css('color', 'green');
+                                        $('#lettera').html('una lettera <b>minuscola <span  class="glyphicon glyphicon-ok"></span></b>').css('color', 'green');
                                         document.getElementById('submit').disabled = false;
 
                                     }
-                                });
 
-                                $('#password').on('keyup', function () {
                                     var upperCaseLetters = /[A-Z]/g;
-                                    var x = $('#password').val()
 
                                     if (x.search(upperCaseLetters) == -1) {
                                         //nun va bene
-                                        $('#maiuscola').html('una lettera <b>maiuscola </b> <b><span class="glyphicon glyphicon-remove"></span></b>').css('color', 'red');
+                                        $('#maiuscola').html('una lettera <b>maiuscola <span class="glyphicon glyphicon-remove"></span></b>').css('color', 'red');
                                         document.getElementById('submit').disabled = true;
 
                                     } else {
                                         //va bene
-                                        $('#maiuscola').html('una lettera <b>maiuscola </b> <b  ><span  class="glyphicon glyphicon-ok"></span></b>').css('color', 'green');
+                                        $('#maiuscola').html('una lettera <b>maiuscola <span  class="glyphicon glyphicon-ok"></span></b>').css('color', 'green');
                                         document.getElementById('submit').disabled = false;
 
                                     }
 
-                                });
 
-                                $('#password').on('keyup', function () {
                                     var numeri = /[0-9]/g;
-                                    var x = $('#password').val()
 
                                     if (x.search(numeri) == -1) {
                                         //nun va bene
-                                        $('#numero').html('un <b>numero </b> <b><span class="glyphicon glyphicon-remove"></span></b>').css('color', 'red');
+                                        $('#numero').html('un <b>numero <span class="glyphicon glyphicon-remove"></span></b>').css('color', 'red');
                                         document.getElementById('submit').disabled = true;
 
                                     } else {
                                         //va bene
-                                        $('#numero').html('un <b>numero </b> <b><span class="glyphicon glyphicon-ok"></span></b>').css('color', 'green');
+                                        $('#numero').html('un <b>numero <span class="glyphicon glyphicon-ok"></span></b>').css('color', 'green');
                                         document.getElementById('submit').disabled = false;
 
                                     }
 
-                                });
-
-
-                                $('#password').on('keyup', function () {
-                                    var x = $('#password').val()
 
                                     if (x.length >= 8) {
                                         //nun va bene
-                                        $('#caratteri').html('almeno <b>8 caratteri </b> <b><span class="glyphicon glyphicon-ok"></span></b>').css('color', 'green');
+                                        $('#caratteri').html('almeno <b>8 caratteri <span class="glyphicon glyphicon-ok"></span></b>').css('color', 'green');
                                         document.getElementById('submit').disabled = true;
 
                                     } else {
                                         //va bene
-                                        $('#caratteri').html('almeno <b>8 caratteri </b> <b><span class="glyphicon glyphicon-remove"></span></b>').css('color', 'red');
+                                        $('#caratteri').html('almeno <b>8 caratteri <span class="glyphicon glyphicon-remove"></span></b>').css('color', 'red');
                                         document.getElementById('submit').disabled = false;
 
                                     }
 
                                 });
+
+
+
 
 
                                 $('#mail').on('keyup', function () {
@@ -354,7 +346,7 @@
                                     // Definisco un pattern per il confronto
                                     var emailpattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
                                     // creo una variabile per richiamare con facilità il nostro campo di input
-                                    var mail = $('#mail').val()
+                                    var mail = $('#mail').val();
                                     // var CodiceFiscale = document.getElementById("codiceFiscale");
 
                                     // utilizzo il metodo search per verificare che il valore inserito nel campo
@@ -380,7 +372,7 @@
                                     // Definisco un pattern per il confronto
                                     var pattern = /^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$/;
                                     // creo una variabile per richiamare con facilità il nostro campo di input
-                                    var CodiceFiscale = $('#codiceFiscale').val()
+                                    var CodiceFiscale = $('#codiceFiscale').val();
                                     // var CodiceFiscale = document.getElementById("codiceFiscale");
 
                                     // utilizzo il metodo search per verificare che il valore inserito nel campo
@@ -435,46 +427,24 @@
                                 }
 
                                 </script>
-                        </div>
-                        <div class="form-group">
-                            <label><input value="esterni" onclick="cancella()"  type="radio" name="optradio" id="radioEsterno"> Esterni</label>
+                                <br><br><center><input type="submit"   id="submit" value="registrati" class="btn btn-info btn-lg"></center>
 
-                        </div>
-                        <h3>Note: </h3>
-                        <label>1) Scolarità: Scuola dell'obbligo, Scuola media superiore, Studente universitario, Laurea.</label>
-                        <label>2) Occupazione: Studente, Lavoratore autonomo, Lavoratore dipendente, Pensionato, In cerca di occupazione.</label>
 
-            
-                        <br><br><input type="submit"  id="btnSubmit" value="Registrati" class="btn btn-info btn-lg">
-                        
-                        <div id="myAlert" class="alert alert-success collapse">
-                            <a href="#"  data-dismiss="alert">&times;</a>
-                            <strong>Success!</strong>Registrazione avvenuta con successo
+                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                                <script type="text/javascript" src="bootstrap-table.js"></script>
                         </div>
-                            
-                        <script>
-                            $(document).ready(function(){
-                                $('#btnSubmit').click.(function(){
-                                    $('#myAlert').show.('fade');
-                                });
-                            });
-                        </script>
-                                       
+                        <div class="col-md-2"></div>
+                    </div>
                 </form>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-                <script type="text/javascript" src="bootstrap-table.js"></script>
-            </div>
-            <div class="col-md-2"></div>
-        </div>
-        <div class="col-md-12">
-            <footer class="container text-center" id="foot" >
-                <p><br/><strong>IIS F.CORNI - LICEO E TECNICO</strong> <br/>
-                    Sede centrale: L.go A. Moro 25 Tel 059/400700 Fax 059/243391 <br/>   
-                    Succursale: Via Leonardo da Vinci 300 Tel 059/2917000 Fax 059/344709 <br/>
-                    ecdl@istitutocorni.it - http://www.istitutocorni.gov.it
-                </p>
-            </footer>
-        </div>
-    </body>
-</html>
+                <div class="col-md-12">
+                    <footer class="container text-center" id="foot" >
+                        <p><br/><strong>IIS F.CORNI - LICEO E TECNICO</strong> <br/>
+                            Sede centrale: L.go A. Moro 25 Tel 059/400700 Fax 059/243391 <br/>   
+                            Succursale: Via Leonardo da Vinci 300 Tel 059/2917000 Fax 059/344709 <br/>
+                            ecdl@istitutocorni.it - http://www.istitutocorni.gov.it
+                        </p>
+                    </footer>
+                </div>
+                </body>
+                </html>

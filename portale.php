@@ -251,7 +251,6 @@
                         if (!isset($_SESSION["s0"])) {
                             for ($i = 0; $i <= 22; $i++) {
                                 
-                                echo "awidl";
                                 $_SESSION["s$i"] = "a";
                             }
                             $_SESSION["s0"] = "skill_card";
