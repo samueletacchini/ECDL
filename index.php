@@ -318,7 +318,7 @@ session_start();
 
                         <?php
                         if (isset($_SESSION['user'])) {
-                            require_once('ConnessioneDb.php');
+                           require_once('ConnessioneDb.php');
                             $db = new ConnessioneDb();
 
                             $query = "SELECT prenotazione.ID, user.nome, user.cognome, prenotazione.esami, sessioni.data FROM `prenotazione` JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale JOIN sessioni ON sessioni.ID = prenotazione.ID_sessione WHERE user.email = '{$_SESSION['user']}' GROUP BY prenotazione.ID ORDER BY prenotazione.ID";
@@ -415,7 +415,7 @@ session_start();
                                 <label> Password </label>
                                 <input name="password" type="password" id="password" class="form-control" required>
                             </div>';
-                            echo "<p href = 'recupera.php'><p align = 'right' style = 'color:grey'>Recupera Password</p></p>";
+                            //echo "<p href = 'recupera.php'><p align = 'right' style = 'color:grey'>Recupera Password</p></p>";
                             if (isset($_SESSION['err']) && $_SESSION['err'] == '0') {
                                 $_SESSION['err'] = null;
                                 echo '<p style="color:#B40404" align="center"> E-mail o Password Errati</p>';
