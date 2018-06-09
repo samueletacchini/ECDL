@@ -12,18 +12,21 @@ if (isset($_REQUEST['elimina'])) {
     //header("Location: index.php");
 } elseif (isset($_REQUEST['sessione']) && isset($_REQUEST['codiceFiscale'])) {
 
+    if (isset($_REQUEST['update'])) {
+        $esami = "update";
+    } else {
 
 
-    $sessione = $_REQUEST['sessione'];
-    $esami = "";
-    $a = 0;
-    for ($i = 1; $i <= 7; $i++) {
-        if (isset($_REQUEST["$i"])) {
-            $esami[$a] = $i;
-            $a++;
-        }
+        $esami = "";
+        $a = 0;
+        for ($i = 1; $i <= 7; $i++)
+            if (isset($_REQUEST["$i"])) {
+                $esami[$a] = $i;
+                $a++;
+            }
     }
     $codicefiscale = $_REQUEST['codiceFiscale'];
+    $sessione = $_REQUEST['sessione'];
 
     require_once('ConnessioneDb.php');
     $db = new ConnessioneDb();
@@ -31,4 +34,4 @@ if (isset($_REQUEST['elimina'])) {
     $ris = $db->query($sql);
 }
 
-header("Location: index.php");
+//header("Location: index.php");
