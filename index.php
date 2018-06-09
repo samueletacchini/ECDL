@@ -130,9 +130,6 @@ session_start();
                     <h3 align='center'>PDF</h3>
                 </div>
                 <div id="buttons" class="panel-body">
-
-
-
                     <?php
                     //sono loggato
                     if (isset($_SESSION['user'])) {
@@ -142,14 +139,8 @@ session_start();
                         $result = $db->query($sql);
                         $gigi = $result->fetch_array();
                         $idpren = $gigi['ID'];
-                        echo '<div class="form-group col-md-4" id="prenota"><form method="post" action="pdfUpdate.php">
-                                        <input value="' . $_SESSION['user'] . '"  type="hidden" name="id">
-                                        <input value="' . $idpren . '" type="hidden" name="idprenota">
-                                        <input type="submit" value="PDF Update" class="btn btn-info btn-lg">
-                                    </form></div>';
-                    } else {
-                        echo '<div class="col-md-3"></div>';
-                    }
+                        echo '';
+                    } 
                     ?>
 
 
@@ -159,7 +150,7 @@ session_start();
 //sono loggato
                     if (!isset($_SESSION['user'])) {
                         echo '
-                                    <div class="form-group col-md-3"><form action="skillCard.php" method="post">
+                                    <div class="form-group col-md-6"><form action="skillCard.php" method="post">
                                 <input type="hidden" name="a" value="1">
                                 <input type="submit" value="Registrazione" class="btn btn-info btn-lg">
                             </form></div>';
@@ -170,12 +161,12 @@ session_start();
 
                     <?php
                     if (isset($_SESSION['user'])) {
-                        echo '<div class="form-group col-md-4" id="prenota"><form action="pdfSkillcard.php" method="post">
+                        echo '<div class="form-group col-md-6" id="prenota"><form action="pdfSkillcard.php" method="post">
                                       <input type="hidden" name="id" value="' . $_SESSION['user'] . '">
                                       <input type="submit" value="PDF Skillcard" class="btn btn-info btn-lg">
                                       </form></div>';
                     } else {
-                        echo '<div class="col-md-3"><form action="skillCard.php" method="post">
+                        echo '<div class="col-md-6"><form action="skillCard.php" method="post">
                                 <input type="hidden" name="a" value="0">
                                 <input type="submit" value="Nuova Skillcard" class="btn btn-info btn-lg">
                             </form></div>';
@@ -183,7 +174,7 @@ session_start();
                     ?>
 
 
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                         <?php
                         if (isset($_SESSION['user'])) {
                             echo '<form action="pdfAica.php" method="post">
@@ -400,17 +391,9 @@ session_start();
                                     echo "<td><span style='color:#33cc33; font-size:150%;' class='glyphicon glyphicon-ok-sign' title='Completo'></span> <a href='getfile.php?fid={$id}'>  <span style='color:#737373; font-size:150%;' class='glyphicon glyphicon-save-file' title='Scarica' ></span></a> <a href='eliminafile.php?ID={$id}'></td>";
                                 } else {
                                     if ($esami == "update") {
-                                        $form = '<form method="post" action="pdfUpdate.php">
-                                        <input value="' . $_SESSION['user'] . '"  type="hidden" name="id">
-                                        <input value="' . $riga['ID'] . '" type="hidden" name="idprenota">
-                                        <input type="submit" value="scarica update" class="glyphicon glyphicon-save">
-                                    </form>';
+                                        $form = '<a href="pdfUpdate.php?id=' . $_SESSION['user'] . '&idprenota=' . $riga['ID'] . '">  <span style="color:gray; font-size:150%;" class="glyphicon glyphicon-save-file" title="Scarica" ></span></a>';
                                     } else {
-                                        $form = '<form method="post" action="pdfPrenotazione.php">
-                                        <input value="' . $_SESSION['user'] . '"  type="hidden" name="id">
-                                        <input value="' . $riga['ID'] . '" type="hidden" name="idprenota">
-                                        <input type="submit" value="scarica" class="glyphicon glyphicon-save">
-                                    </form>';
+                                        $form = '<a href="pdfPrenotazione.php?id=' . $_SESSION['user'] . '&idprenota=' . $riga['ID'] . '">  <span style="color:gray; font-size:150%;" class="glyphicon glyphicon-save-file" title="Scarica" ></span></a>';
                                     }
                                     echo "<td><span style='color:#ff0000; font-size:150%;' class='glyphicon glyphicon-remove-sign' title='nessun file'></span> $form</td>";
                                 }
@@ -518,12 +501,7 @@ session_start();
                                 Pdf aica
                             </label>
                         </div>   
-                        <div class="form-group">
-                            <input name="pdfupdate" onchange="myFunction()" class="form-check-input" type="checkbox" value="1" id="pdfupdate">
-                            <label  class="form-check-label" for="defaultCheck7">
-                                Pdf update 
-                            </label>
-                        </div>
+                        
                         <div class="form-group">
                             <input name="bollettinoskillcard" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard">
                             <label  class="form-check-label" for="defaultCheck7">
