@@ -114,6 +114,7 @@ session_start();
         }
     </style>
     <body>
+
         <div class="jumbotron text-center">
             <h1 align="center"> ECDL</h1>
             <p id="bar">
@@ -123,6 +124,25 @@ session_start();
                 ecdl@istitutocorni.it
             </p>
         </div>
+
+
+        <?php
+        if (isset($_REQUEST['registrazione'])) {
+            if ($_REQUEST['registrazione'] == 0) {
+                //= 0 male
+                echo '<div id="alert" class="alert alert-danger alert-dismissible col-md-10 col-md-offset-1">
+                      <strong>ERRORE!</strong> La registrazione non è andata a buon fine!
+                      <a onclick="close()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                      </div>';
+            } else {
+                //= 1 bene
+                echo '<div id="alert" class="alert alert-success alert-dismissible col-md-10 col-md-offset-1">
+                      Registrazione avvenuta con successo!
+                      <a onclick="close()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                      </div>';
+            }
+        }
+        ?>
         <div class="col-md-8">
 
             <div class="panel panel-default">
@@ -131,7 +151,7 @@ session_start();
                 </div>
                 <div id="buttons" class="panel-body">
                     <?php
-                    //sono loggato
+//sono loggato
                     if (isset($_SESSION['user'])) {
                         require_once('ConnessioneDb.php');
                         $db = new ConnessioneDb();
@@ -140,7 +160,7 @@ session_start();
                         $gigi = $result->fetch_array();
                         $idpren = $gigi['ID'];
                         echo '';
-                    } 
+                    }
                     ?>
 
 
@@ -583,6 +603,12 @@ session_start();
 
 
         }
+        
+        function close() {
+            document.getElementById("alert").innerHTML = "";
+
+        }
+
         function cancella() {
             document.getElementById("clicco").innerHTML = "";
         }
