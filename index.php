@@ -9,7 +9,7 @@ session_start();
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/PrenotazioneRegistrazione.css">
-            <meta name="viewport" content="width=device-width,initial-sclae=1.0">
+        <meta name="viewport" content="width=device-width,initial-sclae=1.0">
 
     </head>
 
@@ -328,7 +328,7 @@ session_start();
 
                         <?php
                         if (isset($_SESSION['user'])) {
-                           require_once('ConnessioneDb.php');
+                            require_once('ConnessioneDb.php');
                             $db = new ConnessioneDb();
 
                             $query = "SELECT prenotazione.ID, user.nome, user.cognome, prenotazione.esami, sessioni.data FROM `prenotazione` JOIN user ON user.codice_fiscale = prenotazione.ID_codice_fiscale JOIN sessioni ON sessioni.ID = prenotazione.ID_sessione WHERE user.email = '{$_SESSION['user']}' GROUP BY prenotazione.ID ORDER BY prenotazione.ID";
@@ -426,6 +426,10 @@ session_start();
                                      <input type="hidden" name="exit" value="1">
                                      <input type="submit" value="Logout" class="btn btn-info btn-lg">
                                   </form>';
+                            if ($_SESSION['user'] == "tacchinisamuele@gmail.com") {
+                                echo'<a href="portale.php" class="btn btn-info btn-lg">Portale utenti</a><br><br>';
+                                echo'<a href="prenportale.php" class="btn btn-info btn-lg">Portale prenotazioni</a>';
+                            }
                         } else {
                             echo ' <form name=”casellaTesto” method="post" class="was-validated" action="/ecdl/login.php">
                             <div class="form-group">
@@ -602,7 +606,7 @@ session_start();
 
 
         }
-        
+
         function close() {
             document.getElementById("alert").innerHTML = "";
 
