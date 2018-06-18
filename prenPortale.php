@@ -400,7 +400,7 @@
                     </div>
                     <br>
                     <div class="form-group col-md-12"  id="upload" > 
-                        <button  type="button" onclick="uploadsomething()" class="btn btn-info col-md-12 btn-lg" style="background-color:Dodgerblue;">Carica qualcosa</button>
+                        <button  type="button" onclick="uploadsomething()" class="btn btn-info col-md-12 btn-lg" style="background-color:Dodgerblue;">Importa file sessioni</button>
                         <?php
                         if (isset($_REQUEST["sessioni"])) {
                             echo $_REQUEST["sessioni"];

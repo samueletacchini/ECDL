@@ -9,8 +9,7 @@ session_start();
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/PrenotazioneRegistrazione.css">
-        <link rel="stylesheet" href="file.js">
-        <meta name="viewport" content="width=device-width,initial-sclae=1.0">
+            <meta name="viewport" content="width=device-width,initial-sclae=1.0">
 
     </head>
 
