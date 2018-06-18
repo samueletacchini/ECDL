@@ -3,6 +3,8 @@
 session_start();
 require_once('ConnessioneDb.php');
 $db = new ConnessioneDb();
+$out = 1;
+
 
 function codiceFiscale($cf) {
     if ($cf == '')
@@ -132,7 +134,7 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
 
             $lnascita = $_REQUEST['lnascita'];
 
-            $pnascita = $_REQUEST['$pnascita'];
+            $pnascita = $_REQUEST['pnascita'];
 
             $indirizzo = $_REQUEST['indirizzo'];
 
@@ -171,16 +173,19 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
             $query = "INSERT INTO `user`(`password`, `rilasciata`, `codice_fiscale`, `sesso`, `cognome`, `nome`, `data_nascita`, `comune_nascita`,`provincia_nascita`, `stato_civile`, `indirizzo`, `civico`, `stato`, `citta`, `cap`, `provincia`, `email`, `cellulare`, `telefono`, `occupazione`,`titolo_studio`, `pagato`, `tipo`)"
                     . "  VALUES ('$password', '$datenow', '$codicefiscale', '$sesso', '$cognome', '$nome', '$birthdate', '$lnascita', '$pnascita', '$statocivile', '$indirizzo', '$civico', '$stato', '$citta', '$cap', '$provincia', '$mail', '$cellulare', '$telefono', '$occupazione', '$titolo', 0, '$tipo')";
 
-            $ris = $db->query($query);
+            echo $ris = $db->query($query);
+            
         } else {
             echo "codice fiscale sbagliato";
+            $out = 0;
         }
     } else {
         echo "c'è stato un errore!";
+        $out = 0;
     }
 }
 
-header("Location: index.php");
+header("Location: index.php?registrazione=$out");
 ?>
 
 
