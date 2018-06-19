@@ -428,7 +428,7 @@ session_start();
                                   </form>';
                             if ($_SESSION['user'] == "tacchinisamuele@gmail.com") {
                                 echo'<a href="portale.php" class="btn btn-info btn-lg">Portale utenti</a><br><br>';
-                                echo'<a href="prenportale.php" class="btn btn-info btn-lg">Portale prenotazioni</a>';
+                                echo'<a href="prenPortale.php" class="btn btn-info btn-lg">Portale prenotazioni</a>';
                             }
                         } else {
                             echo ' <form name=”casellaTesto” method="post" class="was-validated" action="/ecdl/login.php">
