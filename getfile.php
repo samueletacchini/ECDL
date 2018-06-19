@@ -22,7 +22,7 @@ if (isset($_REQUEST['fid'])) {
     // give our picture the proper headers...otherwise our page will be confused 
     header("Content-Disposition: attachment; filename=$name");
     //header("Content-length: $size");
-    header("Content-type:$estensione");
+    header("Content-type:$type");
     
     echo $content;
 } else {

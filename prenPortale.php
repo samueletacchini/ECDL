@@ -312,7 +312,7 @@
                                                 $boll = 1;
                                             }
                                         }
-                                        if ($tipi[$p] == "pdfprenotazione") {
+                                        if ($tipi[$p] == "pdfprenotazione" || $tipi[$p] == "pdfupdate" ) {
                                             $id = $riga2['id'];
                                             if ($riga2['ok'] == 1) {
                                                 $pren = 2;
