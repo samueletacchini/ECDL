@@ -250,7 +250,7 @@
 
                         if (!isset($_SESSION["s0"])) {
                             for ($i = 0; $i <= 22; $i++) {
-                                
+
                                 $_SESSION["s$i"] = "a";
                             }
                             $_SESSION["s0"] = "skill_card";
@@ -446,7 +446,7 @@
 
                                 if ($_SESSION["s0"] != "a") {
                                     if ($modifica == true) {
-                                        echo "<td> <input class='form-control' name='skill_card' type='text' value='" . $riga['skill_card'] . "' ></td>";
+                                        echo "<td> <input required class='form-control' name='skill_card' type='text' value='" . $riga['skill_card'] . "' ></td>";
                                     } else {
                                         echo "<td> " . $riga['skill_card'] . "</td>";
                                     }
@@ -455,7 +455,7 @@
                                     $la = explode("-", $riga['rilasciata']);
                                     $al = $la[2] . "-" . $la[1] . "-" . $la[0];
                                     if ($modifica == true) {
-                                        echo "<td><input class='form-control' name='codice_fiscale' type='text' value='" . $al . "'></td>";
+                                        echo "<td><input class='form-control' name='rilasciata' type='text' value='" . $riga['rilasciata'] . "'></td>";
                                     } else {
                                         echo "<td>" . $al . "</td>";
                                     }
@@ -492,7 +492,7 @@
                                     $la = explode("-", $riga['data_nascita']);
                                     $al = $la[2] . "-" . $la[1] . "-" . $la[0];
                                     if ($modifica == true) {
-                                        echo "<td><input class='form-control' name='codice_fiscale' type='text' value='" . $al . "'></td>";
+                                        echo "<td><input class='form-control' name='data_nascita' type='text' value='" . $riga['data_nascita'] . "'></td>";
                                     } else {
                                         echo "<td>" . $al . "</td>";
                                     }
@@ -562,9 +562,9 @@
                                 }
                                 if ($_SESSION["s16"] != "a") {
                                     if ($modifica == true) {
-                                        echo "<td> <input class='form-control' name='email' type='text' value='  " . $riga['email'] . "' ></td>";
+                                        echo "<td> <input class='form-control' name='email' type='text' value='" . $riga['email'] . "' ></td>";
                                     } else {
-                                        echo "<td> " . $riga['email'] . "</td>";
+                                        echo "<td>" . $riga['email'] . "</td>";
                                     }
                                 }
                                 if ($_SESSION["s17"] != "a") {

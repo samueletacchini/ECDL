@@ -426,10 +426,12 @@ session_start();
                                      <input type="hidden" name="exit" value="1">
                                      <input type="submit" value="Logout" class="btn btn-info btn-lg">
                                   </form>';
-                            if ($_SESSION['user'] == "tacchinisamuele@gmail.com") {
+                            
+                            if ($_SESSION['user'] == 'tacchinisamuele@gmail.com') {
                                 echo'<a href="portale.php" class="btn btn-info btn-lg">Portale utenti</a><br><br>';
                                 echo'<a href="prenPortale.php" class="btn btn-info btn-lg">Portale prenotazioni</a>';
                             }
+                            
                         } else {
                             echo ' <form name=”casellaTesto” method="post" class="was-validated" action="/ecdl/login.php">
                             <div class="form-group">
