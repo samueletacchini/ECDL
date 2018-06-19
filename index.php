@@ -516,7 +516,29 @@ session_start();
                             <label  class="form-check-label" for="defaultCheck7">
                                 Pdf skillcard
                             </label>
-                        </div>                            
+                        </div>
+                        
+                        <div class="form-group">
+                            <input name="bollettinoskillcard" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard">
+                            <label  class="form-check-label" for="defaultCheck7">
+                                Bollettino skillcard
+                            </label>
+                        </div>
+                        
+                         <div class="form-group">
+                            <input name="pdfprenotazione" onchange="myFunction()" class="form-check-input" type="checkbox" value="1" id="pdfprenotazione">
+                            <label  class="form-check-label" for="defaultCheck7">
+                                Pdf prenotazione
+                            </label>
+                        </div> 
+                        
+                        <div class="form-group">
+                            <input name="bollettinoprenotazione" onchange="myFunction()" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
+                            <label  class="form-check-label" for="defaultCheck7">
+                                Bollettino prenotazione 
+                            </label>
+                        </div>  
+                        
                                                     
                         <div class="form-group">
                             <input name="pdfaica"  class="form-check-input" type="checkbox" value="1" id="pdfaica">
@@ -524,20 +546,12 @@ session_start();
                                 Pdf aica
                             </label>
                         </div>   
-                        
                         <div class="form-group">
-                            <input name="bollettinoskillcard" class="form-check-input" type="checkbox" value="1" id="bollettinoskillcard">
+                            <input name="pdfupdate" onchange="myFunction()" class="form-check-input" type="checkbox" value="1" id="pdfupdate">
                             <label  class="form-check-label" for="defaultCheck7">
-                                Bollettino skillcard
+                                Pdf update 
                             </label>
-                        </div>                            
-                        <div class="form-group">
-                            <input name="bollettinoprenotazione" onchange="myFunction()" class="form-check-input" type="checkbox" value="1" id="bollettinoprenotazione">
-                            <label  class="form-check-label" for="defaultCheck7">
-                                Bollettino prenotazione 
-                            </label>
-                        </div>  
-                          
+                        </div>                         
                         </div>                           
                         
                         
