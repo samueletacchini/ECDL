@@ -129,7 +129,7 @@
                                     <option value='6'>Giugno</option>
                                     <option value='7'>Luglio</option>
                                     <option value='8'>Agosto</option>
-                                    <option value='9'>Settebre</option>
+                                    <option value='9'>Settembre</option>
                                     <option value='10'>Ottobre</option>
                                     <option value='11'>Novembre</option>
                                     <option value='12'>Dicembre</option>
