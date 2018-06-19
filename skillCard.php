@@ -244,7 +244,7 @@
                                     <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  name="password2" type="password" data-minlength="6" class="form-control" id="password2" placeholder="Password" required>
                                 </div> 
 
-                                <center  id='message'></center>
+                                <center><p id='message'></p></center>
 
                             </div>
                         </div>
@@ -272,20 +272,18 @@
                             </div> 
                         </div>
                         <div class="form-group col-md-6">
-                            <div>
-                                <p style="color:black;">La password deve contenere:</p>
-                                <p style="color:red;" id="lettera">una lettera <b>minuscola <span  class="glyphicon glyphicon-remove"></span></b></p>
-                                <p style="color:red;" id="maiuscola">una lettera <b>maiuscola <span class="glyphicon glyphicon-remove"></span></b></p>
-                                <p style="color:red;" id="numero">un <b>numero <span class="glyphicon glyphicon-remove"></span></b></p>
-                                <p style="color:red;" id="caratteri">almeno <b>8 caratteri <span class="glyphicon glyphicon-remove"></span></b></p>
-                            </div>
+                            <p style="color:black;">La password deve contenere:</p>
+                            <p style="color:red;" id="lettera">una lettera <b>minuscola <span  class="glyphicon glyphicon-remove"></span></b></p>
+                            <p style="color:red;" id="maiuscola">una lettera <b>maiuscola <span class="glyphicon glyphicon-remove"></span></b></p>
+                            <p style="color:red;" id="numero">un <b>numero <span class="glyphicon glyphicon-remove"></span></b></p>
+                            <p style="color:red;" id="caratteri">almeno <b>8 caratteri <span class="glyphicon glyphicon-remove"></span></b></p>
                         </div>
 
                     </div>
 
-
-                    <br><br><center><input type="submit"   id="submit" value="registrati" class="btn btn-info btn-lg"></center>
-
+                    <div class="form-group col-md-12">
+                        <center><input type="submit"   id="submit" value="registrati" class="btn btn-info btn-lg"></center>
+                    </div>
                 </form>
                 <div class="col-md-12">
                     <footer class="container text-center" id="foot" >

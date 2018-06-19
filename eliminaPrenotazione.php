@@ -34,4 +34,4 @@ if (isset($_REQUEST['elimina'])) {
     $ris = $db->query($sql);
 }
 
-//header("Location: index.php");
+header("Location: index.php");
