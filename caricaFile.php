@@ -7,28 +7,27 @@ if (isset($_REQUEST['carica'])) {
     $tipo = "";
 
     if (isset($_REQUEST['pdfskillcard'])) {
-        $pdfskillcard = $_REQUEST['pdfskillcard'];
         $tipo .= "pdfskillcard, ";
         ////////////////////echo 'pdfskillcard <br><br>';
     }
     if (isset($_REQUEST['pdfprenotazione'])) {
-        $pdfprenotazione = $_REQUEST['pdfprenotazione'];
         $tipo .= "pdfprenotazione, ";
         ////////////////////echo 'pdfprenotazione <br><br>';
     }
     if (isset($_REQUEST['pdfaica'])) {
-        $pdfaica = $_REQUEST['pdfaica'];
         $tipo .= "pdfaica, ";
         //////////////////echo 'pdfaica <br><br>';
     }
     if (isset($_REQUEST['bollettinoskillcard'])) {
-        $bollettinoskillcard = $_REQUEST['bollettinoskillcard'];
         $tipo .= "bollettinoskillcard, ";
         ////////////////////echo 'bollettinoskillcard <br><br>';
     }
     if (isset($_REQUEST['bollettinoprenotazione'])) {
-        $bollettinoprenotazione = $_REQUEST['bollettinoprenotazione'];
         $tipo .= "bollettinoprenotazione, ";
+        ////////////////////echo 'bollettinoprenotazione <br><br>';
+    }
+    if (isset($_REQUEST['pdfupdate'])) {
+        $tipo .= "pdfupdate, ";
         ////////////////////echo 'bollettinoprenotazione <br><br>';
     }
     if (isset($_REQUEST['prenotazioni'])) {
@@ -67,7 +66,7 @@ if (isset($_REQUEST['carica'])) {
     }
 
 // if the file size is larger than 1MB, kill it 
-    if ($size > '10000000') {
+    if ($size > '10000000000') {
         echo $name . " is over 1MB. Please make it smaller.";
         die();
     }
@@ -88,9 +87,9 @@ if (isset($_REQUEST['carica'])) {
     require_once('ConnessioneDb.php');
     $db = new ConnessioneDb();
     if ($prenotazioni != NULL) {
-        $sql = "INSERT INTO `file`(`tipo`, `ID_user`, `ID_prenotazione`, `nome`, `estensione`, `dimensione`, `file`) VALUES ('$tipo',(select user.codice_fiscale FROM user WHERE user.email = '{$_SESSION['user']}'),'$prenotazioni','$name','$type',$size,'$content')";
+         $sql = "INSERT INTO `file`(`tipo`, `ID_user`, `ID_prenotazione`, `nome`, `estensione`, `dimensione`, `file`) VALUES ('$tipo',(select user.codice_fiscale FROM user WHERE user.email = '{$_SESSION['user']}'),'$prenotazioni','$name','$type',$size,'$content')";
     } else {
-        $sql = "INSERT INTO `file`(`tipo`, `ID_user`, `nome`, `estensione`, `dimensione`, `file`) VALUES ('$tipo',(select user.codice_fiscale FROM user WHERE user.email = '{$_SESSION['user']}'),'$name','$type',$size,'$content')";
+         $sql = "INSERT INTO `file`(`tipo`, `ID_user`, `nome`, `estensione`, `dimensione`, `file`) VALUES ('$tipo',(select user.codice_fiscale FROM user WHERE user.email = '{$_SESSION['user']}'),'$name','$type',$size,'$content')";
     }
     $ris = $db->query($sql);
 

@@ -385,7 +385,7 @@ session_start();
                                                     $boll = 1;
                                                 }
                                             }
-                                            if ($tipi[$p] == "pdfprenotazione") {
+                                            if ($tipi[$p] == "pdfprenotazione" || $tipi[$p] == "pdfupdate") {
                                                 $id = $riga2['id'];
                                                 if ($riga2['ok'] == 1) {
                                                     $pren = 2;
@@ -551,7 +551,7 @@ session_start();
                             <label  class="form-check-label" for="defaultCheck7">
                                 Pdf update 
                             </label>
-                        </div>                         
+                        </div>
                         </div>                           
                         
                         
