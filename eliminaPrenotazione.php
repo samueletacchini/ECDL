@@ -17,7 +17,7 @@ if (isset($_REQUEST['elimina'])) {
     } else {
 
 
-        $esami = "";
+        $esami = "oppo";
         $a = 0;
         for ($i = 1; $i <= 7; $i++)
             if (isset($_REQUEST["$i"])) {
