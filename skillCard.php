@@ -183,7 +183,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="pnascita">Provincia di nascita</label>
-                                <input name="pnascita" type="text" class="form-control" id="pnascita" placeholder="Provincia nascita" required>
+                                <input name="pnascita" type="text" class="form-control" id="pnascita" placeholder="Provincia di nascita" required>
                             </div>
                         </div>
                     </div>
@@ -201,7 +201,7 @@
                             <div class="form-group col-md-3">
                                 <label for="scolaro">Titolo Di Studio</label>
                                 <select name="titolo" class="form-control" required>
-                                    <option value="" disabled selected>Titoto Di Studio</option>
+                                    <option value="" disabled selected>Titolo Di Studio</option>
                                     <option value="sObbligo"> Scuola Dell'Obbligo</option>
                                     <option value="diplomato"> Diplomato</option>
                                     <option value="laureato"> Laureato</option>
