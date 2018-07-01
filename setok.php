@@ -10,5 +10,5 @@ if (isset($_REQUEST["pid"])) {
 }
 $ris = $db->query($eh);
 
-header("Location: prenportale.php");
+header("Location: prenPortale.php");
 ?>
