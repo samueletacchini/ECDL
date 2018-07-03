@@ -110,13 +110,13 @@ function codiceFiscale($cf) {
     return true;
 }
 
-if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
+if (isset($_REQUEST['codicefiscale']) && !isset($_REQUEST['sessione'])) {
 
     $password = $_REQUEST['password'];
     $password2 = $_REQUEST['password2'];
     if ($password == $password2) {
 
-        $codicefiscale = $_REQUEST['codiceFiscale'];
+        $codicefiscale = $_REQUEST['codicefiscale'];
 
         if (codiceFiscale($codicefiscale)) {
             $sesso = $_REQUEST['sesso'];
@@ -151,7 +151,7 @@ if (isset($_REQUEST['codiceFiscale']) && !isset($_REQUEST['sessione'])) {
 
             $provincia = $_REQUEST['provincia'];
 
-            $telefono = $_REQUEST['telefonoCasa'];
+            $telefono = $_REQUEST['telefonocasa'];
 
             $cellulare = $_REQUEST['cellulare'];
 
