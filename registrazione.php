@@ -186,7 +186,7 @@ if (isset($_REQUEST['codicefiscale']) && !isset($_REQUEST['sessione'])) {
     }
 }
 
-header("Location: index.php?registrazione=$out");
+//header("Location: index.php?registrazione=$out");
 ?>
 
 
