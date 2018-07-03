@@ -91,8 +91,8 @@
                                 <label for="sesso">Sesso</label>
                                 <select name="sesso" class="form-control" required>
                                     <option value=" " disabled selected>Sesso</option>
-                                    <option value="maschio" > M </option>
-                                    <option value="femmina"> F </option>
+                                    <option value="M" > M </option>
+                                    <option value="F"> F </option>
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
