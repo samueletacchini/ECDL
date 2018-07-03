@@ -184,6 +184,8 @@ if (isset($_REQUEST['codicefiscale']) && !isset($_REQUEST['sessione'])) {
         echo "c'è stato un errore!";
         $out = 0;
     }
+}else{
+    echo "rip";
 }
 
 //header("Location: index.php?registrazione=$out");
